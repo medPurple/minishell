@@ -14,7 +14,7 @@ NAME = minishell
 
 cc = cc
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -lreadline
 
 PATH_SRC = src
 
