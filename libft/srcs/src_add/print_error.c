@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/04/05 14:11:04 by mvautrot         ###   ########.fr       */
+/*   Created: 2023/01/23 14:04:17 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/01/23 14:55:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../include/libft.h"
 
-# include "../libft/include/libft.h"
+void	send_error(char *s)
+{
+	int	i;
 
-
-
-
-#endif
+	i = 0;
+	if (s == NULL)
+		write(1, "(null)", 6);
+	while (s[i])
+	{
+		write(2, &s[i], 1);
+		i++;
+	}
+}

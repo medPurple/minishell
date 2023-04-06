@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/04/05 14:11:04 by mvautrot         ###   ########.fr       */
+/*   Created: 2022/11/11 17:57:47 by wmessmer          #+#    #+#             */
+/*   Updated: 2022/12/15 19:15:26 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../../include/libft.h"
 
-# include "../libft/include/libft.h"
+int	ft_putstr_fd(char *s)
+{
+	int	i;
 
-
-
-
-#endif
+	i = 0;
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}

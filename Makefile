@@ -28,25 +28,39 @@ OBJ = $(SRC:.c=.o)
 
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
-all : $(LIB) $(NAME)
+all : $(LIB) $(NAME) run
+
+run: minishell
+		@./minishell
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
-	@echo "\n Compilation OK\n"
+	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
+	@echo "\n MINISHELL - [COMPILATION DONE]\n\n"
+	clear
+	@echo "\oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo/"
+	@echo "\ MM      MM  NN  NNNN    NN  NN   NNNNN  NN  NN  NNNNNN  NN      NN     /"
+	@echo "\ MMMM  MMMM  NN  NN NN   NN  NN  NN      NN  NN  NN      NN      NN     /"
+	@echo "\ MM  MM  MM  NN  NN  NN  NN  NN   NNNN   NNNNNN  NNNN    NN      NN     /"
+	@echo "\ MM      MM  NN  NN   NN NN  NN      NN  NN  NN  NN      NN      NN     /"
+	@echo "\ MM      MM  NN  NN    NNNN  NN  NNNNN   NN  NN  NNNNNN  NNNNNN  NNNNNN /"
+	@echo "\oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo/\n"
+
 
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
 
 $(LIB) :
 	@make -s -C $(PATH_LIB)
 
 clean :
-	make -C $(PATH_LIB) clean
-	rm -f $(OBJ)
+	@make -s -C $(PATH_LIB) clean
+	@rm -f $(OBJ)
 
 fclean : clean
-	make -C $(PATH_LIB) fclean
-	rm -f $(NAME)
+	@make -s -C $(PATH_LIB) fclean
+	@rm -f $(NAME)
+	@echo "\n MINISHELL - [REMOVING DONE]\n"
+
 
 re : fclean all
 

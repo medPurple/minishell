@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/04/05 14:11:04 by mvautrot         ###   ########.fr       */
+/*   Created: 2022/11/24 10:53:00 by wmessmer          #+#    #+#             */
+/*   Updated: 2022/11/24 15:40:13 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "../libft/include/libft.h"
-
-
-
-
-#endif
+int	ft_isdigit(int a)
+{
+	return (a >= '0' && a <= '9');
+}
