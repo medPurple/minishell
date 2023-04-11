@@ -14,13 +14,14 @@ NAME = minishell
 
 cc = cc
 
-CFLAGS = -Wall -Werror -Wextra -g3 -lreadline
+CFLAGS = -Wall -Wextra -g3 -lreadline
 
 PATH_SRC = src
 
 PATH_LIB = libft
 
-SRC =  $(PATH_SRC)/main.c\
+SRC =  $(PATH_SRC)/main.c \
+	   $(PATH_SRC)/parsing/parse.c \
 
 LIB = $(PATH_LIB)/libft.a
 
@@ -36,7 +37,7 @@ run: minishell
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
 	@echo "\n MINISHELL - [COMPILATION DONE]\n\n"
-	clear
+	@clear
 	@echo "\oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo/"
 	@echo "\ MM      MM  NN  NNNN    NN  NN   NNNNN  NN  NN  NNNNNN  NN      NN     /"
 	@echo "\ MMMM  MMMM  NN  NN NN   NN  NN  NN      NN  NN  NN      NN      NN     /"
