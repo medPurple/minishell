@@ -14,22 +14,22 @@
 # define MINISHELL_H
 
 # include "../libft/include/libft.h"
-# include <readline/readline.h>
-# include <readline/history.h>
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-typedef struct s_command
+typedef struct s_env
 {
+	char	*name;
+	char	*value;
+}				t_env;
 
-    char **all;
-    char **arguments;
-    char *command;
-    int pipe;
-    int and;
-    int or;
-} t_command;
-
-typedef struct *s_env
+typedef struct s_minishell
 {
-    char **envp;
-} *t_env;
+	t_env	*env;
+}				t_minishell;
+
+
+
+
 #endif
