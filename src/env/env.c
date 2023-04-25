@@ -11,27 +11,19 @@ avec un titre et un contenu. exemple imprimer $FOO ( if $FOO =>search name liste
 */
 #include "../../include/minishell.h"
 
-t_env *add_env(t_env *env, char **envp)
+void add_env(t_env **env, char **envp)
 {
     int i;
     t_env *tmp;
-    // creer fonction d initialisation ?
-    env->name = NULL;
-    env->data = NULL;
      
     i = 0;
-    if (envp && envp[i])
+	if (!envp)
+		return ;
+    while (envp[i])
     {
-        while (envp[i])
-        {
-            tmp = ft_new_element(ft_strdup(envp[i]));
-            if (!tmp || !tmp->data)
-            {
-                //clear(&env)
-            }
-            ft_add_back_lst(&env, tmp);
-            i++;
-        } 
-    }
-    return (env);
+		tmp = new_env_var(ft_strdup(envp[i]));
+		ft_add_back_lst(env, tmp);
+		i++;
+	}
+    return ;
 }

@@ -20,7 +20,7 @@
 
 typedef struct s_env
 {
-	char	*name;
+	//char	*name;
 	char	*data;
 	struct s_env	*next;
 }				t_env;
@@ -31,10 +31,11 @@ typedef struct s_minishell
 }				t_minishell;
 
 /*recupere environnement*/
-t_env *add_env(t_env *env, char **envp);
+void add_env(t_env **env, char **envp);
+void mini_export(t_env *env, char *str);
 
 /*UTILS_LST*/
-t_env	*ft_new_element(char *data);
+t_env	*new_env_var(char *data);
 t_env	*ft_last_lst(t_env *lst);
 void	ft_add_back_lst(t_env **lst, t_env *new);
 

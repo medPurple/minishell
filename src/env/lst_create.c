@@ -26,8 +26,6 @@ t_env	*ft_new_element(char *data)
 
 t_env	*ft_last_lst(t_env *lst)
 {
-	if (!lst)
-		return (NULL);
 	while (lst->next)
 	{
 		lst = lst->next;
@@ -38,12 +36,15 @@ t_env	*ft_last_lst(t_env *lst)
 void	ft_add_back_lst(t_env **lst, t_env *new)
 {
 	t_env	*str;
-
+	t_env   *tmp;
 	if (!*lst)
 		*lst = new;
 	else
 	{
+		tmp = (*lst);
 		str = ft_last_lst(*lst);
 		str->next = new;
+		(*lst) = tmp;
 	}
+	//(*lst) = tmp;
 }

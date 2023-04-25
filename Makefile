@@ -21,6 +21,8 @@ PATH_SRC = src
 PATH_LIB = libft
 
 SRC =   $(PATH_SRC)/env/env.c\
+		$(PATH_SRC)/env/export.c\
+		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/main.c\
 
 LIB = $(PATH_LIB)/libft.a
