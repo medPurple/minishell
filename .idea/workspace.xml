@@ -20,15 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/env.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/env.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/export.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/export.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lst/lst_create.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/lst_create.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-    </list>
+    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +113,7 @@
       <workItem from="1681461257247" duration="1808000" />
       <workItem from="1681470459088" duration="1350000" />
       <workItem from="1681480697823" duration="306000" />
-      <workItem from="1682421867173" duration="11535000" />
+      <workItem from="1682421867173" duration="11958000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1681480725351</created>
