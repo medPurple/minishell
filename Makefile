@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/04/05 14:06:36 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/04/20 16:07:45 by ml               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ PATH_SRC = src
 
 PATH_LIB = libft
 
-SRC =  $(PATH_SRC)/main.c\
+SRC =   $(PATH_SRC)/env/env.c\
+		$(PATH_SRC)/main.c\
 
 LIB = $(PATH_LIB)/libft.a
 
