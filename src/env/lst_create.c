@@ -15,10 +15,21 @@
 t_env	*ft_new_element(char *data)
 {
 	t_env	*element;
+	int i;
 
+	i = 0;
 	element = malloc(sizeof(t_env));
 	if (!element)
 		return (NULL);
+	while(data[i] != '=')
+		i++;
+	element->name = malloc(sizeof (char *) * i + 1);
+	i--;
+	while (i >= 0)
+	{
+		element->name[i] = data[i];
+		i--;
+	}
 	element->data = data;
 	element->next = NULL;
 	return (element);

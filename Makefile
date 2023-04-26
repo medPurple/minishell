@@ -23,6 +23,7 @@ PATH_LIB = libft
 SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/env/export.c\
 		$(PATH_SRC)/env/lst_create.c\
+		$(PATH_SRC)/parsing/parsing.c\
 		$(PATH_SRC)/main.c\
 
 LIB = $(PATH_LIB)/libft.a
@@ -34,7 +35,7 @@ OBJ_BONUS = $(SRC_BONUS:.c=.o)
 all : $(LIB) $(NAME) run
 
 run: minishell
-		@valgrind ./minishell
+		@./minishell
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline

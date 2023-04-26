@@ -20,7 +20,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a" />
+    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a">
+      <change beforePath="$PROJECT_DIR$/.idea/minishell.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/minishell.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/env.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/env.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/lst_create.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/lst_create.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/parsing.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/parsing.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +82,7 @@
       <recent name="$PROJECT_DIR$/src/env" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile Application.fclean">
+  <component name="RunManager" selected="C/C++ File.main.c">
     <configuration name="fclean" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="minishell" TARGET_NAME="fclean" CONFIG_NAME="fclean" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -89,7 +98,15 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="minishell" TARGET_NAME="main.c - Default" CONFIG_NAME="main.c">
+      <option name="sourceFile" value="src/main.c" />
+      <option name="toolchainName" value="Default" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="C/C++ File.main.c" />
       <item itemvalue="Makefile Application.fclean" />
       <item itemvalue="Makefile Application.re" />
       <item itemvalue="Makefile Application.minishell" />
@@ -113,7 +130,8 @@
       <workItem from="1681461257247" duration="1808000" />
       <workItem from="1681470459088" duration="1350000" />
       <workItem from="1681480697823" duration="306000" />
-      <workItem from="1682421867173" duration="11958000" />
+      <workItem from="1682421867173" duration="12114000" />
+      <workItem from="1682512279979" duration="7919000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1681480725351</created>
@@ -122,7 +140,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681480725351</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="a">
+      <created>1682436838192</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682436838192</updated>
+    </task>
+    <task id="LOCAL-00003" summary="a">
+      <created>1682436897299</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682436897299</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
