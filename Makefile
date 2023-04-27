@@ -24,6 +24,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/env/export.c\
 		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/parsing/parsing.c\
+		$(PATH_SRC)/parsing/is_a_fct.c\
 		$(PATH_SRC)/main.c\
 
 LIB = $(PATH_LIB)/libft.a

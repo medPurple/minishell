@@ -20,14 +20,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a">
-      <change beforePath="$PROJECT_DIR$/.idea/minishell.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/minishell.iml" afterDir="false" />
+    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="start parse + is a fction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/env.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/env.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/lst_create.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/lst_create.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parsing/parsing.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/parsing.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +127,10 @@
       <workItem from="1681470459088" duration="1350000" />
       <workItem from="1681480697823" duration="306000" />
       <workItem from="1682421867173" duration="12114000" />
-      <workItem from="1682512279979" duration="7919000" />
+      <workItem from="1682512279979" duration="8808000" />
+      <workItem from="1682588253597" duration="921000" />
+      <workItem from="1682589500373" duration="2020000" />
+      <workItem from="1682598773223" duration="3159000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1681480725351</created>
@@ -154,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682436897299</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="start parse + is a fction">
+      <created>1682523257932</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682523257932</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="start parse + is a fction" />
+    <option name="LAST_COMMIT_MESSAGE" value="start parse + is a fction" />
   </component>
 </project>
