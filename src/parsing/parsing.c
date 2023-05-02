@@ -28,7 +28,12 @@ void mini_parse(t_minishell *mini, char *str)
 	//cree un maillon, malloc et rempli avec str
     mini->tree = new_branche(mini->tree, str);
     while (mini->tree->end != 1)
+    {
+        ft_printf("=====================================================\n");
         nom_de_fonction(mini->tree, mini->env);
+        ft_printf("left -> %s\n", mini->tree->left->data);
+        ft_printf("right -> %s\n", mini->tree->right->data);
+    }
 
 }
 
@@ -36,8 +41,8 @@ static void nom_de_fonction(t_binary *tree, t_env *env)
 {
     if (tree->left == NULL)
         new_data(tree, env);
-    ft_printf("left -> %s\n", tree->command);
-    ft_printf("right -> %s\n", tree->rest);
+    ft_printf("command -> %s\n", tree->command);
+    ft_printf("rest -> %s\n\n\n", tree->rest);
     if (tree->command == NULL)
     {
         tree->end = 1;
@@ -47,9 +52,10 @@ static void nom_de_fonction(t_binary *tree, t_env *env)
     tree->right = new_branche(tree->right, tree->rest);
 	if (tree->left != NULL && tree->left->end != 1)
         nom_de_fonction(tree->left, env);
-	else if (tree->right != NULL && tree->right->end != 1)
+	if (tree->right != NULL && tree->right->end != 1)
 		nom_de_fonction(tree->right, env);
-    tree->end = 1;
+    if (tree->left->end == 1 && tree->right->end == 1)
+        tree->end = 1;
     ft_printf("end -> %d\n", tree->end);
 }
 
@@ -65,12 +71,8 @@ static int search_command(char *str, t_env *env)
         j = 0;
         if (i == 0)
         {
-            ft_printf("COUOCU\n");
             while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
-            {
-                ft_printf("str[i] : %c\n", str[i]);
                 i++;
-            }
         }
         while (ft_isalpha(str[i]) <= 0) // tant que ce pas une lettre on avance
             i++;
@@ -80,7 +82,6 @@ static int search_command(char *str, t_env *env)
             j++;
         }
         cmd = malloc ((sizeof (char) * j + 1)); // malloc taille mot + 1
-        ft_printf(" j : %i\n", j);
         i = i - j; // remet au moment du debut du mot
         j = 0;
         while (ft_isalpha(str[i]) > 0) //remplir jusqu a malloc
@@ -90,10 +91,9 @@ static int search_command(char *str, t_env *env)
             j++;
         }
         cmd[j] = '\0';
-        ft_printf("cmd : %s\n", cmd);
         if (is_a_fonction(cmd,env) == 1) // regarde si ce premier mot est une fonction
         {
-            ft_printf("cmd _2 : %s\n", cmd);
+            ft_printf("cmd : %s\n", cmd);
             free(cmd);
             return (i - j - 1);
         }
@@ -123,7 +123,6 @@ static void new_data(t_binary *tree, t_env *env)
     i = 0;
     j = 0;
     next_cmd = search_command(tree->data, env);
-    ft_printf("next_cmd : %i\n", next_cmd);
     if (next_cmd == -1) {
         tree->end = 1;
         return;
@@ -133,9 +132,9 @@ static void new_data(t_binary *tree, t_env *env)
         tree->command[i] = tree->data[i];
         i++;
     }
+    tree->command[i] = '\0';
     tree->rest = malloc(sizeof(char ) * (ft_strlen(tree->data) - next_cmd) + 1);
     while (tree->data[i]) {
-        ft_printf("tree->data[i] : %c\n", tree->data[i]);
         tree->rest[j] = tree->data[i];
         i++;
         j++;
