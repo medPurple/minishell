@@ -1,0 +1,269 @@
+<changelist name="Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]" date="1682844602798" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 30/04/2023 10:49 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strtrim.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strtrim.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strtrim.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isdigit.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isdigit.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isdigit.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strrchr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strrchr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strrchr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memset.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memset.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memset.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strncmp.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strncmp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strncmp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_add/ft_strcmp.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_add/ft_strcmp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strcmp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strchr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strchr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strchr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_gnl/get_next_line_bonus.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_gnl/get_next_line_bonus.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/get_next_line_bonus.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isalpha.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isalpha.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isalpha.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstadd_front.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putendl_fd.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlcpy.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_printf/ft_hexavoid.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_printf/ft_hexavoid.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_hexavoid.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_printf/ft_nbr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_printf/ft_nbr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_nbr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_printf/ft_hexa.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_printf/ft_hexa.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_hexa.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstlast.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memcpy.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memcpy.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memcpy.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlcat.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlcat.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlcat.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/libft.a" />
+    <option name="AFTER_PATH" value="libft/libft.a" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/libft.a" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstmap.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_striteri.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_striteri.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_striteri.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_substr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_substr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_substr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_toupper.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_toupper.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_toupper.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_split.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_split.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_split.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memcmp.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memcmp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memcmp.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putchar_fd.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strmapi.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strmapi.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strmapi.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isascii.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isascii.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isascii.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strjoin.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_strjoin.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strjoin.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putnbr_fd.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isalnum.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isalnum.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isalnum.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_bzero.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_bzero.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_bzero.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="minishell" />
+    <option name="AFTER_PATH" value="minishell" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/minishell" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memchr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memchr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memchr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstsize.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_atoi.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_atoi.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_atoi.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_printf/ft_printf.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_printf/ft_printf.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_printf.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_calloc.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_calloc.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_calloc.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strnstr.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strnstr.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strnstr.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstclear.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/main.o" />
+    <option name="AFTER_PATH" value="src/main.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/main.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strdup.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strdup.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strdup.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstdelone.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstnew.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isprint.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_isprint.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isprint.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstiter.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_itoa.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_itoa.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_itoa.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memmove.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_memmove.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memmove.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_tolower.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_tolower.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_tolower.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_add/print_error.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_add/print_error.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/print_error.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstadd_back.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putstr_fd.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlen.o" />
+    <option name="AFTER_PATH" value="libft/srcs/src_libftbase/src_part1/ft_strlen.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlen.o" />
+  </binary>
+</changelist>

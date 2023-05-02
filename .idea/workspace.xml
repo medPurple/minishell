@@ -20,7 +20,69 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="start parse + is a fction" />
+    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="start parse + is a fction">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/ft_strcmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_add/ft_strcmp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/print_error.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_add/print_error.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_gnl/get_next_line_bonus.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_gnl/get_next_line_bonus.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_atoi.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_atoi.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_bzero.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_bzero.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_calloc.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_calloc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalnum.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalnum.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalpha.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalpha.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isascii.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isascii.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isdigit.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isdigit.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isprint.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isprint.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memchr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcmp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcpy.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcpy.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memmove.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memmove.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memset.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memset.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strchr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strdup.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strdup.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcat.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcat.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlen.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlen.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strncmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strncmp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strnstr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strnstr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strrchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strrchr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_tolower.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_tolower.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_toupper.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_toupper.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_itoa.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_itoa.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_split.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_split.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_striteri.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_striteri.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strjoin.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strjoin.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strmapi.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strmapi.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strtrim.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strtrim.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_substr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_substr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexa.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexa.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexavoid.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexavoid.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_nbr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_nbr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_printf.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_printf.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/env.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/env.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/export.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/export.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/lst_create.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/lst_create.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/is_a_fct.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/is_a_fct.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/parsing.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/parsing.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/parsing.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/parsing.o" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

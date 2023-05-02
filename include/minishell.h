@@ -23,6 +23,8 @@ typedef struct s_binary
 {
 	int	end;
 	char *data;
+    char *rest;
+    char *command;
 	struct s_binary *left;
 	struct s_binary *right;
 }           t_binary;

@@ -1,0 +1,122 @@
+Index: include/minishell.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   minishell.h                                        :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */\n/*   Updated: 2023/04/14 16:31:56 by mvautrot         ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#ifndef MINISHELL_H\n# define MINISHELL_H\n\n# include \"../libft/include/libft.h\"\n#include <stdio.h>\n#include <readline/readline.h>\n#include <readline/history.h>\n\ntypedef struct s_env\n{\n\tchar\t*name;\n\tchar\t*data;\n\tt_env\t*next;\n}\t\t\t\tt_env;\n\ntypedef struct s_minishell\n{\n\tt_env\t*env;\n}\t\t\t\tt_minishell;\n\n\n\n\n#endif\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/include/minishell.h b/include/minishell.h
+--- a/include/minishell.h	(revision 6a56ea408b6decdb5b5d54604b54a1c3802766fe)
++++ b/include/minishell.h	(date 1681898081406)
+@@ -22,7 +22,7 @@
+ {
+ 	char	*name;
+ 	char	*data;
+-	t_env	*next;
++	struct s_env	*next;
+ }				t_env;
+ 
+ typedef struct s_minishell
+Index: Makefile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># **************************************************************************** #\n#                                                                              #\n#                                                         :::      ::::::::    #\n#    Makefile                                           :+:      :+:    :+:    #\n#                                                     +:+ +:+         +:+      #\n#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #\n#                                                 +#+#+#+#+#+   +#+            #\n#    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #\n#    Updated: 2023/04/05 14:06:36 by mvautrot         ###   ########.fr        #\n#                                                                              #\n# **************************************************************************** #\n\nNAME = minishell\n\ncc = cc\n\nCFLAGS = -Wall -Wextra -Werror -g3\n\nPATH_SRC = src\n\nPATH_LIB = libft\n\nSRC =  $(PATH_SRC)/main.c\\\n\nLIB = $(PATH_LIB)/libft.a\n\nOBJ = $(SRC:.c=.o)\n\nOBJ_BONUS = $(SRC_BONUS:.c=.o)\n\nall : $(LIB) $(NAME) run\n\nrun: minishell\n\t\t@valgrind ./minishell\n\n$(NAME) : $(OBJ)\n\t@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline\n\t@echo \"\\n MINISHELL - [COMPILATION DONE]\\n\\n\"\n\tclear\n\t@echo \"\\oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo/\"\n\t@echo \"\\ MM      MM  NN  NNNN    NN  NN   NNNNN  NN  NN  NNNNNN  NN      NN     /\"\n\t@echo \"\\ MMMM  MMMM  NN  NN NN   NN  NN  NN      NN  NN  NN      NN      NN     /\"\n\t@echo \"\\ MM  MM  MM  NN  NN  NN  NN  NN   NNNN   NNNNNN  NNNN    NN      NN     /\"\n\t@echo \"\\ MM      MM  NN  NN   NN NN  NN      NN  NN  NN  NN      NN      NN     /\"\n\t@echo \"\\ MM      MM  NN  NN    NNNN  NN  NNNNN   NN  NN  NNNNNN  NNNNNN  NNNNNN /\"\n\t@echo \"\\oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo/\\n\"\n\n\n.c.o :\n\t@ $(CC) $(CFLAGS) -c $< -o $@\n\n$(LIB) :\n\t@make -s -C $(PATH_LIB)\n\nclean :\n\t@make -s -C $(PATH_LIB) clean\n\t@rm -f $(OBJ)\n\nfclean : clean\n\t@make -s -C $(PATH_LIB) fclean\n\t@rm -f $(NAME)\n\t@echo \"\\n MINISHELL - [REMOVING DONE]\\n\"\n\n\nre : fclean all\n\n.PHONY : all clean fclean re\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Makefile b/Makefile
+--- a/Makefile	(revision 6a56ea408b6decdb5b5d54604b54a1c3802766fe)
++++ b/Makefile	(date 1681898024472)
+@@ -31,7 +31,7 @@
+ all : $(LIB) $(NAME) run
+ 
+ run: minishell
+-		@valgrind ./minishell
++		@./minishell
+ 
+ $(NAME) : $(OBJ)
+ 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"CMakePresetLoader\">{\n  &quot;useNewFormat&quot;: true\n}</component>\n  <component name=\"CMakeRunConfigurationManager\">\n    <generated>\n      <config projectName=\"minishell\" targetName=\"all\" />\n      <config projectName=\"minishell\" targetName=\"re\" />\n      <config projectName=\"minishell\" targetName=\"fclean\" />\n      <config projectName=\"minishell\" targetName=\"minishell\" />\n    </generated>\n  </component>\n  <component name=\"CMakeSettings\">\n    <configurations>\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\n    </configurations>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"1df4d17f-a326-47fb-aa82-c422ebb4ae8a\" name=\"Changes\" comment=\"a\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"PUSH_AUTO_UPDATE\" value=\"true\" />\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectApplicationVersion\">\n    <option name=\"ide\" value=\"CLion\" />\n    <option name=\"majorVersion\" value=\"2022\" />\n    <option name=\"minorVersion\" value=\"3\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2O3dyNdqwKmvnqOoosRhO9Ebtk5\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/mnt/nfs/homes/wmessmer/Desktop/42 - Cursus/minishell&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"Makefile Application.fclean\">\n    <configuration name=\"fclean\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"fclean\" CONFIG_NAME=\"fclean\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"minishell\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"minishell\" CONFIG_NAME=\"minishell\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"re\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"re\" CONFIG_NAME=\"re\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\"Makefile Application.fclean\" />\n      <item itemvalue=\"Makefile Application.re\" />\n      <item itemvalue=\"Makefile Application.minishell\" />\n    </list>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"1df4d17f-a326-47fb-aa82-c422ebb4ae8a\" name=\"Changes\" comment=\"\" />\n      <created>1680793452778</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1680793452778</updated>\n      <workItem from=\"1680793463338\" duration=\"1636000\" />\n      <workItem from=\"1680795672064\" duration=\"3065000\" />\n      <workItem from=\"1680798786379\" duration=\"822000\" />\n      <workItem from=\"1680856744065\" duration=\"107000\" />\n      <workItem from=\"1680860059177\" duration=\"872000\" />\n      <workItem from=\"1680868157024\" duration=\"79000\" />\n      <workItem from=\"1681400866315\" duration=\"3028000\" />\n      <workItem from=\"1681461257247\" duration=\"1808000\" />\n      <workItem from=\"1681470459088\" duration=\"1350000\" />\n      <workItem from=\"1681480697823\" duration=\"306000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"a\">\n      <created>1681480725351</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1681480725351</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"a\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"a\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6a56ea408b6decdb5b5d54604b54a1c3802766fe)
++++ b/.idea/workspace.xml	(date 1682844570957)
+@@ -20,7 +20,64 @@
+     </configurations>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a" />
++    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="a">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/ft_strcmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_add/ft_strcmp.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/print_error.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_add/print_error.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_gnl/get_next_line_bonus.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_gnl/get_next_line_bonus.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_atoi.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_atoi.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_bzero.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_bzero.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_calloc.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_calloc.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalnum.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalnum.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalpha.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalpha.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isascii.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isascii.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isdigit.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isdigit.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isprint.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isprint.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memchr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcmp.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcpy.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcpy.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memmove.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memmove.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memset.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memset.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strchr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strdup.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strdup.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcat.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcat.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlen.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlen.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strncmp.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strncmp.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strnstr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strnstr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strrchr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strrchr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_tolower.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_tolower.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_toupper.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_toupper.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_itoa.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_itoa.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_split.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_split.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_striteri.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_striteri.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strjoin.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strjoin.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strmapi.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strmapi.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strtrim.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strtrim.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_substr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_substr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexa.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexa.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexavoid.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexavoid.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_nbr.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_nbr.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_printf.o" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_printf/ft_printf.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.o" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -108,6 +165,7 @@
+       <workItem from="1681461257247" duration="1808000" />
+       <workItem from="1681470459088" duration="1350000" />
+       <workItem from="1681480697823" duration="306000" />
++      <workItem from="1681896210840" duration="2059000" />
+     </task>
+     <task id="LOCAL-00001" summary="a">
+       <created>1681480725351</created>
