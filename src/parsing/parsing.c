@@ -18,7 +18,7 @@ si bonne commande == gestion des flags dans les commandes : ls -l -a- F ou ls -l
  */
 #include "../../include/minishell.h"
 
-static void nom_de_fonction(t_binary *tree, t_env *env);
+static void tree_creation(t_binary *tree, t_env *env);
 static int search_command(char *str, t_env *env);
 static t_binary *new_branche(t_binary *tree, char *str);
 static void new_data(t_binary *tree, t_env *env);
@@ -30,14 +30,15 @@ void mini_parse(t_minishell *mini, char *str)
     while (mini->tree->end != 1)
     {
         ft_printf("=====================================================\n");
-        nom_de_fonction(mini->tree, mini->env);
+        tree_creation(mini->tree, mini->env);
+        ft_printf("tree-> data : %s\n", mini->tree->data);
         ft_printf("left -> %s\n", mini->tree->left->data);
         ft_printf("right -> %s\n", mini->tree->right->data);
     }
 
 }
 
-static void nom_de_fonction(t_binary *tree, t_env *env)
+static void tree_creation(t_binary *tree, t_env *env)
 {
     if (tree->left == NULL)
         new_data(tree, env);
@@ -48,15 +49,19 @@ static void nom_de_fonction(t_binary *tree, t_env *env)
         tree->end = 1;
         return ;
     }
+    //tree->prev = tree;
     tree->left = new_branche(tree->left, tree->command);
     tree->right = new_branche(tree->right, tree->rest);
-	if (tree->left != NULL && tree->left->end != 1)
-        nom_de_fonction(tree->left, env);
+    ft_printf ("tree left = %s |||| ", tree->left->data);
+    ft_printf ("tree right = %s \n", tree->right->data);
+	//if (tree->left != NULL && tree->left->end != 1)
+     //   tree_creation(tree->left, env);
 	if (tree->right != NULL && tree->right->end != 1)
-		nom_de_fonction(tree->right, env);
-    if (tree->left->end == 1 && tree->right->end == 1)
+		tree_creation(tree->right, env);
+    if (/*tree->left->end == 1 &&*/ tree->right->end == 1)
         tree->end = 1;
     ft_printf("end -> %d\n", tree->end);
+    return;
 }
 
 static int search_command(char *str, t_env *env)
@@ -105,8 +110,12 @@ static int search_command(char *str, t_env *env)
 static t_binary *new_branche(t_binary *tree, char *str)
 {
     tree = malloc(sizeof(t_binary));
+    tree->data = NULL;
+    tree->data = malloc(sizeof(char) * (ft_strlen(str) + 1));
     tree->data = str;
     tree->end = 0;
+   // tree->prev = NULL;
+    //tree->prev = tree; // save noeud precedent
     tree->left = NULL;
     tree->right = NULL;
     tree->command = NULL;
@@ -122,19 +131,23 @@ static void new_data(t_binary *tree, t_env *env)
 
     i = 0;
     j = 0;
+    ft_printf( "tree data before search : %s\n", tree->data);
     next_cmd = search_command(tree->data, env);
+    ft_printf("next cmd : %i\n", next_cmd );
     if (next_cmd == -1) {
         tree->end = 1;
         return;
     }
     tree->command = malloc(sizeof(char ) * next_cmd + 1);
     while (i <= next_cmd) {
+     //  ft_printf("tree->data : %c\n", tree->data[i]);
         tree->command[i] = tree->data[i];
         i++;
     }
     tree->command[i] = '\0';
     tree->rest = malloc(sizeof(char ) * (ft_strlen(tree->data) - next_cmd) + 1);
     while (tree->data[i]) {
+      //  ft_printf("tree->data : %c\n", tree->data[i]);
         tree->rest[j] = tree->data[i];
         i++;
         j++;

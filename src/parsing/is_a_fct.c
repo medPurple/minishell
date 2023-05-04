@@ -41,13 +41,14 @@ static char **path_recuperation(t_env *env)
 	}
 	while (env->data[i] != '=')
 		i++;
-	tmp_env = malloc(sizeof(char *) * (ft_strlen(env->data) - i));
+	tmp_env = malloc(sizeof(char ) * (ft_strlen(env->data) - i));
 	i++;
 	while (env->data[i]) {
 		tmp_env[j] = env->data[i];
 		i++;
 		j++;
 	}
+	tmp_env[j] = '\0';
 	split_env = ft_split(tmp_env, ':');
 	return (split_env);
 }
