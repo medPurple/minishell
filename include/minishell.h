@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/04 10:41:37 by ml               ###   ########.fr       */
+/*   Updated: 2023/05/05 13:47:46 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_add_back_lst(t_env **lst, t_env *new);
 
 /* ------------------------------------ UTILS - parsing ------------------------------------------- */
 int is_a_fonction(char *str,t_env *env);
+int	is_a_quotes(char *str);
 int is_a_buildin(char *str);
 
 

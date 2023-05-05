@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/04 17:01:01 by ml               ###   ########.fr       */
+/*   Updated: 2023/05/05 11:36:22 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void minishell(char *str, t_minishell *mini);
 
 int main(int ac, char **av, char **envp)
 {
-	(void)ac, 
+	(void)ac,
 	(void)av;
 	char *str;
 	t_minishell 	mini;
@@ -28,7 +28,8 @@ int main(int ac, char **av, char **envp)
 		if (ft_strcmp(str,"exit")==0)
 			break;
 		add_history(str);
-		minishell(str, &mini);
+		if (ft_strcmp(str,"") != 0)
+			minishell(str, &mini);
 	}
 	printf("MINISHELL EXIT\n");
 

@@ -19,6 +19,10 @@ int is_a_fonction(char *str,t_env *env)
 
 	tmp = env;
 	split_env = path_recuperation(tmp);
+	/* rajouter si unset path et donne chemin relatif
+		du style :
+	if (split_env == NULL && ft_strchr(str, '/') != NULL)
+		(*split_env) = str;*/
 	if (test_path(str,split_env) == 1)
 		return (1);
 	return (0);

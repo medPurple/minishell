@@ -32,10 +32,10 @@ void mini_parse(t_minishell *mini, char *str)
         ft_printf("=====================================================\n");
         tree_creation(mini->tree, mini->env);
         ft_printf("tree-> data : %s\n", mini->tree->data);
-        ft_printf("left -> %s\n", mini->tree->left->data);
-        ft_printf("right -> %s\n", mini->tree->right->data);
+        //ces printf ci-dessous font segfault si pas de cmd dans readline
+        //ft_printf("left -> %s\n", mini->tree->left->data);
+        //ft_printf("right -> %s\n", mini->tree->right->data);
     }
-
 }
 
 static void tree_creation(t_binary *tree, t_env *env)
@@ -71,7 +71,7 @@ static int search_command(char *str, t_env *env)
     char *cmd;
 
     i = 0;
-    while (str[i] != '\0')
+    while (str[i] != '\0' )
     {
         j = 0;
         if (i == 0)
@@ -79,7 +79,7 @@ static int search_command(char *str, t_env *env)
             while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
                 i++;
         }
-        while (ft_isalpha(str[i]) <= 0) // tant que ce pas une lettre on avance
+        while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') // tant que ce pas une lettre on avance
             i++;
         while (ft_isalpha(str[i]) > 0) // tant que c est une lettre j avance et j incremente un j pour la taille du mot pr malloc futur
         {
@@ -96,14 +96,18 @@ static int search_command(char *str, t_env *env)
             j++;
         }
         cmd[j] = '\0';
-        if (is_a_fonction(cmd,env) == 1) // regarde si ce premier mot est une fonction
+        if (is_a_fonction(cmd,env) == 1 /*&& is_a_quotes(str) == 0*/) // regarde si ce premier mot est une fonction
         {
             ft_printf("cmd : %s\n", cmd);
             free(cmd);
             return (i - j - 1);
         }
         free(cmd);
+        /*seules les commandes builtin ne doivent pas etre interpretees en tant que commande */
+        /*if (is_a_quotes(str) == 1)
+            return(-1);*/
     }
+      ft_printf("salut\n");
     return (-1);
 }
 
