@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/05 13:47:46 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:51:13 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
+//ls -l && echo 'test > FILE' > FILE && cat FILE
+// est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
+//autrement dit repartir de ce qui existe et rediviser a partir des quotes
 
 typedef struct s_binary
 {
@@ -61,6 +63,7 @@ void	ft_add_back_lst(t_env **lst, t_env *new);
 /* ------------------------------------ UTILS - parsing ------------------------------------------- */
 int is_a_fonction(char *str,t_env *env);
 int	is_a_quotes(char *str);
+int	is_and_else(char *str);
 int is_a_buildin(char *str);
 
 

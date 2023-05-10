@@ -12,7 +12,7 @@ int is_a_buildin(char *str)
 		return (0);
 }
 
-int is_a_fonction(char *str,t_env *env)
+int is_a_fonction(char *str, t_env *env)
 {
 	char **split_env;
 	t_env *tmp;
