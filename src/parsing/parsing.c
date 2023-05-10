@@ -139,7 +139,7 @@ static void new_data(t_binary *tree, t_env *env)
     i = 0;
     j = 0;
     ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
-    if (tree->data[i] == '\'' || tree->data[i] == '\"')
+    if (tree->data[i] == '\'' || tree->data[i] == '\"' || tree->data[i] == '(')
     {
         next_cmd = is_a_quotes(tree->data);
         if (next_cmd == 0)

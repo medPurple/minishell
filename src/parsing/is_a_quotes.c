@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:25:19 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/10 12:35:47 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:22:56 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 	=> gerer les metacaracteres lorsqu ils sont entre quotes
 	=> gerer les metacaracteres tout court avant non ? enfin non, trop de bruit, a revoir
 	pcq la je suis perdue*/
+
+/* CREER UNE FONCTION META QUI REDIRIGE POUR TOUS LES METAS*/
 
 int	is_a_quotes(char *str) // rajouter * et $ ?
 {
@@ -68,17 +70,23 @@ int	is_and_else(char *str)
 int	is_a_metacharacters(char *str)
 {
 	int	i;
+	int	cpt;
 
 	i = 0;
+	//if (ft_strcmp(str, "(") && ft_strcmp(str, ")"))
 	while (str[i])
 	{
-		if (ft_strcmp(str, "(") && ft_strcmp(str, ")"))
-			return(1);
-
-
+		if (str[i] == '(')
+		{
+			while (str[i])
+			{
+				if (str[i] == ')')
+					return(cpt);
+				cpt++;
+				i++;
+			}
+		}
 		i++;
 	}
 	return(0);
-
-
 }
