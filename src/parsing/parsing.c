@@ -21,7 +21,7 @@ seules les commandes builtin ne doivent pas etre interpretees en tant que comman
 #include "../../include/minishell.h"
 
 static void tree_creation(t_binary *tree, t_env *env);
-static int search_command(char *str, t_env *env);
+//static int search_command(char *str, t_env *env);
 static t_binary *new_branche(t_binary *tree, char *str);
 static void new_data(t_binary *tree, t_env *env);
 
@@ -70,72 +70,39 @@ static void tree_creation(t_binary *tree, t_env *env)
     return;
 }
 
-static int search_command(char *str, t_env *env)
+int search_command(char *str, t_env *env)
 {
     int i;
     int j;
-    int metacharacters;
     char *cmd;
 
     i = 0;
-    metacharacters = 0;
     while (str[i] != '\0' )
     {
         j = 0;
         if (i == 0)
         {
             while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
-            {
-                ft_printf ("STR : %s\n", str);
-                if (str[i] == '\'' || str[i] == '\"' || str[i] == '(')
-                {
-                    ft_printf ("STR : %s\n", str);
-                    ft_printf("coucou\n");
-                    metacharacters = is_a_metacharacters(str);
-                    if (metacharacters != 0)
-                    {
-                        ft_printf("METAAAA\n");
-                        ft_printf("metacharacters : %i\n", metacharacters);
-                        return(metacharacters);
-                    }
-                }
                 i++;
-            }
         }
-
-        while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') // tant que ce pas une lettre on avance
+        while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
             i++;
-        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0') // tant que c est une lettre j avance et j incremente un j pour la taille du mot pr malloc futur
+        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
         {
-            /*if (str[i] == '\'' || str[i] == '\"' || str[i] == '(')
-            {
-                ft_printf("coucou\n");
-                metacharacters = is_a_metacharacters(str);
-                if (metacharacters != 0)
-                {
-                    ft_printf("METAAAA\n");
-                    return(metacharacters - j);
-                }
-            }*/
             i++;
             j++;
         }
-        cmd = malloc ((sizeof (char) * j + 1)); // malloc taille mot + 1
-        i = i - j; // remet au moment du debut du mot
+        cmd = malloc ((sizeof (char) * j + 1));
+        i = i - j;
         j = 0;
-        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0') //remplir jusqu a malloc
+        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
         {
             cmd[j] = str[i];
             i++;
             j++;
         }
         cmd[j] = '\0';
-       // if (is_a_metacharacters(cmd) != 0)
-       // {
-         //   metacharacters = is_a_metacharacters(str);
-          //  return(i - j - 1);
-        //}
-        if (is_a_fonction(cmd, env) == 1 || is_and_else(cmd) == 1 || is_a_metacharacters(cmd) != 0) // regarde si ce premier mot est une fonction
+        if (is_a_fonction(cmd, env) == 1)//|| is_and_else(cmd) == 1) || is_a_metacharacters(cmd) != 0)
         {
             ft_printf("cmd : %s\n", cmd);
             free(cmd);
@@ -163,34 +130,28 @@ static t_binary *new_branche(t_binary *tree, char *str)
 
 static void new_data(t_binary *tree, t_env *env)
 {
-    int next_cmd;
+   // int next_cmd;
+    int size_data;
     int i;
     int j;
 
     i = 0;
     j = 0;
     ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
-   /* if (tree->data[i] == '\'' || tree->data[i] == '\"' || tree->data[i] == '(')
-    {
-        next_cmd = is_a_metacharacters(tree->data);
-        if (next_cmd == 0)
-            next_cmd = search_command(tree->data, env);
-    }
-    else*/
-    next_cmd = search_command(tree->data, env);
-    if (next_cmd == -1)
+    size_data = search_data(tree->data, env);
+    if (size_data == -1)
     {
         tree->end = 1;
         return;
     }
-    tree->command = malloc(sizeof(char ) * next_cmd + 1);
-    while (i <= next_cmd)
+    tree->command = malloc(sizeof(char) * size_data + 1);
+    while (i <= size_data)
     {
         tree->command[i] = tree->data[i];
         i++;
     }
     tree->command[i] = '\0';
-    tree->rest = malloc(sizeof(char ) * (ft_strlen(tree->data) - next_cmd) + 1);
+    tree->rest = malloc(sizeof(char ) * (ft_strlen(tree->data) - size_data) + 1);
     while (tree->data[i])
     {
         tree->rest[j] = tree->data[i];

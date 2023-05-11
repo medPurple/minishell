@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:25:19 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/11 11:55:43 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:15:16 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@
 
 /* CREER UNE FONCTION META QUI REDIRIGE POUR TOUS LES METAS*/
 
+int	search_data(char *str, t_env *env)
+{
+	int	i;
+	int j;
+	char *search;
+	int	size_data;
+
+	search = NULL;
+	size_data = 0;
+	j = 0;
+	i = 0;
+	if (search[i] == '\'' || search[i] == '\"' || search[i] == '(' || search[i] == '&' || search[i] == '&')
+	{
+		size_data = is_a_metacharacters(str);
+		if (size_data != 0)
+			return(size_data);
+	}
+	size_data = search_command(str, env);
+	return(size_data);
+}
 int	is_a_metacharacters(char *str)
 {
 	int	i;
@@ -34,18 +54,26 @@ int	is_a_metacharacters(char *str)
 	quotes = 0;
 	while (str[i])
 	{
+		ft_printf ("coucou\n");
 		if (str[i] == '(')
 		{
 			parenthesis = is_a_parenthesis(str);
 			if (parenthesis != 0)
 				return (parenthesis);
 		}
-		else if (str[i] == '\'' || str[i] == '\"')
+		if (str[i] == '\'' || str[i] == '\"')
 		{
-			ft_printf("serieusement?");
 			quotes = is_a_quotes(str);
 			if (quotes != 0)
 				return(quotes);
+		}
+		if (str[i] == '&' || str[i] == '|')
+		{
+			if (is_and_else(str) == 1)
+			{
+				ft_printf ("salut\n");
+				return (1);
+			}
 		}
 		i++;
 	}
@@ -68,10 +96,7 @@ int	is_a_quotes(char *str) // rajouter * et $ ?
 		if (str[i] == '\"')
 			check_double++;
 		if (check_single == 2 || check_double == 2)
-		{
-			ft_printf("QUOTES !\n");
 			return(i);
-		}
 		i++;
 	}
 	return(0);

@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/11 09:21:31 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:45:05 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ t_env	*ft_last_lst(t_env *lst);
 void	ft_add_back_lst(t_env **lst, t_env *new);
 
 /* ------------------------------------ UTILS - parsing ------------------------------------------- */
+int	search_data(char *str, t_env *env);
 int is_a_fonction(char *str,t_env *env);
+int search_command(char *str, t_env *env);
 int	is_a_metacharacters(char *str);
 int	is_a_quotes(char *str);
 int	is_and_else(char *str);
