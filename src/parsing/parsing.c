@@ -45,28 +45,27 @@ static void tree_creation(t_binary *tree, t_env *env)
 {
     if (tree->left == NULL)
         new_data(tree, env);
-    ft_printf("command -> %s\n", tree->command);
-    ft_printf("rest -> %s\n\n\n", tree->rest);
+   // ft_printf("command -> %s\n", tree->command);
+   // ft_printf("rest -> %s\n\n\n", tree->rest);
     if (tree->command == NULL)
     {
         tree->end = 1;
         return ;
     }
-    //tree->prev = tree;
     tree->left = new_branche(tree->left, tree->command);
     tree->right = new_branche(tree->right, tree->rest);
-    ft_printf ("tree left = %s |||| ", tree->left->data);
+    ft_printf ("\n\ntree left = %s |||| ", tree->left->data);
     ft_printf ("tree right = %s \n", tree->right->data);
     tree->right->prev = tree;
     tree->left->prev = tree;
 
 	if (tree->right != NULL && tree->right->end != 1)
 		tree_creation(tree->right, env);
-    if (/*tree->left->end == 1 &&*/ tree->right->end == 1)
+    if (tree->right->end == 1)
         tree->end = 1;
-    if (tree->prev != NULL)
-        ft_printf("prev->data : %s |||| data->actual : %s\n", tree->prev->data, tree->data);
-    ft_printf("end -> %d\n", tree->end);
+   // if (tree->prev != NULL)
+     //   ft_printf("prev->data : %s |||| data->actual : %s\n", tree->prev->data, tree->data);
+    //ft_printf("end -> %d\n", tree->end);
 
     return;
 }
@@ -75,21 +74,49 @@ static int search_command(char *str, t_env *env)
 {
     int i;
     int j;
+    int metacharacters;
     char *cmd;
 
     i = 0;
+    metacharacters = 0;
     while (str[i] != '\0' )
     {
         j = 0;
         if (i == 0)
         {
             while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
+            {
+                ft_printf ("STR : %s\n", str);
+                if (str[i] == '\'' || str[i] == '\"' || str[i] == '(')
+                {
+                    ft_printf ("STR : %s\n", str);
+                    ft_printf("coucou\n");
+                    metacharacters = is_a_metacharacters(str);
+                    if (metacharacters != 0)
+                    {
+                        ft_printf("METAAAA\n");
+                        ft_printf("metacharacters : %i\n", metacharacters);
+                        return(metacharacters);
+                    }
+                }
                 i++;
+            }
         }
+
         while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') // tant que ce pas une lettre on avance
             i++;
         while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0') // tant que c est une lettre j avance et j incremente un j pour la taille du mot pr malloc futur
         {
+            /*if (str[i] == '\'' || str[i] == '\"' || str[i] == '(')
+            {
+                ft_printf("coucou\n");
+                metacharacters = is_a_metacharacters(str);
+                if (metacharacters != 0)
+                {
+                    ft_printf("METAAAA\n");
+                    return(metacharacters - j);
+                }
+            }*/
             i++;
             j++;
         }
@@ -103,7 +130,12 @@ static int search_command(char *str, t_env *env)
             j++;
         }
         cmd[j] = '\0';
-        if (is_a_fonction(cmd, env) == 1 || is_and_else(cmd) == 1) // regarde si ce premier mot est une fonction
+       // if (is_a_metacharacters(cmd) != 0)
+       // {
+         //   metacharacters = is_a_metacharacters(str);
+          //  return(i - j - 1);
+        //}
+        if (is_a_fonction(cmd, env) == 1 || is_and_else(cmd) == 1 || is_a_metacharacters(cmd) != 0) // regarde si ce premier mot est une fonction
         {
             ft_printf("cmd : %s\n", cmd);
             free(cmd);
@@ -122,7 +154,6 @@ static t_binary *new_branche(t_binary *tree, char *str)
     tree->data = str;
     tree->end = 0;
     tree->prev = NULL;
-   // tree->prev = tree; // save noeud precedent
     tree->left = NULL;
     tree->right = NULL;
     tree->command = NULL;
@@ -139,14 +170,14 @@ static void new_data(t_binary *tree, t_env *env)
     i = 0;
     j = 0;
     ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
-    if (tree->data[i] == '\'' || tree->data[i] == '\"' || tree->data[i] == '(')
+   /* if (tree->data[i] == '\'' || tree->data[i] == '\"' || tree->data[i] == '(')
     {
-        next_cmd = is_a_quotes(tree->data);
+        next_cmd = is_a_metacharacters(tree->data);
         if (next_cmd == 0)
             next_cmd = search_command(tree->data, env);
     }
-    else
-        next_cmd = search_command(tree->data, env);
+    else*/
+    next_cmd = search_command(tree->data, env);
     if (next_cmd == -1)
     {
         tree->end = 1;
@@ -167,5 +198,4 @@ static void new_data(t_binary *tree, t_env *env)
         j++;
     }
     tree->rest[j] = '\0';
-    //tree->prev = tree;
 }

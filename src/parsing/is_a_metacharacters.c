@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_a_quotes.c                                      :+:      :+:    :+:   */
+/*   is_a_metacharacters.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:25:19 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/10 16:22:56 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:55:43 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,35 @@
 	pcq la je suis perdue*/
 
 /* CREER UNE FONCTION META QUI REDIRIGE POUR TOUS LES METAS*/
+
+int	is_a_metacharacters(char *str)
+{
+	int	i;
+	int	parenthesis;
+	int quotes;
+
+	i = 0;
+	parenthesis = 0;
+	quotes = 0;
+	while (str[i])
+	{
+		if (str[i] == '(')
+		{
+			parenthesis = is_a_parenthesis(str);
+			if (parenthesis != 0)
+				return (parenthesis);
+		}
+		else if (str[i] == '\'' || str[i] == '\"')
+		{
+			ft_printf("serieusement?");
+			quotes = is_a_quotes(str);
+			if (quotes != 0)
+				return(quotes);
+		}
+		i++;
+	}
+	return(0);
+}
 
 int	is_a_quotes(char *str) // rajouter * et $ ?
 {
@@ -39,7 +68,10 @@ int	is_a_quotes(char *str) // rajouter * et $ ?
 		if (str[i] == '\"')
 			check_double++;
 		if (check_single == 2 || check_double == 2)
+		{
+			ft_printf("QUOTES !\n");
 			return(i);
+		}
 		i++;
 	}
 	return(0);
@@ -67,26 +99,20 @@ int	is_and_else(char *str)
 	return(0);
 }
 
-int	is_a_metacharacters(char *str)
+int	is_a_parenthesis (char *str)
 {
 	int	i;
-	int	cpt;
+	int	check_parenthesis;
 
 	i = 0;
-	//if (ft_strcmp(str, "(") && ft_strcmp(str, ")"))
+	check_parenthesis = 0;
 	while (str[i])
 	{
 		if (str[i] == '(')
-		{
-			while (str[i])
-			{
-				if (str[i] == ')')
-					return(cpt);
-				cpt++;
-				i++;
-			}
-		}
+			check_parenthesis++;
+		if (str[i] == ')' && check_parenthesis != 2)
+			return (i);
 		i++;
 	}
-	return(0);
+	return (0);
 }
