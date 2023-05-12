@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/12 14:15:44 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:00:20 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
 //ls (-l) -la && (cat salut) || cat coucou
+//(ls -ls) && cat file || ls "-l -ls (test)" -la | (test) | file
 // est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
 //autrement dit repartir de ce qui existe et rediviser a partir des quotes
 

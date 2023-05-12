@@ -27,8 +27,6 @@ static void new_data(t_binary *tree, t_env *env);
 
 void mini_parse(t_minishell *mini, char *str)
 {
-	//cree un maillon, malloc et rempli avec str
-
     mini->tree = new_branche(mini->tree, str);
     while (mini->tree->end != 1)
     {
@@ -70,48 +68,6 @@ static void tree_creation(t_binary *tree, t_env *env)
     return;
 }
 
-int search_command(char *str, t_env *env)
-{
-    int i;
-    int j;
-    char *cmd;
-
-    i = 0;
-    while (str[i] != '\0' )
-    {
-        j = 0;
-       if (i == 0)
-        {
-            while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
-                i++;
-        }
-        while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-            i++;
-        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
-        {
-            i++;
-            j++;
-        }
-        cmd = malloc ((sizeof (char) * j + 1));
-        i = i - j;
-        j = 0;
-        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
-        {
-            cmd[j] = str[i];
-            i++;
-            j++;
-        }
-        cmd[j] = '\0';
-        if ((is_a_fonction(cmd, env) == 1 || is_a_characters(cmd) != 0)) 
-        {
-            free(cmd);
-            return (i - j - 1);
-        }
-        free(cmd);
-    }
-    return (-1);
-}
-
 static t_binary *new_branche(t_binary *tree, char *str)
 {
     tree = malloc(sizeof(t_binary));
@@ -129,7 +85,6 @@ static t_binary *new_branche(t_binary *tree, char *str)
 
 static void new_data(t_binary *tree, t_env *env)
 {
-   // int next_cmd;
     int size_data;
     int i;
     int j;
