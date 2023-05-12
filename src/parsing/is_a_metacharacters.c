@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:25:19 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/12 12:58:02 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:50:59 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,8 @@ int	search_data(char *str, t_env *env)
 	j = 0;
 	i = 0;
 
-
-	//size_data = search_command(str, env);
-	/*if (search_command(str, env) != -1)
-		size_data = search_command(str, env);
-	else if (str[i] == '\'' || str[i] == '\"' || str[i] == '(' || str[i] == '&' || str[i] == '&')
-	{
-		if (is_a_metacharacters(str) != 0)
-			size_data = is_a_metacharacters(str);
-	}
-	else
-		size_data = -1;
-	return(size_data);
-	if (size_data == -1)
-	{*/
 	while(str[i])
 	{
-			// si je croise une commande j'arrete;
-		/*if (str[i] == '\'' || str[i] == '\"' || str[i] == '(' || str[i] == '&' || str[i] == '&')
-		{*/
 		if (is_a_metacharacters(str, env) != 0)
 		{
 			size_data = is_a_metacharacters(str, env);
@@ -63,6 +46,15 @@ int	search_data(char *str, t_env *env)
 			size_data = search_command(str, env);
 				return(size_data);
 		}
+		else if (str[i] == '&' || str[i] == '|' || str[i] == '>' || str[i] == '<')
+		{
+			if (is_a_characters(str) != 0)
+			{
+				size_data = is_a_characters(str);
+				if (size_data != 0)
+					return(size_data);
+			}
+		}
 		i++;
 
 	}
@@ -71,12 +63,12 @@ int	search_data(char *str, t_env *env)
 int	is_a_metacharacters(char *str, t_env *env)
 {
 	int	i;
-	int	j;
+	int	characters;
 	int	parenthesis;
 	int quotes;
 
 	i = 0;
-	j = ft_strlen(str);
+	characters = 0;
 	parenthesis = 0;
 	quotes = 0;
 	while (str[i])
@@ -92,14 +84,6 @@ int	is_a_metacharacters(char *str, t_env *env)
 			quotes = is_a_quotes(str, env);
 			if (quotes != 0)
 				return(quotes);
-		}
-		if (str[i] == '&' || str[i] == '|')
-		{
-			if (is_and_else(str) == 1)
-			{
-				ft_printf ("salut\n");
-				return (1);
-			}
 		}
 		i++;
 	}
@@ -128,7 +112,9 @@ int	is_a_quotes(char *str, t_env *env) // rajouter * et $ ?
 			j = i;
 			while (str[j] != 0)
 			{
-				if (is_a_fonction(str, env) != 0)
+				if (str[i] == '|' || str[i] == '&' || str[i] == '>' || str[i] == '<')
+					return(j - 1);
+				else if (is_a_fonction(str, env) != 0)
 					return(j);
 				j++;
 			}
@@ -138,26 +124,79 @@ int	is_a_quotes(char *str, t_env *env) // rajouter * et $ ?
 	return(0);
 }
 
-int	is_and_else(char *str)
+int	is_a_characters(char *str)
 {
 	int	i;
-	int	check_and;
-	int	check_else;
+	int	check_characters;
 
-	check_and = 0;
-	check_else = 0;
 	i = 0;
+	check_characters = 0;
 	while (str[i])
 	{
-		if (str[i] == '&')
-			check_and++;
-		if (str[i] == '|')
-			check_else++;
-		if (check_and == 2 || check_else == 2)
-			return(i);
+		if (str[i] == '>' || str[i] == '<')
+			check_characters = is_a_redirection(str);
+		else if (str[i] == '|')
+			check_characters = is_a_pipe_or_else(str);
+		else if (str[i] == '&')
+			check_characters = is_a_and(str);
 		i++;
 	}
-	return(0);
+	return (check_characters);
+}
+
+int	is_a_redirection(char *str)
+{
+	int	i;
+
+	i = 0;
+	if ((str[0] == '>' && str[1] == '>') || (str[0] == '<' && str[1] == '<'))
+		return(2);
+	else if (str[0] == '>' || str[0] == '<')
+		return(1);
+	else
+	{
+		while (str[i] != '>' || str[i] != '<')
+			i++;
+		return(i - 1);
+	}
+	return (0);
+}
+
+int	is_a_pipe_or_else(char *str)
+{
+	int	i;
+
+	i = 0;
+	if ((str[0] == '|' && str[1] == '|'))
+		return(2);
+	else if ((str[0] == '|' && str[1] != '|'))
+		return(1);
+	else
+	{
+		while (str[i] != '|' || str[i] != '|')
+			i++;
+		return(i - 1);
+	}
+	return (0);
+}
+
+int is_a_and(char *str)
+{
+	int	i;
+
+	i = 0;
+	if ((str[0] == '&' && str[1] == '&'))
+		return(2);
+	else if (str[0] == '&' && str[1] != '&')
+		return(0);
+	else
+	{
+		while (str[i] != '&' || str[i] != '&')
+			i++;
+		return(i - 1);
+	}
+	return (0);
+
 }
 
 int	is_a_parenthesis (char *str)

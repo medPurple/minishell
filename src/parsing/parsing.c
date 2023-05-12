@@ -102,9 +102,8 @@ int search_command(char *str, t_env *env)
             j++;
         }
         cmd[j] = '\0';
-        if (is_a_fonction(cmd, env) == 1)//|| is_and_else(cmd) == 1) || is_a_metacharacters(cmd) != 0)
+        if ((is_a_fonction(cmd, env) == 1 || is_a_characters(cmd) != 0)) 
         {
-            ft_printf("cmd : %s\n", cmd);
             free(cmd);
             return (i - j - 1);
         }
@@ -137,7 +136,7 @@ static void new_data(t_binary *tree, t_env *env)
 
     i = 0;
     j = 0;
-   // ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
+   ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
     size_data = search_data(tree->data, env);
     ft_printf("size_data : %i\n", size_data);
     if (size_data == -1)
