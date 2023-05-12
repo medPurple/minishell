@@ -80,7 +80,7 @@ int search_command(char *str, t_env *env)
     while (str[i] != '\0' )
     {
         j = 0;
-        if (i == 0)
+       if (i == 0)
         {
             while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0')
                 i++;
@@ -137,8 +137,9 @@ static void new_data(t_binary *tree, t_env *env)
 
     i = 0;
     j = 0;
-    ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
+   // ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
     size_data = search_data(tree->data, env);
+    ft_printf("size_data : %i\n", size_data);
     if (size_data == -1)
     {
         tree->end = 1;

@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:25:19 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/11 17:15:16 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:58:02 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,60 @@ int	search_data(char *str, t_env *env)
 {
 	int	i;
 	int j;
-	char *search;
 	int	size_data;
 
-	search = NULL;
-	size_data = 0;
+	size_data = -1;
 	j = 0;
 	i = 0;
-	if (search[i] == '\'' || search[i] == '\"' || search[i] == '(' || search[i] == '&' || search[i] == '&')
+
+
+	//size_data = search_command(str, env);
+	/*if (search_command(str, env) != -1)
+		size_data = search_command(str, env);
+	else if (str[i] == '\'' || str[i] == '\"' || str[i] == '(' || str[i] == '&' || str[i] == '&')
 	{
-		size_data = is_a_metacharacters(str);
-		if (size_data != 0)
-			return(size_data);
+		if (is_a_metacharacters(str) != 0)
+			size_data = is_a_metacharacters(str);
 	}
-	size_data = search_command(str, env);
+	else
+		size_data = -1;
+	return(size_data);
+	if (size_data == -1)
+	{*/
+	while(str[i])
+	{
+			// si je croise une commande j'arrete;
+		/*if (str[i] == '\'' || str[i] == '\"' || str[i] == '(' || str[i] == '&' || str[i] == '&')
+		{*/
+		if (is_a_metacharacters(str, env) != 0)
+		{
+			size_data = is_a_metacharacters(str, env);
+			if (size_data != 0)
+				return(size_data);
+		}
+		else if (search_command(str, env) != -1)
+		{
+			size_data = search_command(str, env);
+				return(size_data);
+		}
+		i++;
+
+	}
 	return(size_data);
 }
-int	is_a_metacharacters(char *str)
+int	is_a_metacharacters(char *str, t_env *env)
 {
 	int	i;
+	int	j;
 	int	parenthesis;
 	int quotes;
 
 	i = 0;
+	j = ft_strlen(str);
 	parenthesis = 0;
 	quotes = 0;
 	while (str[i])
 	{
-		ft_printf ("coucou\n");
 		if (str[i] == '(')
 		{
 			parenthesis = is_a_parenthesis(str);
@@ -63,7 +89,7 @@ int	is_a_metacharacters(char *str)
 		}
 		if (str[i] == '\'' || str[i] == '\"')
 		{
-			quotes = is_a_quotes(str);
+			quotes = is_a_quotes(str, env);
 			if (quotes != 0)
 				return(quotes);
 		}
@@ -80,15 +106,17 @@ int	is_a_metacharacters(char *str)
 	return(0);
 }
 
-int	is_a_quotes(char *str) // rajouter * et $ ?
+int	is_a_quotes(char *str, t_env *env) // rajouter * et $ ?
 {
 	int	i;
+	int	j;
 	int	check_single;
 	int	check_double;
 
 	check_single = 0;
 	check_double = 0;
 	i = 0;
+	j = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'')
@@ -96,7 +124,15 @@ int	is_a_quotes(char *str) // rajouter * et $ ?
 		if (str[i] == '\"')
 			check_double++;
 		if (check_single == 2 || check_double == 2)
-			return(i);
+		{
+			j = i;
+			while (str[j] != 0)
+			{
+				if (is_a_fonction(str, env) != 0)
+					return(j);
+				j++;
+			}
+		}
 		i++;
 	}
 	return(0);
@@ -131,13 +167,22 @@ int	is_a_parenthesis (char *str)
 
 	i = 0;
 	check_parenthesis = 0;
-	while (str[i])
+	if (str[0] == '(')
 	{
-		if (str[i] == '(')
-			check_parenthesis++;
-		if (str[i] == ')' && check_parenthesis != 2)
-			return (i);
-		i++;
+		while (str[i])
+		{
+			if (str[i] == '(')
+				check_parenthesis++;
+			if (str[i] == ')' && check_parenthesis != 2)
+				return (i);
+			i++;
+		}
+	}
+	else
+	{
+		while (str[i] != '(')
+			i++;
+		return(i - 1);
 	}
 	return (0);
 }
