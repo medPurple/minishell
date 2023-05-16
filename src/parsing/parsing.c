@@ -90,10 +90,8 @@ static void new_data(t_binary *tree, t_env *env)
     int j;
 
     i = 0;
-    j = 0;
-   ft_printf( "tree data before search : %s\n", tree->data);//else if (tree->data[i] == '$' || tree->data[i] == '*')
+    j = 0;//else if (tree->data[i] == '$' || tree->data[i] == '*')
     size_data = search_data(tree->data, env);
-    ft_printf("size_data : %i\n", size_data);
     if (size_data == -1)
     {
         tree->end = 1;

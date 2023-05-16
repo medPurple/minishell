@@ -6,21 +6,23 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:56:32 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/12 15:56:46 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:43:24 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 
-int	is_a_characters(char *str)
+int	is_a_characters(char *str, int limit)
 {
 	int	i;
 	int	check_characters;
 
 	i = 0;
+	if (limit == -1)
+		limit = ft_strlen(str);
 	check_characters = 0;
-	while (str[i])
+	while (i < limit)
 	{
 		if (str[i] == '>' || str[i] == '<')
 			check_characters = is_a_redirection(str);
@@ -72,7 +74,6 @@ int	is_a_pipe_or_else(char *str)
 int is_a_and(char *str)
 {
 	int	i;
-
 	i = 0;
 	if ((str[0] == '&' && str[1] == '&'))
 		return(2);
