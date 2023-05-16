@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:14:16 by ml                #+#    #+#             */
-/*   Updated: 2023/05/05 09:29:54 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:26:06 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ t_env	*ft_new_element(char *data)
 	element = malloc(sizeof(t_env));
 	if (!element)
 		return (NULL);
+	element->name = NULL;
 	while(data[i] != '=')
 		i++;
-	element->name = malloc(sizeof (char *) * i + 1);
+	element->name = ft_malloc(i, "char");
+	element->name[i] = '\0';
 	i--;
 	while (i >= 0)
 	{
@@ -55,6 +57,7 @@ void	ft_add_back_lst(t_env **lst, t_env *new)
 		tmp = (*lst);
 		str = ft_last_lst(*lst);
 		str->next = new;
+		str->next->next = NULL;
 		(*lst) = tmp;
 	}
 }

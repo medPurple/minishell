@@ -26,11 +26,11 @@
 int	search_data(char *str, t_env *env)
 {
 	int	i;
-	int j;
+	//int j;
 	int	size_data;
 
 	size_data = -1;
-	j = 0;
+	//j = 0;
 	i = 0;
 	while(str[i])
 	{

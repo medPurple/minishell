@@ -30,6 +30,7 @@ typedef struct s_binary
 	char *data;
     char *rest;
     char *command;
+	int visualiser;
 	struct s_binary *prev;
 	struct s_binary *left;
 	struct s_binary *right;
@@ -57,6 +58,7 @@ void mini_export(t_env *env, char *str);
 /*---------------------------------------- PARSING ------------------------------------------------*/
 
 void mini_parse(t_minishell *mini, char *str);
+void expand(t_minishell *mini);
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
@@ -76,6 +78,7 @@ int is_a_and(char *str);
 int	is_a_parenthesis (char *str);
 int is_a_buildin(char *str);
 
+void print_binary(t_binary *tree);
 
 
 #endif

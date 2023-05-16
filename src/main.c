@@ -40,15 +40,15 @@ static void minishell(char *str, t_minishell *mini)
 {
 	t_env *tmp;
 
-	ft_printf("---%s\n", str);
 	if (ft_strcmp(str,"env")==0)
 	{
 		tmp = mini->env;
-		while(mini->env != NULL)
+		while(mini->env->next != NULL)
 		{
 			ft_printf("%s\n",mini->env->data);
 			mini->env = mini->env->next;
 		}
+		ft_printf("%s\n",mini->env->data);
 		mini->env = tmp;
 	}
 	else if (ft_strncmp(str,"export ",7)==0)

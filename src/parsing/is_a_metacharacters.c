@@ -46,14 +46,14 @@ int	is_a_quotes(char *str, t_env *env) // rajouter * et $ ?
 {
 	(void)env;
 	int	i;
-	int	j;
-	int	check_single;
-	int	check_double;
+	//int	j;
+	//int	check_single;
+	//int	check_double;
 
-	check_single = 0;
-	check_double = 0;
+	//check_single = 0;
+	//check_double = 0;
 	i = 0;
-	j = 0;
+	//j = 0;
 	if (/*str[0] != '\'' && */str[0] != '\"')
 	{
 		while (str[i] != '\"' /*||  str[i] != '\''*/)

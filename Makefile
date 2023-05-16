@@ -28,7 +28,9 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/search_data.c\
 		$(PATH_SRC)/parsing/is_a_metacharacters.c\
 		$(PATH_SRC)/parsing/is_a_characters.c\
+		$(PATH_SRC)/parsing/expand.c\
 		$(PATH_SRC)/main.c\
+		print_the_tree.c \
 
 LIB = $(PATH_LIB)/libft.a
 
