@@ -37,6 +37,7 @@ void mini_parse(t_minishell *mini, char *str)
         //ft_printf("left -> %s\n", mini->tree->left->data);
         //ft_printf("right -> %s\n", mini->tree->right->data);
     }
+	//print_binary(mini->tree);
 }
 
 static void tree_creation(t_binary *tree, t_env *env)

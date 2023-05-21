@@ -79,6 +79,7 @@ int	is_a_parenthesis (char *str);
 int is_a_buildin(char *str);
 
 void print_binary(t_binary *tree);
+void parse_test(t_minishell *mini, char *str);
 
 
 #endif

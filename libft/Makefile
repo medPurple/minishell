@@ -74,6 +74,7 @@ SRCS_GNL  =		srcs/src_gnl/get_next_line_bonus.c 		\
 SRCS_PERSO	= 	srcs/src_add/print_error.c \
 				srcs/src_add/ft_strcmp.c \
 				srcs/src_add/ft_malloc.c \
+				srcs/src_add/ft_limited_strdup.c \
 				
 OBJ	=   ${SRCS_LIBFT:.c=.o} ${SRCS_PRINTF:.c=.o} ${SRCS_GNL:.c=.o} ${SRCS_PERSO:.c=.o} 
 

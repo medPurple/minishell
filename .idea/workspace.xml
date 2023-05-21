@@ -20,134 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="start parse + is a fction">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_atoi.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_bzero.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_calloc.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_hexa.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_hexavoid.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isalnum.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isalpha.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isascii.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isdigit.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_isprint.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_itoa.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstadd_back.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstadd_front.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstclear.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstdelone.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstiter.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstlast.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstmap.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstnew.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_lstsize.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memcmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memcpy.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memmove.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_memset.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_nbr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_printf.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putchar_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putendl_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putnbr_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_putstr_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_split.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strcmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strdup.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_striteri.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strjoin.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlcat.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlcpy.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strlen.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strmapi.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strncmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strnstr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strrchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_strtrim.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_substr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_tolower.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/ft_toupper.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/get_next_line_bonus.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/libft.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/minishell" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/print_error.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_04_2023_10_49__Changes_.xml" beforeDir="false" />
+    <list default="true" id="1df4d17f-a326-47fb-aa82-c422ebb4ae8a" name="Changes" comment="expand ok, fuck parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/minishell.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/libft/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/include/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/include/libft.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/ft_strcmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_add/print_error.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_gnl/get_next_line_bonus.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_back.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstadd_front.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstclear.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstdelone.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstiter.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstlast.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstmap.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstnew.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_bonus/ft_lstsize.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_atoi.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_bzero.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_calloc.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalnum.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isalpha.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isascii.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isdigit.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_isprint.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memcpy.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memmove.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_memset.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strdup.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcat.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlcpy.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strlen.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strncmp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strnstr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_strrchr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_tolower.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part1/ft_toupper.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_itoa.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putchar_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putendl_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putnbr_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_putstr_fd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_split.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_striteri.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strjoin.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strmapi.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_strtrim.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_libftbase/src_part2/ft_substr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexa.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_hexavoid.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_nbr.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/src_printf/ft_printf.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/env.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/export.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/export.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/export.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/lst_create.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/lst_create.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env/lst_create.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/is_a_characters.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/is_a_characters.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/is_a_fct.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/is_a_metacharacters.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/is_a_metacharacters.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/is_a_metacharacters.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/parsing.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/search_data.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/search_data.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/search_data.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/search_data.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/parsing.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/parsing.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,11 +75,13 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/env" />
     </key>
   </component>
@@ -260,7 +142,10 @@
       <workItem from="1683794588607" duration="10340000" />
       <workItem from="1683811709930" duration="6794000" />
       <workItem from="1683880120664" duration="7852000" />
-      <workItem from="1684231644160" duration="7916000" />
+      <workItem from="1684231644160" duration="8074000" />
+      <workItem from="1684320174392" duration="8000" />
+      <workItem from="1684324209256" duration="14946000" />
+      <workItem from="1684671327278" duration="11865000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1681480725351</created>
@@ -304,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682602902088</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="expand ok, fuck parsing">
+      <created>1684251311943</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684251311943</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +205,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="a" />
     <MESSAGE value="start parse + is a fction" />
-    <option name="LAST_COMMIT_MESSAGE" value="start parse + is a fction" />
+    <MESSAGE value="expand ok, fuck parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="expand ok, fuck parsing" />
   </component>
 </project>

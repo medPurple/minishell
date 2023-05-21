@@ -30,6 +30,7 @@
 # include<errno.h>
 # include<limits.h>
 # include<signal.h>
+# include<stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -122,5 +123,6 @@ int			ft_len_u(unsigned int u);
 void		send_error(char *s);
 int	ft_strcmp(char *s1, char *s2);
 char *ft_malloc(int size, char *type);
+char *ft_limited_strdup(char *str, int begin, int end);
 
 #endif

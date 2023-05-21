@@ -54,5 +54,5 @@ static void minishell(char *str, t_minishell *mini)
 	else if (ft_strncmp(str,"export ",7)==0)
 		mini_export(mini->env,str);
 	else
-		mini_parse(mini,str);
+		parse_test(mini,str);
 }
