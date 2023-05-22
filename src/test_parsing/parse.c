@@ -29,8 +29,6 @@ void parse_test(t_minishell *mini, char *str)
 	mini->tree = new_branche(mini->tree, str);
 	while (mini->tree->end != 1)
 		parse_data(mini->tree, mini->env);
-	//print_binary(mini->tree);
-
 }
 
 static void parse_data(t_binary *tree, t_env *env)
@@ -52,6 +50,7 @@ static void parse_data(t_binary *tree, t_env *env)
 	if (tree->right->end == 1)
 		tree->end = 1;
 }
+
 static void split_char(t_binary *tree)
 {
 	int i;
@@ -62,6 +61,7 @@ static void split_char(t_binary *tree)
 	tree->command = ft_limited_strdup(tree->data,0,i);
 	tree->rest = ft_limited_strdup(tree->data,i+1, ft_strlen(tree->data));
 }
+
 static void create_root(t_binary *tree, t_env *env)
 {
 	int split;
