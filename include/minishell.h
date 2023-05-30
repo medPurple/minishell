@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/15 10:49:59 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:03:07 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void mini_export(t_env *env, char *str);
 
 void mini_parse(t_minishell *mini, char *str);
 void expand(t_minishell *mini);
+void parsing(t_minishell *mini, char *str);
+
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
@@ -66,8 +68,19 @@ t_env	*ft_last_lst(t_env *lst);
 void	ft_add_back_lst(t_env **lst, t_env *new);
 
 /* ------------------------------------ UTILS - parsing ------------------------------------------- */
-int	search_data(char *str, t_env *env);
+void ignore_parentheses(t_binary *tree);
+int end_of_quotes(char *str, int i);
+bool is_a_meta(char c);
+int pass_quotes(char *str, int i);
 int is_a_fonction(char *str,t_env *env);
+int is_a_buildin(char *str);
+void split_char(t_binary *tree);
+int find_next_split(t_binary *tree, t_env *env);
+bool string_analyse(char *str, t_env *env);
+int split_pos(char *str, t_env *env, int j , int i);
+
+
+/*int	search_data(char *str, t_env *env);
 int search_command(char *str, t_env *env, int limit);
 int	is_a_metacharacters(char *str, t_env *env, int limit);
 int	is_a_quotes(char *str, t_env *env);
@@ -75,11 +88,10 @@ int	is_a_characters(char *str, int limit);
 int	is_a_redirection(char *str);
 int	is_a_pipe_or_else(char *str);
 int is_a_and(char *str);
-int	is_a_parenthesis (char *str);
-int is_a_buildin(char *str);
+int	is_a_parenthesis (char *str);*/
+
 
 void print_binary(t_binary *tree);
-void parse_test(t_minishell *mini, char *str);
 
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/05/12 15:57:19 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/05/30 14:03:55 by mvautrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/main.c\
 		print_the_tree.c \
-		$(PATH_SRC)/test_parsing/parse.c\
-		$(PATH_SRC)/parsing/is_a_characters.c\
+		$(PATH_SRC)/parsing/parse.c\
 		$(PATH_SRC)/parsing/is_a_fct.c\
+		$(PATH_SRC)/parsing/meta.c\
+		$(PATH_SRC)/parsing/string.c\
 		#$(PATH_SRC)/parsing/parsing.c\
         $(PATH_SRC)/parsing/search_data.c\
         $(PATH_SRC)/parsing/is_a_metacharacters.c\

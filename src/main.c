@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/09 09:13:58 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:59:15 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ static void minishell(char *str, t_minishell *mini)
 	else if (ft_strncmp(str,"export ",7)==0)
 		mini_export(mini->env,str);
 	else
-		parse_test(mini,str);
+		parsing(mini,str);
 }
