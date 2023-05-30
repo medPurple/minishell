@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/30 14:22:45 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:04:23 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void mini_export(t_env *env, char *str);
 /*---------------------------------------- PARSING ------------------------------------------------*/
 
 void mini_parse(t_minishell *mini, char *str);
-void expand(t_minishell *mini);
+void expand(t_binary *tree, t_env *env);
 void parsing(t_minishell *mini, char *str);
 void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);

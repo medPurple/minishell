@@ -4,28 +4,26 @@ static char *search_in_env(char *var, t_env *env, char *str);
 static char *join_all_part(char *str, char *add);
 
 
-void expand(t_minishell *mini)
+void expand(t_binary *tree, t_env *env)
 {
-	char *str;
 	int i;
 
-	str = mini->tree->data;
 	i = 0;
-	while (str[i])
+	while (tree->data[i])
 	{
-		if (str[i] == '$')
+		if (tree->data[i] == '$')
 		{
-			str = replace_doll(str, mini->env, i+1);
+			tree->data = replace_doll(tree->data, env, i+1);
 			i = 0;
-			ft_printf(" passage %i = %s\n", i, str);
+			ft_printf(" passage %i = %s\n", i, tree->data);
 		}
-		else if (str[i] == 34)
+		else if (tree->data[i] == 34)
 			ft_printf("double");
-		else if (str[i] == 39)
+		else if (tree->data[i] == 39)
 			ft_printf("simples");
 		else
 			i++;
-		
+
 	}
 }
 

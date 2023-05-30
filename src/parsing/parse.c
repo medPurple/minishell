@@ -11,11 +11,11 @@ void parse_data(t_binary *tree, t_env *env)
 {
 	if (tree->left == NULL)
 		create_root(tree, env);
-
 	if (tree->command == NULL) {
 		if (tree->data[0] == '(' && tree->command == NULL)
 			replace_parentheses(tree, env);
-		ft_printf ("tree  = %s \n", tree->data);
+		else
+			expand(tree, env);
 		tree->end = 1;
 		return;
 	}
@@ -23,6 +23,8 @@ void parse_data(t_binary *tree, t_env *env)
 	tree->right = new_branche(tree->right, tree->rest);
 	if (tree->left->data[0] == '(')
 		replace_parentheses(tree->left, env);
+	else
+		expand(tree->left, env);
 	ft_printf ("\n\ntree left = %s |||| ", tree->left->data);
 	ft_printf ("tree right = %s \n", tree->right->data);
 	tree->right->prev = tree;
