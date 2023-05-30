@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/30 14:03:07 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:22:45 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_binary
     char *rest;
     char *command;
 	int visualiser;
+	bool	parentheses;
 	struct s_binary *prev;
 	struct s_binary *left;
 	struct s_binary *right;
@@ -60,6 +61,9 @@ void mini_export(t_env *env, char *str);
 void mini_parse(t_minishell *mini, char *str);
 void expand(t_minishell *mini);
 void parsing(t_minishell *mini, char *str);
+void parse_data(t_binary *tree, t_env *env);
+void create_root(t_binary *tree, t_env *env);
+t_binary *new_branche(t_binary *tree, char *str);
 
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
@@ -69,6 +73,7 @@ void	ft_add_back_lst(t_env **lst, t_env *new);
 
 /* ------------------------------------ UTILS - parsing ------------------------------------------- */
 void ignore_parentheses(t_binary *tree);
+void replace_parentheses(t_binary *tree, t_env *env);
 int end_of_quotes(char *str, int i);
 bool is_a_meta(char c);
 int pass_quotes(char *str, int i);

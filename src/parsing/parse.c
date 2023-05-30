@@ -1,7 +1,4 @@
 #include "../../include/minishell.h"
-static void parse_data(t_binary *tree, t_env *env);
-static void create_root(t_binary *tree, t_env *env);
-static t_binary *new_branche(t_binary *tree, char *str);
 
 void parsing(t_minishell *mini, char *str)
 {
@@ -10,16 +7,22 @@ void parsing(t_minishell *mini, char *str)
 		parse_data(mini->tree, mini->env);
 }
 
-static void parse_data(t_binary *tree, t_env *env)
+void parse_data(t_binary *tree, t_env *env)
 {
 	if (tree->left == NULL)
 		create_root(tree, env);
+
 	if (tree->command == NULL) {
-			tree->end = 1;
-			return;
+		if (tree->data[0] == '(' && tree->command == NULL)
+			replace_parentheses(tree, env);
+		ft_printf ("tree  = %s \n", tree->data);
+		tree->end = 1;
+		return;
 	}
 	tree->left = new_branche(tree->left, tree->command);
 	tree->right = new_branche(tree->right, tree->rest);
+	if (tree->left->data[0] == '(')
+		replace_parentheses(tree->left, env);
 	ft_printf ("\n\ntree left = %s |||| ", tree->left->data);
 	ft_printf ("tree right = %s \n", tree->right->data);
 	tree->right->prev = tree;
@@ -30,7 +33,7 @@ static void parse_data(t_binary *tree, t_env *env)
 		tree->end = 1;
 }
 
-static void create_root(t_binary *tree, t_env *env)
+void create_root(t_binary *tree, t_env *env)
 {
 	int split;
 
@@ -51,11 +54,10 @@ static void create_root(t_binary *tree, t_env *env)
 	}
 }
 
-static t_binary *new_branche(t_binary *tree, char *str)
+t_binary *new_branche(t_binary *tree, char *str)
 {
 	tree = malloc(sizeof(t_binary));
-	//tree->data = NULL;
-	//tree->data = ft_malloc(ft_strlen(str), "char");
+	tree->parentheses = false;
 	tree->data = str;
 	tree->end = 0;
 	tree->prev = NULL;
