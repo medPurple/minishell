@@ -9,18 +9,17 @@ void expand(t_binary *tree, t_env *env)
 	int i;
 
 	i = 0;
+	//expand_quotes(tree, env);
+	//verfie premier aractere et ledeclare executable ou non
 	while (tree->data[i])
 	{
 		if (tree->data[i] == '$')
 		{
 			tree->data = replace_doll(tree->data, env, i+1);
-			i = 0;
 			ft_printf(" passage %i = %s\n", i, tree->data);
 		}
-		else if (tree->data[i] == 34)
-			ft_printf("double");
-		else if (tree->data[i] == 39)
-			ft_printf("simples");
+		else if (tree->data[i] == '\'')
+			i = pass_quotes(tree->data, i) + 1;
 		else
 			i++;
 
@@ -39,7 +38,8 @@ static char *replace_doll(char *str, t_env *env, int position)
 
 	var = ft_malloc(i, "char");
 	i = 0;
-	while(str[position]  != ' ' && str[position] != '\t' && str[position] != '\0')
+	while(str[position]  != ' ' && str[position] != '\t' && str[position] != '\0'
+		&& str[position] != '\"')
 	{
 		var[i] = str[position];
 		i++;
@@ -66,7 +66,7 @@ static char *search_in_env(char *var, t_env *env, char *str)
 			break;
 		env = env->next;
 	}
-	if (env->data != NULL)
+	if (env != NULL)
 	{
 		while(env->data[i] != '=')
 			i++;

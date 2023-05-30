@@ -5,6 +5,7 @@ int pass_quotes(char *str, int i)
 	char c;
 
 	c = str[i];
+	i
 	while(str[i] != c && str[i] != '\0')
 	{
 		if ((str[i] == '\'') || (str[i] == '\"'))
@@ -36,5 +37,24 @@ int end_of_quotes(char *str, int i)
 			i++;
 	}
 	return (i);
+}
+
+/*void	expand_quotes(t_binary *tree, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while(tree->data[i] == ' ' || tree->data[i] == '\t' ||tree->data != '\0')
+		i++;
+	if (tree->data[i] == '\'' || tree->data[i] == '\"')
+	{
+		is_executable(tree->data, i, env);
+	}
 
 }
+
+void is_executable(char *str, int pos, t_env *env)
+{
+	while()
+	//is_a_fonction
+}*/
