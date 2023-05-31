@@ -6,7 +6,7 @@
 #    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/05/30 15:23:50 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/05/31 11:52:52 by mvautrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,9 @@ all : $(LIB) $(NAME) run
 run: minishell
 		@./minishell
 
+runv : minishell
+		@valgrind ./minishell
+
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
 	@echo "\n MINISHELL - [COMPILATION DONE]\n\n"
@@ -67,6 +70,8 @@ $(NAME) : $(OBJ)
 
 $(LIB) :
 	@make -s -C $(PATH_LIB)
+
+v :$(LIB) $(NAME) runv
 
 clean :
 	@make -s -C $(PATH_LIB) clean

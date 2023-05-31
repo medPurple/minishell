@@ -16,14 +16,16 @@ void expand(t_binary *tree, t_env *env)
 		if (tree->data[i] == '$')
 		{
 			tree->data = replace_doll(tree->data, env, i+1);
-			ft_printf(" passage %i = %s\n", i, tree->data);
 		}
 		else if (tree->data[i] == '\'')
 			i = pass_quotes(tree->data, i) + 1;
 		else
 			i++;
-
+		//if (i == -1)
+		//	return;
 	}
+	ft_printf("%s\n",tree->data);
+
 }
 
 static char *replace_doll(char *str, t_env *env, int position)

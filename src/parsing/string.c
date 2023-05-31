@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/30 14:02:25 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:36:08 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int find_next_split(t_binary *tree, t_env *env)
 				i = end_of_quotes(tree->data, i);
 			else
 				i++;
+			//if (i == -1)
+			//	return (-1);
 		}
+
 		str = ft_limited_strdup(tree->data, j, i - 1);
 		if (string_analyse(str,env) != true)
 		{
