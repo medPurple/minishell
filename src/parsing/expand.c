@@ -32,8 +32,6 @@ void expand(t_binary *tree, t_env *env)
 			i++;
 		}
 	}
-	ft_printf("%s\n",tree->data);
-
 }
 
 static char *replace_doll(char *str, t_env *env, int position)

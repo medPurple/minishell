@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/31 14:04:39 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:55:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);
 t_binary *new_branche(t_binary *tree, char *str);
 int	find_next_quotes (char *str, int pos);
+
+/*------------------------------------------EXECUTION----------------------------------------------*/
+
+void execution(t_binary *tree, t_env *env);
 
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/

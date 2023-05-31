@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/30 13:59:15 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:56:47 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ static void minishell(char *str, t_minishell *mini)
 	else if (ft_strncmp(str,"export ",7)==0)
 		mini_export(mini->env,str);
 	else
+	{
 		parsing(mini,str);
+		execution(mini->tree, mini->env);
+	}
 }
