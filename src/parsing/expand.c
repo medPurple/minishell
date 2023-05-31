@@ -7,22 +7,30 @@ static char *join_all_part(char *str, char *add);
 void expand(t_binary *tree, t_env *env)
 {
 	int i;
+	int	quotes;
 
 	i = 0;
-	//expand_quotes(tree, env);
-	//verfie premier aractere et ledeclare executable ou non
+	quotes = 0;
 	while (tree->data[i])
 	{
 		if (tree->data[i] == '$')
-		{
 			tree->data = replace_doll(tree->data, env, i+1);
-		}
 		else if (tree->data[i] == '\'')
 			i = pass_quotes(tree->data, i) + 1;
 		else
 			i++;
-		//if (i == -1)
-		//	return;
+		if (tree->data[i] == '\"' && quotes == 0)
+		{
+			if (find_next_quotes(tree->data, i) == -1)
+				return ;
+			quotes++;
+			i++;
+		}
+		else if (tree->data[i] == '\"' && quotes == 1)
+		{
+			quotes--;
+			i++;
+		}
 	}
 	ft_printf("%s\n",tree->data);
 

@@ -14,6 +14,5 @@ char *ft_limited_strdup(char *str, int begin, int end)
 		i++;
 	}
 	new_str[i] = '\0';
-	free(str);
 	return (new_str);
 }
