@@ -18,6 +18,7 @@
     - [pass_quotes](#pass_quotes)
     - [is_a_meta](#is_a_meta)
     - [pass_quotes](#pass_quotes)
+	- [signals](#signal_ctrlc)
 	- [execution](#execution)
 
 
@@ -320,6 +321,21 @@ static int pass_quotes(char *str, int i)
 }
 ```
 
+
+### signal_ctrlc
+Fonction qui reagit au signal SIGINT en donnant l illusion d'une nouvelle ligne vide  == permet de gerer ctrl+C
+
+```
+void    signal_ctrlc(int sig) // reagit au ctrl c afin de generer une nvl ligne ds sortie erreur, efface ligne en cours et rafraichit terminal
+{
+    (void)sig;
+    write(2, "\n", 1);
+    rl_replace_line("", 0); // remplace ligne actuelle avec une chaine vide.
+    rl_on_new_line();// deplace curseur a une nouvelle ligne
+    rl_redisplay(); // met a jour l affichage du terminal
+}
+```
+
 ## Execution
 
 1/ Verifier les priorites (ou pas, cf discussion d hier 31/05 au sujet de l'execution dans l'ordre de lecture)
@@ -332,4 +348,3 @@ Note : gestion des () et des && - ||
 
 Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des arguments entre quotes. 
 	traiter les quotes en fonction des espaces ou absence d'espace. Autrement dit, si 0 espace ( ex : ls "-l") faire comme s'il n'y avait pas de quotes sinon ne pas interpreter ( ex : ls "  -l").
-	
