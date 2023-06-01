@@ -59,6 +59,6 @@ static void minishell(char *str, t_minishell *mini)
 	else
 	{
 		parsing(mini,str);
-		execution(mini->tree, mini->env);
+		exec_recu(mini->tree, mini->env);
 	}
 }

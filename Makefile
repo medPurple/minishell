@@ -32,8 +32,11 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/expand.c\
 		$(PATH_SRC)/parsing/parentheses.c\
 		$(PATH_SRC)/parsing/quotes.c\
-		$(PATH_SRC)/execution/execution.c\
 		$(PATH_SRC)/signals/signals.c\
+		$(PATH_SRC)/execution/execution.c\
+		$(PATH_SRC)/execution/minisplit.c\
+		$(PATH_SRC)/execution/utils.c\
+
 
 
 LIB = $(PATH_LIB)/libft.a

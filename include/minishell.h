@@ -34,6 +34,7 @@ typedef struct s_binary
     char *command;
 	int visualiser;
 	bool	parentheses;
+	struct s_cmd *cmd;
 	struct s_binary *prev;
 	struct s_binary *left;
 	struct s_binary *right;
@@ -45,7 +46,13 @@ typedef struct s_env
 	char	*data;
 	struct s_env	*next;
 }				t_env;
+typedef struct s_cmd
+{
+	char    *str;
+	bool    exec;
+	char    **split_cmd;
 
+}            t_cmd;
 typedef struct s_minishell
 {
 	t_env	*env;
@@ -70,8 +77,9 @@ int	find_next_quotes (char *str, int pos);
 
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
-void execution(t_binary *tree, t_env *env);
-
+void exec_recu(t_binary *tree, t_env *env);
+char **mini_split(char *str);
+void create_cmd(t_binary *tree);
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
