@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/05/31 16:55:52 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/01 09:18:59 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
 //ls (-l) -la && (cat salut) || cat coucou
@@ -91,16 +92,9 @@ bool string_analyse(char *str, t_env *env);
 int split_pos(char *str, t_env *env, int j , int i);
 
 
-/*int	search_data(char *str, t_env *env);
-int search_command(char *str, t_env *env, int limit);
-int	is_a_metacharacters(char *str, t_env *env, int limit);
-int	is_a_quotes(char *str, t_env *env);
-int	is_a_characters(char *str, int limit);
-int	is_a_redirection(char *str);
-int	is_a_pipe_or_else(char *str);
-int is_a_and(char *str);
-int	is_a_parenthesis (char *str);*/
+/*------------------------------------------SIGNALS----------------------------------------------*/
 
+void    signal_ctrlc(int sig);
 
 void print_binary(t_binary *tree);
 

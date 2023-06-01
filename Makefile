@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/05/31 11:52:52 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/06/01 09:19:31 by ml               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,8 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/expand.c\
 		$(PATH_SRC)/parsing/parentheses.c\
 		$(PATH_SRC)/parsing/quotes.c\
-		#$(PATH_SRC)/parsing/parsing.c\
-        $(PATH_SRC)/parsing/search_data.c\
-        $(PATH_SRC)/parsing/is_a_metacharacters.c\
-        $(PATH_SRC)/parsing/is_a_characters.c\#
+		$(PATH_SRC)/execution/execution.c\
+		$(PATH_SRC)/signals/signals.c\
 
 
 LIB = $(PATH_LIB)/libft.a
