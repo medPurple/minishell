@@ -60,5 +60,7 @@ static void minishell(char *str, t_minishell *mini)
 	{
 		parsing(mini,str);
 		exec_recu(mini->tree, mini->env);
+        while (wait(NULL) > 0)
+            ;
 	}
 }

@@ -51,6 +51,11 @@ typedef struct s_cmd
 	char    *str;
 	bool    exec;
 	char    **split_cmd;
+    char    *path_cmd;
+    pid_t   fork;
+    int     fd[2];
+    int     in;
+    int     out;
 
 }            t_cmd;
 typedef struct s_minishell
@@ -79,7 +84,11 @@ int	find_next_quotes (char *str, int pos);
 
 void exec_recu(t_binary *tree, t_env *env);
 char **mini_split(char *str);
-void create_cmd(t_binary *tree);
+void create_cmd(t_binary *tree, t_env *env);
+char *cmd_recuperation(char *str, t_env *env);
+void mini_or(t_binary *tree, t_env *env);
+
+
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);

@@ -19,7 +19,7 @@ void split_char(t_binary *tree)
 	i = 0;
 	while (is_a_meta(tree->data[i]) == true)
 		i++;
-	tree->command = ft_limited_strdup(tree->data,0,i);
+	tree->command = ft_limited_strdup(tree->data,0,i-1);
 	tree->rest = ft_limited_strdup(tree->data,i+1, ft_strlen(tree->data));
 }
 

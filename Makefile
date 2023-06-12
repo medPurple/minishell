@@ -36,6 +36,8 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/execution.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
+		$(PATH_SRC)/execution/meta.c\
+
 
 
 
