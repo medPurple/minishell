@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/01 09:18:59 by ml               ###   ########.fr       */
+/*   Updated: 2023/06/12 18:33:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_env
 	char	*data;
 	struct s_env	*next;
 }				t_env;
+
 typedef struct s_cmd
 {
 	char    *str;
@@ -58,10 +59,12 @@ typedef struct s_cmd
     int     out;
 
 }            t_cmd;
+
 typedef struct s_minishell
 {
 	t_env	*env;
 	t_binary *tree;
+	char **envp;
 
 }				t_minishell;
 
@@ -82,11 +85,11 @@ int	find_next_quotes (char *str, int pos);
 
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
-void exec_recu(t_binary *tree, t_env *env);
+void exec_recu(t_minishell *mini, t_binary *tree);
 char **mini_split(char *str);
 void create_cmd(t_binary *tree, t_env *env);
 char *cmd_recuperation(char *str, t_env *env);
-void mini_or(t_binary *tree, t_env *env);
+void mini_or(t_binary *tree, t_minishell *mini);
 
 
 

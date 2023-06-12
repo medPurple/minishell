@@ -348,3 +348,12 @@ Note : gestion des () et des && - ||
 
 Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des arguments entre quotes. 
 	traiter les quotes en fonction des espaces ou absence d'espace. Autrement dit, si 0 espace ( ex : ls "-l") faire comme s'il n'y avait pas de quotes sinon ne pas interpreter ( ex : ls "  -l").
+
+
+## A FAIRE
+- reparer le split de l'execution
+- faire une execution propre avec un fork 
+- reparer les quotes
+- faire les metas
+- free
+- buildin

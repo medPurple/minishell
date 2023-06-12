@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/01 09:22:57 by ml               ###   ########.fr       */
+/*   Updated: 2023/06/12 16:36:42 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int ac, char **av, char **envp)
 	t_minishell 	mini;
 
 	mini.env = NULL;
+	mini.envp = envp;
 	add_env(&mini.env, envp);
 	while (1)
 	{
@@ -59,7 +60,7 @@ static void minishell(char *str, t_minishell *mini)
 	else
 	{
 		parsing(mini,str);
-		exec_recu(mini->tree, mini->env);
+		exec_recu(mini, mini->tree);
         while (wait(NULL) > 0)
             ;
 	}
