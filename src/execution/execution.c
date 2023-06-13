@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 void exec_meta( t_binary *tree, t_minishell *mini);
-bool execute_cmd(t_binary *tree, char **envp);
+void execute_cmd(t_binary *tree, char **envp);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
@@ -11,23 +11,30 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
+        ft_printf("exec before = %d\n",tree->cmd->exec);
 		if (is_a_meta(tree->data[0]))
 			exec_meta(tree, mini);
 		else
 		{
-           // if (tree->prev->right->left->cmd && tree->prev->right->cmd->exec == true)
-            //    return;
-            //else
-            //{
-                create_cmd(tree, mini->env);
+            if (tree->cmd->exec == true)
+                return;
+            else
+            {
+                tree->cmd->exec = true;
                 tree->cmd->fork = fork();
                 if (tree->cmd->fork == -1)
                     perror("fork");
                 if (tree->cmd->fork == 0)
-                    tree->cmd->exec = execute_cmd(tree, mini->envp);
-                   // return;
-            //}
-		}
+                    execute_cmd(tree, mini->envp);
+                else
+                {
+                    
+                    while(wait(NULL) != -1)
+                    ;
+                }
+                ft_printf("exec after = %d\n",tree->cmd->exec);
+            }
+    	}
 	}
 	return;
 }
@@ -52,12 +59,16 @@ void exec_meta( t_binary *tree, t_minishell *mini)
         ft_printf("error meta\n");
 }
 
-bool execute_cmd(t_binary *tree, char **envp)
+void execute_cmd(t_binary *tree, char **envp)
 {
+    ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
-   {
+    {
+        
+
         if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
         {
+            tree->cmd->exec = false;
             ft_free_tab(tree->cmd->split_cmd);
             ft_perror(" Error : Command execution\n");
         }
@@ -67,15 +78,16 @@ bool execute_cmd(t_binary *tree, char **envp)
         tree->cmd->path_cmd = tree->cmd->split_cmd[0];
         if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
         {
+            tree->cmd->exec = false;
             ft_free_tab(tree->cmd->split_cmd);
             ft_perror(" Error : Command execution\n");
         }
     }
     else
     {
+        tree->cmd->exec = false;
         ft_free_tab(tree->cmd->split_cmd);
 		ft_perror("path");
     }
     ft_free_tab(tree->cmd->split_cmd);
-    return (true);
 }

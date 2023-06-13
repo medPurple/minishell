@@ -12,11 +12,8 @@ void create_cmd(t_binary *tree, t_env *env)
     while(tree->cmd->split_cmd[i])
         i++;
     tree->cmd->path_cmd = cmd_recuperation(tree->cmd->split_cmd[0], env);
-   // ft_printf("%s\n",tree->cmd->path_cmd);
     if (ft_strcmp(tree->cmd->path_cmd,tree->cmd->split_cmd[0]) == 0)
         tree->cmd->path_cmd = NULL;
-    //tree->cmd->in = open("/dev/stdin",STDIN_FILENO);
-    //tree->cmd->out = open("/dev/stdout",STDOUT_FILENO);
 }
 
 char *cmd_recuperation(char *str, t_env *env)
@@ -25,7 +22,6 @@ char *cmd_recuperation(char *str, t_env *env)
     int i;
     char *cmd;
 
-    //ft_printf("env : %s\n", env);
     i = 0;
     path = ft_split(path_recuperation(env), ':');
     while (path[i])
