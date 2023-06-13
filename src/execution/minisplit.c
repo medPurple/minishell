@@ -27,9 +27,12 @@ char **mini_split(char *str) {
 				i = after_quotes(str, i); // juste modif pass quotes
 			i++;
 		}
-		cmd[k] = ft_limited_strdup(str, j, i-1);
-		k++;
+		if (i == j)
+			break;
+		cmd[k++] = ft_limited_strdup(str, j, i - 1);
+		ft_printf ("len : %i\n", i - j);
 	}
+	cmd[k] = NULL;
 	return(cmd);
 }
 
@@ -64,7 +67,6 @@ static int word_nb(char *str)
 				i++;
 			}
 		}
-
 	}
 	return (count);
 }
