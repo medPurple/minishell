@@ -6,11 +6,12 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:56:08 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/13 18:35:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:58:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+static bool search_option(char *str);
 
 void mini_echo(t_binary *tree)
 {
@@ -18,7 +19,7 @@ void mini_echo(t_binary *tree)
 	int i;
 
 	i = 1;
-	nl = search_option(tree->data, "-n");
+	nl = search_option(tree->data);
 	if (nl == false)
 		i++;
 	while (tree->cmd->split_cmd[i])
@@ -30,7 +31,7 @@ void mini_echo(t_binary *tree)
 		ft_putstr_fd("\n");	
 }
 
-static bool search_option(char *str, char *opt)
+static bool search_option(char *str)
 {
 	char **tab;
 

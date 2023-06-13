@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/13 17:07:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:58:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
+void exec_buildin(t_binary *tree, t_minishell *mini);
 
-void mini_echo(char *str);
+void mini_echo(t_binary *tree);
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
