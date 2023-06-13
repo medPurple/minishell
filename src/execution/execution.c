@@ -112,7 +112,13 @@ void execute_cmd(t_binary *tree, char **envp)
 
 void exec_buildin(t_binary *tree, t_minishell *mini)
 {
-    (void)tree;
     (void)mini;
-    ft_printf("BI");
+    if (ft_strcmp(tree->cmd->split_cmd[0], "echo") == 0)
+        mini_echo(tree);
+    else if (ft_strcmp(tree->cmd->split_cmd[0], "cd") == 0)
+        ft_printf("cd\n");
+    else if (ft_strcmp(tree->cmd->split_cmd[0], "pwd") == 0)
+        ft_printf("pwd\n");
+    else if (ft_strcmp(tree->cmd->split_cmd[0], "exit") == 0)
+        exit(0);
 }
