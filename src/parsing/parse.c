@@ -27,8 +27,6 @@ void parse_data(t_binary *tree, t_env *env)
 		replace_parentheses(tree->left, env);
 	else
 		expand(tree->left, env);
-	ft_printf ("\n\ntree left = %s |||| ", tree->left->data);
-	ft_printf ("tree right = %s \n", tree->right->data);
 	tree->right->prev = tree;
 	tree->left->prev = tree;
 	if (tree->right != NULL && tree->right->end != 1)
