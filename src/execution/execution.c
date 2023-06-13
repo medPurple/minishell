@@ -28,7 +28,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     execute_cmd(tree, mini->envp);
                 else
                 {
-                    
+
                     while(wait(NULL) != -1)
                     ;
                 }
@@ -46,7 +46,7 @@ void exec_meta( t_binary *tree, t_minishell *mini)
     else if (ft_strcmp(tree->data, "||")== 0)
         mini_or(tree, mini);
     else if (ft_strcmp(tree->data, "&&")== 0)
-        ft_printf("AND\n");
+        mini_and(tree, mini);
     else if (ft_strcmp(tree->data, "<")== 0)
         ft_printf("REDIR\n");
     else if (ft_strcmp(tree->data, ">")== 0)
@@ -64,7 +64,7 @@ void execute_cmd(t_binary *tree, char **envp)
     ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
     {
-        
+
 
         if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
         {
