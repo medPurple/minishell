@@ -21,10 +21,11 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             //{
                 create_cmd(tree, mini->env);
                 tree->cmd->fork = fork();
+                if (tree->cmd->fork == -1)
+                    perror("fork");
                 if (tree->cmd->fork == 0)
                     tree->cmd->exec = execute_cmd(tree, mini->envp);
-                else
-                    return;
+                   // return;
             //}
 		}
 	}
@@ -53,10 +54,28 @@ void exec_meta( t_binary *tree, t_minishell *mini)
 
 bool execute_cmd(t_binary *tree, char **envp)
 {
-    if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
-    {
-        perror(" Error : Command execution\n");
-        return false;
+    if (tree->cmd->path_cmd)
+   {
+        if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
+        {
+            ft_free_tab(tree->cmd->split_cmd);
+            ft_perror(" Error : Command execution\n");
+        }
     }
+    else if (ft_strchr(tree->cmd->split_cmd[0], '/') != NULL)
+    {
+        tree->cmd->path_cmd = tree->cmd->split_cmd[0];
+        if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
+        {
+            ft_free_tab(tree->cmd->split_cmd);
+            ft_perror(" Error : Command execution\n");
+        }
+    }
+    else
+    {
+        ft_free_tab(tree->cmd->split_cmd);
+		ft_perror("path");
+    }
+    ft_free_tab(tree->cmd->split_cmd);
     return (true);
 }

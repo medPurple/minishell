@@ -63,25 +63,27 @@ SRCS_LIBFT =	srcs/src_libftbase/src_part1/ft_isalpha.c	\
 				srcs/src_libftbase/src_bonus/ft_lstclear.c 	\
 				srcs/src_libftbase/src_bonus/ft_lstiter.c 	\
 				srcs/src_libftbase/src_bonus/ft_lstmap.c 	\
-		
+
 SRCS_PRINTF  =	srcs/src_printf/ft_hexa.c 			\
 				srcs/src_printf/ft_hexavoid.c 			\
 				srcs/src_printf/ft_nbr.c 			\
 				srcs/src_printf/ft_printf.c 			\
-		
+
 SRCS_GNL  =		srcs/src_gnl/get_next_line_bonus.c 		\
 
 SRCS_PERSO	= 	srcs/src_add/print_error.c \
 				srcs/src_add/ft_strcmp.c \
 				srcs/src_add/ft_malloc.c \
 				srcs/src_add/ft_limited_strdup.c \
-				
-OBJ	=   ${SRCS_LIBFT:.c=.o} ${SRCS_PRINTF:.c=.o} ${SRCS_GNL:.c=.o} ${SRCS_PERSO:.c=.o} 
+				srcs/src_add/ft_perror.c \
+				srcs/src_add/ft_free_tab.c \
+
+OBJ	=   ${SRCS_LIBFT:.c=.o} ${SRCS_PRINTF:.c=.o} ${SRCS_GNL:.c=.o} ${SRCS_PERSO:.c=.o}
 
 all:	${NAME}
 
 $(NAME) : ${OBJ}
-		@ ar rc ${NAME} ${OBJ} 
+		@ ar rc ${NAME} ${OBJ}
 		@echo "\n LIBFT - [COMPILATION DONE]"
 
 clean :
@@ -95,7 +97,7 @@ re : fclean all
 
 .c.o	:
 		@ $(CC) $(CFLAGS) -o $@ -c $<
-			
-.PHONY:	
+
+.PHONY:
 	all re clean fclean
-	
+

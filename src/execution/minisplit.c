@@ -13,14 +13,12 @@ char **mini_split(char *str) {
 	i = 0;
 	k = 0;
 
-	ft_printf("%i\n",word_nb(str));
 	cmd = ft_malloc2(word_nb(str), "char*");
 	while (str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && str[i])
 			i++;
 		j = i;
-		ft_printf("i = %i\n",i);
 		while ((str[i] != ' ' && str[i] != '\t') && str[i])
 		{
 			if (str[i] == '\'' || str[i] == '\"')
@@ -30,7 +28,6 @@ char **mini_split(char *str) {
 		if (i == j)
 			break;
 		cmd[k++] = ft_limited_strdup(str, j, i - 1);
-		ft_printf ("len : %i\n", i - j);
 	}
 	cmd[k] = NULL;
 	return(cmd);

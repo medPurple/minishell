@@ -203,7 +203,7 @@ static bool string_analyse(char *str, t_env *env)
 ```
 ### split_pos
 Cherche la position a laquelle split. Si str est une fonction ou un buildin, elle renvoi la position du caractere precedent str.
-Sinon, elle parcourt la string. 
+Sinon, elle parcourt la string.
 Si elle trouve une quote, elle ignore son contenu grace a end_of_quotes qui avance i jusqu'a la fin des quotes.
 Si elle trouve un metacharactere, elle renvoie la position du caractere precedent le metacharactere.
 ```
@@ -341,19 +341,20 @@ void    signal_ctrlc(int sig) // reagit au ctrl c afin de generer une nvl ligne 
 1/ Verifier les priorites (ou pas, cf discussion d hier 31/05 au sujet de l'execution dans l'ordre de lecture)
 2/ Executer les maillons le plus a gauche possible ou, le cas echeant, celui de droite. (autrement dit aller le plus a gauche possible puis executer gauche et droite, puis remonter d un cran, executer gauche et droite et ainsi de suite) + marquer ceux qui ont ete executes
 Note : gestion des () et des && - ||
-	si && et que la commande 1 est fausse, ne rien executer du tout 
+	si && et que la commande 1 est fausse, ne rien executer du tout
 	si && et que la commande 2 ou suivantes est / sont fausses alors execute jusqu'a rencontrer une commande fausse
 	si || executer la 1 si Ok ou executer la 2 si 1 est KO (si plusieurs, executer la premiere qui fonctionne)
-3/ Redirection 
+3/ Redirection
 
-Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des arguments entre quotes. 
+Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des arguments entre quotes.
 	traiter les quotes en fonction des espaces ou absence d'espace. Autrement dit, si 0 espace ( ex : ls "-l") faire comme s'il n'y avait pas de quotes sinon ne pas interpreter ( ex : ls "  -l").
 
 
 ## A FAIRE
-- reparer le split de l'execution
-- faire une execution propre avec un fork 
-- reparer les quotes
+- reparer le split de l'execution /ok
+- faire une execution propre avec un fork
+- reparer les quotes/ ok
 - faire les metas
 - free
 - buildin
+- signaux ctl d

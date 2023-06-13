@@ -10,10 +10,7 @@ void create_cmd(t_binary *tree, t_env *env)
 	tree->cmd->str = tree->data;
 	tree->cmd->split_cmd = mini_split(tree->data);
     while(tree->cmd->split_cmd[i])
-    {
-        //ft_printf("tab[%i] = %s\n", i, tree->cmd->split_cmd[i]);
         i++;
-    }
     tree->cmd->path_cmd = cmd_recuperation(tree->cmd->split_cmd[0], env);
    // ft_printf("%s\n",tree->cmd->path_cmd);
     if (ft_strcmp(tree->cmd->path_cmd,tree->cmd->split_cmd[0]) == 0)
@@ -28,6 +25,7 @@ char *cmd_recuperation(char *str, t_env *env)
     int i;
     char *cmd;
 
+    //ft_printf("env : %s\n", env);
     i = 0;
     path = ft_split(path_recuperation(env), ':');
     while (path[i])

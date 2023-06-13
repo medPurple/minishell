@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/12 16:36:42 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:46:26 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void minishell(char *str, t_minishell *mini)
 	{
 		parsing(mini,str);
 		exec_recu(mini, mini->tree);
-        while (wait(NULL) > 0)
-            ;
+        while (wait(NULL) != -1)
+		           ;
 	}
 }
