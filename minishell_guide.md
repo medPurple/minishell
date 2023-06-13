@@ -352,9 +352,10 @@ Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des ar
 
 ## A FAIRE
 - reparer le split de l'execution /ok
-- faire une execution propre avec un fork
+- faire une execution propre avec un fork / ok
 - reparer les quotes/ ok
 - faire les metas
+- faire here_doc et pipe
 - free
 - buildin
 - signaux ctl d
