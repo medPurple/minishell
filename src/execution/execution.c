@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 void exec_meta( t_binary *tree, t_minishell *mini);
-bool execute_cmd(t_binary *tree, char **envp);
+void execute_cmd(t_binary *tree, char **envp);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
@@ -19,12 +19,11 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             //    return;
             //else
             //{
-                create_cmd(tree, mini->env);
                 tree->cmd->fork = fork();
                 if (tree->cmd->fork == -1)
                     perror("fork");
                 if (tree->cmd->fork == 0)
-                    tree->cmd->exec = execute_cmd(tree, mini->envp);
+                    execute_cmd(tree, mini->envp);
                    // return;
             //}
 		}
@@ -52,10 +51,11 @@ void exec_meta( t_binary *tree, t_minishell *mini)
         ft_printf("error meta\n");
 }
 
-bool execute_cmd(t_binary *tree, char **envp)
+void execute_cmd(t_binary *tree, char **envp)
 {
+    tree->cmd->exec = true;
     if (tree->cmd->path_cmd)
-   {
+    {
         if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
         {
             ft_free_tab(tree->cmd->split_cmd);
@@ -77,5 +77,4 @@ bool execute_cmd(t_binary *tree, char **envp)
 		ft_perror("path");
     }
     ft_free_tab(tree->cmd->split_cmd);
-    return (true);
 }

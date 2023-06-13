@@ -1,10 +1,12 @@
 #include "../../include/minishell.h"
+static void create_cmd_in_tree(t_binary *tree, t_minishell *mini);
 
 void parsing(t_minishell *mini, char *str)
 {
 	mini->tree = new_branche(mini->tree, str);
 	while (mini->tree->end != 1)
 		parse_data(mini->tree, mini->env);
+	create_cmd_in_tree(mini->tree, mini);
 }
 
 void parse_data(t_binary *tree, t_env *env)
@@ -70,6 +72,13 @@ t_binary *new_branche(t_binary *tree, char *str)
 	return (tree);
 }
 
-
+static void create_cmd_in_tree(t_binary *tree, t_minishell *mini)
+{
+	if (tree->right) {
+		create_cmd_in_tree(tree->left, mini);
+		create_cmd_in_tree(tree->right, mini);
+	} else
+		create_cmd(tree, mini->env);
+}
 
 //ok tant qu'on a pas croisee un metacar on avance.
