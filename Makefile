@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/13 14:57:27 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/06/13 17:08:02 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
+		$(PATH_SRC)/buildin/echo.c\
 
 
 
