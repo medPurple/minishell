@@ -2,12 +2,12 @@
 
 void mini_or(t_binary *tree, t_minishell *mini)
 {
-    if (tree->prev->prev->left->cmd->exec == true)
+    if (tree->prev->prev->left->cmd->exec == 1)
     {
         if (tree->prev->right->right)
-            tree->prev->right->left->cmd->exec = true;
+            tree->prev->right->left->cmd->exec = 1;
         else
-            tree->prev->right->cmd->exec = true;
+            tree->prev->right->cmd->exec = 1;
         return;
     }
     else
@@ -17,11 +17,14 @@ void mini_or(t_binary *tree, t_minishell *mini)
 
 void mini_and(t_binary *tree, t_minishell *mini)
 {
-    if (tree->prev->prev->left->cmd->exec == true)
-        exec_recu(mini, tree->prev->right);
-    else
+    if (tree->prev->prev->left->cmd->exec == -1)
     {
-        tree->prev->right->left->cmd->exec = false;// on arrete d executer
+        if (tree->prev->right->right)
+            tree->prev->right->left->cmd->exec = -1;
+        else
+            tree->prev->right->cmd->exec = -1;
         return ;
     }
+    else
+        exec_recu(mini, tree->prev->right);
 }

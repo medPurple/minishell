@@ -359,3 +359,12 @@ Note : faire un split perso afin de ne pas split les espace lorsqu'il y a des ar
 - free
 - buildin
 - signaux ctl d
+modif parsing ;
+si on trouve un echo en commande
+alors tant qu on ne croise pas un meta on met tout en argument, comme les quotes
+
+trouver solution pour gestion && et ||
+
+ 0 = non execute
+ 1 = execute et reussi
+-1 = execute et non reussi

@@ -19,7 +19,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 			exec_meta(tree, mini);
 		else
 		{
-            if (tree->cmd->exec == true)
+            if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
                 return;
             else
             {
@@ -27,7 +27,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     exec_buildin(tree, mini);
                 else
                 {
-                    tree->cmd->exec = true;
+                    tree->cmd->exec = 1;
                     if (pipe(tree->cmd->fd) == -1)
                         perror("pipe");
                     tree->cmd->fork = fork();
@@ -42,7 +42,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                         buf[ret] = '\0';
                         close(tree->cmd->fd[0]);
                         if (ft_strcmp(buf, "false") == 0)
-                            tree->cmd->exec = false;
+                            tree->cmd->exec = -1;
                         while(wait(NULL) != -1)
                             ;
                     }

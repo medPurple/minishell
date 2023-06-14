@@ -6,7 +6,7 @@ void create_cmd(t_binary *tree, t_env *env)
 {
     int i = 0;
 	tree->cmd = malloc(sizeof(t_cmd));
-	tree->cmd->exec = false;
+	tree->cmd->exec = 0;
 	tree->cmd->str = tree->data;
 	tree->cmd->split_cmd = mini_split(tree->data);
     while(tree->cmd->split_cmd[i])
