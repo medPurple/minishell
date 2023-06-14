@@ -112,7 +112,6 @@ void execute_cmd(t_binary *tree, char **envp)
 
 void exec_buildin(t_binary *tree, t_minishell *mini)
 {
-    (void)tree;
     (void)mini;
     ft_printf("BI");
 }
