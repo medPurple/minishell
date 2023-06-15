@@ -15,7 +15,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		if (is_a_meta(tree->data[0]))
+		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
 		{
