@@ -23,6 +23,8 @@ void parse_data(t_binary *tree, t_env *env)
 	}
 	tree->left = new_branche(tree->left, tree->command);
 	tree->right = new_branche(tree->right, tree->rest);
+	//ft_printf("Left - %s\n",tree->left->data);
+	//ft_printf("Right - %s\n",tree->right->data);
 	if (tree->left->data[0] == '(')
 		replace_parentheses(tree->left, env);
 	else
@@ -41,8 +43,8 @@ void create_root(t_binary *tree, t_env *env)
 
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
-	else if (is_a_meta(tree->data[0]) == true)
-		split_char(tree);
+	else if (is_a_meta(tree->data, 0) == true)
+		split_char(tree);		
 	else{
 		split = find_next_split(tree, env);
 		if (split == -1)

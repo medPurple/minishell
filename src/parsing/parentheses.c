@@ -34,3 +34,21 @@ void ignore_parentheses(t_binary *tree)
 	} else
 		return;
 }
+
+int end_of_parentheses(char *str, int position)
+{
+	int i = position + 1;
+	int para_count = 1;
+
+	while (para_count != 0 && str[i])
+	{
+		if (str[i] == '\0')
+			break;
+		if (str[i] == ')')
+			para_count--;
+		else if (str[i] == '(')
+			para_count++;
+		i++;
+	}
+	return (i);
+}
