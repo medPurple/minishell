@@ -15,14 +15,20 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		if (is_a_meta(tree->data[0]))
-			exec_meta(tree, mini);
-		else
-		{
-            if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
+		//if (is_a_meta(tree->data[0])) // ne prend en compte que && et ||
+		//	exec_meta(tree, mini);
+		//else
+		//{
+            if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
             {
+                split_exec(tree, mini);
+                {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
+                // a partir de la fonction appelee la
+
+                }
+
                 if (is_a_buildin(tree->cmd->split_cmd[0]) == 1)
                     exec_buildin(tree, mini);
                 else
@@ -49,27 +55,27 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     ft_printf("exec after = %d\n",tree->cmd->exec);
                 }
             }
-    	}
+    //	}
 	}
 	return;
 }
 
 void exec_meta( t_binary *tree, t_minishell *mini)
 {
-    if (ft_strcmp(tree->data, "|") == 0)
-        ft_printf("PIPE\n");
-    else if (ft_strcmp(tree->data, "||")== 0)
+    //if (ft_strcmp(tree->data, "|") == 0)
+    //    mini_pipe(tree, mini);
+    if (ft_strcmp(tree->data, "||")== 0)
         mini_or(tree, mini);
     else if (ft_strcmp(tree->data, "&&")== 0)
         mini_and(tree, mini);
-    else if (ft_strcmp(tree->data, "<")== 0)
+    /*else if (ft_strcmp(tree->data, "<")== 0)
         ft_printf("REDIR\n");
     else if (ft_strcmp(tree->data, ">")== 0)
         ft_printf("REDIR\n");
     else if (ft_strcmp(tree->data, ">>")== 0)
         ft_printf("IDK\n");
     else if (ft_strcmp(tree->data, "<<")== 0)
-        ft_printf("HERE\n");
+        ft_printf("HERE\n");*/
     else
         ft_printf("error meta\n");
 }
