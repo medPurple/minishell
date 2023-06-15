@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/14 14:18:03 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:25:47 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,15 @@ void	ft_add_back_lst(t_env **lst, t_env *new);
 void ignore_parentheses(t_binary *tree);
 void replace_parentheses(t_binary *tree, t_env *env);
 int end_of_quotes(char *str, int i);
-bool is_a_meta(char c);
+bool is_a_meta(char *str, int i);
 int pass_quotes(char *str, int i);
 int is_a_fonction(char *str,t_env *env);
 int is_a_buildin(char *str);
 void split_char(t_binary *tree);
 int find_next_split(t_binary *tree, t_env *env);
 bool string_analyse(char *str, t_env *env);
-int split_pos(char *str, t_env *env, int j , int i);
+int split_pos(char *str, int i);
+int end_of_parentheses(char *str, int position);
 
 
 /*------------------------------------------SIGNALS----------------------------------------------*/

@@ -19,7 +19,7 @@ int end_of_quotes(char *str, int i)
 	i++;
 	while (str[i] != c && str[i] != '\0')
 		i++;
-	while (is_a_meta(str[i]) != true && str[i] != '\0')
+	while ((str[i] != '&' && str[i+1] != '&') && (str[i] != '|' && str[i+1] != '|') && str[i] != '\0')
 	{
 		if ((str[i] == '\'') || (str[i] == '\"'))
 			i = pass_quotes(str, i);
