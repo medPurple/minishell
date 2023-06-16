@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 15:18:56 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:27:32 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void mini_cd(t_env *env, t_binary *tree)
 		else
 		{
 			str = getcwd(NULL,0);
-			ft_printf("cwd [%s]\n",str);
 			if (ft_strcmp(tree->cmd->split_cmd[1],"..")== 0)
 			{
-				int i = ft_strlen(str);				
 				while(str[i] != '/')
 					i--;
-				path = ft_limited_strdup(str,0,i - 1);
-				ft_printf("i = %d | path ? %s\n",i, path);
+				if (i == 0)
+					path = "/";
+				else
+					path = ft_limited_strdup(str,0,i - 1);
 				if (opendir((const char*)path) != NULL)
 					chdir(path);
 				else
@@ -46,7 +46,6 @@ void mini_cd(t_env *env, t_binary *tree)
 			{
 				path = ft_strjoin(str,"/");
 				path = ft_strjoin(path,tree->cmd->split_cmd[1]);
-				ft_printf("path [%s]\n",path);
 				if (opendir((const char*)path) != NULL)
 					chdir(path);
 				else
