@@ -4,6 +4,7 @@ static void	malloc_redir(t_binary *tree, int i);
 static void	malloc_cmd(t_binary *tree, int size);
 static void malloc_cmd_redir(t_binary *tree);
 static bool is_a_redir(char *cmd);
+static	bool is_a_pipe(char *cmd);
 
 void split_exec(t_binary *tree, t_minishell *mini)
 {
@@ -32,10 +33,15 @@ static void malloc_cmd_redir(t_binary *tree)
 			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 2;
 		}
+		else if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		{
+			ft_printf("coucou\n");
+			exit(EXIT_SUCCESS);
+		}
 		i++;
 	}
 	malloc_cmd(tree, i - j);
-
+ // ci dessous a supprimer
 	if (tree->cmd->redir_cmd)
 	{
 		for(int k = 0; tree->cmd->redir_cmd[k]; k++)
@@ -49,7 +55,6 @@ static void malloc_cmd_redir(t_binary *tree)
 static bool is_a_redir(char *cmd)
 {
 	int	pos;
-
 	int	count_left;
 	int	count_right;
 	int	count_pipe;
@@ -57,7 +62,6 @@ static bool is_a_redir(char *cmd)
 	count_left = 0;
 	count_right = 0;
 	count_pipe = 0;
-
 	pos = 0;
 	while (cmd[pos])
 	{
@@ -69,11 +73,11 @@ static bool is_a_redir(char *cmd)
 			count_pipe++;
 		pos++;
 	}
-	if ((count_right == 1 || count_right == 2) && (count_left == 0) && (count_pipe == 0))
+	if ((count_right == 1) && (count_left == 0) && ((count_pipe == 0) || count_pipe == 1))
+		return (true);
+	else if ((count_right == 2) && (count_left == 0) && (count_pipe == 0))
 		return (true);
 	else if ((count_left == 1 || count_left == 2) && (count_right == 0) && (count_pipe == 0))
-		return (true);
-	else if ((count_pipe == 1) && (count_left == 0) && (count_right == 0))
 		return (true);
 	else
 		return (false);
@@ -111,4 +115,26 @@ static void	malloc_cmd(t_binary *tree, int size)
 	}
 	tree->cmd->exec_cmd[j] = NULL;
 	return;
+}
+
+static	bool is_a_pipe(char *cmd)
+{
+	int	count_pipe;
+	int	pos;
+
+
+	count_pipe = 0;
+	pos = 0;
+	ft_printf("cucu\n");
+	while (cmd[pos])
+	{
+		if (cmd[pos] == '|' )
+			count_pipe++;
+		ft_printf("cmd : %c", cmd[pos]);
+		pos++;
+	}
+	if (count_pipe == 1)
+		return (true);
+	else
+		return (false);
 }

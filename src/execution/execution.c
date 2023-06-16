@@ -15,16 +15,16 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		//if (is_a_meta(tree->data[0])) // ne prend en compte que && et ||
-		//	exec_meta(tree, mini);
-		//else
-		//{
+		if (is_a_meta(tree->data, 0)) // ne prend en compte que && et ||
+			exec_meta(tree, mini);
+		else
+		{
             split_exec(tree, mini);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
             {
-                {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
+           //     {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
                 // a partir de la fonction appelee la
 
                 }
@@ -85,23 +85,23 @@ void execute_cmd(t_binary *tree, char **envp)
     ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
     {
-        if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
+        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)
         {
             close(tree->cmd->fd[0]);
             write(tree->cmd->fd[1], "false", 5);
             close(tree->cmd->fd[1]);
-            ft_free_tab(tree->cmd->split_cmd);
+            ft_free_tab(tree->cmd->exec_cmd);
             ft_perror(" Error : Command execution\n");
         }
     }
-    else if (ft_strchr(tree->cmd->split_cmd[0], '/') != NULL)
+    else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
     {
-        tree->cmd->path_cmd = tree->cmd->split_cmd[0];
-        if (execve(tree->cmd->path_cmd, tree->cmd->split_cmd, envp) == -1)
+        tree->cmd->path_cmd = tree->cmd->exec_cmd[0];
+        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)
         {
             close(tree->cmd->fd[0]);
             write(tree->cmd->fd[1], "false", 5);
-            ft_free_tab(tree->cmd->split_cmd);
+            ft_free_tab(tree->cmd->exec_cmd);
             ft_perror(" Error : Command execution\n");
         }
     }
@@ -110,10 +110,10 @@ void execute_cmd(t_binary *tree, char **envp)
         close(tree->cmd->fd[0]);
         write(tree->cmd->fd[1], "false", 5);
         close(tree->cmd->fd[1]);
-        ft_free_tab(tree->cmd->split_cmd);
+        ft_free_tab(tree->cmd->exec_cmd);
 		ft_perror("path");
     }
-    ft_free_tab(tree->cmd->split_cmd);
+    ft_free_tab(tree->cmd->exec_cmd);
 }
 
 void exec_buildin(t_binary *tree, t_minishell *mini)
