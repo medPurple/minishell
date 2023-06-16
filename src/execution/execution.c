@@ -19,7 +19,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 		//	exec_meta(tree, mini);
 		//else
 		//{
-             split_exec(tree, mini);
+            split_exec(tree, mini);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
