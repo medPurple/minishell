@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/14 18:25:47 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:38:33 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_cmd
 	char    *str;
 	int    exec;
 	char    **split_cmd;
+	char	**redir_cmd;
+	char	**exec_cmd;
     char    *path_cmd;
     pid_t   fork;
     int     fd[2];
@@ -91,6 +93,8 @@ void create_cmd(t_binary *tree, t_env *env);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
+
+void split_exec(t_binary *tree, t_minishell *mini);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
