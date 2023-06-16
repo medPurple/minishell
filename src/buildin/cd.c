@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 14:19:30 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:18:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char *find_dir(char *destination, t_env *env);
 void mini_cd(t_env *env, t_binary *tree)
 {
 	char *str;
-	char *path;
+	char *path = NULL;
 	ft_printf("ARG : %d\n",count_arg(tree->cmd->split_cmd));
 	if (count_arg(tree->cmd->split_cmd) > 2)
 		ft_printf("cd: too many arguments\n");
@@ -30,10 +30,28 @@ void mini_cd(t_env *env, t_binary *tree)
 		{
 			str = getcwd(NULL,0);
 			ft_printf("cwd [%s]\n",str);
-			path = ft_strjoin(str,"/");
-			path = ft_strjoin(path,tree->cmd->split_cmd[1]);
-			ft_printf("path [%s]\n",path);
-			
+			if (ft_strcmp(tree->cmd->split_cmd[1],"..")== 0)
+			{
+				int i = ft_strlen(str);				
+				while(str[i] != '/')
+					i--;
+				path = ft_limited_strdup(str,0,i - 1);
+				ft_printf("i = %d | path ? %s\n",i, path);
+				if (opendir((const char*)path) != NULL)
+					chdir(path);
+				else
+					ft_printf("Wrong cd");	
+			}
+			else	
+			{
+				path = ft_strjoin(str,"/");
+				path = ft_strjoin(path,tree->cmd->split_cmd[1]);
+				ft_printf("path [%s]\n",path);
+				if (opendir((const char*)path) != NULL)
+					chdir(path);
+				else
+					ft_printf("Wrong cd");		
+			}
 		}
 	}
 }
