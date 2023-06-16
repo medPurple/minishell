@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/14 18:25:47 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:48:02 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
+#include <sys/types.h>
+#include <dirent.h>
+
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
 //ls (-l) -la && (cat salut) || cat coucou
@@ -96,6 +99,9 @@ void mini_and(t_binary *tree, t_minishell *mini);
 void exec_buildin(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
+void mini_exit(t_minishell *mini);
+void mini_pwd(t_env *env);
+void mini_cd(t_env *env, t_binary *tree);
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);

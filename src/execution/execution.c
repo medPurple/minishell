@@ -116,9 +116,9 @@ void exec_buildin(t_binary *tree, t_minishell *mini)
     if (ft_strcmp(tree->cmd->split_cmd[0], "echo") == 0)
         mini_echo(tree);
     else if (ft_strcmp(tree->cmd->split_cmd[0], "cd") == 0)
-        ft_printf("cd\n");
+        mini_cd(mini->env, tree);
     else if (ft_strcmp(tree->cmd->split_cmd[0], "pwd") == 0)
-        ft_printf("pwd\n");
+        mini_pwd(mini->env);
     else if (ft_strcmp(tree->cmd->split_cmd[0], "exit") == 0)
-        exit(0);
+        mini_exit(mini);
 }

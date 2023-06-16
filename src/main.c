@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/13 19:17:50 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:41:14 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int main(int ac, char **av, char **envp)
 		if (ft_strcmp(str,"") != 0)
 			minishell(str, &mini);
 	}
-	printf("MINISHELL EXIT\n");
-
 	return(0);
 }
 
@@ -60,6 +58,7 @@ static void minishell(char *str, t_minishell *mini)
 	else
 	{
 		parsing(mini,str);
+		free(str);
 		exec_recu(mini, mini->tree);
         while (wait(NULL) != -1)
 		           ;
