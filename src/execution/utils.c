@@ -14,6 +14,8 @@ void create_cmd(t_binary *tree, t_env *env)
     tree->cmd->path_cmd = cmd_recuperation(tree->cmd->split_cmd[0], env);
     if (ft_strcmp(tree->cmd->path_cmd,tree->cmd->split_cmd[0]) == 0)
         tree->cmd->path_cmd = NULL;
+    tree->cmd->exec_cmd = NULL;
+    tree->cmd->redir_cmd = NULL;
 }
 
 char *cmd_recuperation(char *str, t_env *env)
