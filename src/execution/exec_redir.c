@@ -15,7 +15,6 @@ void split_exec(t_binary *tree, t_minishell *mini)
 	j = 0;
 	malloc_cmd_redir(tree);
 
-
 }
 static void malloc_cmd_redir(t_binary *tree)
 {
@@ -37,14 +36,13 @@ static void malloc_cmd_redir(t_binary *tree)
 	}
 	malloc_cmd(tree, i - j);
 
-	for(int k = 0; tree->cmd->redir_cmd[k]; k++)
-		ft_printf("redir_cmd : %s\n", tree->cmd->redir_cmd[k]);
-	int p = 0;
-	while ( tree->cmd->exec_cmd[p])
+	if (tree->cmd->redir_cmd)
 	{
-		ft_printf("exec: %s\n", tree->cmd->exec_cmd[p]);
-		p++;
+		for(int k = 0; tree->cmd->redir_cmd[k]; k++)
+			ft_printf("redir_cmd : %s\n", tree->cmd->redir_cmd[k]);
 	}
+	for(int p = 0; tree->cmd->exec_cmd[p]; p++)
+			ft_printf("exec_cmd : %s\n", tree->cmd->exec_cmd[p]);
 
 }
 
@@ -83,7 +81,7 @@ static bool is_a_redir(char *cmd)
 
 static void	malloc_redir(t_binary *tree, int i)
 {
-	tree->cmd->redir_cmd = ft_malloc2(2, "char*"); // je malloc de la taille avant la redir
+	tree->cmd->redir_cmd = ft_malloc2(2, "char*");
 	tree->cmd->redir_cmd[0] = tree->cmd->split_cmd[i];
 	tree->cmd->redir_cmd[1] = tree->cmd->split_cmd[i + 1];
 	tree->cmd->redir_cmd[2] = NULL;
