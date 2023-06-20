@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 15:27:32 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:02:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char *find_dir(char *destination, t_env *env);
 
 void mini_cd(t_env *env, t_binary *tree)
 {
+	int i;
 	char *str;
 	char *path = NULL;
 	ft_printf("ARG : %d\n",count_arg(tree->cmd->split_cmd));
@@ -23,12 +24,13 @@ void mini_cd(t_env *env, t_binary *tree)
 		ft_printf("cd: too many arguments\n");
 	else
 	{
-		ft_printf("[%s]\n",tree->cmd->split_cmd[1]);
 		if (count_arg(tree->cmd->split_cmd) == 1)
 			chdir(find_dir("HOME", env));
 		else
 		{
+			
 			str = getcwd(NULL,0);
+			i = ft_strlen(str);
 			if (ft_strcmp(tree->cmd->split_cmd[1],"..")== 0)
 			{
 				while(str[i] != '/')
@@ -73,7 +75,6 @@ char *find_dir(char *destination, t_env *env)
 
 	str = NULL;
 	tmp = env;
-	ft_printf("Destination [%s]\n",destination);
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->name,"PWD") == 0)
@@ -105,7 +106,5 @@ char *find_dir(char *destination, t_env *env)
 				tmp->data = ft_strjoin("OLDPWD=",old);
 		tmp = tmp->next;		
 	}
-	ft_printf("PWD [%s]\n",old);
-	ft_printf("OLDPWD [%s]\n",str);
 	return ((char*)str);
 }
