@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/16 13:48:02 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:30:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <dirent.h>
+ #include <sys/stat.h>
 
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
@@ -28,6 +29,13 @@
 //je tente " ahahah ls -l ejejej '
 // est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
 //autrement dit repartir de ce qui existe et rediviser a partir des quotes
+
+typedef struct s_wc
+{
+	char *file;
+	struct s_wc *next;
+	
+}	t_wc;
 
 typedef struct s_binary
 {
@@ -80,6 +88,7 @@ void mini_export(t_env *env, char *str);
 
 void mini_parse(t_minishell *mini, char *str);
 void expand(t_binary *tree, t_env *env);
+char *wildcard(char *str, int i);
 void parsing(t_minishell *mini, char *str);
 void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);

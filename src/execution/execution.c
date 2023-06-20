@@ -56,20 +56,10 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 
 void exec_meta( t_binary *tree, t_minishell *mini)
 {
-    if (ft_strcmp(tree->data, "|") == 0)
-        ft_printf("PIPE\n");
-    else if (ft_strcmp(tree->data, "||")== 0)
+    if (ft_strcmp(tree->data, "||")== 0)
         mini_or(tree, mini);
     else if (ft_strcmp(tree->data, "&&")== 0)
         mini_and(tree, mini);
-    else if (ft_strcmp(tree->data, "<")== 0)
-        ft_printf("REDIR\n");
-    else if (ft_strcmp(tree->data, ">")== 0)
-        ft_printf("REDIR\n");
-    else if (ft_strcmp(tree->data, ">>")== 0)
-        ft_printf("IDK\n");
-    else if (ft_strcmp(tree->data, "<<")== 0)
-        ft_printf("HERE\n");
     else
         ft_printf("error meta\n");
 }

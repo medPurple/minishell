@@ -6,7 +6,7 @@ char *ft_malloc(int size, char *type)
 
 	if (ft_strcmp(type, "char") == 0)
 	{
-		str = malloc(sizeof (char) * size + 1);
+		str = malloc(sizeof (char) * (size + 1));
 		if (!str)
 			return (NULL);
 	}
@@ -25,7 +25,7 @@ char **ft_malloc2(int size, char *type)
 
 	if (ft_strcmp(type, "char*") == 0)
 	{
-		str = malloc(sizeof (char *) * size + 1);
+		str = malloc(sizeof (char *) * (size + 1));
 		if (!str)
 			return (NULL);
 	}

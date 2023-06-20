@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/16 12:14:53 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/06/20 14:00:19 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/meta.c\
 		$(PATH_SRC)/parsing/string.c\
 		$(PATH_SRC)/parsing/expand.c\
+		$(PATH_SRC)/parsing/wildcard.c\
 		$(PATH_SRC)/parsing/parentheses.c\
 		$(PATH_SRC)/parsing/quotes.c\
 		$(PATH_SRC)/signals/signals.c\
