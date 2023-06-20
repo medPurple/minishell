@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 11:38:33 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:34:52 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ typedef struct s_env
 	struct s_env	*next;
 }				t_env;
 
+typedef	struct s_redirection
+{
+	char	*redir_cmd;
+	char	*redir_file;
+	//int	count;
+	struct s_redirection	*next;
+
+}				t_redirection;
+
 typedef struct s_cmd
 {
 	char    *str;
@@ -66,6 +75,7 @@ typedef struct s_minishell
 {
 	t_env	*env;
 	t_binary *tree;
+	t_redirection	*redir;
 	char **envp;
 
 }				t_minishell;
@@ -95,6 +105,14 @@ void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 
 void split_exec(t_binary *tree, t_minishell *mini);
+void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
+
+bool is_a_redir(char *cmd);
+bool is_a_pipe(char *cmd);
+t_redirection	*new_cmd(t_redirection *redir);
+t_redirection	*ft_new_redirection(char *redir, char *file);
+t_redirection	*ft_last_lst_redirection(t_redirection *lst);
+void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);

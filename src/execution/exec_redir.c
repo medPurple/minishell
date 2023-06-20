@@ -1,42 +1,32 @@
 #include "../../include/minishell.h"
 
-static void	malloc_redir(t_binary *tree, int i);
+static void	malloc_redir(t_redirection *redir, t_binary *tree, int i);
 static void	malloc_cmd(t_binary *tree, int size);
-static void malloc_cmd_redir(t_binary *tree);
-static bool is_a_redir(char *cmd);
-static	bool is_a_pipe(char *cmd);
 
-void split_exec(t_binary *tree, t_minishell *mini)
+
+void malloc_cmd_redir(t_minishell *mini, t_binary *tree)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	t_redirection *redir = NULL;
 	(void)mini;
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	malloc_cmd_redir(tree);
-
-}
-static void malloc_cmd_redir(t_binary *tree)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	while (tree->cmd->split_cmd[i])
 	{
 		if(is_a_redir(tree->cmd->split_cmd[i]) == true)
 		{
 			j = 2;
-			malloc_redir(tree, i);
+			malloc_redir(redir, tree, i);// tre[i] && tree[i+1]
 			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 2;
 		}
 		else if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
-			ft_printf("coucou\n");
-			exit(EXIT_SUCCESS);
+			return;
+			//ft_printf("coucou\n");
+			//exit(EXIT_SUCCESS);
 		}
 		i++;
 	}
@@ -52,43 +42,12 @@ static void malloc_cmd_redir(t_binary *tree)
 
 }
 
-static bool is_a_redir(char *cmd)
+static void	malloc_redir(t_redirection *redir, t_binary *tree, int i)
 {
-	int	pos;
-	int	count_left;
-	int	count_right;
-	int	count_pipe;
+	t_redirection	*tmp;
 
-	count_left = 0;
-	count_right = 0;
-	count_pipe = 0;
-	pos = 0;
-	while (cmd[pos])
-	{
-		if (cmd[pos] == '>')
-			count_right++;
-		else if (cmd[pos] == '<')
-			count_left++;
-		else if (cmd[pos] == '|' )
-			count_pipe++;
-		pos++;
-	}
-	if ((count_right == 1) && (count_left == 0) && ((count_pipe == 0) || count_pipe == 1))
-		return (true);
-	else if ((count_right == 2) && (count_left == 0) && (count_pipe == 0))
-		return (true);
-	else if ((count_left == 1 || count_left == 2) && (count_right == 0) && (count_pipe == 0))
-		return (true);
-	else
-		return (false);
-}
-
-static void	malloc_redir(t_binary *tree, int i)
-{
-	tree->cmd->redir_cmd = ft_malloc2(2, "char*");
-	tree->cmd->redir_cmd[0] = tree->cmd->split_cmd[i];
-	tree->cmd->redir_cmd[1] = tree->cmd->split_cmd[i + 1];
-	tree->cmd->redir_cmd[2] = NULL;
+	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]), ft_strdup(tree->cmd->split_cmd[i + 1]));
+	ft_add_back_lst_redirection(&redir, tmp);
 	return;
 }
 
@@ -109,32 +68,17 @@ static void	malloc_cmd(t_binary *tree, int size)
 			else
 				break ;
 		}
+		else if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		{
+			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
+				i++;
+			else
+				break;
+		}
 		tree->cmd->exec_cmd[j] = tree->cmd->split_cmd[i];
 		i++;
 		j++;
 	}
 	tree->cmd->exec_cmd[j] = NULL;
 	return;
-}
-
-static	bool is_a_pipe(char *cmd)
-{
-	int	count_pipe;
-	int	pos;
-
-
-	count_pipe = 0;
-	pos = 0;
-	ft_printf("cucu\n");
-	while (cmd[pos])
-	{
-		if (cmd[pos] == '|' )
-			count_pipe++;
-		ft_printf("cmd : %c", cmd[pos]);
-		pos++;
-	}
-	if (count_pipe == 1)
-		return (true);
-	else
-		return (false);
 }

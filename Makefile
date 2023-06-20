@@ -6,7 +6,7 @@
 #    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/15 11:39:02 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/06/20 16:53:05 by mvautrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
+		$(PATH_SRC)/execution/exec_split.c\
 		$(PATH_SRC)/execution/exec_redir.c\
+		$(PATH_SRC)/execution/exec_utils.c\
+		$(PATH_SRC)/execution/lst_create_redir.c\
 		$(PATH_SRC)/buildin/echo.c\
 
 
@@ -55,7 +58,7 @@ run: minishell
 		@./minishell
 
 runv : minishell
-		@valgrind --leak-check=full --track-origins=yes ./minishell
+		@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
