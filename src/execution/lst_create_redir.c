@@ -35,14 +35,11 @@ void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new)
 
 	if (!(*lst))
 	{
-		ft_printf("NOK");
 		*lst = new;
 	}
 	else
 	{
-		ft_printf("salut\n");
 		str = ft_last_lst_redirection(*lst);
-		ft_printf("salut2\n");
 		str->next = new;
 	}
 }
