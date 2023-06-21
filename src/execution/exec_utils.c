@@ -1,14 +1,6 @@
 #include "../../include/minishell.h"
 
 
-/*t_redirection	*new_cmd(t_redirection *redir)
-{
-	redir = malloc(sizeof(t_redirection));
-	redir->redir_cmd = NULL;
-	redir->redir_file = NULL;
-	return (redir);
-}*/
-
 bool is_a_redir(char *cmd)
 {
 	int	pos;

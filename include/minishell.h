@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/20 15:34:52 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:48:49 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_binary
 	struct s_binary *prev;
 	struct s_binary *left;
 	struct s_binary *right;
+	struct s_redirection	*redir;
 }           t_binary;
 
 typedef struct s_env
@@ -75,7 +76,6 @@ typedef struct s_minishell
 {
 	t_env	*env;
 	t_binary *tree;
-	t_redirection	*redir;
 	char **envp;
 
 }				t_minishell;
@@ -109,7 +109,6 @@ void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
 
 bool is_a_redir(char *cmd);
 bool is_a_pipe(char *cmd);
-t_redirection	*new_cmd(t_redirection *redir);
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);

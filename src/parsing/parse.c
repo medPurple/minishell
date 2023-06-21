@@ -15,7 +15,7 @@ void parse_data(t_binary *tree, t_env *env)
 		create_root(tree, env);
 	if (tree->command == NULL) {
 		if (tree->data[0] != '(' && tree->command == NULL)
-			expand(tree, env);	
+			expand(tree, env);
 		tree->end = 1;
 		return;
 	}
@@ -40,7 +40,7 @@ void create_root(t_binary *tree, t_env *env)
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
 	else if (is_a_meta(tree->data, 0) == true)
-		split_char(tree);		
+		split_char(tree);
 	else{
 		split = find_next_split(tree, env);
 		if (split == -1)
@@ -65,6 +65,7 @@ t_binary *new_branche(t_binary *tree, char *str)
 	tree->right = NULL;
 	tree->command = NULL;
 	tree->rest = NULL;
+	tree->redir = NULL;
 	return (tree);
 }
 
