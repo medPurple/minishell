@@ -38,7 +38,41 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 
 void    exec_send(t_binary *tree, t_minishell *mini)
 {
-    char buf[6];
+    char	buf[6];
+	int	ret;
+    t_redirection	*tmp;
+
+    tmp = tree->redir;
+	tree->cmd->exec = 1;
+    if (count_redir(tree) >= 1)
+        open_file(tree);
+    if (pipe(tree->cmd->fd) == -1)
+        perror("pipe");
+    tree->cmd->fork = fork();
+    if (tree->cmd->fork == -1)
+        perror("fork");
+	else if(tree->cmd->fork == 0)
+    {
+		exec_cmd_redir(tree, mini);
+        if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
+            exec_buildin(tree, mini);
+	    else
+		    execute_cmd(tree, mini->envp);
+    }
+    else
+    {
+        close(tree->cmd->fd[1]);
+        ret = read(tree->cmd->fd[0], buf, 10);
+        buf[ret] = '\0';
+        close(tree->cmd->fd[0]);
+        if (ft_strcmp(buf, "false") == 0)
+            tree->cmd->exec = -1;
+        while(wait(NULL) != -1)
+                ;
+
+    }
+
+    /*char buf[6];
     int ret;
 
     if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
@@ -65,7 +99,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
                 ;
         }
         ft_printf("exec after = %d\n",tree->cmd->exec);
-   }
+   }*/
     return ;
 }
 

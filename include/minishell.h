@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/22 11:31:56 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:49:14 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	find_next_quotes (char *str, int pos);
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
+void execute_cmd(t_binary *tree, char **envp);
 char **mini_split(char *str);
 void create_cmd(t_binary *tree, t_env *env);
 char *cmd_recuperation(char *str, t_env *env);
@@ -112,6 +113,9 @@ void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
 
 bool is_a_redir(char *cmd);
 bool is_a_pipe(char *cmd);
+int	count_redir(t_binary *tree);
+void	open_file(t_binary *tree);
+
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
