@@ -6,7 +6,7 @@
 #    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/20 16:53:05 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/06/22 11:31:14 by mvautrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,14 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
-		$(PATH_SRC)/execution/exec_split.c\
 		$(PATH_SRC)/execution/exec_redir.c\
+		$(PATH_SRC)/execution/exec_malloc.c\
 		$(PATH_SRC)/execution/exec_utils.c\
 		$(PATH_SRC)/execution/lst_create_redir.c\
 		$(PATH_SRC)/buildin/echo.c\
+		$(PATH_SRC)/buildin/exit.c\
+		$(PATH_SRC)/buildin/pwd.c\
+		$(PATH_SRC)/buildin/cd.c\
 
 
 

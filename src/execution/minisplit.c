@@ -17,16 +17,16 @@ char **mini_split(char *str) {
 	cmd = ft_malloc2(word_nb(str), "char*");
 	while (str[i])
 	{
+		while ((str[i] == ' ' || str[i] == '\t') && str[i])
+			i++;
 		if ((str[i] == '<' || str[i] == '>' || str[i] == '|') && is_a_redir_or_pipe(str, i, i + 4) > 0)
 		{
 			j = i;
-			i = i + is_a_redir_or_pipe(str, i, i+4);
-			cmd[k++] = ft_limited_strdup(str, j, i-1);
+			i = i + is_a_redir_or_pipe(str, i, i + 4);
+			cmd[k++] = ft_limited_strdup(str, j, i - 1);
 		}
 		else
 		{
-			while ((str[i] == ' ' || str[i] == '\t') && str[i])
-				i++;
 			j = i;
 			while ((str[i] != ' ' && str[i] != '\t') && str[i])
 			{

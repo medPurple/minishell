@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/21 14:48:49 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:31:56 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
+#include <sys/types.h>
+#include <dirent.h>
+ #include <sys/stat.h>
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
 //ls (-l) -la && (cat salut) || cat coucou
@@ -104,7 +107,7 @@ char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 
-void split_exec(t_binary *tree, t_minishell *mini);
+void exec_cmd_redir(t_binary *tree, t_minishell *mini);
 void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
 
 bool is_a_redir(char *cmd);
@@ -117,6 +120,9 @@ void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void exec_buildin(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
+void mini_exit(t_minishell *mini);
+void mini_pwd(t_env *env);
+void mini_cd(t_env *env, t_binary *tree);
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);

@@ -24,7 +24,9 @@ void exec_recu(t_minishell *mini, t_binary *tree)
            //     {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
                 // a partir de la fonction appelee la
 
-                split_exec(tree, mini);
+                //split_exec(tree, mini);
+                malloc_cmd_redir(mini, tree);
+                //exec_cmd_redir(tree, mini);
                 exec_send(tree, mini);
                 //ft_printf("exec after = %d\n",tree->cmd->exec);
             }
@@ -39,7 +41,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     char buf[6];
     int ret;
 
-    if (is_a_buildin(tree->cmd->split_cmd[0]) == 1)
+    if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
         exec_buildin(tree, mini);
     else
     {
@@ -69,20 +71,10 @@ void    exec_send(t_binary *tree, t_minishell *mini)
 
 void exec_meta( t_binary *tree, t_minishell *mini)
 {
-    //if (ft_strcmp(tree->data, "|") == 0)
-    //    mini_pipe(tree, mini);
     if (ft_strcmp(tree->data, "||")== 0)
         mini_or(tree, mini);
     else if (ft_strcmp(tree->data, "&&")== 0)
         mini_and(tree, mini);
-    /*else if (ft_strcmp(tree->data, "<")== 0)
-        ft_printf("REDIR\n");
-    else if (ft_strcmp(tree->data, ">")== 0)
-        ft_printf("REDIR\n");
-    else if (ft_strcmp(tree->data, ">>")== 0)
-        ft_printf("IDK\n");
-    else if (ft_strcmp(tree->data, "<<")== 0)
-        ft_printf("HERE\n");*/
     else
         ft_printf("error meta\n");
 }
@@ -126,12 +118,12 @@ void execute_cmd(t_binary *tree, char **envp)
 void exec_buildin(t_binary *tree, t_minishell *mini)
 {
     (void)mini;
-    if (ft_strcmp(tree->cmd->split_cmd[0], "echo") == 0)
+    if (ft_strcmp(tree->cmd->exec_cmd[0], "echo") == 0)
         mini_echo(tree);
-    else if (ft_strcmp(tree->cmd->split_cmd[0], "cd") == 0)
-        ft_printf("cd\n");
-    else if (ft_strcmp(tree->cmd->split_cmd[0], "pwd") == 0)
-        ft_printf("pwd\n");
-    else if (ft_strcmp(tree->cmd->split_cmd[0], "exit") == 0)
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
+        mini_cd(mini->env, tree);
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "pwd") == 0)
+         mini_pwd(mini->env);
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
         exit(0);
 }
