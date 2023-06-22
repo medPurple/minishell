@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/21 16:23:34 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/06/22 17:15:54 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,10 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
-		$(PATH_SRC)/execution/exec_redir.c\
-		$(PATH_SRC)/execution/exec_malloc.c\
+		$(PATH_SRC)/execution/redirection/exec_redir.c\
+		$(PATH_SRC)/execution/redirection/exec_malloc.c\
 		$(PATH_SRC)/execution/exec_utils.c\
-		$(PATH_SRC)/execution/lst_create_redir.c\
+		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
@@ -65,7 +65,7 @@ run: minishell
 		@./minishell
 
 runv : minishell
-		@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline

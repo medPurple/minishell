@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 14:41:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:05:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ int main(int ac, char **av, char **envp)
 		signal(SIGINT, signal_ctrlc); // gestion signal ctl c + afficher nvl ligne
 		signal(SIGQUIT, SIG_IGN); /* permet d ignorer signal SIGQUIT: ctl+\*/
 		str = readline("minishell$ ");
-		//if (ft_strcmp(str,"exit")==0)
-		//	break;
 		add_history(str);
 		if (ft_strcmp(str,"") != 0)
+		{
 			minishell(str, &mini);
+			clear_the_tree(mini.tree);
+		}
+		
 	}
 	return(0);
 }

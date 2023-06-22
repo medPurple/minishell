@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/22 12:13:31 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:03:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,20 +115,23 @@ char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 
+
+/*----------------------------------------------REDIRECTION----------------------------------------*/
 void exec_cmd_redir(t_binary *tree, t_minishell *mini);
 void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
-
 bool is_a_redir(char *cmd);
 bool is_a_pipe(char *cmd);
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+void	mini_here_doc(char *limiter, t_binary *tree);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
 void mini_exit(t_minishell *mini);
+void clear_the_tree(t_binary *tree);
 void mini_pwd(t_env *env);
 void mini_cd(t_env *env, t_binary *tree);
 

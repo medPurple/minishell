@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static void	malloc_redir(t_binary *tree, int i);
 static void	malloc_cmd(t_binary *tree, int size);

@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 void exec_cmd_redir(t_binary *tree, t_minishell *mini)
 {

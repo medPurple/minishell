@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 t_redirection	*ft_new_redirection(char *redir, char *file)
 {

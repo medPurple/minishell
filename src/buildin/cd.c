@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/22 15:30:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:01:15 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ static void changedir(char *destination, char *last, t_env *env)
 {
 	t_env *tmp = env;
 
-	ft_printf("[D] %s\n",destination);
-	ft_printf("[L] %s\n",last);
-
 	chdir(destination);
 	while (tmp)
 	{
@@ -99,5 +96,4 @@ static void changedir(char *destination, char *last, t_env *env)
 		}
 		tmp = tmp->next;
 	}
-	free(destination);
 }
