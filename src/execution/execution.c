@@ -18,14 +18,12 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 			exec_meta(tree, mini);
 		else
 		{
+            ft_printf("[CMD] %s | %d\n",tree->data,tree->cmd->exec);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
             {
-           //     {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
-                // a partir de la fonction appelee la
                 malloc_cmd_redir(mini, tree);
-                //exec_cmd_redir(tree, mini);
                 exec_send(tree, mini);
             }
         }

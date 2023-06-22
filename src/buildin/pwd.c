@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:00 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 11:28:44 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:56:55 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 void mini_pwd(t_env *env)
 {
-	t_env *tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->name,"PWD") == 0)
-			ft_printf("%s\n",tmp->data+4);
-		tmp = tmp->next;
-	}
+	(void)env;
+	char *str;
+	str = getcwd(NULL,0);
+	ft_printf("%s\n",str);
+	free(str);
 }
