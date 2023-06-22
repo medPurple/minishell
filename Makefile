@@ -40,6 +40,10 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
+		$(PATH_SRC)/execution/exec_redir.c\
+		$(PATH_SRC)/execution/exec_malloc.c\
+		$(PATH_SRC)/execution/exec_utils.c\
+		$(PATH_SRC)/execution/lst_create_redir.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\

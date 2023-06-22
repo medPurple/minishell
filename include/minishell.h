@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/21 16:42:26 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:13:31 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ typedef struct s_wc
 	
 }	t_wc;
 
+typedef	struct s_redirection
+{
+	char	*redir_cmd;
+	char	*redir_file;
+	//int	count;
+	struct s_redirection	*next;
+
+}				t_redirection;
+
 typedef struct s_binary
 {
 	int	end;
@@ -49,6 +58,7 @@ typedef struct s_binary
 	struct s_binary *prev;
 	struct s_binary *left;
 	struct s_binary *right;
+	struct s_redirection	*redir;
 }           t_binary;
 
 typedef struct s_env
@@ -63,6 +73,8 @@ typedef struct s_cmd
 	char    *str;
 	int    exec;
 	char    **split_cmd;
+	char	**redir_cmd;
+	char	**exec_cmd;
     char    *path_cmd;
     pid_t   fork;
     int     fd[2];
@@ -103,6 +115,15 @@ char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 
+void exec_cmd_redir(t_binary *tree, t_minishell *mini);
+void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
+
+bool is_a_redir(char *cmd);
+bool is_a_pipe(char *cmd);
+t_redirection	*ft_new_redirection(char *redir, char *file);
+t_redirection	*ft_last_lst_redirection(t_redirection *lst);
+void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
 
@@ -138,6 +159,9 @@ t_wc *new_wc(char *str);
 bool first_letter(char *str, char *ex);
 bool last_letter(char *str, char *ex);
 char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
+char **wc_all(t_wc *file);
+char **wc_after(char *afwc, t_wc *file);
+char **wc_before(char *bfwc, t_wc *file);
 
 /*------------------------------------------SIGNALS----------------------------------------------*/
 

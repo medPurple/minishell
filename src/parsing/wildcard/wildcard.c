@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/22 11:21:09 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:41:57 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char *find_file(char *bfwc, char *afwc, char *begin, char *end);
 static char **get_wc(char *bfwc, char *afwc,t_wc *liste);
+static char *new_str(char *begin,char *end, char **tab);
 
 char *wildcard(char *str, int i)
 {
@@ -58,7 +59,7 @@ static char *find_file(char *bfwc, char *afwc, char *begin, char *end)
 	tab = get_wc(bfwc,afwc, liste);
 	for (int k = 0; tab[k];k++)
 		ft_printf("%s\n",tab[k]);
-	return("ok");
+	return(new_str(begin, end, tab));
 }
 
 
@@ -82,5 +83,22 @@ static char **get_wc(char *bfwc, char *afwc,t_wc *liste)
 		tab = wc_after(afwc, liste);
 	else
 		tab = wc_all(liste);
-	return tab;
+	return (tab);
+}
+
+static char *new_str(char *begin,char *end, char **tab)
+{
+	int i;
+	char *str;
+	
+	i = 0;
+	str = ft_strjoin(begin, " ");
+	while (tab[i])
+	{
+		str = ft_strjoin(str, tab[i]);
+		str = ft_strjoin(str, " ");
+		i++;
+	}
+	str = ft_strjoin(str, end);
+	return (str);
 }

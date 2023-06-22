@@ -51,8 +51,8 @@ bool last_letter(char *str, char *ex)
 	int j;
 	
 	count = ft_strlen(ex);
-	i = ft_strlen(ex);
-	j = ft_strlen(str);
+	i = ft_strlen(ex) - 1;
+	j = ft_strlen(str) - 1;
 	while (count != 0)
 	{
 		if (str[j] != ex[i])
@@ -62,6 +62,5 @@ bool last_letter(char *str, char *ex)
 		count--;
 		
 	}
-	ft_printf("ok");
 	return(true);
 }
