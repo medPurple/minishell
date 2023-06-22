@@ -36,7 +36,6 @@ void parse_data(t_binary *tree, t_env *env)
 void create_root(t_binary *tree, t_env *env)
 {
 	int split;
-
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
 	else if (is_a_meta(tree->data, 0) == true)

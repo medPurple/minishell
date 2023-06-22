@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/20 16:30:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:42:26 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void mini_export(t_env *env, char *str);
 
 void mini_parse(t_minishell *mini, char *str);
 void expand(t_binary *tree, t_env *env);
-char *wildcard(char *str, int i);
 void parsing(t_minishell *mini, char *str);
 void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);
@@ -131,6 +130,14 @@ bool string_analyse(char *str, t_env *env);
 int split_pos(char *str, int i);
 int end_of_parentheses(char *str, int position);
 
+/*--------------------------------------Wildcards------------------------------------------------*/
+
+char *wildcard(char *str, int i);
+void wc_addback(t_wc **list, t_wc *new);
+t_wc *new_wc(char *str);
+bool first_letter(char *str, char *ex);
+bool last_letter(char *str, char *ex);
+char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
 
 /*------------------------------------------SIGNALS----------------------------------------------*/
 

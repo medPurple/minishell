@@ -6,14 +6,14 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/20 16:57:50 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:21:09 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
+
 static char *find_file(char *bfwc, char *afwc, char *begin, char *end);
-static void wc_addback(t_wc **list, t_wc *new);
-static t_wc *new_wc(char *str);
+static char **get_wc(char *bfwc, char *afwc,t_wc *liste);
 
 char *wildcard(char *str, int i)
 {
@@ -33,65 +33,54 @@ char *wildcard(char *str, int i)
 		j++;
 	afwc = ft_limited_strdup(str, i + 1, j - 1);
 	end = ft_limited_strdup(str, j, ft_strlen(str));
-	ft_printf("[Wildcard] bfwc : %s | atwc : %s\n[STR] Before : %s | After : %s\n", bfwc, afwc,begin, end); // ce qu'il y a avant et apres la wc
 	str = find_file(bfwc,afwc, begin, end);
 	ft_printf("[New str] %s\n",str);
-	exit(0);
 	return str;
 }
 
 static char *find_file(char *bfwc, char *afwc, char *begin, char *end)
 {
-	(void)bfwc,(void)afwc,(void)begin,(void)end;
+	(void)begin,(void)end;
 	DIR *direction;
+	char **tab;
 	struct dirent *entry;
     struct stat statbuf;
-	t_wc *liste;
+	t_wc *liste = NULL;
 	direction = opendir(getcwd(NULL,0));	
 	if (direction == NULL)
 		return(ft_printf("ACCESS DENIED\n"),NULL);
 	while((entry = readdir(direction)) != NULL)
 	{
 		lstat(entry->d_name,&statbuf);
-		wc_addback(&liste,new_wc(entry->d_name));
-		ft_printf("[File] %s\n",entry->d_name);
+		if (entry->d_name[0] != '.')
+			wc_addback(&liste,new_wc(entry->d_name));			
 	}
-	while(liste != NULL)
-	{
-		ft_printf("[File] %s\n",liste->file);
-		liste = liste->next;
-	}
+	tab = get_wc(bfwc,afwc, liste);
+	for (int k = 0; tab[k];k++)
+		ft_printf("%s\n",tab[k]);
 	return("ok");
 }
 
-static void wc_addback(t_wc **list, t_wc *new)
-{
-	t_wc	*tmp;
 
-	if (!(*list))
-	{
-		ft_printf("NOK");
-		*list = new;
-	}
-		
+
+static char **get_wc(char *bfwc, char *afwc,t_wc *liste)
+{
+	char **tab = NULL;
+	int i;
+	int j;
+	int count;
+	
+	count = 0;
+	i = 0;
+	if (afwc != NULL)
+		j = ft_strlen(afwc);
+	if (bfwc != NULL && afwc != NULL)
+		tab = wc_before_and_after(bfwc,afwc,liste);
+	else if (bfwc != NULL && afwc == NULL)
+		tab = wc_before(bfwc, liste);
+	else if (bfwc == NULL && afwc != NULL)
+		tab = wc_after(afwc, liste);
 	else
-	{
-		tmp = (*list);
-		while(tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-		ft_printf("Ok");
-	}
-}
-
-static t_wc *new_wc(char *str)
-{
-	t_wc	*element;
-
-	element = (t_wc *)malloc(sizeof(t_wc));
-	if (!(element))
-		return (NULL);
-	element->file = str;
-	element->next = NULL;
-	return (element);
+		tab = wc_all(liste);
+	return tab;
 }

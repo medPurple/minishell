@@ -6,7 +6,7 @@ char *ft_limited_strdup(char *str, int begin, int end)
 	int i;
 
 	i = 0;
-	if (end - begin <= 0)
+	if (end - begin < 0)
 		return (NULL);
 	new_str = ft_malloc(end - begin, "char");
 	while(begin <= end)
