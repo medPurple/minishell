@@ -18,7 +18,6 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 			exec_meta(tree, mini);
 		else
 		{
-            ft_printf("[CMD] %s | %d\n",tree->data,tree->cmd->exec);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
@@ -37,11 +36,11 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     char buf[6];
     int ret;
 
+    tree->cmd->exec = 1;
     if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
         exec_buildin(tree, mini);
     else
     {
-        tree->cmd->exec = 1;
         if (pipe(tree->cmd->fd) == -1)
             perror("pipe");
         tree->cmd->fork = fork();
@@ -60,7 +59,6 @@ void    exec_send(t_binary *tree, t_minishell *mini)
             while(wait(NULL) != -1)
                 ;
         }
-        ft_printf("exec after = %d\n",tree->cmd->exec);
    }
     return ;
 }
@@ -77,7 +75,6 @@ void exec_meta( t_binary *tree, t_minishell *mini)
 
 void execute_cmd(t_binary *tree, char **envp)
 {
-    ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
     {
         if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)
