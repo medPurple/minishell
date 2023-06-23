@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 
 bool is_a_redir(char *cmd)
@@ -50,4 +50,10 @@ bool is_a_pipe(char *cmd)
 		return (true);
 	else
 		return (false);
+}
+
+void	check_open(int	file)
+{
+	if (file == -1)
+		perror("open");
 }

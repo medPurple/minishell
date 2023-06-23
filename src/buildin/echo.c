@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:56:08 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/13 18:58:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:40:51 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void mini_echo(t_binary *tree)
 	nl = search_option(tree->data);
 	if (nl == false)
 		i++;
-	while (tree->cmd->split_cmd[i])
+	while (tree->cmd->exec_cmd[i])
 	{
-		ft_putstr_fd(tree->cmd->split_cmd[i]);
+		ft_putstr_fd(tree->cmd->exec_cmd[i]);
 		i++;
 	}
 	if (nl == true)
-		ft_putstr_fd("\n");	
+		ft_putstr_fd("\n");
 }
 
 static bool search_option(char *str)

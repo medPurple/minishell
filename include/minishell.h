@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/22 15:49:14 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:13:46 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef	struct s_redirection
 {
 	char	*redir_cmd;
 	char	*redir_file;
+	char	**exec_cmd;
 	//int	count;
 	struct s_redirection	*next;
 
@@ -65,7 +66,6 @@ typedef struct s_cmd
 	char    *str;
 	int    exec;
 	char    **split_cmd;
-	char	**redir_cmd;
 	char	**exec_cmd;
     char    *path_cmd;
     pid_t   fork;
@@ -107,28 +107,28 @@ void create_cmd(t_binary *tree, t_env *env);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
-
+void	mini_here_doc(char *limiter, t_binary *tree);
 void exec_cmd_redir(t_binary *tree, t_minishell *mini);
 void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
+void	execution_choice(t_binary *tree, t_minishell *mini);
+void    exec_send(t_binary *tree, t_minishell *mini);
 
-bool is_a_redir(char *cmd);
-bool is_a_pipe(char *cmd);
-int	count_redir(t_binary *tree);
-void	open_file(t_binary *tree);
-
-t_redirection	*ft_new_redirection(char *redir, char *file);
-t_redirection	*ft_last_lst_redirection(t_redirection *lst);
-void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
+void exec_buildin_child(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
 void mini_exit(t_minishell *mini);
 void mini_pwd(t_env *env);
 void mini_cd(t_env *env, t_binary *tree);
 
-/*-------------------------------------- UTILS - ENV ----------------------------------------------*/
+/*------------------------------------------SIGNALS----------------------------------------------*/
+
+void    signal_ctrlc(int sig);
+void print_binary(t_binary *tree);
+
+/*-------------------------------------- UTILS - environnement ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
 t_env	*ft_last_lst(t_env *lst);
 void	ft_add_back_lst(t_env **lst, t_env *new);
@@ -148,11 +148,21 @@ int split_pos(char *str, int i);
 int end_of_parentheses(char *str, int position);
 
 
-/*------------------------------------------SIGNALS----------------------------------------------*/
+/*------------------------------------------UTILS - execution ----------------------------------------------*/
 
-void    signal_ctrlc(int sig);
-
-void print_binary(t_binary *tree);
-
+void	check_open(int	file);
+bool is_a_redir(char *cmd);
+bool is_a_pipe(char *cmd);
+int	is_here_doc(t_binary *tree);
+int	count_redir_right(t_binary *tree);
+int	count_redir_left(t_binary *tree);
+int	count_redir_right_double(t_binary *tree);
+void	open_file_right(t_binary *tree);
+void	open_file_left(t_binary *tree);
+void	open_file_right_double(t_binary *tree);
+t_redirection	*ft_new_redirection(char *redir, char *file);
+t_redirection	*ft_last_lst_redirection(t_redirection *lst);
+void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+int	count_pipe(t_binary *tree);
 
 #endif

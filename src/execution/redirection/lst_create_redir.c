@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 t_redirection	*ft_new_redirection(char *redir, char *file)
 {
@@ -12,7 +12,8 @@ t_redirection	*ft_new_redirection(char *redir, char *file)
 	element->redir_cmd = NULL;
 	element->redir_file = NULL;
 	element->redir_cmd = redir;
-	element->redir_file = file;
+	if (redir[0] != '|')
+		element->redir_file = file;
 	element->next = NULL;
 	return (element);
 }

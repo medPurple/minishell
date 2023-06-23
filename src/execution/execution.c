@@ -2,7 +2,6 @@
 void exec_meta( t_binary *tree, t_minishell *mini);
 void execute_cmd(t_binary *tree, char **envp);
 void exec_buildin(t_binary *tree, t_minishell *mini);
-void    exec_send(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
@@ -21,14 +20,9 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                 return;
             else
             {
-           //     {// il faut que je re split et que je re malloc et que je retourne les differnts splits donc je dois lancer exec
-                // a partir de la fonction appelee la
-
-                //split_exec(tree, mini);
                 malloc_cmd_redir(mini, tree);
-                //exec_cmd_redir(tree, mini);
-                exec_send(tree, mini);
-                //ft_printf("exec after = %d\n",tree->cmd->exec);
+                tree->cmd->exec = 1;
+                execution_choice(tree, mini);
             }
         }
     }
@@ -44,8 +38,6 @@ void    exec_send(t_binary *tree, t_minishell *mini)
 
     tmp = tree->redir;
 	tree->cmd->exec = 1;
-    if (count_redir(tree) >= 1)
-        open_file(tree);
     if (pipe(tree->cmd->fd) == -1)
         perror("pipe");
     tree->cmd->fork = fork();
@@ -54,10 +46,10 @@ void    exec_send(t_binary *tree, t_minishell *mini)
 	else if(tree->cmd->fork == 0)
     {
 		exec_cmd_redir(tree, mini);
-        if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
-            exec_buildin(tree, mini);
-	    else
+        if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
 		    execute_cmd(tree, mini->envp);
+        if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
+            exec_buildin_child(tree, mini);
     }
     else
     {
@@ -69,37 +61,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
             tree->cmd->exec = -1;
         while(wait(NULL) != -1)
                 ;
-
     }
-
-    /*char buf[6];
-    int ret;
-
-    if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
-        exec_buildin(tree, mini);
-    else
-    {
-        tree->cmd->exec = 1;
-        if (pipe(tree->cmd->fd) == -1)
-            perror("pipe");
-        tree->cmd->fork = fork();
-        if (tree->cmd->fork == -1)
-            perror("fork");
-        if (tree->cmd->fork == 0)
-            execute_cmd(tree, mini->envp);
-        else
-        {
-            close(tree->cmd->fd[1]);
-            ret = read(tree->cmd->fd[0], buf, 10);
-            buf[ret] = '\0';
-            close(tree->cmd->fd[0]);
-            if (ft_strcmp(buf, "false") == 0)
-                tree->cmd->exec = -1;
-            while(wait(NULL) != -1)
-                ;
-        }
-        ft_printf("exec after = %d\n",tree->cmd->exec);
-   }*/
     return ;
 }
 
@@ -151,13 +113,16 @@ void execute_cmd(t_binary *tree, char **envp)
 
 void exec_buildin(t_binary *tree, t_minishell *mini)
 {
-    (void)mini;
-    if (ft_strcmp(tree->cmd->exec_cmd[0], "echo") == 0)
-        mini_echo(tree);
-    else if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
+    if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
         mini_cd(mini->env, tree);
-    else if (ft_strcmp(tree->cmd->exec_cmd[0], "pwd") == 0)
-         mini_pwd(mini->env);
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
         exit(0);
+}
+void exec_buildin_child(t_binary *tree, t_minishell *mini)
+{
+    if (ft_strcmp(tree->cmd->exec_cmd[0], "echo") == 0)
+        mini_echo(tree);
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "pwd") == 0)
+         mini_pwd(mini->env);
+    exit(EXIT_SUCCESS);
 }
