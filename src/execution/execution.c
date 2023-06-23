@@ -7,10 +7,13 @@ void    exec_send(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
-	if (tree->right)
+
+    if (tree->parentheses == true)
+        expand_parentheses_and_execute(tree, mini);
+    else if (tree->right)
 	{
-		exec_recu(mini, tree->left);
-		exec_recu(mini, tree->right);
+        exec_recu(mini, tree->left);
+		exec_recu(mini, tree->right);		
 	}
 	else
 	{
@@ -27,7 +30,6 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             }
         }
     }
-
 	return;
 }
 

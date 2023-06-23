@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/22 17:03:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:00:34 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define MINISHELL_H
 
 # include "../libft/include/libft.h"
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <dirent.h>
- #include <sys/stat.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <sys/stat.h>
 
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
@@ -52,7 +52,6 @@ typedef struct s_binary
 	char *data;
     char *rest;
     char *command;
-	int visualiser;
 	bool	parentheses;
 	struct s_cmd *cmd;
 	struct s_binary *prev;
@@ -110,6 +109,7 @@ int	find_next_quotes (char *str, int pos);
 
 void exec_recu(t_minishell *mini, t_binary *tree);
 char **mini_split(char *str);
+void create_cmd_in_tree(t_binary *tree, t_minishell *mini);
 void create_cmd(t_binary *tree, t_env *env);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
@@ -165,6 +165,9 @@ char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
 char **wc_all(t_wc *file);
 char **wc_after(char *afwc, t_wc *file);
 char **wc_before(char *bfwc, t_wc *file);
+
+/*--------------------------------------Parentheses----------------------------------------------*/
+void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);
 
 /*------------------------------------------SIGNALS----------------------------------------------*/
 

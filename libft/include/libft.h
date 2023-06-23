@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:58 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/13 12:12:10 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:00:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <stddef.h>
-# include<sys/wait.h>
-# include<assert.h>
-# include<errno.h>
-# include<limits.h>
-# include<signal.h>
-# include<stdbool.h>
+# include <sys/wait.h>
+# include <assert.h>
+# include <errno.h>
+# include <limits.h>
+# include <signal.h>
+# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

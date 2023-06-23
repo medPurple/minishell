@@ -1,5 +1,4 @@
 #include "../../include/minishell.h"
-static void create_cmd_in_tree(t_binary *tree, t_minishell *mini);
 
 void parsing(t_minishell *mini, char *str)
 {
@@ -23,6 +22,8 @@ void parse_data(t_binary *tree, t_env *env)
 	tree->right = new_branche(tree->right, tree->rest);
 	//ft_printf("Left - %s\n",tree->left->data);
 	//ft_printf("Right - %s\n",tree->right->data);
+	if (tree->left->data[0] == '(')
+		tree->left->parentheses = true;
 	if (tree->left->data[0] != '(')
 		expand(tree->left, env);
 	tree->right->prev = tree;
@@ -67,13 +68,13 @@ t_binary *new_branche(t_binary *tree, char *str)
 	return (tree);
 }
 
-static void create_cmd_in_tree(t_binary *tree, t_minishell *mini)
+void create_cmd_in_tree(t_binary *tree, t_minishell *mini)
 {
-	if (tree->right) {
+	if (tree->parentheses == true)
+		return;
+	else if (tree->right) {
 		create_cmd_in_tree(tree->left, mini);
 		create_cmd_in_tree(tree->right, mini);
 	} else
 		create_cmd(tree, mini->env);
 }
-
-//ok tant qu'on a pas croisee un metacar on avance.

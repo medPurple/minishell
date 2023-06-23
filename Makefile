@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/22 17:15:54 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/06/23 13:33:27 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/env/export.c\
 		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/main.c\
-		print_the_tree.c \
 		$(PATH_SRC)/parsing/parse.c\
 		$(PATH_SRC)/parsing/is_a_fct.c\
 		$(PATH_SRC)/parsing/meta.c\
@@ -42,8 +41,9 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/meta.c\
 		$(PATH_SRC)/execution/redirection/exec_redir.c\
 		$(PATH_SRC)/execution/redirection/exec_malloc.c\
-		$(PATH_SRC)/execution/exec_utils.c\
 		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
+		$(PATH_SRC)/execution/exec_utils.c\
+		$(PATH_SRC)/execution/parentheses/parentheses.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
