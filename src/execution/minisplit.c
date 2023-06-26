@@ -46,7 +46,7 @@ char **mini_split(char *str) {
 
 	}
 	cmd[k] = NULL;
-	return(cmd);
+	return(removes_quotes(cmd));
 }
 
 static int after_quotes(char *str, int i)
@@ -125,3 +125,4 @@ static	int is_a_redir_or_pipe (char *str, int start, int end)
 		return (-1);
 
 }
+

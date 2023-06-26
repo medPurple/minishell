@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/23 14:40:29 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:22:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,8 @@ int main(int ac, char **av, char **envp)
 
 static void minishell(char *str, t_minishell *mini)
 {
-	t_env *tmp;
-
-	if (ft_strcmp(str,"env")==0)
-	{
-		tmp = mini->env;
-		while(mini->env->next != NULL)
-		{
-			ft_printf("%s\n",mini->env->data);
-			mini->env = mini->env->next;
-		}
-		ft_printf("%s\n",mini->env->data);
-		mini->env = tmp;
-	}
-	else if (ft_strncmp(str,"export ",7)==0)
-		mini_export(mini->env,str);
-	else
-	{
-		parsing(mini,str);
-		exec_recu(mini, mini->tree);
-        while (wait(NULL) != -1)
+	parsing(mini,str);
+	exec_recu(mini, mini->tree);
+    while (wait(NULL) != -1)
 		           ;
-	}
 }

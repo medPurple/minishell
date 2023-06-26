@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/23 13:33:27 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/06/23 17:21:42 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ PATH_SRC = src
 PATH_LIB = libft
 
 SRC =   $(PATH_SRC)/env/env.c\
-		$(PATH_SRC)/env/export.c\
 		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/main.c\
 		$(PATH_SRC)/parsing/parse.c\
@@ -48,6 +47,9 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
 		$(PATH_SRC)/buildin/cd.c\
+		$(PATH_SRC)/buildin/env.c\
+		$(PATH_SRC)/buildin/export.c\
+		$(PATH_SRC)/buildin/unset.c\
 
 
 

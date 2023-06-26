@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/23 16:00:34 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/26 16:44:45 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_env
 	char	*name;
 	char	*data;
 	struct s_env	*next;
+	struct s_env	*prev;
 }				t_env;
 
 typedef struct s_cmd
@@ -93,7 +94,6 @@ typedef struct s_minishell
 /*--------------------------------------- ENVIRONNEMENT -------------------------------------------*/
 
 void add_env(t_env **env, char **envp);
-void mini_export(t_env *env, char *str);
 
 /*---------------------------------------- PARSING ------------------------------------------------*/
 
@@ -104,6 +104,7 @@ void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);
 t_binary *new_branche(t_binary *tree, char *str);
 int	find_next_quotes (char *str, int pos);
+char **removes_quotes(char **tab);
 
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
@@ -134,6 +135,10 @@ void mini_exit(t_minishell *mini);
 void clear_the_tree(t_binary *tree);
 void mini_pwd(t_env *env);
 void mini_cd(t_env *env, t_binary *tree);
+void mini_env(t_env *env);
+void mini_export(t_env **env, char **tab);
+void  mini_unset(t_env **env, char **tab);
+
 
 /*-------------------------------------- UTILS - ENV ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
