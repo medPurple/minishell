@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/23 17:13:46 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:15:10 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,11 @@ void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
 void	mini_here_doc(char *limiter, t_binary *tree);
 void exec_cmd_redir(t_binary *tree, t_minishell *mini);
-void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
-void	execution_choice(t_binary *tree, t_minishell *mini);
+int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
+void	execution_choice(t_binary *tree, t_minishell *mini, int i);
 void    exec_send(t_binary *tree, t_minishell *mini);
+void	pipe_redir(t_minishell *mini, t_binary *tree);
+void    exec_pipe(t_binary *tree, t_minishell *mini);
 
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
@@ -150,7 +152,7 @@ int end_of_parentheses(char *str, int position);
 
 /*------------------------------------------UTILS - execution ----------------------------------------------*/
 
-void	check_open(int	file);
+int	check_open(int	file);
 bool is_a_redir(char *cmd);
 bool is_a_pipe(char *cmd);
 int	is_here_doc(t_binary *tree);

@@ -5,7 +5,10 @@ void exec_buildin(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
-	if (tree->right)
+	int i;
+
+    i = 0;
+    if (tree->right)
 	{
 		exec_recu(mini, tree->left);
 		exec_recu(mini, tree->right);
@@ -20,9 +23,21 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                 return;
             else
             {
-                malloc_cmd_redir(mini, tree);
-                tree->cmd->exec = 1;
-                execution_choice(tree, mini);
+                // je parcours la chaine de caractere et si je croise un pipe je split
+                while(tree->cmd->split_cmd[i])
+                {
+                    if (tree->cmd->split_cmd[i] != NULL && is_a_pipe(tree->cmd->split_cmd[i]) == true)
+                    {
+                         // changement des redirections avant exec commande
+                        i++;
+                    }
+                    if (tree->cmd->exec_cmd)
+                        ft_free_tab(tree->cmd->exec_cmd);
+                    i = malloc_cmd_redir(mini, tree, i); // jai malloc 1 cmd en comprenant les possibles redirections | je veux malloc tant qu il reste des cmd a malloc
+                    tree->cmd->exec = 1;
+                    execution_choice(tree, mini, i);
+                    //i++;
+                }
             }
         }
     }

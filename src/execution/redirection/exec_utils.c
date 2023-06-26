@@ -52,8 +52,13 @@ bool is_a_pipe(char *cmd)
 		return (false);
 }
 
-void	check_open(int	file)
+int	check_open(int	file)
 {
 	if (file == -1)
+	{
 		perror("open");
+		return(-1);
+	}
+	return (0);
+
 }
