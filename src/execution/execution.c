@@ -24,19 +24,19 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             else
             {
                 // je parcours la chaine de caractere et si je croise un pipe je split
-                tree->cmd->check_pipe = false;
+                tree->cmd->check_pipe = -1;
                 while(tree->cmd->split_cmd[i])
                 {
                     if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
                     {
-                        tree->cmd->check_pipe = true;
+                        tree->cmd->check_pipe = 1;
                         exec_pipe(tree, mini);
                         ft_printf("coucou\n");
                         break;
                     }
                     i++;
                 }
-                if (tree->cmd->check_pipe == false)
+                if (tree->cmd->check_pipe == -1)
                 {
                     malloc_cmd_redir(mini, tree, 0);
                     execution_choice(tree, mini);
@@ -63,10 +63,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         perror("fork");
 	else if(tree->cmd->fork == 0)
     {
-        if (tree->cmd->check_pipe == true)
-            pipe_redir(mini, tree);
-        else
-            exec_cmd_redir(tree, mini);
+        exec_cmd_redir(tree, mini);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
 		    execute_cmd(tree, mini->envp);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
@@ -81,12 +78,12 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         if (ft_strcmp(buf, "false") == 0)
             tree->cmd->exec = -1;
         while(wait(NULL) != -1)
-               ;
+                ;
     }
-    if (tree->cmd->check_pipe == true)
+    /*if (tree->cmd->check_pipe == 1 || tree->cmd->check_pipe == 0)
     {
         exit(EXIT_SUCCESS);
-    }
+    }*/
     return ;
 }
 
@@ -102,7 +99,7 @@ void exec_meta( t_binary *tree, t_minishell *mini)
 
 void execute_cmd(t_binary *tree, char **envp)
 {
-    ft_printf("exec in = %d\n",tree->cmd->exec);
+    //ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
     {
         if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)

@@ -6,7 +6,7 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/27 16:01:06 by ml               ###   ########.fr       */
+/*   Updated: 2023/06/27 19:03:52 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_cmd
     char    *path_cmd;
     pid_t   fork;
 	int		pipe_fd[2];
-	bool	check_pipe;
+	int	check_pipe;
     int     fd[2];
     int     in;
     int     out;
