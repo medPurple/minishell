@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/06/23 15:44:47 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/06/27 09:00:55 by ml               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,11 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
 		$(PATH_SRC)/execution/exec_malloc.c\
-		$(PATH_SRC)/execution/pipe.c\
 		$(PATH_SRC)/execution/execution_choice.c\
-		$(PATH_SRC)/execution/redirection/exec_redir_right.c\
-		$(PATH_SRC)/execution/redirection/exec_redir_left.c\
+		$(PATH_SRC)/execution/redirection/pipe.c\
+		$(PATH_SRC)/execution/redirection/exec_redir.c\
+		$(PATH_SRC)/execution/redirection/open_file.c\
+		$(PATH_SRC)/execution/redirection/count_redir.c\
 		$(PATH_SRC)/execution/redirection/exec_utils.c\
 		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
 		$(PATH_SRC)/execution/redirection/here_doc.c\

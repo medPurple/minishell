@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/26 18:15:10 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:01:06 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef	struct s_redirection
 {
 	char	*redir_cmd;
 	char	*redir_file;
-	char	**exec_cmd;
 	//int	count;
 	struct s_redirection	*next;
 
@@ -69,6 +68,8 @@ typedef struct s_cmd
 	char	**exec_cmd;
     char    *path_cmd;
     pid_t   fork;
+	int		pipe_fd[2];
+	bool	check_pipe;
     int     fd[2];
     int     in;
     int     out;
@@ -110,7 +111,7 @@ void mini_and(t_binary *tree, t_minishell *mini);
 void	mini_here_doc(char *limiter, t_binary *tree);
 void exec_cmd_redir(t_binary *tree, t_minishell *mini);
 int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
-void	execution_choice(t_binary *tree, t_minishell *mini, int i);
+void	execution_choice(t_binary *tree, t_minishell *mini);
 void    exec_send(t_binary *tree, t_minishell *mini);
 void	pipe_redir(t_minishell *mini, t_binary *tree);
 void    exec_pipe(t_binary *tree, t_minishell *mini);
@@ -159,12 +160,9 @@ int	is_here_doc(t_binary *tree);
 int	count_redir_right(t_binary *tree);
 int	count_redir_left(t_binary *tree);
 int	count_redir_right_double(t_binary *tree);
-void	open_file_right(t_binary *tree);
-void	open_file_left(t_binary *tree);
-void	open_file_right_double(t_binary *tree);
+void	open_file(t_binary *tree);
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
-int	count_pipe(t_binary *tree);
 
 #endif

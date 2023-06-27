@@ -24,19 +24,22 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             else
             {
                 // je parcours la chaine de caractere et si je croise un pipe je split
+                tree->cmd->check_pipe = false;
                 while(tree->cmd->split_cmd[i])
                 {
-                    if (tree->cmd->split_cmd[i] != NULL && is_a_pipe(tree->cmd->split_cmd[i]) == true)
+                    if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
                     {
-                         // changement des redirections avant exec commande
-                        i++;
+                        tree->cmd->check_pipe = true;
+                        exec_pipe(tree, mini);
+                        ft_printf("coucou\n");
+                        break;
                     }
-                    if (tree->cmd->exec_cmd)
-                        ft_free_tab(tree->cmd->exec_cmd);
-                    i = malloc_cmd_redir(mini, tree, i); // jai malloc 1 cmd en comprenant les possibles redirections | je veux malloc tant qu il reste des cmd a malloc
-                    tree->cmd->exec = 1;
-                    execution_choice(tree, mini, i);
-                    //i++;
+                    i++;
+                }
+                if (tree->cmd->check_pipe == false)
+                {
+                    malloc_cmd_redir(mini, tree, 0);
+                    execution_choice(tree, mini);
                 }
             }
         }
@@ -47,11 +50,11 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 
 void    exec_send(t_binary *tree, t_minishell *mini)
 {
-    char	buf[6];
+    char	buf[10];
 	int	ret;
-    t_redirection	*tmp;
+    //t_redirection	*tmp;
 
-    tmp = tree->redir;
+    //tmp = tree->redir;
 	tree->cmd->exec = 1;
     if (pipe(tree->cmd->fd) == -1)
         perror("pipe");
@@ -60,7 +63,10 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         perror("fork");
 	else if(tree->cmd->fork == 0)
     {
-		exec_cmd_redir(tree, mini);
+        if (tree->cmd->check_pipe == true)
+            pipe_redir(mini, tree);
+        else
+            exec_cmd_redir(tree, mini);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
 		    execute_cmd(tree, mini->envp);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
@@ -75,7 +81,11 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         if (ft_strcmp(buf, "false") == 0)
             tree->cmd->exec = -1;
         while(wait(NULL) != -1)
-                ;
+               ;
+    }
+    if (tree->cmd->check_pipe == true)
+    {
+        exit(EXIT_SUCCESS);
     }
     return ;
 }
