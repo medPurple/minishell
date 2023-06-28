@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/26 16:44:45 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:59:02 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef	struct s_redirection
 {
 	char	*redir_cmd;
 	char	*redir_file;
-	//int	count;
 	struct s_redirection	*next;
 
 }				t_redirection;
