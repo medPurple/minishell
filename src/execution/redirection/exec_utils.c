@@ -22,7 +22,7 @@ bool is_a_redir(char *cmd)
 			count_pipe++;
 		pos++;
 	}
-	if ((count_right == 1) && (count_left == 0) && ((count_pipe == 0) || count_pipe == 1))
+	if (((count_right == 1) && (count_left == 0) && (count_pipe == 0)) || ((count_right == 1) && (count_left == 0) && (count_pipe == 1)))
 		return (true);
 	else if ((count_right == 2) && (count_left == 0) && (count_pipe == 0))
 		return (true);

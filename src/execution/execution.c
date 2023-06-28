@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 void exec_meta( t_binary *tree, t_minishell *mini);
-void execute_cmd(t_binary *tree, char **envp);
+void execute_cmd(t_binary *tree, t_minishell *mini);
 void exec_buildin(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
@@ -15,23 +15,21 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		if (is_a_meta(tree->data, 0)) // ne prend en compte que && et ||
+		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
 		{
-            if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
+            if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
                 return;
             else
             {
-                // je parcours la chaine de caractere et si je croise un pipe je split
                 tree->cmd->check_pipe = -1;
                 while(tree->cmd->split_cmd[i])
                 {
                     if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
                     {
                         tree->cmd->check_pipe = 1;
-                        exec_pipe(tree, mini);
-                        ft_printf("coucou\n");
+                        pipe_gestion(tree, mini);
                         break;
                     }
                     i++;
@@ -52,9 +50,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
 {
     char	buf[10];
 	int	ret;
-    //t_redirection	*tmp;
 
-    //tmp = tree->redir;
 	tree->cmd->exec = 1;
     if (pipe(tree->cmd->fd) == -1)
         perror("pipe");
@@ -65,12 +61,18 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     {
         exec_cmd_redir(tree, mini);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
-		    execute_cmd(tree, mini->envp);
+		    execute_cmd(tree, mini);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
             exec_buildin_child(tree, mini);
     }
     else
     {
+
+        if (tree->cmd->check_pipe == 0)
+        {
+            close(tree->cmd->pipe_fd[1]);
+            close(tree->cmd->pipe_fd[0]);
+        }
         close(tree->cmd->fd[1]);
         ret = read(tree->cmd->fd[0], buf, 10);
         buf[ret] = '\0';
@@ -80,10 +82,6 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         while(wait(NULL) != -1)
                 ;
     }
-    /*if (tree->cmd->check_pipe == 1 || tree->cmd->check_pipe == 0)
-    {
-        exit(EXIT_SUCCESS);
-    }*/
     return ;
 }
 
@@ -97,12 +95,15 @@ void exec_meta( t_binary *tree, t_minishell *mini)
         ft_printf("error meta\n");
 }
 
-void execute_cmd(t_binary *tree, char **envp)
+void execute_cmd(t_binary *tree, t_minishell *mini)
 {
     //ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
+		free(tree->cmd->path_cmd);
+    tree->cmd->path_cmd =  cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
+    if (tree->cmd->path_cmd)
     {
-        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)
+        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
         {
             close(tree->cmd->fd[0]);
             write(tree->cmd->fd[1], "false", 5);
@@ -114,7 +115,7 @@ void execute_cmd(t_binary *tree, char **envp)
     else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
     {
         tree->cmd->path_cmd = tree->cmd->exec_cmd[0];
-        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, envp) == -1)
+        if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
         {
             close(tree->cmd->fd[0]);
             write(tree->cmd->fd[1], "false", 5);

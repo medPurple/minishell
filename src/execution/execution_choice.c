@@ -11,9 +11,18 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 		open_file(tree);
 		if (check_open(tree->cmd->in) == -1 || check_open(tree->cmd->out) == -1)
 					return;
-		exec_send(tree, mini);
+		if (tree->cmd->check_pipe == 1 || tree->cmd->check_pipe == 0)
+			pipe_exec(tree, mini);
+		else
+			exec_send(tree, mini);
 	}
 	else
-		exec_send(tree, mini);
+	{
+		if (tree->cmd->check_pipe == 1 || tree->cmd->check_pipe == 0)
+			pipe_exec(tree, mini);
+		else
+			exec_send(tree, mini);
+	}
+
 	return;
 }

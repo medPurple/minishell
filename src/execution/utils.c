@@ -2,18 +2,13 @@
 static char *path_recuperation(t_env *env);
 static char *join_path(char *str, char *path);
 
-void create_cmd(t_binary *tree, t_env *env)
+void create_cmd(t_binary *tree)
 {
-    int i = 0;
 	tree->cmd = malloc(sizeof(t_cmd));
 	tree->cmd->exec = 0;
 	tree->cmd->str = tree->data;
 	tree->cmd->split_cmd = mini_split(tree->data);
-    while(tree->cmd->split_cmd[i])
-        i++;
-    tree->cmd->path_cmd = cmd_recuperation(tree->cmd->split_cmd[0], env);
-    if (ft_strcmp(tree->cmd->path_cmd,tree->cmd->split_cmd[0]) == 0)
-        tree->cmd->path_cmd = NULL;
+    tree->cmd->path_cmd = NULL;
     tree->cmd->exec_cmd = NULL;
 }
 

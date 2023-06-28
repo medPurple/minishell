@@ -16,12 +16,6 @@ void exec_cmd_redir(t_binary *tree, t_minishell *mini)
 				perror("dup2");
 		close(tree->cmd->out);
 	}
-	/*if (tree->cmd->check_pipe == true)
-	{
-		if(dup2(tree->cmd->pipe_fd[0], STDIN_FILENO) == -1)
-			perror("dup2");
-		close(tree->cmd->pipe_fd[0]);
-	}*/
 	return;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/27 19:03:52 by ml               ###   ########.fr       */
+/*   Updated: 2023/06/28 15:40:00 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_cmd
 	char	**exec_cmd;
     char    *path_cmd;
     pid_t   fork;
+	pid_t	fork_pipe;
 	int		pipe_fd[2];
 	int	check_pipe;
     int     fd[2];
@@ -102,9 +103,9 @@ int	find_next_quotes (char *str, int pos);
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
-void execute_cmd(t_binary *tree, char **envp);
+void execute_cmd(t_binary *tree, t_minishell *mini);
 char **mini_split(char *str);
-void create_cmd(t_binary *tree, t_env *env);
+void create_cmd(t_binary *tree);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
@@ -113,8 +114,10 @@ void exec_cmd_redir(t_binary *tree, t_minishell *mini);
 int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
 void	execution_choice(t_binary *tree, t_minishell *mini);
 void    exec_send(t_binary *tree, t_minishell *mini);
-void	pipe_redir(t_minishell *mini, t_binary *tree);
-void    exec_pipe(t_binary *tree, t_minishell *mini);
+void	pipe_redir(t_binary *tree);
+void    pipe_gestion(t_binary *tree, t_minishell *mini);
+void	pipe_exec(t_binary *tree, t_minishell *mini);
+void execute_cmd_pipe(t_binary *tree, t_minishell *mini);
 
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
