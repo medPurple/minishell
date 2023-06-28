@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/13 19:17:50 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:22:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,21 @@ int main(int ac, char **av, char **envp)
 		signal(SIGINT, signal_ctrlc); // gestion signal ctl c + afficher nvl ligne
 		signal(SIGQUIT, SIG_IGN); /* permet d ignorer signal SIGQUIT: ctl+\*/
 		str = readline("minishell$ ");
-		//if (ft_strcmp(str,"exit")==0)
-		//	break;
 		add_history(str);
 		if (ft_strcmp(str,"") != 0)
+		{
 			minishell(str, &mini);
+			clear_the_tree(mini.tree);
+		}
+		
 	}
-	printf("MINISHELL EXIT\n");
-
 	return(0);
 }
 
 static void minishell(char *str, t_minishell *mini)
 {
-	t_env *tmp;
-
-	if (ft_strcmp(str,"env")==0)
-	{
-		tmp = mini->env;
-		while(mini->env->next != NULL)
-		{
-			ft_printf("%s\n",mini->env->data);
-			mini->env = mini->env->next;
-		}
-		ft_printf("%s\n",mini->env->data);
-		mini->env = tmp;
-	}
-	else if (ft_strncmp(str,"export ",7)==0)
-		mini_export(mini->env,str);
-	else
-	{
-		parsing(mini,str);
-		exec_recu(mini, mini->tree);
-        while (wait(NULL) != -1)
+	parsing(mini,str);
+	exec_recu(mini, mini->tree);
+    while (wait(NULL) != -1)
 		           ;
-	}
 }

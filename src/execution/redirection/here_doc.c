@@ -12,11 +12,9 @@ static void	ft_pipe_initialize(t_binary *tree)
 		return;
 }
 
-
 void	mini_here_doc(char *limiter, t_binary *tree)
 {
 	char	*line;
-
 	ft_pipe_initialize(tree);
 	if (tree->cmd->fork == 0)
 	{

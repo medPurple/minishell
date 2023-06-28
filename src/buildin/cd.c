@@ -1,26 +1,38 @@
-#include "../../include/minishell.h"
 
-int count_arg(char **tab);
-char *find_dir(char *destination, t_env *env);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/06/22 17:01:15 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/minishell.h"
+static int count_arg(char **tab);
+static char *find_dir(t_env *env);
+static void changedir(char *destination, char *last, t_env *env);
 
 void mini_cd(t_env *env, t_binary *tree)
 {
 	int i;
-	char *str;
+	char *str = NULL;
 	char *path = NULL;
-	ft_printf("ARG : %d\n",count_arg(tree->cmd->exec_cmd));
-	if (count_arg(tree->cmd->exec_cmd) > 2)
+	str = getcwd(NULL,0);
+	if (count_arg(tree->cmd->split_cmd) > 2)
 		ft_printf("cd: too many arguments\n");
 	else
 	{
-		if (count_arg(tree->cmd->exec_cmd) == 1)
-			chdir(find_dir("HOME", env));
+		if (count_arg(tree->cmd->split_cmd) == 1)
+				changedir(find_dir(env),str,env);
 		else
 		{
-
-			str = getcwd(NULL,0);
+			
 			i = ft_strlen(str);
-			if (ft_strcmp(tree->cmd->exec_cmd[1],"..")== 0)
+			if (ft_strcmp(tree->cmd->split_cmd[1],"..")== 0)
 			{
 				while(str[i] != '/')
 					i--;
@@ -29,24 +41,24 @@ void mini_cd(t_env *env, t_binary *tree)
 				else
 					path = ft_limited_strdup(str,0,i - 1);
 				if (opendir((const char*)path) != NULL)
-					chdir(path);
+					changedir(path,str,env);
 				else
-					ft_printf("Wrong cd");
+					ft_printf("Wrong cd");	
 			}
-			else
+			else	
 			{
 				path = ft_strjoin(str,"/");
-				path = ft_strjoin(path,tree->cmd->exec_cmd[1]);
+				path = ft_strjoin(path,tree->cmd->split_cmd[1]);
 				if (opendir((const char*)path) != NULL)
-					chdir(path);
+					changedir(path,str,env);
 				else
-					ft_printf("Wrong cd");
+					ft_printf("Wrong cd");		
 			}
 		}
 	}
 }
 
-int count_arg(char **tab)
+static int count_arg(char **tab)
 {
 	int i;
 
@@ -56,44 +68,33 @@ int count_arg(char **tab)
 	return (i);
 }
 
-char *find_dir(char *destination, t_env *env)
+static char *find_dir(t_env *env)
 {
 	const char *str;
 	t_env *tmp;
-	char *old;
 
 	str = NULL;
 	tmp = env;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->name,"PWD") == 0)
-				old = ft_strdup(tmp->data + 4);
-		tmp = tmp->next;
+		if (ft_strcmp(tmp->name,"HOME") == 0)
+			return(ft_limited_strdup(tmp->data,5, ft_strlen(tmp->data)));	
+		tmp = tmp->next;		
 	}
-	tmp = env;
-	while(tmp)
-	{
-		if(ft_strcmp(tmp->name,destination) == 0)
-			str = ft_strdup(tmp->data + 5);
-		tmp = tmp->next;
-	}
-	tmp = env;
+	return (NULL);
+}
+
+static void changedir(char *destination, char *last, t_env *env)
+{
+	t_env *tmp = env;
+
+	chdir(destination);
 	while (tmp)
 	{
-
-		if (ft_strcmp(tmp->name,"PWD") == 0)
+		if (ft_strcmp(tmp->name, "OLDPWD") == 0)
 		{
-			tmp->data = ft_strjoin("PWD=",(char*)str);
-			break;
+			tmp->data = ft_strjoin("OLDPWD=",last);
 		}
 		tmp = tmp->next;
 	}
-	tmp = env;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->name,"OLDPWD") == 0)
-				tmp->data = ft_strjoin("OLDPWD=", old);
-		tmp = tmp->next;
-	}
-	return ((char*)str);
 }

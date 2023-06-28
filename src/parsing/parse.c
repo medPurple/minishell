@@ -1,4 +1,5 @@
 #include "../../include/minishell.h"
+
 static void create_cmd_in_tree(t_binary *tree);
 
 void parsing(t_minishell *mini, char *str)
@@ -23,6 +24,8 @@ void parse_data(t_binary *tree, t_env *env)
 	tree->right = new_branche(tree->right, tree->rest);
 	//ft_printf("Left - %s\n",tree->left->data);
 	//ft_printf("Right - %s\n",tree->right->data);
+	if (tree->left->data[0] == '(')
+		tree->left->parentheses = true;
 	if (tree->left->data[0] != '(')
 		expand(tree->left, env);
 	tree->right->prev = tree;
@@ -36,7 +39,6 @@ void parse_data(t_binary *tree, t_env *env)
 void create_root(t_binary *tree, t_env *env)
 {
 	int split;
-
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
 	else if (is_a_meta(tree->data, 0) == true)

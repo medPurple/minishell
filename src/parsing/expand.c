@@ -15,6 +15,8 @@ void expand(t_binary *tree, t_env *env)
 	{
 		if (tree->data[i] == '$')
 			tree->data = replace_doll(tree->data, env, i+1);
+		else if (tree->data[i] == '*')
+			tree->data = wildcard(tree->data, i);
 		else if (tree->data[i] == '\'')
 			i = pass_quotes(tree->data, i) + 1;
 		else

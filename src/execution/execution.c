@@ -1,25 +1,26 @@
 #include "../../include/minishell.h"
+
 void exec_meta( t_binary *tree, t_minishell *mini);
 void execute_cmd(t_binary *tree, t_minishell *mini);
 void exec_buildin(t_binary *tree, t_minishell *mini);
+void    exec_send(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
-	int i;
-
-    i = 0;
-    if (tree->right)
-	{
-		exec_recu(mini, tree->left);
-		exec_recu(mini, tree->right);
+   if (tree->parentheses == true)
+       expand_parentheses_and_execute(tree, mini);
+   else if (tree->right)
+	 {
+       exec_recu(mini, tree->left);
+		   exec_recu(mini, tree->right);		
 	}
 	else
 	{
-		if (is_a_meta(tree->data, 0))
+		if (is_a_meta(tree->data, 0)) // ne prend en compte que && et ||
 			exec_meta(tree, mini);
 		else
 		{
-            if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
+            if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
                 return;
             else
             {
@@ -42,13 +43,12 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             }
         }
     }
-
 	return;
 }
 
 void    exec_send(t_binary *tree, t_minishell *mini)
 {
-    char	buf[10];
+  char	buf[10];
 	int	ret;
 
 	tree->cmd->exec = 1;
@@ -138,8 +138,12 @@ void exec_buildin(t_binary *tree, t_minishell *mini)
 {
     if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
         mini_cd(mini->env, tree);
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)
+        mini_export(&mini->env,tree->cmd->exec_cmd);
+    else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0)
+        mini_unset(&mini->env,tree->cmd->exec_cmd);   
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
-        exit(0);
+        mini_exit(mini);
 }
 void exec_buildin_child(t_binary *tree, t_minishell *mini)
 {
@@ -147,5 +151,7 @@ void exec_buildin_child(t_binary *tree, t_minishell *mini)
         mini_echo(tree);
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "pwd") == 0)
          mini_pwd(mini->env);
+   else if (ft_strcmp(tree->cmd->exec_cmd[0], "env") == 0)
+        mini_env(mini->env);
     exit(EXIT_SUCCESS);
 }

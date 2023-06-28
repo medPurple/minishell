@@ -21,10 +21,8 @@ PATH_SRC = src
 PATH_LIB = libft
 
 SRC =   $(PATH_SRC)/env/env.c\
-		$(PATH_SRC)/env/export.c\
 		$(PATH_SRC)/env/lst_create.c\
 		$(PATH_SRC)/main.c\
-		print_the_tree.c \
 		$(PATH_SRC)/parsing/parse.c\
 		$(PATH_SRC)/parsing/is_a_fct.c\
 		$(PATH_SRC)/parsing/meta.c\
@@ -32,6 +30,9 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/expand.c\
 		$(PATH_SRC)/parsing/parentheses.c\
 		$(PATH_SRC)/parsing/quotes.c\
+		$(PATH_SRC)/parsing/wildcard/wildcard.c\
+		$(PATH_SRC)/parsing/wildcard/wildcard_utils.c\
+		$(PATH_SRC)/parsing/wildcard/wildcard_replace.c\
 		$(PATH_SRC)/signals/signals.c\
 		$(PATH_SRC)/execution/execution.c\
 		$(PATH_SRC)/execution/minisplit.c\
@@ -46,10 +47,14 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/redirection/exec_utils.c\
 		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
 		$(PATH_SRC)/execution/redirection/here_doc.c\
+    $(PATH_SRC)/execution/parentheses/parentheses.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
 		$(PATH_SRC)/buildin/cd.c\
+    $(PATH_SRC)/buildin/env.c\
+		$(PATH_SRC)/buildin/export.c\
+		$(PATH_SRC)/buildin/unset.c\
 
 
 
@@ -66,7 +71,7 @@ run: minishell
 		@./minishell
 
 runv : minishell
-		@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline

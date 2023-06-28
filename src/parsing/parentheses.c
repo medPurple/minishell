@@ -22,7 +22,11 @@ void ignore_parentheses(t_binary *tree)
 		tree->command = ft_limited_strdup(tree->data, 0, i - 1);
 		tree->rest = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 	} else
+	{
+		tree->parentheses = true;
 		return;
+	}
+		
 }
 
 int end_of_parentheses(char *str, int position)

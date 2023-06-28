@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 11:17:45 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:24:36 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int find_next_split(t_binary *tree, t_env *env)
 
 	while(tree->data[i] != '\0')
 	{
-
+		
 		while(tree->data[i] != '\0' && tree->data[i] != ' ' && tree->data[i] != '\t')
 		{
 			if (tree->data[i] == '\'' || tree->data[i] == '\"')

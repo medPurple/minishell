@@ -46,7 +46,7 @@ char **mini_split(char *str) {
 
 	}
 	cmd[k] = NULL;
-	return(cmd);
+	return(removes_quotes(cmd));
 }
 
 static int after_quotes(char *str, int i)

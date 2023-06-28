@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:15:36 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 13:23:48 by wmessmer         ###   ########.fr       */
+/*   Created: 2023/06/26 16:14:25 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/06/26 16:52:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/libft.h"
-
-char	*ft_strjoin(char *s1, char *s2)
+#include "../../include/minishell.h"
+void  mini_unset(t_env **env, char **tab)
 {
-	char	*tab;
-	char	*new;
-	int		size;
-	int		i;
+	int i;
+	t_env *tmp;
 
+	tmp = (*env);
 	i = 0;
-	size = (ft_strlen(s1) + ft_strlen(s2));
-	new = ft_malloc(size,"char");
-	while (s1 && s1[i])
+	while(tab[i])
 	{
-		new[i] = s1[i];
+		while((*env))
+		{
+			if (ft_strcmp(tab[i], (*env)->name) == 0)
+			{
+				(*env)->prev->next = (*env)->next;
+				free((*env));
+				break;
+			}
+			(*env) = (*env)->next;
+		}
+		(*env) = tmp;
 		i++;
 	}
-	while (*s2)
-		new[i++] = *s2++;
-	new[size] = '\0';
-	//free (s1);
-	return (new);
 }

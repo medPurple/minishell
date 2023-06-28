@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:15:36 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/16 13:23:48 by wmessmer         ###   ########.fr       */
+/*   Created: 2023/06/23 17:08:46 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/06/23 17:10:26 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/libft.h"
+#include "../../include/minishell.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+void mini_env(t_env *env)
 {
-	char	*tab;
-	char	*new;
-	int		size;
-	int		i;
-
-	i = 0;
-	size = (ft_strlen(s1) + ft_strlen(s2));
-	new = ft_malloc(size,"char");
-	while (s1 && s1[i])
+	t_env *tmp;
+	
+	tmp = env;
+	while(tmp != NULL)
 	{
-		new[i] = s1[i];
-		i++;
+		ft_printf("%s\n",tmp->data);
+		tmp = tmp->next;
 	}
-	while (*s2)
-		new[i++] = *s2++;
-	new[size] = '\0';
-	//free (s1);
-	return (new);
+
 }

@@ -14,13 +14,14 @@
 # define MINISHELL_H
 
 # include "../libft/include/libft.h"
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <dirent.h>
- #include <sys/stat.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <sys/stat.h>
+
 //ls -l && echo 'test > FILE' > FILE && cat FILE
 //ls "-l" -la && (cat salut) || cat coucou
 //ls (-l) -la && (cat salut) || cat coucou
@@ -29,13 +30,27 @@
 // est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
 //autrement dit repartir de ce qui existe et rediviser a partir des quotes
 
+typedef struct s_wc
+{
+	char *file;
+	struct s_wc *next;
+	
+}	t_wc;
+
+typedef	struct s_redirection
+{
+	char	*redir_cmd;
+	char	*redir_file;
+	struct s_redirection	*next;
+
+}				t_redirection;
+
 typedef struct s_binary
 {
 	int	end;
 	char *data;
     char *rest;
     char *command;
-	int visualiser;
 	bool	parentheses;
 	struct s_cmd *cmd;
 	struct s_binary *prev;
@@ -49,6 +64,7 @@ typedef struct s_env
 	char	*name;
 	char	*data;
 	struct s_env	*next;
+	struct s_env	*prev;
 }				t_env;
 
 typedef	struct s_redirection
@@ -88,7 +104,6 @@ typedef struct s_minishell
 /*--------------------------------------- ENVIRONNEMENT -------------------------------------------*/
 
 void add_env(t_env **env, char **envp);
-void mini_export(t_env *env, char *str);
 
 /*---------------------------------------- PARSING ------------------------------------------------*/
 
@@ -99,6 +114,7 @@ void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);
 t_binary *new_branche(t_binary *tree, char *str);
 int	find_next_quotes (char *str, int pos);
+char **removes_quotes(char **tab);
 
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
@@ -120,19 +136,35 @@ void	pipe_exec(t_binary *tree, t_minishell *mini);
 void execute_cmd_pipe(t_binary *tree, t_minishell *mini);
 
 
+
+/*----------------------------------------------REDIRECTION----------------------------------------*/
+void exec_cmd_redir(t_binary *tree, t_minishell *mini);
+void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
+bool is_a_redir(char *cmd);
+bool is_a_pipe(char *cmd);
+t_redirection	*ft_new_redirection(char *redir, char *file);
+t_redirection	*ft_last_lst_redirection(t_redirection *lst);
+void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+void	mini_here_doc(char *limiter, t_binary *tree);
+
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
 void exec_buildin_child(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
 void mini_exit(t_minishell *mini);
+void clear_the_tree(t_binary *tree);
 void mini_pwd(t_env *env);
 void mini_cd(t_env *env, t_binary *tree);
+void mini_env(t_env *env);
+void mini_export(t_env **env, char **tab);
+void  mini_unset(t_env **env, char **tab);
 
 /*------------------------------------------SIGNALS----------------------------------------------*/
 
 void    signal_ctrlc(int sig);
 void print_binary(t_binary *tree);
+
 
 /*-------------------------------------- UTILS - environnement ----------------------------------------------*/
 t_env	*ft_new_element(char *data);
@@ -153,6 +185,20 @@ bool string_analyse(char *str, t_env *env);
 int split_pos(char *str, int i);
 int end_of_parentheses(char *str, int position);
 
+/*--------------------------------------Wildcards------------------------------------------------*/
+
+char *wildcard(char *str, int i);
+void wc_addback(t_wc **list, t_wc *new);
+t_wc *new_wc(char *str);
+bool first_letter(char *str, char *ex);
+bool last_letter(char *str, char *ex);
+char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
+char **wc_all(t_wc *file);
+char **wc_after(char *afwc, t_wc *file);
+char **wc_before(char *bfwc, t_wc *file);
+
+/*--------------------------------------Parentheses----------------------------------------------*/
+void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);
 
 /*------------------------------------------UTILS - execution ----------------------------------------------*/
 

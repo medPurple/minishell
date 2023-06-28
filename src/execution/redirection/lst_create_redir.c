@@ -3,7 +3,7 @@
 t_redirection	*ft_new_redirection(char *redir, char *file)
 {
 	t_redirection	*element;
-	
+  
 	element = malloc(sizeof(t_redirection));
 	if (!element)
 		return (NULL);

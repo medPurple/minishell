@@ -1,4 +1,5 @@
 #include "../../include/minishell.h"
+static bool has_quotes(char *str);
 
 int pass_quotes(char *str, int i)
 {
@@ -39,4 +40,51 @@ int	find_next_quotes (char *str, int pos)
 		pos++;
 	}
 	return (-1);
+}
+
+char **removes_quotes(char **tab)
+{
+	int i;
+	int j;
+	int k;
+	char *str;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (tab[i])
+	{
+		if (has_quotes(tab[i]))
+		{
+			str = ft_malloc(ft_strlen(tab[i]) - 2, "char");
+			while(tab[i][j])
+			{
+				if (!(tab[i][j] == '\'' || tab[i][j] == '\"'))
+				{
+					str[k] = tab[i][j];
+					k++;
+					j++;
+				}
+				else
+					j++;
+			}
+			tab[i] = str;
+		}
+		i++;
+	}
+	return(tab);
+}
+
+static bool has_quotes(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i]== '\'' || str[i] == '\"')
+			return true;
+		i++;
+	}
+	return false;
 }
