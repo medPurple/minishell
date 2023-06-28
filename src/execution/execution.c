@@ -7,6 +7,9 @@ void    exec_send(t_binary *tree, t_minishell *mini);
 
 void exec_recu(t_minishell *mini, t_binary *tree)
 {
+    int i;
+
+    i = 0;
    if (tree->parentheses == true)
        expand_parentheses_and_execute(tree, mini);
    else if (tree->right)

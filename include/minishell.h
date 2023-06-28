@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/28 15:40:00 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:00:35 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ typedef struct s_wc
 	struct s_wc *next;
 	
 }	t_wc;
-
-typedef	struct s_redirection
-{
-	char	*redir_cmd;
-	char	*redir_file;
-	struct s_redirection	*next;
-
-}				t_redirection;
 
 typedef struct s_binary
 {
@@ -122,6 +114,7 @@ void exec_recu(t_minishell *mini, t_binary *tree);
 void execute_cmd(t_binary *tree, t_minishell *mini);
 char **mini_split(char *str);
 void create_cmd(t_binary *tree);
+void create_cmd_in_tree(t_binary *tree);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
@@ -139,7 +132,7 @@ void execute_cmd_pipe(t_binary *tree, t_minishell *mini);
 
 /*----------------------------------------------REDIRECTION----------------------------------------*/
 void exec_cmd_redir(t_binary *tree, t_minishell *mini);
-void malloc_cmd_redir(t_minishell *mini, t_binary *tree);
+int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
 bool is_a_redir(char *cmd);
 bool is_a_pipe(char *cmd);
 t_redirection	*ft_new_redirection(char *redir, char *file);

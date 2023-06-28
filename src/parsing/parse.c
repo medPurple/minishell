@@ -1,7 +1,5 @@
 #include "../../include/minishell.h"
 
-static void create_cmd_in_tree(t_binary *tree);
-
 void parsing(t_minishell *mini, char *str)
 {
 	mini->tree = new_branche(mini->tree, str);
@@ -71,7 +69,7 @@ t_binary *new_branche(t_binary *tree, char *str)
 	return (tree);
 }
 
-static void create_cmd_in_tree(t_binary *tree)
+void create_cmd_in_tree(t_binary *tree)
 {
 	if (tree->right) {
 		create_cmd_in_tree(tree->left);
