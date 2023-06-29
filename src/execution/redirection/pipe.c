@@ -18,6 +18,8 @@ static int	count_pipe(t_binary *tree)
 	return(count);
 }
 
+
+
 void	pipe_gestion(t_binary *tree, t_minishell *mini)
 {
 	int	count;
@@ -28,8 +30,7 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 	j = 0;
 
 	count = count_pipe(tree);
-
-	ft_printf ("count : %i\n", count);
+	i = 0;
 	while (i < count)
 	{
 		j = malloc_cmd_redir(mini, tree, j) + 1;
@@ -37,19 +38,28 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 			ft_printf("- %s",tree->cmd->exec_cmd[k]);
 		ft_printf("\n");
 		if (pipe(tree->cmd->pipe_fd) == -1)
-        	perror("pipe");
-    	tree->cmd->fork_pipe = fork();
+			perror("pipe");
+
+		tree->cmd->fork_pipe = fork();
     	if (tree->cmd->fork_pipe == -1)
         	perror("fork");
 		else if(tree->cmd->fork_pipe == 0)
     	{
 
-			pipe_redir(tree);
+			close (tree->cmd->pipe_fd[0]);
+			if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+			ft_perror("dup2");
+			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+				ft_perror("dup2");
+			close (tree->cmd->pipe_tmp);
+			close (tree->cmd->pipe_fd[1]);
         	execution_choice(tree, mini);
 		}
 		else
 		{
-			close(tree->cmd->pipe_fd[1]);
+			tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
+			close (tree->cmd->pipe_fd[1]);
+
 		}
 		i++;
 	}
@@ -64,13 +74,15 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
     {
 
 		tree->cmd->check_pipe = 0;
-		pipe_redir(tree);
+		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+			ft_perror("dup2");
+		close(tree->cmd->pipe_tmp);
 		execution_choice(tree, mini);
 	}
 	else
 	{
-		close(tree->cmd->pipe_fd[0]);
 		close(tree->cmd->pipe_fd[1]);
+		close(tree->cmd->pipe_tmp);
 	}
 	while(wait(NULL) != -1)
                 ;
@@ -78,26 +90,6 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 
 }
 
-void	pipe_redir(t_binary *tree)
-{
-	if (tree->cmd->check_pipe == 1)
-	{
-		if(dup2(tree->cmd->pipe_fd[0], STDIN_FILENO) == -1)
-			perror("dup2");
-		if(dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
-			perror("dup2");
-		close(tree->cmd->pipe_fd[0]);
-		close(tree->cmd->pipe_fd[1]);
-	}
-	else
-	{
-		if(dup2(tree->cmd->pipe_fd[0], STDIN_FILENO) == -1)
-			perror("dup2");
-		close(tree->cmd->pipe_fd[0]);
-		//close(tree->cmd->pipe_fd[1]);
-	}
-	return;
-}
 
 
 void	pipe_exec(t_binary *tree, t_minishell *mini)
