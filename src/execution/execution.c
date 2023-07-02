@@ -46,6 +46,7 @@ void exec_recu(t_minishell *mini, t_binary *tree)
             }
         }
     }
+    //exit(EXIT_SUCCESS);
 	return;
 }
 
@@ -70,12 +71,6 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     }
     else
     {
-
-        if (tree->cmd->check_pipe == 0)
-        {
-            close(tree->cmd->pipe_fd[1]);
-            close(tree->cmd->pipe_fd[0]);
-        }
         close(tree->cmd->fd[1]);
         ret = read(tree->cmd->fd[0], buf, 10);
         buf[ret] = '\0';

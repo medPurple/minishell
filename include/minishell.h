@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/28 17:00:35 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/02 12:10:01 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ typedef	struct s_redirection
 {
 	char	*redir_cmd;
 	char	*redir_file;
-	//int	count;
+	bool	redir_right;
+	bool 	redir_left;
+	bool	redir_double_right;
 	struct s_redirection	*next;
 
 }				t_redirection;
@@ -78,6 +80,8 @@ typedef struct s_cmd
     pid_t   fork;
 	pid_t	fork_pipe;
 	int		pipe_fd[2];
+	int	pipe_tmp;
+	int	in_tmp;
 	int	check_pipe;
     int     fd[2];
     int     in;
@@ -127,6 +131,10 @@ void	pipe_redir(t_binary *tree);
 void    pipe_gestion(t_binary *tree, t_minishell *mini);
 void	pipe_exec(t_binary *tree, t_minishell *mini);
 void execute_cmd_pipe(t_binary *tree, t_minishell *mini);
+
+void	execution_choice_pipe(t_binary *tree, t_minishell *mini);
+void	open_file_pipe(t_binary *tree);
+void	check_redir_pipe (t_binary *tree);
 
 
 

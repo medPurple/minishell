@@ -16,6 +16,8 @@ int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i)
 	j = i;
 	save_pos = i;
 	(void)mini;
+	//if (tree->redir)
+	//	free(tree->redir);
 	while (tree->cmd->split_cmd[i])
 	{
 		if(is_a_redir(tree->cmd->split_cmd[i]) == true)
@@ -25,7 +27,7 @@ int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i)
 			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
 		}
-		else if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 			break;
 		i++;
 	}
@@ -36,7 +38,7 @@ int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i)
 static void		malloc_redir(t_binary *tree, int i)
 {
 	t_redirection	*tmp;
-
+	
 	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]), ft_strdup(tree->cmd->split_cmd[i + 1]));
 	ft_add_back_lst_redirection(&tree->redir, tmp);
 	return;
@@ -57,7 +59,7 @@ static void	malloc_cmd(t_binary *tree, int size, int i)
 			else
 				break;
 		}
-		else if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 				break;
 		tree->cmd->exec_cmd[j] = tree->cmd->split_cmd[i];
 		if (is_a_redir(tree->cmd->split_cmd[i]) == false)
