@@ -6,7 +6,7 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/02 12:10:01 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/02 20:06:00 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_cmd
 	pid_t	fork_pipe;
 	int		pipe_fd[2];
 	int	pipe_tmp;
-	int	in_tmp;
 	int	check_pipe;
     int     fd[2];
     int     in;
@@ -115,6 +114,7 @@ char **removes_quotes(char **tab);
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
+void exec_cmd_redir(t_binary *tree);
 void execute_cmd(t_binary *tree, t_minishell *mini);
 char **mini_split(char *str);
 void create_cmd(t_binary *tree);
@@ -122,30 +122,21 @@ void create_cmd_in_tree(t_binary *tree);
 char *cmd_recuperation(char *str, t_env *env);
 void mini_or(t_binary *tree, t_minishell *mini);
 void mini_and(t_binary *tree, t_minishell *mini);
-void	mini_here_doc(char *limiter, t_binary *tree);
-void exec_cmd_redir(t_binary *tree, t_minishell *mini);
-int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
+int cmd_redir_malloc(t_binary *tree, int i);
 void	execution_choice(t_binary *tree, t_minishell *mini);
 void    exec_send(t_binary *tree, t_minishell *mini);
-void	pipe_redir(t_binary *tree);
-void    pipe_gestion(t_binary *tree, t_minishell *mini);
-void	pipe_exec(t_binary *tree, t_minishell *mini);
-void execute_cmd_pipe(t_binary *tree, t_minishell *mini);
-
-void	execution_choice_pipe(t_binary *tree, t_minishell *mini);
-void	open_file_pipe(t_binary *tree);
-void	check_redir_pipe (t_binary *tree);
-
 
 
 /*----------------------------------------------REDIRECTION----------------------------------------*/
-void exec_cmd_redir(t_binary *tree, t_minishell *mini);
-int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i);
-bool is_a_redir(char *cmd);
-bool is_a_pipe(char *cmd);
-t_redirection	*ft_new_redirection(char *redir, char *file);
-t_redirection	*ft_last_lst_redirection(t_redirection *lst);
-void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+
+void    pipex(t_binary *tree, t_minishell *mini);
+void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j);
+void	pipe_redir(t_binary *tree);
+void	check_redir_pipe (t_binary *tree);
+void	open_file_pipe(t_binary *tree);
+void	execution_choice_pipe(t_binary *tree, t_minishell *mini);
+void	execute_cmd_pipe(t_binary *tree, t_minishell *mini);
+int	last_pipe_redir(t_binary *tree, int i);
 void	mini_here_doc(char *limiter, t_binary *tree);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
@@ -201,7 +192,7 @@ char **wc_before(char *bfwc, t_wc *file);
 /*--------------------------------------Parentheses----------------------------------------------*/
 void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);
 
-/*------------------------------------------UTILS - execution ----------------------------------------------*/
+/*------------------------------------------UTILS - execution----------------------------------------------*/
 
 int	check_open(int	file);
 bool is_a_redir(char *cmd);
@@ -214,5 +205,7 @@ void	open_file(t_binary *tree);
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+
+
 
 #endif

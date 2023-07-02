@@ -3,21 +3,13 @@
 static void	malloc_redir(t_binary *tree, int i);
 static void	malloc_cmd(t_binary *tree, int size, int i);
 
-/*ajouter char *exec_cmd dans la structre redirection afin de pouvoir chainer chaque cmd des
-que je croise un pipe autrement dit dans chaque maillon il y aura : 1 pipe et 1 cmd
-tant que le maillon suivant contient 1 pipe je continuem sinon j'arrete et je regarde s'il y a une redirection
-ou autre */
-
-int malloc_cmd_redir(t_minishell *mini, t_binary *tree, int i)
+int cmd_redir_malloc(t_binary *tree, int i)
 {
 	int	j;
 	int	save_pos;
 
 	j = i;
 	save_pos = i;
-	(void)mini;
-	//if (tree->redir)
-	//	free(tree->redir);
 	while (tree->cmd->split_cmd[i])
 	{
 		if(is_a_redir(tree->cmd->split_cmd[i]) == true)

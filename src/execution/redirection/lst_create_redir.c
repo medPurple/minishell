@@ -7,11 +7,17 @@ t_redirection	*ft_new_redirection(char *redir, char *file)
 	element = malloc(sizeof(t_redirection));
 	if (!element)
 		return (NULL);
+	element->redir_double_right = false;
+	element->redir_right = false;
+	element->redir_left = false;
 	element->redir_cmd = NULL;
 	element->redir_file = NULL;
 	element->redir_cmd = redir;
-	if (redir[0] != '|')
-		element->redir_file = file;
+	element->redir_file = file;
+	if(element->redir_cmd[0] == '>')
+		element->redir_right = true;
+	if (element->redir_cmd[0] == '<')
+		element->redir_left = true;
 	element->next = NULL;
 	return (element);
 }

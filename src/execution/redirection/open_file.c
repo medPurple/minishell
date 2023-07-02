@@ -1,7 +1,5 @@
 #include "../../../include/minishell.h"
 
-
-
 void	open_file(t_binary *tree)
 {
 	t_redirection	*tmp;
@@ -37,7 +35,6 @@ void	open_file(t_binary *tree)
 //	tree->cmd->out = open(tmp->redir_file, O_RDONLY, 0644);
 	}
 }
-
 
 void	open_file_pipe(t_binary *tree)
 {

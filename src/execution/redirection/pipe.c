@@ -18,7 +18,7 @@ static int	count_pipe(t_binary *tree)
 	return(count);
 }
 
-void	pipe_gestion(t_binary *tree, t_minishell *mini)
+void	pipex(t_binary *tree, t_minishell *mini)
 {
 	int	count;
 	int	i;
@@ -31,10 +31,9 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 	i = 0;
 	while (i < count)
 	{
-		j = malloc_cmd_redir(mini, tree, j) + 1;
+		j = cmd_redir_malloc(tree, j) + 1;
 		for (int o = 0; tree->cmd->exec_cmd[o]; o++)
 			ft_printf("- %s\n", tree->cmd->exec_cmd[o]);
-		//check_redir_pipe(tree);
 		if (pipe(tree->cmd->pipe_fd) == -1)
 			perror("pipe");
 
@@ -46,62 +45,29 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 
 			check_redir_pipe(tree);
 			close (tree->cmd->pipe_fd[0]);
-			/*if (tree->redir && tree->redir->redir_cmd[0] == '<')
-			{
-				close(tree->cmd->pipe_tmp);
-				if(dup2(tree->cmd->out, STDIN_FILENO) == -1)
-					perror("dup2");
-				close(tree->cmd->out);
-			}
-			else*/
-			//{ 
-				//close (tree->cmd->pipe_fd[0]);
-				if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-					perror("dup2");
-				close(tree->cmd->pipe_tmp);
-			//}
-			/*if (tree->redir && tree->redir->redir_cmd[0] == '>')
-			{
-				//close(tree->cmd->pipe_fd[1]);
-				//tree->cmd->pipe_fd[1] = tree->cmd->in;
-				//close(tree->cmd->in);
-				if (dup2(tree->cmd->in, STDOUT_FILENO) == -1)
-					perror("dup2");
-				close (tree->cmd->in);
-			}
-			else
-			{*/
-				//if (tree->cmd->in != -1)
-				//	close(tree->cmd->in);
-				if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
-					perror("dup2");
-				close (tree->cmd->pipe_fd[1]);
-			//}
+			if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+				perror("dup2");
+			close(tree->cmd->pipe_tmp);
+		
+			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+				perror("dup2");
+			close (tree->cmd->pipe_fd[1]);
         	execution_choice_pipe(tree, mini);
 		}
 		else
 		{
-			/*if(tree->redir && tree->redir->redir_cmd[0] == '>')
-			{
-				ft_printf("salut\n");
-				close(tree->cmd->pipe_fd[0]);
-				tree->cmd->pipe_tmp = tree->cmd->in;
-				close(tree->cmd->in);
-			}
-			else*/
 			tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
-			/*if (tree->redir && tree->redir->redir_cmd[0] == '<')
-			{
-				tree->cmd->pipe_tmp = tree->cmd->out;
-				close(tree->cmd->out);
-			}*/
-			//tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 			close (tree->cmd->pipe_fd[1]);
 		}
 		i++;
 	}
-	j = malloc_cmd_redir(mini, tree, j);
-	ft_printf("coucou\n");
+	last_pipex(tree, mini, i, j);
+}
+
+void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
+{
+	i = j;
+	j = cmd_redir_malloc(tree, j);
 	tree->cmd->fork_pipe = fork();
 	if (tree->cmd->fork_pipe == -1)
         	perror("fork");
@@ -110,37 +76,25 @@ void	pipe_gestion(t_binary *tree, t_minishell *mini)
 
 		tree->cmd->check_pipe = 0;
 		check_redir_pipe(tree);
+		if (last_pipe_redir(tree, i) > 0)
+		{
+			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+				perror("dup2");
+			close (tree->cmd->pipe_fd[1]);
+		}
 		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-			ft_perror("dup2hhh");
+			ft_perror("dup2");
 		close(tree->cmd->pipe_tmp);
 		execution_choice_pipe(tree, mini);
 	}
 	else
 	{
-		//exit(EXIT_SUCCESS);
-		//if (tree->cmd->in != -1)
-		//	close(tree->cmd->in);
 		close(tree->cmd->pipe_fd[1]);
 		close(tree->cmd->pipe_tmp);
-		//exit(EXIT_SUCCESS);
 	}
 	while(wait(NULL) != -1)
                 ;
-	//exit(EXIT_SUCCESS);
 	return;
-
-}
-
-
-
-void	pipe_exec(t_binary *tree, t_minishell *mini)
-{
-
-	//exec_cmd_redir(tree, mini);
-    if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
-	    execute_cmd_pipe(tree, mini);
-	else
-    	exec_buildin_child(tree, mini);
 }
 
 

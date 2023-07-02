@@ -19,11 +19,11 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		if (is_a_meta(tree->data, 0)) // ne prend en compte que && et ||
+		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
 		{
-            if (tree->cmd->exec == 1 || tree->cmd->exec == -1) // toujours utile pour les && et ||
+            if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
                 return;
             else
             {
@@ -33,20 +33,19 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
                     {
                         tree->cmd->check_pipe = 1;
-                        pipe_gestion(tree, mini);
+                        pipex(tree, mini);
                         break;
                     }
                     i++;
                 }
                 if (tree->cmd->check_pipe == -1)
                 {
-                    malloc_cmd_redir(mini, tree, 0);
+                    cmd_redir_malloc(tree, 0);
                     execution_choice(tree, mini);
                 }
             }
         }
     }
-    //exit(EXIT_SUCCESS);
 	return;
 }
 
@@ -63,7 +62,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         perror("fork");
 	else if(tree->cmd->fork == 0)
     {
-        exec_cmd_redir(tree, mini);
+        exec_cmd_redir(tree);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
 		    execute_cmd(tree, mini);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
@@ -95,7 +94,6 @@ void exec_meta( t_binary *tree, t_minishell *mini)
 
 void execute_cmd(t_binary *tree, t_minishell *mini)
 {
-    //ft_printf("exec in = %d\n",tree->cmd->exec);
     if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
     tree->cmd->path_cmd =  cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
