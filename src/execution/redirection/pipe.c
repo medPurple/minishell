@@ -31,6 +31,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 	i = 0;
 	while (i < count)
 	{
+		if(tree->redir)
+			free(tree->redir);
 		j = cmd_redir_malloc(tree, j) + 1;
 		for (int o = 0; tree->cmd->exec_cmd[o]; o++)
 			ft_printf("- %s\n", tree->cmd->exec_cmd[o]);
@@ -48,7 +50,6 @@ void	pipex(t_binary *tree, t_minishell *mini)
 			if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 				perror("dup2");
 			close(tree->cmd->pipe_tmp);
-		
 			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 				perror("dup2");
 			close (tree->cmd->pipe_fd[1]);
@@ -67,13 +68,14 @@ void	pipex(t_binary *tree, t_minishell *mini)
 void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 {
 	i = j;
+	if(tree->redir)
+		free(tree->redir);
 	j = cmd_redir_malloc(tree, j);
 	tree->cmd->fork_pipe = fork();
 	if (tree->cmd->fork_pipe == -1)
-        	perror("fork");
+        perror("fork");
 	if(tree->cmd->fork_pipe == 0)
     {
-
 		tree->cmd->check_pipe = 0;
 		check_redir_pipe(tree);
 		if (last_pipe_redir(tree, i) > 0)
@@ -83,7 +85,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 			close (tree->cmd->pipe_fd[1]);
 		}
 		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-			ft_perror("dup2");
+			ft_perror("dup2ICI");
 		close(tree->cmd->pipe_tmp);
 		execution_choice_pipe(tree, mini);
 	}

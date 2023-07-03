@@ -52,13 +52,34 @@ bool is_a_pipe(char *cmd)
 		return (false);
 }
 
+int count_redir_in_pipe(char **cmd, int pos_before, int pos_after)
+{
+	int	count_left;
+	int	count_right;
+
+	count_left = 0;
+	count_right = 0;
+	while (pos_before <= pos_after)
+	{
+		if (cmd[pos_before][0] == '>')
+			count_right++;
+		else if (cmd[pos_before][0] == '<')
+			count_left++;
+		pos_before++;
+	}
+	if (count_right == 1)
+		return (1);
+	else if (count_right == 2) 
+		return (2);
+	else if (count_left == 1)
+		return (3);
+	else
+		return (0);
+}
+
 int	check_open(int	file)
 {
 	if (file == -1)
-	{
-		perror("open");
 		return(-1);
-	}
 	return (0);
-
 }

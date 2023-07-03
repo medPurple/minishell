@@ -10,7 +10,10 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
     {
 		open_file(tree);
 		if (check_open(tree->cmd->in) == -1 || check_open(tree->cmd->out) == -1)
-					return;
+		{
+			perror("open");		
+			return;
+		}
 		else
 			exec_send(tree, mini);
 	}
