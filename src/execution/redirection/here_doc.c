@@ -55,7 +55,8 @@ int	is_here_doc(t_binary *tree)
 	t_redirection	*tmp;
 	int	count;
 
-
+	if (tree->cmd->is_a_redir == 0)
+		return(0);
 	tmp = tree->redir;
 	count = 0;
 	while(tmp)

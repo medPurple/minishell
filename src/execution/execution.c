@@ -13,9 +13,9 @@ void exec_recu(t_minishell *mini, t_binary *tree)
    if (tree->parentheses == true)
        expand_parentheses_and_execute(tree, mini);
    else if (tree->right)
-	 {
-       exec_recu(mini, tree->left);
-		   exec_recu(mini, tree->right);		
+	{
+        exec_recu(mini, tree->left);
+	    exec_recu(mini, tree->right);
 	}
 	else
 	{
@@ -51,12 +51,9 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 
 void    exec_send(t_binary *tree, t_minishell *mini)
 {
-  char	buf[10];
-	int	ret;
+    int status;
 
 	tree->cmd->exec = 1;
-    if (pipe(tree->cmd->fd) == -1)
-        perror("pipe");
     tree->cmd->fork = fork();
     if (tree->cmd->fork == -1)
         perror("fork");
@@ -70,14 +67,10 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     }
     else
     {
-        close(tree->cmd->fd[1]);
-        ret = read(tree->cmd->fd[0], buf, 10);
-        buf[ret] = '\0';
-        close(tree->cmd->fd[0]);
-        if (ft_strcmp(buf, "false") == 0)
-            tree->cmd->exec = -1;
-        while(wait(NULL) != -1)
+        while(wait(&status) != -1)
                 ;
+        if (WEXITSTATUS(status) > 0)
+            tree->cmd->exec = -1;
     }
     return ;
 }
@@ -101,9 +94,6 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
     {
         if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
         {
-            close(tree->cmd->fd[0]);
-            write(tree->cmd->fd[1], "false", 5);
-            close(tree->cmd->fd[1]);
             ft_free_tab(tree->cmd->exec_cmd);
             ft_perror(" Error : Command execution\n");
         }
@@ -113,17 +103,12 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
         tree->cmd->path_cmd = tree->cmd->exec_cmd[0];
         if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
         {
-            close(tree->cmd->fd[0]);
-            write(tree->cmd->fd[1], "false", 5);
             ft_free_tab(tree->cmd->exec_cmd);
             ft_perror(" Error : Command execution\n");
         }
     }
     else
     {
-        close(tree->cmd->fd[0]);
-        write(tree->cmd->fd[1], "false", 5);
-        close(tree->cmd->fd[1]);
         ft_free_tab(tree->cmd->exec_cmd);
 		ft_perror("path");
     }
@@ -137,7 +122,7 @@ void exec_buildin(t_binary *tree, t_minishell *mini)
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)
         mini_export(&mini->env,tree->cmd->exec_cmd);
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0)
-        mini_unset(&mini->env,tree->cmd->exec_cmd);   
+        mini_unset(&mini->env,tree->cmd->exec_cmd);
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
         mini_exit(mini);
 }

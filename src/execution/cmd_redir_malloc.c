@@ -16,6 +16,7 @@ int cmd_redir_malloc(t_binary *tree, int i)
 		{
 			j = 2;
 			malloc_redir(tree, i);
+			tree->cmd->is_a_redir = 1;
 			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
 		}
@@ -30,7 +31,7 @@ int cmd_redir_malloc(t_binary *tree, int i)
 static void		malloc_redir(t_binary *tree, int i)
 {
 	t_redirection	*tmp;
-	
+
 	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]), ft_strdup(tree->cmd->split_cmd[i + 1]));
 	ft_add_back_lst_redirection(&tree->redir, tmp);
 	return;

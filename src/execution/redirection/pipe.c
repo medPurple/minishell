@@ -26,26 +26,26 @@ void	pipex(t_binary *tree, t_minishell *mini)
 
 	i = 0;
 	j = 0;
-
 	count = count_pipe(tree);
 	i = 0;
+	tree->cmd->is_a_redir = 0;
 	while (i < count)
 	{
 		if(tree->redir)
-			free(tree->redir);
+		{
+			tree->cmd->is_a_redir = 0;
+			ft_free_lst(tree->redir);
+		}
 		j = cmd_redir_malloc(tree, j) + 1;
-		for (int o = 0; tree->cmd->exec_cmd[o]; o++)
-			ft_printf("- %s\n", tree->cmd->exec_cmd[o]);
 		if (pipe(tree->cmd->pipe_fd) == -1)
 			perror("pipe");
-
 		tree->cmd->fork_pipe = fork();
     	if (tree->cmd->fork_pipe == -1)
         	perror("fork");
 		else if(tree->cmd->fork_pipe == 0)
     	{
-
-			check_redir_pipe(tree);
+			if (tree->cmd->is_a_redir == 1)
+				check_redir_pipe(tree);
 			close (tree->cmd->pipe_fd[0]);
 			if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 				perror("dup2");
@@ -62,14 +62,21 @@ void	pipex(t_binary *tree, t_minishell *mini)
 		}
 		i++;
 	}
+	while(wait(NULL) != -1)
+                ;
 	last_pipex(tree, mini, i, j);
 }
 
 void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 {
+	int	status;
+
 	i = j;
 	if(tree->redir)
-		free(tree->redir);
+	{
+		tree->cmd->is_a_redir = 0;
+		ft_free_lst(tree->redir);
+	}
 	j = cmd_redir_malloc(tree, j);
 	tree->cmd->fork_pipe = fork();
 	if (tree->cmd->fork_pipe == -1)
@@ -77,7 +84,8 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	if(tree->cmd->fork_pipe == 0)
     {
 		tree->cmd->check_pipe = 0;
-		check_redir_pipe(tree);
+		if (tree->cmd->is_a_redir == 1)
+			check_redir_pipe(tree);
 		if (last_pipe_redir(tree, i) > 0)
 		{
 			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
@@ -85,7 +93,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 			close (tree->cmd->pipe_fd[1]);
 		}
 		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-			ft_perror("dup2ICI");
+			ft_perror("dup2");
 		close(tree->cmd->pipe_tmp);
 		execution_choice_pipe(tree, mini);
 	}
@@ -94,8 +102,10 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		close(tree->cmd->pipe_fd[1]);
 		close(tree->cmd->pipe_tmp);
 	}
-	while(wait(NULL) != -1)
+	while(wait(&status) != -1)
                 ;
+	if (WEXITSTATUS(status) > 0) // pb is possible // maybe need waitpid
+        tree->cmd->exec = -1;
 	return;
 }
 
@@ -128,5 +138,4 @@ void execute_cmd_pipe(t_binary *tree, t_minishell *mini)
 		ft_perror("path");
     }
     ft_free_tab(tree->cmd->exec_cmd);
-
 }

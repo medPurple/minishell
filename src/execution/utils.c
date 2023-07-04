@@ -51,3 +51,17 @@ static char *join_path(char *str, char *path)
     str = ft_strjoin(path,str);
     return (str);
 }
+
+void	ft_free_lst(t_redirection *stack)
+{
+	t_redirection	*tmp;
+
+	if (!stack)
+		return ;
+	while (stack)
+	{
+		tmp = (stack)->next;
+		free(stack);
+		(stack) = tmp;
+	}
+}

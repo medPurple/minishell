@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/03 17:21:19 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/04 10:52:48 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_wc
 {
 	char *file;
 	struct s_wc *next;
-	
+
 }	t_wc;
 
 typedef struct s_binary
@@ -82,6 +82,8 @@ typedef struct s_cmd
 	int		pipe_fd[2];
 	int	pipe_tmp;
 	int	check_pipe;
+	int	open_ko;
+	int	is_a_redir;
     int     fd[2];
     int     in;
     int     out;
@@ -205,6 +207,7 @@ void	open_file(t_binary *tree);
 t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
+void	ft_free_lst(t_redirection *stack);
 
 
 
