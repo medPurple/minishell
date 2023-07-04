@@ -4,12 +4,12 @@ int	count_redir_right(t_binary *tree)
 {
 	t_redirection	*tmp;
 	int	count;
-
+	ft_printf("wait\n");
 	tmp = tree->redir;
 	count = 0;
 	while(tmp)
 	{
-		if (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')
+		if (tmp->redir_cmd[0] == '>'&& tmp->redir_cmd[1] != '>')
 			count++;
 		tmp = tmp->next;
 	}
@@ -25,7 +25,7 @@ int	count_redir_right_double(t_binary *tree)
 	count = 0;
 	while(tmp)
 	{
-		if (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')
+		if (tmp->redir_cmd[0] == '>'&& tmp->redir_cmd[1] == '>')
 			count++;
 		tmp = tmp->next;
 	}

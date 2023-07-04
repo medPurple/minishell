@@ -64,4 +64,5 @@ void	ft_free_lst(t_redirection *stack)
 		free(stack);
 		(stack) = tmp;
 	}
+    free(stack);
 }

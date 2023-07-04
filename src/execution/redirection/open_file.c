@@ -46,7 +46,6 @@ void	open_file_pipe(t_binary *tree)
 	pipe_tmp_read = tree->cmd->pipe_tmp;
 	pipe_tmp_write = tree->cmd->pipe_fd[1];
 	check = 0;
-	tree->cmd->open_ko = 0;
 	tmp = tree->redir;
 	if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')) || (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<')))
 	{

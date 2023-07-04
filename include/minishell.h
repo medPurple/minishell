@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/04 10:52:48 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:33 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef	struct s_redirection
 	bool	redir_right;
 	bool 	redir_left;
 	bool	redir_double_right;
+	int	ok;
 	struct s_redirection	*next;
 
 }				t_redirection;

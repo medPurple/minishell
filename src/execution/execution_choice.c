@@ -24,11 +24,6 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 
 void	execution_choice_pipe(t_binary *tree, t_minishell *mini)
 {
-	/*if (tree->cmd->open_ko == -1)
-	{
-		ft_free_tab(tree->cmd->exec_cmd);
-		return;
-	}*/
 	if (is_here_doc(tree) >= 1)
         mini_here_doc(tree->redir->redir_file, tree);
 	else if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
