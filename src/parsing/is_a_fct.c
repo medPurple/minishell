@@ -4,13 +4,14 @@ static int test_path(char *str, char **path);
 
 int is_a_buildin(char *str)
 {
-		if((ft_strcmp(str, "echo")==0) || (ft_strcmp(str, "cd")==0) \
-			|| (ft_strcmp(str, "pwd")==0) || (ft_strcmp(str, "export")==0) \
-			|| (ft_strcmp(str, "unset")==0) || (ft_strcmp(str, "env")==0) \
-			|| (ft_strcmp(str, "exit")==0))
+		if((ft_strcmp(str, "cd")==0) || (ft_strcmp(str, "export")==0)|| (ft_strcmp(str, "unset")==0) || (ft_strcmp(str, "exit")==0))
 			return (1);
+		if((ft_strcmp(str, "echo")==0)	|| (ft_strcmp(str, "pwd")==0) \
+	 		|| (ft_strcmp(str, "env")==0))
+			return (2);
 		return (0);
 }
+
 
 int is_a_fonction(char *str, t_env *env)
 {

@@ -60,7 +60,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 				return;
 			}
 			else
-        		execution_choice_pipe(tree, mini);
+				execution_choice_pipe(tree, mini);
+
 		}
 		else
 		{
@@ -69,8 +70,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 		}
 		i++;
 	}
-    while(wait(NULL) != -1) // pb is possible with this wait => put it at the end of last pipex function
-            ;
+    //while(wait(NULL) != -1) // pb is possible with this wait => put it at the end of last pipex function
+    //        ;
 	last_pipex(tree, mini, i, j);
 }
 
@@ -114,6 +115,8 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
                 ;
 	if (WEXITSTATUS(status) > 0) // pb is possible // maybe need waitpid
         tree->cmd->exec = -1;
+	else
+		 tree->cmd->exec = 1;
 	return;
 }
 

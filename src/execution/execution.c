@@ -23,6 +23,8 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 			exec_meta(tree, mini);
 		else
 		{
+            //ft_printf("[data] %s\n", tree->data);
+           // ft_printf("[EX] %d\n",tree->cmd->exec);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
                 return;
             else
@@ -60,9 +62,9 @@ void    exec_send(t_binary *tree, t_minishell *mini)
 	else if(tree->cmd->fork == 0)
     {
         exec_cmd_redir(tree);
-        if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
+        if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
 		    execute_cmd(tree, mini);
-        if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
+        if (is_a_buildin(tree->cmd->exec_cmd[0]) > 0)
             exec_buildin_child(tree, mini);
     }
     else
@@ -117,6 +119,7 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
 
 void exec_buildin(t_binary *tree, t_minishell *mini)
 {
+    tree->cmd->exec = 1;
     if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
         mini_cd(mini->env, tree);
     else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)

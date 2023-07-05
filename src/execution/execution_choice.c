@@ -4,7 +4,7 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 {
 	if (is_here_doc(tree) >= 1)
         mini_here_doc(tree->redir->redir_file, tree);
-	else if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
+	else if (is_a_buildin(tree->cmd->exec_cmd[0]) > 0)
 		exec_buildin(tree, mini);
 	if ((count_redir_right(tree) >= 1) || (count_redir_right_double(tree) >= 1) || (count_redir_left(tree) >= 1))
     {
@@ -27,10 +27,13 @@ void	execution_choice_pipe(t_binary *tree, t_minishell *mini)
 	if (is_here_doc(tree) >= 1)
         mini_here_doc(tree->redir->redir_file, tree);
 	else if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
-				exec_buildin(tree, mini);
+	{
+		exec_buildin(tree, mini);
+		exit(0);
+	}
 	else
 	{
-		if (is_a_buildin(tree->cmd->exec_cmd[0]) != 1)
+		if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
 		{
 			execute_cmd_pipe(tree, mini);
 		}
