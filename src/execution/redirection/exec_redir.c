@@ -21,10 +21,8 @@ void exec_cmd_redir(t_binary *tree)
 void	check_redir_pipe (t_binary *tree)
 {
 	tree->cmd->open_ko = 0;
+
 	if ((count_redir_right(tree) >= 1) || (count_redir_right_double(tree) >= 1) || (count_redir_left(tree) >= 1))
-	{
-		//ft_printf("wait\n");
 		open_file_pipe(tree);
-	}
 	return;
 }
