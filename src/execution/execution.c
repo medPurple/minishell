@@ -43,8 +43,6 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     cmd_redir_malloc(tree, 0);
                     execution_choice(tree, mini);
                 }
-                //tree->cmd->exec = 1;
-                //exit(EXIT_SUCCESS);
             }
         }
     }
@@ -56,6 +54,11 @@ void    exec_send(t_binary *tree, t_minishell *mini)
     int status;
 
 	tree->cmd->exec = 1;
+    if (is_here_doc(tree) >= 1)
+	{
+		tree->cmd->check_here_doc = 1;
+		mini_here_doc(tree->redir->redir_file, tree);
+    }
     tree->cmd->fork = fork();
     if (tree->cmd->fork == -1)
         perror("fork");

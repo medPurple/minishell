@@ -69,7 +69,7 @@ int count_redir_in_pipe(char **cmd, int pos_before, int pos_after)
 	}
 	if (count_right == 1)
 		return (1);
-	else if (count_right == 2) 
+	else if (count_right == 2)
 		return (2);
 	else if (count_left == 1)
 		return (3);
@@ -82,4 +82,11 @@ int	check_open(int	file)
 	if (file == -1)
 		return(-1);
 	return (0);
+}
+
+void	dup2_fd(int fd, int fd_redir)
+{
+	if (dup2(fd, fd_redir) == -1)
+		perror("dup2");
+	return;
 }

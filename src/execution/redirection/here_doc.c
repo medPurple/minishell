@@ -1,12 +1,15 @@
 #include "../../../include/minishell.h"
-//static void	dup2_fd(int fd, int fd2);
+void	dup2_fd(int fd, int fd2);
 static void	ft_pipe_initialize(t_binary *tree);
 static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
-	//if (pipe(tree->cmd->pipe_fd) == -1)
-	//	return;
+	if (tree->cmd->check_pipe == -1)
+	{
+		if (pipe(tree->cmd->pipe_fd) == -1)
+			perror("pipe");
+	}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		return;
@@ -40,8 +43,12 @@ static void	ft_gestion_parent(t_binary *tree)
 {
 	int status;
 
-	//tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
-	//dup2_fd(tree->cmd->pipe_tmp, STDIN_FILENO);
+	//if (tree->cmd->check_pipe == -1)
+	//{
+	tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
+	dup2_fd(tree->cmd->pipe_tmp, STDIN_FILENO);
+	close(tree->cmd->pipe_tmp);
+	//}
 	close(tree->cmd->pipe_fd[1]);
 	waitpid(tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)
@@ -50,11 +57,6 @@ static void	ft_gestion_parent(t_binary *tree)
 		 tree->cmd->exec = 1;
 }
 
-//static void	dup2_fd(int fd, int fd_redir)
-//{
-//	if (dup2(fd, fd_redir) < 0)
-//		return;
-//}
 
 int	is_here_doc(t_binary *tree)
 {

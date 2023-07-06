@@ -125,7 +125,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		else
 		{
 			close(tree->cmd->pipe_fd[1]);
-			//makeclose(tree->cmd->pipe_tmp);
+			//close(tree->cmd->pipe_tmp);
 		}
 	while(wait(&status) != -1)
                 ;
