@@ -8,12 +8,15 @@ char *ft_limited_strdup(char *str, int begin, int end)
 	i = 0;
 	if (end - begin < 0)
 		return (NULL);
-	new_str = ft_malloc(end - begin, "char");
+	if (end == ft_strlen(str))
+		return (str);
+	new_str = ft_malloc(end - begin + 1, "char");
 	while(begin <= end)
 	{
 		new_str[i] = str[begin];
 		begin++;
 		i++;
 	}
+	new_str[i] = '\0';
 	return (new_str);
 }

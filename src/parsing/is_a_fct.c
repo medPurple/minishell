@@ -20,10 +20,6 @@ int is_a_fonction(char *str, t_env *env)
 
 	tmp = env;
 	split_env = path_recuperation(tmp);
-	/* rajouter si unset path et donne chemin relatif
-		du style :
-	if (split_env == NULL && ft_strchr(str, '/') != NULL)
-		(*split_env) = str;*/
 	if (test_path(str,split_env) == 1)
 		return (1);
 	return (0);
@@ -68,9 +64,10 @@ static int test_path(char *str, char **path)
 	while (path[i])
 	{
 		join = ft_strjoin(path[i],"/");
-		search = ft_strjoin(join,str);
+		search = ft_strjoin(join,str);	
 		if (access(search, F_OK) == 0)
 			return(1);
+		free(search);
 		i++;
 	}
 	return (0);

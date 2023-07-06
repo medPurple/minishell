@@ -3,10 +3,10 @@
 char *ft_malloc(int size, char *type)
 {
 	char *str;
-
+	
 	if (ft_strcmp(type, "char") == 0)
 	{
-		str = malloc(sizeof (char) * (size + 1));
+		str = malloc(sizeof (char) * size + 1);
 		if (!str)
 			return (NULL);
 	}
