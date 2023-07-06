@@ -28,6 +28,7 @@ void	pipex(t_binary *tree, t_minishell *mini)
 	j = 0;
 	count = count_pipe(tree);
 	i = 0;
+	tree->cmd->check_here_doc = 0;
 	tree->cmd->is_a_redir = 0;
 	while (i < count)
 	{
@@ -40,38 +41,43 @@ void	pipex(t_binary *tree, t_minishell *mini)
 		j = cmd_redir_malloc(tree, j) + 1;
 		if (pipe(tree->cmd->pipe_fd) == -1)
 			perror("pipe");
-		tree->cmd->fork_pipe = fork();
-    	if (tree->cmd->fork_pipe == -1)
-        	perror("fork");
-		else if(tree->cmd->fork_pipe == 0)
-    	{
-			if (tree->cmd->is_a_redir == 1)
-				check_redir_pipe(tree);
-			close (tree->cmd->pipe_fd[0]);
-			if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-				perror("dup2");
-			close(tree->cmd->pipe_tmp);
-			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
-				perror("dup2");
-			close (tree->cmd->pipe_fd[1]);
-			if(tree->cmd->open_ko == -1)
-			{
-				ft_free_tab(tree->cmd->exec_cmd);
-				return;
-			}
-			else
-				execution_choice_pipe(tree, mini);
-
+		if (is_here_doc(tree) >= 1)
+		{
+			tree->cmd->check_here_doc = 1;
+			mini_here_doc(tree->redir->redir_file, tree);
 		}
 		else
 		{
-			tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
-			close (tree->cmd->pipe_fd[1]);
+			tree->cmd->check_here_doc = 0;
+			tree->cmd->fork_pipe = fork();
+    		if (tree->cmd->fork_pipe == -1)
+        		perror("fork");
+			else if(tree->cmd->fork_pipe == 0)
+    		{
+				if (tree->cmd->is_a_redir == 1)
+					check_redir_pipe(tree);
+				close (tree->cmd->pipe_fd[0]);
+				if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+					perror("dup2");
+				if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+					perror("dup2");
+				close (tree->cmd->pipe_fd[1]);
+				if(tree->cmd->open_ko == -1)
+				{
+					ft_free_tab(tree->cmd->exec_cmd);
+					return;
+				}
+				else
+					execution_choice_pipe(tree, mini);
+			}
+			else
+			{
+				tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
+				close (tree->cmd->pipe_fd[1]);
+			}
 		}
 		i++;
 	}
-    //while(wait(NULL) != -1) // pb is possible with this wait => put it at the end of last pipex function
-    //        ;
 	last_pipex(tree, mini, i, j);
 }
 
@@ -87,36 +93,47 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		tree->redir = NULL;
 	}
 	j = cmd_redir_malloc(tree, j);
-	tree->cmd->fork_pipe = fork();
-	if (tree->cmd->fork_pipe == -1)
-        perror("fork");
-	if(tree->cmd->fork_pipe == 0)
-    {
-		tree->cmd->check_pipe = 0;
-		if (tree->cmd->is_a_redir == 1)
-			check_redir_pipe(tree);
-		if (last_pipe_redir(tree, i) > 0)
-		{
-			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
-				perror("dup2");
-			close (tree->cmd->pipe_fd[1]);
-		}
-		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-			ft_perror("dup2");
-		close(tree->cmd->pipe_tmp);
-		execution_choice_pipe(tree, mini);
+	if (is_here_doc(tree) >= 1)
+	{
+		tree->cmd->check_here_doc = 1;
+		mini_here_doc(tree->redir->redir_file, tree);
 	}
 	else
 	{
-		close(tree->cmd->pipe_fd[1]);
-		close(tree->cmd->pipe_tmp);
-	}
+		tree->cmd->fork_pipe = fork();
+		if (tree->cmd->fork_pipe == -1)
+        	perror("fork");
+		if(tree->cmd->fork_pipe == 0)
+    	{
+			tree->cmd->check_pipe = 0;
+			if (tree->cmd->is_a_redir == 1)
+				check_redir_pipe(tree);
+			if (last_pipe_redir(tree, i) > 0)
+			{
+				if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+					perror("dup2");
+				close (tree->cmd->pipe_fd[1]);
+			}
+			if (tree->cmd->check_here_doc == 0)
+			{
+				if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+					ft_perror("dup2");
+	    		close(tree->cmd->pipe_tmp);
+			}
+			execution_choice_pipe(tree, mini);
+		}
+		else
+		{
+			close(tree->cmd->pipe_fd[1]);
+			//makeclose(tree->cmd->pipe_tmp);
+		}
 	while(wait(&status) != -1)
                 ;
 	if (WEXITSTATUS(status) > 0) // pb is possible // maybe need waitpid
         tree->cmd->exec = -1;
 	else
 		 tree->cmd->exec = 1;
+	}
 	return;
 }
 

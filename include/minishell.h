@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/05 11:01:39 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:21:45 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_cmd
 	int	pipe_tmp;
 	int	check_pipe;
 	int	open_ko;
+	int	check_here_doc;
 	int	is_a_redir;
     int     fd[2];
     int     in;

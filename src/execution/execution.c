@@ -23,8 +23,6 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 			exec_meta(tree, mini);
 		else
 		{
-            //ft_printf("[data] %s\n", tree->data);
-           // ft_printf("[EX] %d\n",tree->cmd->exec);
             if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
                 return;
             else
@@ -45,6 +43,8 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                     cmd_redir_malloc(tree, 0);
                     execution_choice(tree, mini);
                 }
+                //tree->cmd->exec = 1;
+                //exit(EXIT_SUCCESS);
             }
         }
     }

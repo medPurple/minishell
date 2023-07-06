@@ -1,14 +1,14 @@
 #include "../../../include/minishell.h"
-static void	dup2_fd(int fd, int fd2);
+//static void	dup2_fd(int fd, int fd2);
 static void	ft_pipe_initialize(t_binary *tree);
 static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
-	if (pipe(tree->cmd->fd) < 0)
-		return;
+	//if (pipe(tree->cmd->pipe_fd) == -1)
+	//	return;
 	tree->cmd->fork = fork();
-	if (tree->cmd->fork < 0)
+	if (tree->cmd->fork == -1)
 		return;
 }
 
@@ -24,11 +24,11 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 			if (strcmp(line, limiter) == 0)
 			{
 				free(line);
-				close(tree->cmd->fd[0]);
-				close(tree->cmd->fd[1]);
+				close(tree->cmd->pipe_fd[0]);
+				close(tree->cmd->pipe_fd[1]);
 				exit(EXIT_SUCCESS);
 			}
-			write(tree->cmd->fd[1], line, ft_strlen(line));
+			write(tree->cmd->pipe_fd[1], line, ft_strlen(line));
 			free(line);
 		}
 	}
@@ -38,17 +38,23 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 
 static void	ft_gestion_parent(t_binary *tree)
 {
-	dup2_fd(tree->cmd->fd[0], STDIN_FILENO);
-	//tree->cmd->in = tree->cmd->fd[0];
-	close(tree->cmd->fd[1]);
-	waitpid(tree->cmd->fork, NULL, 0);
+	int status;
+
+	//tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
+	//dup2_fd(tree->cmd->pipe_tmp, STDIN_FILENO);
+	close(tree->cmd->pipe_fd[1]);
+	waitpid(tree->cmd->fork, &status, 0);
+	if (WEXITSTATUS(status) > 0)
+        tree->cmd->exec = -1;
+	else
+		 tree->cmd->exec = 1;
 }
 
-static void	dup2_fd(int fd, int fd_redir)
-{
-	if (dup2(fd, fd_redir) < 0)
-		return;
-}
+//static void	dup2_fd(int fd, int fd_redir)
+//{
+//	if (dup2(fd, fd_redir) < 0)
+//		return;
+//}
 
 int	is_here_doc(t_binary *tree)
 {
