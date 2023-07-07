@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/22 11:41:57 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:01:54 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ char *wildcard(char *str, int i)
 	while (str[j] != ' ' && str[j] != '\t' && str[j])
 		j++;
 	afwc = ft_limited_strdup(str, i + 1, j - 1);
-	end = ft_limited_strdup(str, j, ft_strlen(str));
+	end = ft_limited_strdup(str, j, ft_strlen(str) - 1);
 	str = find_file(bfwc,afwc, begin, end);
-	ft_printf("[New str] %s\n",str);
+	if (str == NULL)
+		str = put_in_quotes(begin,end, bfwc, afwc);
+	//free
 	return str;
 }
 
@@ -57,8 +59,6 @@ static char *find_file(char *bfwc, char *afwc, char *begin, char *end)
 			wc_addback(&liste,new_wc(entry->d_name));			
 	}
 	tab = get_wc(bfwc,afwc, liste);
-	for (int k = 0; tab[k];k++)
-		ft_printf("%s\n",tab[k]);
 	return(new_str(begin, end, tab));
 }
 
@@ -92,13 +92,46 @@ static char *new_str(char *begin,char *end, char **tab)
 	char *str;
 	
 	i = 0;
-	str = ft_strjoin(begin, " ");
+	str = NULL;
+	if (tab[0] == NULL)
+		return (NULL);
+	if (begin)
+		str = ft_strjoat(begin, " ");
 	while (tab[i])
 	{
-		str = ft_strjoin(str, tab[i]);
-		str = ft_strjoin(str, " ");
+		str = ft_strjoat(str, tab[i]);
+		str = ft_strjoat(str, " ");
 		i++;
 	}
-	str = ft_strjoin(str, end);
+
+	str = ft_strjoat(str, end);
 	return (str);
+}
+
+char	*ft_strjoat(char *s1, char *s2)
+{
+	char	*new;
+	int		size;
+	int		i;
+
+	i = 0;
+	
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	size = (ft_strlen(s1) + ft_strlen(s2));
+	new = ft_malloc(size,"char");
+
+	while (s1 && s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}	
+
+	while (*s2)
+		new[i++] = *s2++;
+		
+	new[size] = '\0';
+	return (new);
 }

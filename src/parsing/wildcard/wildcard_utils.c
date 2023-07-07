@@ -64,3 +64,17 @@ bool last_letter(char *str, char *ex)
 	}
 	return(true);
 }
+
+char *put_in_quotes(char *begin, char *end, char *bfwc, char *afwc)
+{
+	char *str;
+
+	str = ft_strjoat(begin, " '");
+	str = ft_strjoat(str, bfwc);
+	str = ft_strjoat(str, "*");
+	str = ft_strjoat(str, afwc);	
+	str = ft_strjoat(str, "'\0");
+	str = ft_strjoat(str, end);
+
+	return (str);
+}
