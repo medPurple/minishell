@@ -1,11 +1,17 @@
 #include "../../include/minishell.h"
 
-void parsing(t_minishell *mini, char *str)
+int parsing(t_minishell *mini, char *str)
 {
 	mini->tree = new_branche(mini->tree, str);
 	while (mini->tree->end != 1)
 		parse_data(mini->tree, mini->env);
+	if (verif_parentheses(mini->tree) == -1)
+	{
+		ft_printf("[Error] Syntax error near unexpected token\n");
+		return (-1);
+	}			
 	create_cmd_in_tree(mini->tree);
+	return (0);
 }
 
 void parse_data(t_binary *tree, t_env *env)

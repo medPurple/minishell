@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/07 14:53:16 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:00:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int ac, char **av, char **envp)
 
 static void minishell(char *str, t_minishell *mini)
 {
-	parsing(mini,str);
+	if (parsing(mini,str) == -1)
+		return;
 	exec_recu(mini, mini->tree);
 }

@@ -46,3 +46,25 @@ int end_of_parentheses(char *str, int position)
 	}
 	return (i);
 }
+
+int verif_parentheses(t_binary *tree)
+{
+	
+	int i;
+	if (tree->parentheses == 1)
+	{
+		i = 0;
+		while (tree->data[i] != '(')
+			i++;
+		i = end_of_parentheses(tree->data, i);
+		if (i != (int)ft_strlen(tree->data))
+			return (-1);
+	}
+	if (tree->right)
+	{
+		if (verif_parentheses(tree->left) == -1)
+			return (-1);
+		verif_parentheses(tree->right);
+	}
+	return (0);
+}

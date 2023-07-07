@@ -56,7 +56,7 @@ char **removes_quotes(char **tab)
 	{
 		if (has_quotes(tab[i]))
 		{
-			str = ft_malloc(ft_strlen(tab[i]) - 2, "char");
+			str = ft_malloc(ft_strlen(tab[i]) - 1, "char");
 			while(tab[i][j])
 			{
 				if (!(tab[i][j] == '\'' || tab[i][j] == '\"'))
@@ -66,7 +66,15 @@ char **removes_quotes(char **tab)
 					j++;
 				}
 				else
-					j++;
+				{
+					if (tab[i][j+1])
+						j++;
+					else
+					{
+						str[k] = '\0';
+						break;
+					}
+				}
 			}
 			tab[i] = str;
 		}
