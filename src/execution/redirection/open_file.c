@@ -5,12 +5,13 @@ void	open_file(t_binary *tree)
 	t_redirection	*tmp;
 
 	tmp = tree->redir;
-	if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')) || (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<')))
-	{
+	//if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')) || ((tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<') )|| ((tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] == '<')))))
+	//{
 		while(tmp)
 		{
-			while ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')))
+			if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')))
 			{
+				ft_printf("rrreee\n");
 				if (tree->cmd->in)
 					close(tree->cmd->in);
 				if ( tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>'))
@@ -19,21 +20,22 @@ void	open_file(t_binary *tree)
 					tree->cmd->in = open(tmp->redir_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 				if (check_open(tree->cmd->in) == -1)
 					break;
-				tmp = tmp->next;
+				//tmp = tmp->next;
 			}
-			while (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<'))
+			if (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<'))
 			{
 				tree->cmd->out = open(tmp->redir_file, O_RDONLY, 0644);
 				if (check_open(tree->cmd->out) == -1)
 					break;
-				tmp = tmp->next;
+				//tmp = tmp->next;
 			}
-			if (check_open(tree->cmd->out) == -1 || check_open(tree->cmd->in) == -1)
-					break;
+			//if (check_open(tree->cmd->out) == -1 || check_open(tree->cmd->in) == -1)
+					//break;
+			tmp = tmp->next;
 	}
 	tmp = tree->redir;
 //	tree->cmd->out = open(tmp->redir_file, O_RDONLY, 0644);
-	}
+	//}
 }
 
 void	open_file_pipe(t_binary *tree)
@@ -47,8 +49,8 @@ void	open_file_pipe(t_binary *tree)
 	pipe_tmp_write = tree->cmd->pipe_fd[1];
 	check = 0;
 	tmp = tree->redir;
-	if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')) || (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<')))
-	{
+	//if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')) || (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<')))
+	//{
 		while (tmp)
 		{
 			if (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<'))
@@ -62,11 +64,11 @@ void	open_file_pipe(t_binary *tree)
 					break;
 				}
 			}
-			tmp = tmp->next;
-		}
-		tmp = tree->redir;
-		while (tmp)
-		{
+			//tmp = tmp->next;
+		//}
+		//tmp = tree->redir;
+		//while (tmp)
+		//{
 			if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')))
 			{
 				if (check > 0)
@@ -86,7 +88,7 @@ void	open_file_pipe(t_binary *tree)
 			}
 			tmp = tmp->next;
 		}
-	}
+
 	if (check > 0)
 	{
 		perror("open");

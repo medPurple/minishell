@@ -46,9 +46,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 		}
-		else
-		{
-			tree->cmd->check_here_doc = 0;
+
+		tree->cmd->check_here_doc = 0;
 			tree->cmd->fork_pipe = fork();
     		if (tree->cmd->fork_pipe == -1)
         		perror("fork");
@@ -75,7 +74,7 @@ void	pipex(t_binary *tree, t_minishell *mini)
 				tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 				close (tree->cmd->pipe_fd[1]);
 			}
-		}
+
 		i++;
 	}
 	last_pipex(tree, mini, i, j);
@@ -98,8 +97,6 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		tree->cmd->check_here_doc = 1;
 		mini_here_doc(tree->redir->redir_file, tree);
 	}
-	else
-	{
 		tree->cmd->fork_pipe = fork();
 		if (tree->cmd->fork_pipe == -1)
         	perror("fork");
@@ -118,14 +115,14 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 			{
 				if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 					ft_perror("dup2");
-	    		close(tree->cmd->pipe_tmp);
 			}
 			execution_choice_pipe(tree, mini);
 		}
 		else
 		{
 			close(tree->cmd->pipe_fd[1]);
-			//close(tree->cmd->pipe_tmp);
+
+			close(tree->cmd->pipe_tmp);
 		}
 	while(wait(&status) != -1)
                 ;
@@ -133,7 +130,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
         tree->cmd->exec = -1;
 	else
 		 tree->cmd->exec = 1;
-	}
+
 	return;
 }
 

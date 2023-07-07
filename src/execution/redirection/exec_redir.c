@@ -5,6 +5,7 @@ void exec_cmd_redir(t_binary *tree)
 
 	if (count_redir_right(tree) >= 1 || count_redir_right_double(tree) >= 1)
 	{
+		ft_printf("test\n");
 		if (dup2(tree->cmd->in, STDOUT_FILENO) == -1)
 				perror("dup2");
 		close(tree->cmd->in);
@@ -17,9 +18,9 @@ void exec_cmd_redir(t_binary *tree)
 	}
 	if (is_here_doc(tree) >= 1)
 	{
-		if (dup2(tree->cmd->pipe_fd[0], STDIN_FILENO) == -1)
+		if (dup2(tree->cmd->fd[0], STDIN_FILENO) == -1)
 			perror("dup2");
-		close(tree->cmd->pipe_fd[0]);
+		close(tree->cmd->fd[0]);
 	}
 	return;
 }
@@ -27,7 +28,6 @@ void exec_cmd_redir(t_binary *tree)
 void	check_redir_pipe (t_binary *tree)
 {
 	tree->cmd->open_ko = 0;
-
 	if ((count_redir_right(tree) >= 1) || (count_redir_right_double(tree) >= 1) || (count_redir_left(tree) >= 1))
 		open_file_pipe(tree);
 	return;

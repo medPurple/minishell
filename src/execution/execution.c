@@ -52,7 +52,6 @@ void exec_recu(t_minishell *mini, t_binary *tree)
 void    exec_send(t_binary *tree, t_minishell *mini)
 {
     int status;
-
 	tree->cmd->exec = 1;
     if (is_here_doc(tree) >= 1)
 	{
@@ -67,7 +66,7 @@ void    exec_send(t_binary *tree, t_minishell *mini)
         exec_cmd_redir(tree);
         if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
 		    execute_cmd(tree, mini);
-        if (is_a_buildin(tree->cmd->exec_cmd[0]) > 0)
+        else
             exec_buildin_child(tree, mini);
     }
     else
