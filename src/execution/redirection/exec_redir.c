@@ -15,6 +15,12 @@ void exec_cmd_redir(t_binary *tree)
 				perror("dup2");
 		close(tree->cmd->out);
 	}
+	if (is_here_doc(tree) >= 1)
+	{
+		if (dup2(tree->cmd->pipe_fd[0], STDIN_FILENO) == -1)
+			perror("dup2");
+		close(tree->cmd->pipe_fd[0]);
+	}
 	return;
 }
 

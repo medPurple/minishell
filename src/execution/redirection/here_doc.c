@@ -12,7 +12,8 @@ static void	ft_pipe_initialize(t_binary *tree)
 	}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
-		return;
+		perror("fork");
+	return;
 }
 
 void	mini_here_doc(char *limiter, t_binary *tree)
@@ -24,11 +25,12 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 		while (1)
 		{
 			line = readline(">");
+			close(tree->cmd->pipe_fd[0]);
 			if (strcmp(line, limiter) == 0)
 			{
 				free(line);
-				close(tree->cmd->pipe_fd[0]);
 				close(tree->cmd->pipe_fd[1]);
+				close(tree->cmd->pipe_fd[0]);
 				exit(EXIT_SUCCESS);
 			}
 			write(tree->cmd->pipe_fd[1], line, ft_strlen(line));
@@ -44,17 +46,11 @@ static void	ft_gestion_parent(t_binary *tree)
 	int status;
 
 	//if (tree->cmd->check_pipe == -1)
-	//{
-	tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
-	dup2_fd(tree->cmd->pipe_tmp, STDIN_FILENO);
-	close(tree->cmd->pipe_tmp);
-	//}
+	//	tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 	close(tree->cmd->pipe_fd[1]);
 	waitpid(tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)
         tree->cmd->exec = -1;
-	else
-		 tree->cmd->exec = 1;
 }
 
 
