@@ -27,6 +27,7 @@ char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file)
 		}
 		tmp = tmp->next;
 	}
+	tab[i] = NULL;
 	return(tab);
 }
 
@@ -57,6 +58,7 @@ char **wc_before(char *bfwc, t_wc *file)
 		}
 		tmp = tmp->next;
 	}
+	tab[i] = NULL;
 	return(tab);
 }
 
@@ -87,6 +89,7 @@ char **wc_after(char *afwc, t_wc *file)
 		}
 		tmp = tmp->next;
 	}
+	tab[i] = NULL;
 	return(tab);
 }
 
@@ -113,5 +116,6 @@ char **wc_all(t_wc *file)
 		i++;
 		tmp = tmp->next;
 	}
+	tab[i] = NULL;
 	return(tab);
 }
