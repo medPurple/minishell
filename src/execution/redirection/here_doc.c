@@ -45,6 +45,8 @@ static void	ft_gestion_parent(t_binary *tree)
 {
 	int status;
 
+	if(tree->cmd->check_pipe == 1)
+		tree->cmd->pipe_tmp = tree->cmd->fd[0];
 	close(tree->cmd->fd[1]);
 	waitpid(tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)

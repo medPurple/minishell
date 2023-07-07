@@ -5,7 +5,6 @@ void exec_cmd_redir(t_binary *tree)
 
 	if (count_redir_right(tree) >= 1 || count_redir_right_double(tree) >= 1)
 	{
-		ft_printf("test\n");
 		if (dup2(tree->cmd->in, STDOUT_FILENO) == -1)
 				perror("dup2");
 		close(tree->cmd->in);
