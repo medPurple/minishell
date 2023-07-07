@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/07 15:23:19 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:42:39 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ void add_env(t_env **env, char **envp);
 
 void mini_parse(t_minishell *mini, char *str);
 void expand(t_binary *tree, t_env *env);
-void parsing(t_minishell *mini, char *str);
+int parsing(t_minishell *mini, char *str);
 void parse_data(t_binary *tree, t_env *env);
 void create_root(t_binary *tree, t_env *env);
 t_binary *new_branche(t_binary *tree, char *str);
 int	find_next_quotes (char *str, int pos);
 char **removes_quotes(char **tab);
-
+int verif_parentheses(t_binary *tree);
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
