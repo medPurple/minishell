@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/07 11:28:54 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:23:19 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,8 @@ char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
 char **wc_all(t_wc *file);
 char **wc_after(char *afwc, t_wc *file);
 char **wc_before(char *bfwc, t_wc *file);
+char	*ft_strjoat(char *s1, char *s2);
+char *put_in_quotes(char *begin, char *end, char *bfwc, char *afwc);
 
 /*--------------------------------------Parentheses----------------------------------------------*/
 void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);

@@ -5,11 +5,11 @@ static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
-	if (tree->cmd->check_pipe == -1)
-	{
-		if (pipe(tree->cmd->pipe_fd) == -1)
+	//if (tree->cmd->check_pipe == -1)
+	//{
+		if (pipe(tree->cmd->fd) == -1)
 			perror("pipe");
-	}
+	//}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		perror("fork");
@@ -25,15 +25,15 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 		while (1)
 		{
 			line = readline(">");
-			close(tree->cmd->pipe_fd[0]);
+			close(tree->cmd->fd[0]);
 			if (strcmp(line, limiter) == 0)
 			{
 				free(line);
-				close(tree->cmd->pipe_fd[1]);
-				close(tree->cmd->pipe_fd[0]);
+				close(tree->cmd->fd[1]);
 				exit(EXIT_SUCCESS);
 			}
-			write(tree->cmd->pipe_fd[1], line, ft_strlen(line));
+			write(tree->cmd->fd[1], line, ft_strlen(line));
+			write(tree->cmd->fd[1], "\n", 1);
 			free(line);
 		}
 	}
@@ -45,9 +45,9 @@ static void	ft_gestion_parent(t_binary *tree)
 {
 	int status;
 
-	//if (tree->cmd->check_pipe == -1)
-	//	tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
-	close(tree->cmd->pipe_fd[1]);
+	if(tree->cmd->check_pipe == 1)
+		tree->cmd->pipe_tmp = tree->cmd->fd[0];
+	close(tree->cmd->fd[1]);
 	waitpid(tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)
         tree->cmd->exec = -1;
