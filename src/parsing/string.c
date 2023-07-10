@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/06 11:16:43 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:32:16 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,16 @@ int split_pos(char *str, int i)
 		}
 	}
 	return (-1);
+}
+
+bool has_nothing(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str[i] == '\0')
+		return (true);
+	return (false);
 }

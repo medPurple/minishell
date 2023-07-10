@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/07 16:42:39 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:25:14 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ t_binary *new_branche(t_binary *tree, char *str);
 int	find_next_quotes (char *str, int pos);
 char **removes_quotes(char **tab);
 int verif_parentheses(t_binary *tree);
+bool has_nothing(char *str);
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);

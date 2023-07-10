@@ -8,7 +8,7 @@ char *ft_limited_strdup(char *str, int begin, int end)
 	i = 0;
 	if (end - begin < 0)
 		return (NULL);
-	if (end == ft_strlen(str))
+	if (end == ft_strlen(str) && begin == 0)
 		return (str);
 	new_str = ft_malloc(end - begin + 1, "char");
 	while(begin <= end)
