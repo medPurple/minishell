@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
+#    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/02 19:42:17 by ml               ###   ########.fr        #
+#    Updated: 2023/07/11 15:18:54 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,15 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/redirection/redir_utils.c\
 		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
 		$(PATH_SRC)/execution/redirection/here_doc.c\
-    $(PATH_SRC)/execution/parentheses/parentheses.c\
+    	$(PATH_SRC)/execution/parentheses/parentheses.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
 		$(PATH_SRC)/buildin/cd.c\
-    $(PATH_SRC)/buildin/env.c\
+		$(PATH_SRC)/buildin/env.c\
 		$(PATH_SRC)/buildin/export.c\
 		$(PATH_SRC)/buildin/unset.c\
+		$(PATH_SRC)/error/error.c\
 
 
 

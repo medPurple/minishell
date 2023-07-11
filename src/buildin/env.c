@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:08:46 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/23 17:10:26 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:44:59 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void mini_env(t_env *env)
 {
 	t_env *tmp;
-	
 	tmp = env;
 	while(tmp != NULL)
 	{
