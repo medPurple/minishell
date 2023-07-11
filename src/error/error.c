@@ -6,10 +6,33 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:05:49 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/11 15:18:11 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:43:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+0 newline
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+*/
 #include "../../include/minishell.h"
 static void mini_error_two(int i);
 static void mini_error_three(int i);
@@ -22,22 +45,22 @@ void mini_error_one(int i)
 	if (i == 0)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token 'newline'\n");
 	}
-	else if (i == 0)
+	else if (i == 2)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '>'\n");
 	}
-	else if (i == 0)
+	else if (i == 3)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '>>'\n");
 	}
-	else if (i == 0)
+	else if (i == 4)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '|'\n");
 	}
 	else
 		mini_error_two(i);
@@ -45,22 +68,22 @@ void mini_error_one(int i)
 
 static void mini_error_two(int i)
 {
-	if (i == 0)
+	if (i == 5)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '||'\n");
 	}
-	else if (i == 0)
+	else if (i == 6)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '<'\n");
 	}
-	else if (i == 0)
+	else if (i == 7)
 	{
 		g_eoat = 0;
-		send_error("TEST\n");
+		send_error("minishell: syntax error near unexpected token '<'\n");
 	}
-	else if (i == 0)
+	else if (i == 8)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
@@ -71,22 +94,22 @@ static void mini_error_two(int i)
 
 static void mini_error_three(int i)
 {
-	if (i == 0)
+	if (i == 9)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 10)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 11)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 12)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
@@ -97,22 +120,22 @@ static void mini_error_three(int i)
 
 static void mini_error_four(int i)
 {
-	if (i == 0)
+	if (i == 13)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 14)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 15)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 16)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
@@ -123,22 +146,22 @@ static void mini_error_four(int i)
 
 static void mini_error_five(int i)
 {
-	if (i == 0)
+	if (i == 17)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 18)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 19)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
 	}
-	else if (i == 0)
+	else if (i == 20)
 	{
 		g_eoat = 0;
 		send_error("TEST\n");
