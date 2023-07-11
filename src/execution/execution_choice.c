@@ -7,7 +7,7 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 	if ((count_redir_right(tree) >= 1) || (count_redir_right_double(tree) >= 1) || (count_redir_left(tree) >= 1) || is_here_doc(tree) >= 1)
     {
 		open_file(tree);
-		if (check_open(tree->cmd->in) == -1 || check_open(tree->cmd->out) == -1)
+		if (check_open(tree->cmd->in) == -1 || check_open(tree->cmd->out) == -1 || tree->cmd->open_ko < 0)
 		{
 			perror("open");
 			return;

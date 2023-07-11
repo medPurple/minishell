@@ -5,11 +5,11 @@ static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
-	//if (tree->cmd->check_pipe == -1)
-	//{
+	if (tree->cmd->check_pipe == -1)
+	{
 		if (pipe(tree->cmd->fd) == -1)
 			perror("pipe");
-	//}
+	}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		perror("fork");

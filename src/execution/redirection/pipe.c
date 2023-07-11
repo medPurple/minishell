@@ -41,10 +41,21 @@ void	pipex(t_binary *tree, t_minishell *mini)
 			tree->redir = NULL;
 		}
 		j = cmd_redir_malloc(tree, j) + 1;
+		if (tree->cmd->open_ko < 0)
+		{
+			ft_free_tab(tree->cmd->exec_cmd);
+			return;
+		}
 		if (pipe(tree->cmd->pipe_fd) == -1)
 			perror("pipe");
 		if (is_here_doc(tree) >= 1)
 		{
+			if (tree->redir->redir_file == NULL)
+			{
+				tree->cmd->open_ko = -6;
+				ft_printf("here_doc\n");
+				return;
+			}
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			check_redir_pipe(tree);
@@ -64,7 +75,7 @@ void	pipex(t_binary *tree, t_minishell *mini)
 			if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 				perror("dup2");
 			close (tree->cmd->pipe_fd[1]);
-			if(tree->cmd->open_ko == -1)
+			if(tree->cmd->open_ko < 0 )
 			{
 				ft_free_tab(tree->cmd->exec_cmd);
 				return;
@@ -78,10 +89,14 @@ void	pipex(t_binary *tree, t_minishell *mini)
 				close (tree->cmd->pipe_tmp);
 			tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 			close (tree->cmd->pipe_fd[1]);
+			if (tree->cmd->open_ko < 0)
+				break;
 		}
 		i++;
 	}
-	last_pipex(tree, mini, i, j);
+	if (tree->cmd->open_ko >= 0)
+		last_pipex(tree, mini, i, j);
+	return;
 }
 
 void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
@@ -98,6 +113,12 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	j = cmd_redir_malloc(tree, j);
 	if (is_here_doc(tree) >= 1)
 	{
+		if (tree->redir->redir_file == NULL)
+		{
+			ft_printf("here_doc\n");
+			tree->cmd->open_ko = -6;
+			return;
+		}
 		tree->cmd->check_here_doc = 1;
 		mini_here_doc(tree->redir->redir_file, tree);
 	}
