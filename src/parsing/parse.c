@@ -9,7 +9,7 @@ int parsing(t_minishell *mini, char *str)
 	{
 		ft_printf("[Error] Syntax error near unexpected token\n");
 		return (-1);
-	}			
+	}
 	create_cmd_in_tree(mini->tree);
 	return (0);
 }

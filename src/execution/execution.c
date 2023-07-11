@@ -94,7 +94,7 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
     if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
     tree->cmd->path_cmd =  cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
-    if (tree->cmd->path_cmd)
+    if (tree->cmd->path_cmd != NULL)
     {
         if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
         {
@@ -113,6 +113,7 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
     }
     else
     {
+        ft_printf("TEST\n");
         ft_free_tab(tree->cmd->exec_cmd);
 		ft_perror("path");
     }

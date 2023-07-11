@@ -20,6 +20,8 @@ int is_a_fonction(char *str, t_env *env)
 
 	tmp = env;
 	split_env = path_recuperation(tmp);
+	if (split_env == NULL)
+		return (0);
 	if (test_path(str,split_env) == 1)
 		return (1);
 	return (0);

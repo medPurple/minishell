@@ -8,8 +8,8 @@ void create_cmd(t_binary *tree)
 	tree->cmd->exec = 0;
 	tree->cmd->str = tree->data;
 	tree->cmd->split_cmd = mini_split(tree->data);
-  tree->cmd->path_cmd = NULL;
-  tree->cmd->exec_cmd = NULL;
+    tree->cmd->path_cmd = NULL;
+    tree->cmd->exec_cmd = NULL;
 }
 
 char *cmd_recuperation(char *str, t_env *env)
@@ -28,7 +28,7 @@ char *cmd_recuperation(char *str, t_env *env)
         free(cmd);
         i++;
     }
-    return(str);
+    return(NULL);
 }
 
 static char *path_recuperation(t_env *env)
