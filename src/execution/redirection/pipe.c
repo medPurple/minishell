@@ -44,18 +44,13 @@ void	pipex(t_binary *tree, t_minishell *mini)
 		if (tree->cmd->open_ko < 0)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
+			ft_printf("error_gestion\n");
 			return;
 		}
 		if (pipe(tree->cmd->pipe_fd) == -1)
 			perror("pipe");
 		if (is_here_doc(tree) >= 1)
 		{
-			if (tree->redir->redir_file == NULL)
-			{
-				tree->cmd->open_ko = -6;
-				ft_printf("here_doc\n");
-				return;
-			}
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			check_redir_pipe(tree);
@@ -111,14 +106,14 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		tree->redir = NULL;
 	}
 	j = cmd_redir_malloc(tree, j);
+	if (tree->cmd->open_ko < 0)
+	{
+		ft_free_tab(tree->cmd->exec_cmd);
+		ft_printf("error_gestion\n");
+		return;
+	}
 	if (is_here_doc(tree) >= 1)
 	{
-		if (tree->redir->redir_file == NULL)
-		{
-			ft_printf("here_doc\n");
-			tree->cmd->open_ko = -6;
-			return;
-		}
 		tree->cmd->check_here_doc = 1;
 		mini_here_doc(tree->redir->redir_file, tree);
 	}
@@ -151,7 +146,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	}
 	while(wait(&status) != -1)
                 ;
-	if (WEXITSTATUS(status) > 0) // pb is possible // maybe need waitpid
+	if (WEXITSTATUS(status) > 0) 
         tree->cmd->exec = -1;
 	else
 		 tree->cmd->exec = 1;

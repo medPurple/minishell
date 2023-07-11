@@ -93,5 +93,7 @@ int redir_is_valid(char *str)
 		return (-4);
 	if (str[0] == '|')
 		return(-5);
+	if (str[0] == '\0')
+		return(-6);
 	return (0);
 }
