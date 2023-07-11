@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/09 14:25:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:02:10 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void	execution_choice_pipe(t_binary *tree, t_minishell *mini);
 void	execute_cmd_pipe(t_binary *tree, t_minishell *mini);
 int	last_pipe_redir(t_binary *tree, int i);
 void	mini_here_doc(char *limiter, t_binary *tree);
+int redir_is_valid(char *str);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
