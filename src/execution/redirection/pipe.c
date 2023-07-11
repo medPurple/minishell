@@ -30,6 +30,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 	i = 0;
 	tree->cmd->check_here_doc = 0;
 	tree->cmd->is_a_redir = 0;
+	tree->cmd->open_ko = 0;
+	tree->cmd->pipe_tmp  = 0;
 	while (i < count)
 	{
 		if(tree->redir)
@@ -47,7 +49,6 @@ void	pipex(t_binary *tree, t_minishell *mini)
 			mini_here_doc(tree->redir->redir_file, tree);
 			check_redir_pipe(tree);
 			tree->cmd->is_a_redir = 0;
-
 		}
 		tree->cmd->check_here_doc = 0;
 		tree->cmd->fork_pipe = fork();
@@ -73,6 +74,8 @@ void	pipex(t_binary *tree, t_minishell *mini)
 		}
 		else
 		{
+			if (tree->cmd->pipe_tmp  != -1 && tree->cmd->pipe_tmp  != 0)
+				close (tree->cmd->pipe_tmp);
 			tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 			close (tree->cmd->pipe_fd[1]);
 		}
@@ -116,6 +119,7 @@ void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		{
 			if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 				ft_perror("dup2");
+			close(tree->cmd->pipe_tmp);
 		}
 		execution_choice_pipe(tree, mini);
 	}

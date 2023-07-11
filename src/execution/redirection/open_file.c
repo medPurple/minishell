@@ -5,7 +5,9 @@ void	open_file(t_binary *tree)
 	t_redirection	*tmp;
 
 	tmp = tree->redir;
-	while(tmp)
+	tree->cmd->in = 0;
+	tree->cmd->out = 0;
+	while(tmp && (redir_is_valid(tmp->redir_file) == 0))
 	{
 		if ((tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] != '>')) || (tmp && (tmp->redir_cmd[0] == '>' && tmp->redir_cmd[1] == '>')))
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/07 16:00:56 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:02:52 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ int main(int ac, char **av, char **envp)
 	add_env(&mini.env, envp);
 	while (1)
 	{
-		signal(SIGINT, signal_ctrlc); // gestion signal ctl c + afficher nvl ligne
-		signal(SIGQUIT, SIG_IGN); /* permet d ignorer signal SIGQUIT: ctl+\*/
+		signal(SIGINT, signal_ctrlc);
+		signal(SIGQUIT, SIG_IGN);
 		str = readline("minishell$ ");
 		add_history(str);
 		if (str == NULL)
+		{
+			clear_the_tree(mini.tree);
 			exit(0);
+		}
 		minishell(str, &mini);
 		clear_the_tree(mini.tree);
 	}

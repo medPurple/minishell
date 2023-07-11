@@ -36,3 +36,4 @@ void	execution_choice_pipe(t_binary *tree, t_minishell *mini)
 	}
 	return;
 }
+

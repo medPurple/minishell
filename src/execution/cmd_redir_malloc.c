@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 
-static void	malloc_redir(t_binary *tree, int i);
+static int	malloc_redir(t_binary *tree, int i);
 static void	malloc_cmd(t_binary *tree, int size, int i);
 
 int cmd_redir_malloc(t_binary *tree, int i)
@@ -10,13 +10,18 @@ int cmd_redir_malloc(t_binary *tree, int i)
 
 	j = i;
 	save_pos = i;
+	
 	while (tree->cmd->split_cmd[i])
 	{
 		if(is_a_redir(tree->cmd->split_cmd[i]) == true)
 		{
 			j = 2;
-			malloc_redir(tree, i);
+			tree->redir->ok = malloc_redir(tree, i);
 			tree->cmd->is_a_redir = 1;
+			if (tree->redir->ok < 0)
+				break;
+			//ft_printf(" - %s  - %s \n", tree->cmd->split_cmd[i], tree->cmd->split_cmd[i + 1]);
+
 			if (tree->cmd->split_cmd[i + 1] != NULL && tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
 		}
@@ -28,13 +33,23 @@ int cmd_redir_malloc(t_binary *tree, int i)
 	return (i);
 }
 
-static void		malloc_redir(t_binary *tree, int i)
+static int		malloc_redir(t_binary *tree, int i)
 {
 	t_redirection	*tmp;
+	t_redirection	*tmp2;
+
 
 	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]), ft_strdup(tree->cmd->split_cmd[i + 1]));
 	ft_add_back_lst_redirection(&tree->redir, tmp);
-	return;
+
+	tmp2 = tree->redir;
+	while (tmp2)
+	{
+		if (redir_is_valid(tmp2->redir_file) < 0)
+			return (redir_is_valid(tmp2->redir_file));
+		tmp2 = tmp2->next;
+	}
+	return(0);
 }
 
 static void	malloc_cmd(t_binary *tree, int size, int i)
@@ -63,4 +78,18 @@ static void	malloc_cmd(t_binary *tree, int size, int i)
 	}
 	tree->cmd->exec_cmd[j] = NULL;
 	return;
+}
+
+
+int redir_is_valid(char *str)
+{
+	if (str[0] == '<' && str[1] == '<')
+		return (-1);
+	if (str[0] == '<' && str[1] != '<')
+		return (-2);
+	if (str[0] == '>' && str[1] == '>')
+		return (-3);
+	if (str[0] == '>' && str[1] != '>')
+		return (-4);
+	return (0);
 }
