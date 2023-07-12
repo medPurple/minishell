@@ -7,7 +7,6 @@ int parsing(t_minishell *mini, char *str)
 		parse_data(mini->tree, mini->env);
 	if (verif_parentheses(mini->tree) == -1)
 	{
-		ft_printf("[Error] Syntax error near unexpected token\n");
 		return (-1);
 	}
 	create_cmd_in_tree(mini->tree);
