@@ -40,7 +40,12 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                 }
                 if (tree->cmd->check_pipe == -1)
                 {
-                    cmd_redir_malloc(tree, 0);
+                    i = cmd_redir_malloc(tree, 0);
+                    if (i < 0)
+                    {
+                        ft_printf("error_gestion\n");
+                        return;
+                    }
                     execution_choice(tree, mini);
                 }
             }
@@ -113,11 +118,10 @@ void execute_cmd(t_binary *tree, t_minishell *mini)
     }
     else
     {
-        ft_printf("TEST\n");
         ft_free_tab(tree->cmd->exec_cmd);
 		ft_perror("path");
     }
-    ft_free_tab(tree->cmd->exec_cmd);
+    //ft_free_tab(tree->cmd->exec_cmd);
 }
 
 void exec_buildin(t_binary *tree, t_minishell *mini)

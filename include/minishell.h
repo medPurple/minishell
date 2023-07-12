@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/11 15:20:48 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:48:47 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <sys/stat.h>
+
+//ls -l && echo 'test > FILE' > FILE && cat FILE
+//ls "-l" -la && (cat salut) || cat coucou
+//ls (-l) -la && (cat salut) || cat coucou
+//(ls -ls) && cat file || ls "-l -ls (test)" -la | (test) | file
+//je tente " ahahah ls -l ejejej '
+// est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
+//autrement dit repartir de ce qui existe et rediviser a partir des quotes
 
 typedef struct s_wc
 {
@@ -88,8 +96,6 @@ typedef struct s_minishell
 	char **envp;
 
 }				t_minishell;
-
-int	g_eoat = 0;
 
 /*--------------------------------------- ENVIRONNEMENT -------------------------------------------*/
 
@@ -207,8 +213,6 @@ void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void	ft_free_lst(t_redirection *stack);
 void	dup2_fd(int fd, int fd2);
 
-/*---------------------------------------------ERROR-------------------------------------------------------*/
 
-void mini_error_one(int i);
 
 #endif

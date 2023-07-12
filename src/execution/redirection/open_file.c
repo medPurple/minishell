@@ -28,6 +28,8 @@ void	open_file(t_binary *tree)
 		}
 		tmp = tmp->next;
 	}
+	if (tmp && redir_is_valid(tmp->redir_file) < 0)
+		tree->cmd->open_ko = -2;
 //	tree->cmd->out = open(tmp->redir_file, O_RDONLY, 0644);
 }
 
@@ -42,7 +44,7 @@ void	open_file_pipe(t_binary *tree)
 	pipe_tmp_write = tree->cmd->pipe_fd[1];
 	check = 0;
 	tmp = tree->redir;
-	while (tmp)
+	while (tmp && (redir_is_valid(tmp->redir_file) == 0))
 	{
 		if (tmp && (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] != '<'))
 		{
@@ -68,12 +70,15 @@ void	open_file_pipe(t_binary *tree)
 			if (check_open(tree->cmd->pipe_fd[1]) == -1)
 			{
 				tree->cmd->pipe_fd[1] = pipe_tmp_write;
+				tree->cmd->open_ko = -1;
 				check++;
 				break;
 			}
 		}
 		tmp = tmp->next;
 	}
+	if (redir_is_valid(tmp->redir_file) < 0)
+		tree->cmd->open_ko = -2;
 	if (check > 0)
 	{
 		perror("open");
