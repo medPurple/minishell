@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 11:44:27 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:56:24 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	pipe_parent(t_binary *tree, int choice)
 {
 	if (choice == 1)
 	{
-		if (tree->cmd->pipe_tmp  != -1 && tree->cmd->pipe_tmp  != 0)
-				close (tree->cmd->pipe_tmp);
+		if (tree->cmd->pipe_tmp != -1 && tree->cmd->pipe_tmp != 0)
+			close (tree->cmd->pipe_tmp);
 		tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 		close (tree->cmd->pipe_fd[1]);
 	}
@@ -59,18 +59,18 @@ void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i)
 		if (tree->cmd->is_a_redir == 1)
 			check_redir_pipe(tree);
 		close (tree->cmd->pipe_fd[0]);
-		if(dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+		if (dup2 (tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 			perror("dup2");
-		if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+		if (dup2 (tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 			perror("dup2");
 		close (tree->cmd->pipe_fd[1]);
-		if(tree->cmd->open_ko < 0 )
+		if (tree->cmd->open_ko < 0)
 		{
-			pipe_option(tree, 3);
-			return;
+			pipe_option (tree, 3);
+			return ;
 		}
 		else
-			execution_choice_pipe(tree, mini);
+			execution_choice_pipe (tree, mini);
 	}
 	else
 		fork_option_bis(mini, tree, i);
@@ -85,28 +85,27 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i)
 	}
 	if (last_pipe_redir(tree, i) > 0)
 	{
-		if (dup2(tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
+		if (dup2 (tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 			perror("dup2");
 		close (tree->cmd->pipe_fd[1]);
 	}
-	if (tree->cmd->check_here_doc == 0)
+	if (tree->cmd->check_here_doc == 1 || tree->cmd->check_here_doc == 0)
 	{
-		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
+		if (dup2 (tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 			ft_perror("dup2");
-		close(tree->cmd->pipe_tmp);
+		close (tree->cmd->pipe_tmp);
 	}
-	execution_choice_pipe(tree, mini);
+	execution_choice_pipe (tree, mini);
 }
 
 void	pipe_reduce(t_binary *tree)
 {
-	if (pipe(tree->cmd->pipe_fd) == -1)
+	if (pipe (tree->cmd->pipe_fd) == -1)
 		perror("pipe");
-	if (is_here_doc(tree) >= 1)
+	if (is_here_doc (tree) >= 1)
 		pipe_option(tree, 2);
-
 	tree->cmd->check_here_doc = 0;
 	tree->cmd->fork_pipe = fork();
-    if (tree->cmd->fork_pipe == -1)
-    	perror("fork");
+	if (tree->cmd->fork_pipe == -1)
+		perror ("fork");
 }

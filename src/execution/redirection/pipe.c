@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 11:45:20 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:56:26 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	initialize_pipe_value(t_binary *tree)
 	tree->cmd->check_pipe = 1;
 	tree->cmd->status = 0;
 	tree->cmd->count = 0;
+	tree->cmd->check = 0;
 }
 
 int	count_pipe(t_binary *tree)
@@ -46,7 +47,7 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	{
 		if (tree->redir)
 			pipe_option(tree, 1);
-		j = cmd_redir_malloc(tree, j) + 1;
+		j = cmd_redir_malloc(tree, j, j, j) + 1;
 		if (tree->cmd->open_ko < 0)
 		{
 			pipe_option(tree, 3);
@@ -73,7 +74,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	i = j;
 	if (tree->redir)
 		pipe_option (tree, 1);
-	j = cmd_redir_malloc (tree, j);
+	j = cmd_redir_malloc (tree, j, j, j);
 	if (tree->cmd->open_ko < 0)
 	{
 		pipe_option (tree, 3);
