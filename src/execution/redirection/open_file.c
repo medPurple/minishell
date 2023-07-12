@@ -77,12 +77,10 @@ void	open_file_pipe(t_binary *tree)
 		}
 		tmp = tmp->next;
 	}
-	if (redir_is_valid(tmp->redir_file) < 0)
+	if (tmp && redir_is_valid(tmp->redir_file) < 0)
 		tree->cmd->open_ko = -2;
 	if (check > 0)
-	{
 		perror("open");
-	}
 //	tree->cmd->out = open(tmp->redir_file, O_RDONLY, 0644);
 	return;
 }

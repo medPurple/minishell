@@ -32,8 +32,8 @@ void exec_recu(t_minishell *mini, t_binary *tree)
                 {
                     if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
                     {
-                        tree->cmd->check_pipe = 1;
-                        pipex(tree, mini);
+                        initialize_pipe_value(tree);
+                        pipex(tree, mini, 0, 0);
                         break;
                     }
                     i++;

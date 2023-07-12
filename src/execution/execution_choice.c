@@ -30,7 +30,7 @@ void	execution_choice_pipe(t_binary *tree, t_minishell *mini)
 	else
 	{
 		if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
-			execute_cmd_pipe(tree, mini);
+			execute_cmd(tree, mini);
 		else
     		exec_buildin_child(tree, mini);
 	}

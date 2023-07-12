@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/11 15:48:47 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:44:34 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_cmd
     pid_t   fork;
 	pid_t	fork_pipe;
 	int		pipe_fd[2];
+	int	status;
+	int	count;
 	int	pipe_tmp;
 	int	check_pipe;
 	int	open_ko;
@@ -96,6 +98,8 @@ typedef struct s_minishell
 	char **envp;
 
 }				t_minishell;
+
+//int	g_eoat = 0;
 
 /*--------------------------------------- ENVIRONNEMENT -------------------------------------------*/
 
@@ -131,16 +135,22 @@ void    exec_send(t_binary *tree, t_minishell *mini);
 
 /*----------------------------------------------REDIRECTION----------------------------------------*/
 
-void    pipex(t_binary *tree, t_minishell *mini);
+void    pipex(t_binary *tree, t_minishell *mini, int i, int j);
 void    last_pipex(t_binary *tree, t_minishell *mini, int i, int j);
 void	pipe_redir(t_binary *tree);
 void	check_redir_pipe (t_binary *tree);
 void	open_file_pipe(t_binary *tree);
 void	execution_choice_pipe(t_binary *tree, t_minishell *mini);
-void	execute_cmd_pipe(t_binary *tree, t_minishell *mini);
 int	last_pipe_redir(t_binary *tree, int i);
 void	mini_here_doc(char *limiter, t_binary *tree);
 int redir_is_valid(char *str);
+void	initialize_pipe_value(t_binary *tree);
+int	count_pipe(t_binary *tree);
+void	pipe_option(t_binary *tree, int choice);
+void	pipe_parent(t_binary *tree, int choice);
+void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i);
+void	wait_child(t_binary *tree);
+void	pipe_reduce(t_binary *tree);
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
