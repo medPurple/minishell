@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_create_redir.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 11:56:28 by mvautrot          #+#    #+#             */
+/*   Updated: 2023/07/12 15:02:31 by mvautrot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/minishell.h"
 
 t_redirection	*ft_new_redirection(char *redir, char *file)
@@ -18,9 +30,8 @@ t_redirection	*ft_new_redirection(char *redir, char *file)
 
 t_redirection	*ft_last_lst_redirection(t_redirection *lst)
 {
-
 	if (!lst)
-		return(NULL);
+		return (NULL);
 	while (lst->next != NULL)
 	{
 		lst = lst->next;

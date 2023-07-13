@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parentheses.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:11:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/07 16:04:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:17:25 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-static bool parentheses_success(t_binary *tree);
 
-void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
+static bool	parentheses_success(t_binary *tree);
+
+void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	tree->parentheses = false;
 	i = ft_strlen(tree->data);
-	while(tree->data[i] == ' ' || tree->data[i] == '\t'|| tree->data[i] == '\0')
+	while (tree->data[i] == ' ' || tree->data[i] == '\t'
+		|| tree->data[i] == '\0')
 		i--;
-	tree->data = ft_limited_strdup(tree->data,1,i - 1);
+	tree->data = ft_limited_strdup(tree->data, 1, i - 1);
 	if (tree->data == NULL)
 	{
 		tree->cmd = malloc(sizeof(t_cmd));
@@ -42,15 +44,15 @@ void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 	}
 }
 
-static bool parentheses_success(t_binary *tree)
+static bool	parentheses_success(t_binary *tree)
 {
-	t_binary *tmp;
+	t_binary	*tmp;
 
 	tmp = tree;
-	while(tmp->right)
+	while (tmp->right)
 		tmp = tmp->right;
 	if (tmp->cmd->exec == 1)
-		return true;
+		return (true);
 	else
-		return false;
+		return (false);
 }

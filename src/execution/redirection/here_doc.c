@@ -1,69 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
+/*   Updated: 2023/07/12 14:09:20 by mvautrot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/minishell.h"
-void	dup2_fd(int fd, int fd2);
+
 static void	ft_pipe_initialize(t_binary *tree);
 static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
-	if (tree->cmd->check_pipe == -1)
-	{
-		if (pipe(tree->cmd->fd) == -1)
-			perror("pipe");
-	}
+	if (pipe(tree->cmd->fd) == -1)
+		perror("pipe");
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		perror("fork");
-	return;
+	return ;
 }
 
 void	mini_here_doc(char *limiter, t_binary *tree)
 {
 	char	*line;
-	ft_pipe_initialize(tree);
+
+	ft_pipe_initialize (tree);
 	if (tree->cmd->fork == 0)
 	{
 		while (1)
 		{
 			line = readline(">");
 			close(tree->cmd->fd[0]);
-			if (strcmp(line, limiter) == 0)
+			if (strcmp (line, limiter) == 0)
 			{
-				free(line);
-				close(tree->cmd->fd[1]);
-				exit(EXIT_SUCCESS);
+				free (line);
+				close (tree->cmd->fd[1]);
+				exit (EXIT_SUCCESS);
 			}
-			write(tree->cmd->fd[1], line, ft_strlen(line));
-			write(tree->cmd->fd[1], "\n", 1);
-			free(line);
+			write (tree->cmd->fd[1], line, ft_strlen(line));
+			write (tree->cmd->fd[1], "\n", 1);
+			free (line);
 		}
 	}
 	else
-		ft_gestion_parent(tree);
+		ft_gestion_parent (tree);
 }
 
 static void	ft_gestion_parent(t_binary *tree)
 {
-	int status;
+	int	status;
 
-	if(tree->cmd->check_pipe == 1)
+	if (tree->cmd->check_pipe == 1)
 		tree->cmd->pipe_tmp = tree->cmd->fd[0];
-	close(tree->cmd->fd[1]);
-	waitpid(tree->cmd->fork, &status, 0);
+	close (tree->cmd->fd[1]);
+	waitpid (tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)
-        tree->cmd->exec = -1;
+		tree->cmd->exec = -1;
 }
-
 
 int	is_here_doc(t_binary *tree)
 {
+	int				count;
 	t_redirection	*tmp;
-	int	count;
 
 	if (tree->cmd->is_a_redir == 0)
-		return(0);
+		return (0);
 	tmp = tree->redir;
 	count = 0;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->redir_cmd[0] == '<' && tmp->redir_cmd[1] == '<')
 		{
