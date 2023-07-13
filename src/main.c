@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 13:45:24 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:08:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int main(int ac, char **av, char **envp)
 		str = readline("minishell$ ");
 		add_history(str);
 		if (str == NULL)
-		{
-			//clear_the_tree(mini.tree);
 			exit(0);
-		}
 		minishell(str, &mini);
 		clear_the_tree(mini.tree);
 	}

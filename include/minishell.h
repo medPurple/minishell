@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 17:21:29 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:07:55 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // est ce qu on creer un arbre binaire a partir de ce qui a ete creer initialement
 //autrement dit repartir de ce qui existe et rediviser a partir des quotes
 
+extern int g_eoat;
 typedef struct s_wc
 {
 	char *file;
@@ -194,7 +195,12 @@ int find_next_split(t_binary *tree, t_env *env);
 bool string_analyse(char *str, t_env *env);
 int split_pos(char *str, int i);
 int end_of_parentheses(char *str, int position);
-
+char	*join_all_part(char *str, char *add);
+char *sie_norme(t_env *tmp, char *str);
+char *jap_norme(char *str, int i, char *before, char *add);
+int ipp_norme(char *str);
+char *rmq_norme(char *tab);
+int fns_norme(char *str, int i);
 /*--------------------------------------Wildcards------------------------------------------------*/
 
 char *wildcard(char *str, int i);
@@ -203,6 +209,9 @@ t_wc *new_wc(char *str);
 bool first_letter(char *str, char *ex);
 bool last_letter(char *str, char *ex);
 char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file);
+int bf_af_norme(t_wc *tmp, char *bfwc, char *afwc);
+int af_norme(t_wc *tmp, char *afwc);
+int bf_norme(t_wc *tmp, char *bfwc);
 char **wc_all(t_wc *file);
 char **wc_after(char *afwc, t_wc *file);
 char **wc_before(char *bfwc, t_wc *file);

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   meta.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 13:58:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 14:33:01 by wmessmer         ###   ########.fr       */
+/*   Created: 2023/07/12 14:49:58 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 14:55:50 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-bool	is_a_meta(char *str, int i)
+int	ipp_norme(char *str)
 {
-	if (!(str[i + 1]))
-		return (false);
-	if (str[i] == '|' && str[i + 1] == '|')
-		return (true);
-	else if (str[i] == '&' && str[i + 1] == '&')
-		return (true);
-	else
-		return (false);
+	int	i;
+
+	i = 0;
+	while (str && str[i] == ' ' && str[i] == '\t' && str[i] != '\0')
+		i++;
+	return (i);
 }

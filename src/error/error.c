@@ -6,42 +6,18 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:05:49 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 11:32:33 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:15:04 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-0 newline
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-*/
 #include "../../include/minishell.h"
 
-static void mini_error_two(int i);
-static void mini_error_three(int i);
-static void mini_error_four(int i);
-static void mini_error_five(int i);
+static void	mini_error_two(int i);
+static void	mini_error_three(int i);
+static void	mini_error_four(int i);
+static void	mini_error_five(int i);
 
-
-void mini_error_one(int i)
+void	mini_error_one(int i)
 {
 	if (i == 1)
 	{
@@ -67,7 +43,7 @@ void mini_error_one(int i)
 		mini_error_two(i);
 }
 
-static void mini_error_two(int i)
+static void	mini_error_two(int i)
 {
 	if (i == 5)
 	{
@@ -82,7 +58,7 @@ static void mini_error_two(int i)
 	else if (i == 7)
 	{
 		g_eoat = 2;
-		send_error("minishell: syntax error near unexpected token '<'\n");
+		send_error("minishell: syntax error near unexpected token '<<'\n");
 	}
 	else if (i == 8)
 	{
@@ -93,7 +69,7 @@ static void mini_error_two(int i)
 		mini_error_three(i);
 }
 
-static void mini_error_three(int i)
+static void	mini_error_three(int i)
 {
 	if (i == 9)
 	{
@@ -119,7 +95,7 @@ static void mini_error_three(int i)
 		mini_error_four(i);
 }
 
-static void mini_error_four(int i)
+static void	mini_error_four(int i)
 {
 	if (i == 13)
 	{
@@ -145,7 +121,7 @@ static void mini_error_four(int i)
 		mini_error_five(i);
 }
 
-static void mini_error_five(int i)
+static void	mini_error_five(int i)
 {
 	if (i == 17)
 	{

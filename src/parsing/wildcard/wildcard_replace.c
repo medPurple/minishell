@@ -1,26 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wildcard_replace.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 12:03:19 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 17:01:21 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/minishell.h"
 
-char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file)
+char	**wc_before_and_after(char *bfwc, char *afwc, t_wc *file)
 {
-	t_wc *tmp;
-	int count;
-	char **tab;
-	int i;
+	t_wc	*tmp;
+	int		count;
+	char	**tab;
+	int		i;
 
-	count = 0;
 	tmp = file;
+	count = bf_af_norme(tmp, bfwc, afwc);
 	i = 0;
-	while(tmp)
-	{
-		if ((first_letter(tmp->file,bfwc) == true) && (last_letter(tmp->file,afwc) == true))
-			count++;
-		tmp = tmp->next;
-	}
 	tab = ft_malloc2(count, "char*");
 	tmp = file;
-	while(tmp)
+	while (tmp)
 	{
-		if ((first_letter(tmp->file,bfwc) == true) && (last_letter(tmp->file,afwc) == true))
+		if ((first_letter(tmp->file, bfwc) == true) \
+		&& (last_letter(tmp->file, afwc) == true))
 		{
 			tab[i] = tmp->file;
 			i++;
@@ -28,30 +35,24 @@ char **wc_before_and_after(char *bfwc, char *afwc, t_wc *file)
 		tmp = tmp->next;
 	}
 	tab[i] = NULL;
-	return(tab);
+	return (tab);
 }
 
-char **wc_before(char *bfwc, t_wc *file)
+char	**wc_before(char *bfwc, t_wc *file)
 {
-	t_wc *tmp;
-	int count;
-	char **tab;
-	int i;
+	t_wc	*tmp;
+	int		count;
+	char	**tab;
+	int		i;
 
-	count = 0;
 	tmp = file;
+	count = bf_norme(tmp, bfwc);
 	i = 0;
-	while(tmp)
-	{
-		if ((first_letter(tmp->file,bfwc) == true))
-			count++;
-		tmp = tmp->next;
-	}
 	tab = ft_malloc2(count, "char*");
 	tmp = file;
-	while(tmp)
+	while (tmp)
 	{
-		if ((first_letter(tmp->file,bfwc) == true))
+		if ((first_letter(tmp->file, bfwc) == true))
 		{
 			tab[i] = tmp->file;
 			i++;
@@ -59,30 +60,24 @@ char **wc_before(char *bfwc, t_wc *file)
 		tmp = tmp->next;
 	}
 	tab[i] = NULL;
-	return(tab);
+	return (tab);
 }
 
-char **wc_after(char *afwc, t_wc *file)
+char	**wc_after(char *afwc, t_wc *file)
 {
-	t_wc *tmp;
-	int count;
-	char **tab;
-	int i;
+	t_wc	*tmp;
+	int		count;
+	char	**tab;
+	int		i;
 
-	count = 0;
 	tmp = file;
+	count = af_norme(tmp, afwc);
 	i = 0;
-	while(tmp)
-	{
-		if ((last_letter(tmp->file,afwc) == true))
-			count++;
-		tmp = tmp->next;
-	}
 	tab = ft_malloc2(count, "char*");
 	tmp = file;
-	while(tmp)
+	while (tmp)
 	{
-		if ((last_letter(tmp->file,afwc) == true))
+		if ((last_letter(tmp->file, afwc) == true))
 		{
 			tab[i] = tmp->file;
 			i++;
@@ -90,32 +85,32 @@ char **wc_after(char *afwc, t_wc *file)
 		tmp = tmp->next;
 	}
 	tab[i] = NULL;
-	return(tab);
+	return (tab);
 }
 
-char **wc_all(t_wc *file)
+char	**wc_all(t_wc *file)
 {
-	t_wc *tmp;
-	int count;
-	char **tab;
-	int i;
+	t_wc	*tmp;
+	int		count;
+	char	**tab;
+	int		i;
 
 	count = 0;
 	tmp = file;
 	i = 0;
-	while(tmp)
+	while (tmp)
 	{
 		count++;
 		tmp = tmp->next;
 	}
 	tab = ft_malloc2(count, "char*");
 	tmp = file;
-	while(tmp)
+	while (tmp)
 	{
 		tab[i] = tmp->file;
 		i++;
 		tmp = tmp->next;
 	}
 	tab[i] = NULL;
-	return(tab);
+	return (tab);
 }
