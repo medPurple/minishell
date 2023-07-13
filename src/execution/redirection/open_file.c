@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:31 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 16:01:33 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:41:44 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	open_file(t_binary *tree)
 		tmp = tmp->next;
 	}
 	if (tmp && redir_is_valid (tmp->redir_file) < 0)
-		tree->cmd->open_ko = -2;
+		tree->cmd->check_redir = -2;
 }
 
 static void	open_file_pipe_bis(t_binary *tree, t_redirection *tmp)
@@ -103,7 +103,7 @@ static int	redir_control(t_binary *tree, t_redirection *tmp,
 	if (choice == 0)
 	{
 		if (tmp && redir_is_valid(tmp->redir_file) < 0)
-			tree->cmd->open_ko = -2;
+			tree->cmd->check_redir = -2;
 		if (tree->cmd->check > 0)
 			perror ("open");
 	}

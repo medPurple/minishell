@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 16:56:26 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:43:16 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	initialize_pipe_value(t_binary *tree)
 {
 	tree->cmd->check_here_doc = 0;
 	tree->cmd->is_a_redir = 0;
-	tree->cmd->open_ko = 0;
+	tree->cmd->check_redir = 0;
 	tree->cmd->pipe_tmp = 0;
 	tree->cmd->check_pipe = 1;
 	tree->cmd->status = 0;
@@ -48,7 +48,7 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		if (tree->redir)
 			pipe_option(tree, 1);
 		j = cmd_redir_malloc(tree, j, j, j) + 1;
-		if (tree->cmd->open_ko < 0)
+		if (tree->cmd->check_redir < 0)
 		{
 			pipe_option(tree, 3);
 			return ;
@@ -59,12 +59,12 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		else
 		{
 			pipe_parent (tree, 1);
-			if (tree->cmd->open_ko < 0)
+			if (tree->cmd->check_redir < 0)
 				break ;
 		}
 		i++;
 	}
-	if (tree->cmd->open_ko >= 0)
+	if (tree->cmd->check_redir >= 0)
 		last_pipex(tree, mini, i, j);
 	return ;
 }
@@ -75,7 +75,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	if (tree->redir)
 		pipe_option (tree, 1);
 	j = cmd_redir_malloc (tree, j, j, j);
-	if (tree->cmd->open_ko < 0)
+	if (tree->cmd->check_redir < 0)
 	{
 		pipe_option (tree, 3);
 		return ;

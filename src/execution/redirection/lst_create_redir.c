@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_create_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:28 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 15:02:31 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:37:42 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_redirection	*ft_new_redirection(char *redir, char *file)
 	element->redir_file = NULL;
 	element->redir_cmd = redir;
 	element->redir_file = file;
-	element->ok = 0;
 	element->next = NULL;
 	return (element);
 }

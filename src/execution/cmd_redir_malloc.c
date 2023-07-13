@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_redir_malloc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:44 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 16:57:02 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:42:14 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ int	cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos)
 		if (is_a_redir(tree->cmd->split_cmd[i]) == true)
 		{
 			j = 2;
-			tree->redir->ok = malloc_redir(tree, i);
+			tree->cmd->check_redir = malloc_redir(tree, i);
 			tree->cmd->is_a_redir = 1;
-			if (tree->redir->ok < 0)
-			{
-				tree->cmd->open_ko = tree->redir->ok;
+			if (tree->cmd->check_redir < 0)
 				break ;
-			}
 			if (tree->cmd->split_cmd[i + 1] != NULL
 				&& tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
