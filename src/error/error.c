@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:05:49 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 11:32:33 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:15:04 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	mini_error_two(int i)
 	else if (i == 7)
 	{
 		g_eoat = 2;
-		send_error("minishell: syntax error near unexpected token '<'\n");
+		send_error("minishell: syntax error near unexpected token '<<'\n");
 	}
 	else if (i == 8)
 	{
