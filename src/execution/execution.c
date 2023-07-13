@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 16:55:43 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:34:01 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 		i = cmd_redir_malloc(tree, 0, 0, 0);
 		if (i < 0)
 		{
+			analyze_error(tree);
 			ft_printf("error_gestion\n");
 			return ;
 		}

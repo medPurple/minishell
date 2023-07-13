@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
+#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/13 12:11:00 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/13 13:32:27 by ml               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit_bis.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
+		$(PATH_SRC)/execution/analyze_error.c\
 		$(PATH_SRC)/execution/exec_buildin.c\
 		$(PATH_SRC)/execution/cmd_redir_malloc.c\
 		$(PATH_SRC)/execution/execution_choice.c\

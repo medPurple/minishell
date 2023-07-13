@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_choice.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:47 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 11:56:48 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:30:34 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 	{
 		open_file(tree);
 		if (check_open(tree->cmd->in) == -1 || check_open(tree->cmd->out) == -1
-			|| tree->cmd->open_ko < 0)
+			|| tree->cmd->check_redir < 0)
 		{
 			perror("open");
 			return ;

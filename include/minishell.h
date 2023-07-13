@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/13 12:07:55 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:33:37 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_cmd
 	int	pipe_tmp;
 	int	check_pipe;
 	int	check;
-	int	open_ko;
+	int	check_redir;
 	int	check_here_doc;
 	int	is_a_redir;
     int     fd[2];
@@ -236,6 +236,7 @@ t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void	ft_free_lst(t_redirection *stack);
 
-
+void	mini_error_one(int i);
+void    analyze_error(t_binary *tree);
 
 #endif
