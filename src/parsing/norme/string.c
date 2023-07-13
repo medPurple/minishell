@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   meta.c                                             :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 13:58:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 14:33:01 by wmessmer         ###   ########.fr       */
+/*   Created: 2023/07/12 16:14:40 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 16:16:49 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include  "../../../include/minishell.h"
 
-bool	is_a_meta(char *str, int i)
+int	fns_norme(char *str, int i)
 {
-	if (!(str[i + 1]))
-		return (false);
-	if (str[i] == '|' && str[i + 1] == '|')
-		return (true);
-	else if (str[i] == '&' && str[i + 1] == '&')
-		return (true);
-	else
-		return (false);
+	while (str[i] != '\0' && str[i] != ' ' \
+			&& str[i] != '\t')
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+			i = end_of_quotes(str, i);
+		else
+			i++;
+	}
+	return (i);
 }

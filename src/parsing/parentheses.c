@@ -1,14 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parentheses.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 12:03:06 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 12:03:07 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
-void ignore_parentheses(t_binary *tree)
+void	ignore_parentheses(t_binary *tree)
 {
-	int i = 1;
-	int para_count = 1;
+	int	i;
+	int	para_count;
 
+	i = 1;
+	para_count = 1;
 	while (para_count != 0)
 	{
 		if (tree->data[i] == '\0')
-			break;
+			break ;
 		if (tree->data[i] == ')')
 			para_count--;
 		else if (tree->data[i] == '(')
@@ -21,23 +35,23 @@ void ignore_parentheses(t_binary *tree)
 	{
 		tree->command = ft_limited_strdup(tree->data, 0, i - 1);
 		tree->rest = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
-	} else
-	{
-		tree->parentheses = true;
-		return;
 	}
-		
+	else
+		tree->parentheses = true;
+	return ;
 }
 
-int end_of_parentheses(char *str, int position)
+int	end_of_parentheses(char *str, int position)
 {
-	int i = position + 1;
-	int para_count = 1;
+	int	i;
+	int	para_count;
 
+	i = position + 1;
+	para_count = 1;
 	while (para_count != 0 && str[i])
 	{
 		if (str[i] == '\0')
-			break;
+			break ;
 		if (str[i] == ')')
 			para_count--;
 		else if (str[i] == '(')
@@ -47,10 +61,10 @@ int end_of_parentheses(char *str, int position)
 	return (i);
 }
 
-int verif_parentheses(t_binary *tree)
+int	verif_parentheses(t_binary *tree)
 {
-	
-	int i;
+	int	i;
+
 	if (tree->parentheses == 1)
 	{
 		i = 0;

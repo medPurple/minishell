@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   meta.c                                             :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 13:58:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/06/15 14:33:01 by wmessmer         ###   ########.fr       */
+/*   Created: 2023/07/12 15:16:31 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 15:44:58 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
-bool	is_a_meta(char *str, int i)
+char	*rmq_norme(char *tab)
 {
-	if (!(str[i + 1]))
-		return (false);
-	if (str[i] == '|' && str[i + 1] == '|')
-		return (true);
-	else if (str[i] == '&' && str[i + 1] == '&')
-		return (true);
-	else
-		return (false);
+	int		i;
+	int		j;
+	char	*nstr;
+
+	i = 0;
+	j = 0;
+	nstr = ft_malloc(ft_strlen(tab) - 1, "char");
+	while (tab[i])
+	{
+		if (!(tab[i] == '\'' || tab[i] == '\"'))
+			nstr[j++] = tab[i++];
+		else
+		{
+			if (tab[i + 1])
+				i++;
+			else
+			{
+				nstr[j] = '\0';
+				return (nstr);
+			}
+		}
+	}
+	return (nstr);
 }

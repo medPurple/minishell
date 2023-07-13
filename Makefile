@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/12 09:59:44 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/07/12 16:55:41 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,11 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard_utils.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard_replace.c\
+		$(PATH_SRC)/parsing/norme/expand.c\
+		$(PATH_SRC)/parsing/norme/parse.c\
+		$(PATH_SRC)/parsing/norme/quotes.c\
+		$(PATH_SRC)/parsing/norme/string.c\
+		$(PATH_SRC)/parsing/norme/wildcard.c\
 		$(PATH_SRC)/signals/signals.c\
 		$(PATH_SRC)/execution/execution.c\
 		$(PATH_SRC)/execution/minisplit.c\
@@ -56,7 +61,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/buildin/env.c\
 		$(PATH_SRC)/buildin/export.c\
 		$(PATH_SRC)/buildin/unset.c\
-		#$(PATH_SRC)/error/error.c\
+		$(PATH_SRC)/error/error.c\
 
 
 

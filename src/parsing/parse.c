@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 14:52:02 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
-int parsing(t_minishell *mini, char *str)
+int	parsing(t_minishell *mini, char *str)
 {
 	mini->tree = new_branche(mini->tree, str);
 	while (mini->tree->end != 1)
@@ -13,20 +25,19 @@ int parsing(t_minishell *mini, char *str)
 	return (0);
 }
 
-void parse_data(t_binary *tree, t_env *env)
+void	parse_data(t_binary *tree, t_env *env)
 {
 	if (tree->left == NULL)
 		create_root(tree, env);
-	if (tree->command == NULL) {
+	if (tree->command == NULL)
+	{
 		if (tree->data[0] != '(')
 			expand(tree, env);
 		tree->end = 1;
-		return;
+		return ;
 	}
 	tree->left = new_branche(tree->left, tree->command);
 	tree->right = new_branche(tree->right, tree->rest);
-	//ft_printf("Left - %s\n",tree->left->data);
-	//ft_printf("Right - %s\n",tree->right->data);
 	if (tree->left->data[0] == '(')
 		tree->left->parentheses = true;
 	if (tree->left->data[0] != '(')
@@ -39,36 +50,36 @@ void parse_data(t_binary *tree, t_env *env)
 		tree->end = 1;
 }
 
-void create_root(t_binary *tree, t_env *env)
+void	create_root(t_binary *tree, t_env *env)
 {
-	int split;
-	int i;
+	int	split;
+	int	i;
 
-	i = 0;	
-	while (tree->data && tree->data[i] == ' ')
-		i++;
+	i = ipp_norme(tree->data);
 	if (i != 0)
-		tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));	
+		tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
 	else if (is_a_meta(tree->data, 0) == true)
 		split_char(tree);
-	else{
+	else
+	{
 		if (has_nothing(tree->data) == true)
-			return;
+			return ;
 		split = find_next_split(tree, env);
 		if (split == -1)
-			return;
+			return ;
 		else
 		{
-			tree->command = ft_limited_strdup(tree->data,i,split);
-			tree->rest = ft_limited_strdup(tree->data,split + 1, ft_strlen(tree->data));
+			tree->command = ft_limited_strdup(tree->data, i, split);
+			tree->rest = ft_limited_strdup(tree->data, split + 1, \
+				ft_strlen(tree->data));
 		}
-		return;
+		return ;
 	}
 }
 
-t_binary *new_branche(t_binary *tree, char *str)
+t_binary	*new_branche(t_binary *tree, char *str)
 {
 	tree = malloc(sizeof(t_binary));
 	tree->parentheses = false;
@@ -83,13 +94,13 @@ t_binary *new_branche(t_binary *tree, char *str)
 	return (tree);
 }
 
-void create_cmd_in_tree(t_binary *tree)
+void	create_cmd_in_tree(t_binary *tree)
 {
-	if (tree->right) {
+	if (tree->right)
+	{
 		create_cmd_in_tree(tree->left);
 		create_cmd_in_tree(tree->right);
-	} else
+	}
+	else
 		create_cmd(tree);
 }
-
-//ok tant qu'on a pas croisee un metacar on avance.

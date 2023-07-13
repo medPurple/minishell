@@ -15,18 +15,17 @@
 t_env	*ft_new_element(char *data)
 {
 	t_env	*element;
-	int i;
+	int		i;
 
 	i = 0;
 	element = malloc(sizeof(t_env));
 	if (!element)
 		return (NULL);
 	element->name = NULL;
-	while(data[i] != '=' && data[i])
+	while (data[i] != '=' && data[i])
 		i++;
 	element->name = ft_malloc(i, "char");
 	element->name[i] = '\0';
-	
 	i--;
 	while (i >= 0)
 	{
@@ -42,15 +41,13 @@ t_env	*ft_new_element(char *data)
 t_env	*ft_last_lst(t_env *lst)
 {
 	while (lst->next)
-	{
 		lst = lst->next;
-	}
 	return (lst);
 }
 
 void	ft_add_back_lst(t_env **lst, t_env *new)
 {
-	t_env   *tmp;
+	t_env	*tmp;
 
 	if (!*lst)
 		*lst = new;

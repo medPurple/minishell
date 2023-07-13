@@ -1,29 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/12 13:51:02 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
-static char *replace_doll(char *str, t_env *env, int position);
-static char *search_in_env(char *var, t_env *env, char *str);
-static char *join_all_part(char *str, char *add);
 
+static char	*replace_doll(char *str, t_env *env, int position);
+static char	*search_in_env(char *var, t_env *env, char *str);
+static int	expand_norme(t_binary *tree, t_env *env, int i);
 
-void expand(t_binary *tree, t_env *env)
+void	expand(t_binary *tree, t_env *env)
 {
-	int i;
+	int	i;
 	int	quotes;
 
 	i = 0;
 	quotes = 0;
 	while (tree->data[i])
 	{
-		if (tree->data[i] == '$')
-			tree->data = replace_doll(tree->data, env, i+1);
-		else if (tree->data[i] == '*')
-		{
-			tree->data = wildcard(tree->data, i);
-			i = 0;
-		}
-		else if (tree->data[i] == '\'')
-			i = pass_quotes(tree->data, i) + 1;
-		else
-			i++;
+		i = expand_norme(tree, env, i);
 		if (tree->data[i] == '\"' && quotes == 0)
 		{
 			if (find_next_quotes(tree->data, i) == -1)
@@ -39,19 +41,38 @@ void expand(t_binary *tree, t_env *env)
 	}
 }
 
-static char *replace_doll(char *str, t_env *env, int position)
+static int	expand_norme(t_binary *tree, t_env *env, int i)
 {
-	int i;
-	char *var;
+	if (tree->data[i] == '$')
+	{
+		tree->data = replace_doll(tree->data, env, i + 1);
+		i = 0;
+	}
+	else if (tree->data[i] == '*')
+	{
+		tree->data = wildcard(tree->data, i);
+		i = 0;
+	}
+	else if (tree->data[i] == '\'')
+		i = pass_quotes(tree->data, i) + 1;
+	else
+		i++;
+	return (i);
+}
+
+static char	*replace_doll(char *str, t_env *env, int position)
+{
+	int		i;
+	char	*var;
 
 	i = position;
-	while(str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
+	while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
 		i++;
 	i = i - position;
-
 	var = ft_malloc(i, "char");
 	i = 0;
-	while(str[position]  != ' ' && str[position] != '\t' && str[position] != '\0'
+	while (str[position] != ' ' && str[position] != '\t'\
+		&& str[position] != '\0'
 		&& str[position] != '\"')
 	{
 		var[i] = str[position];
@@ -59,54 +80,37 @@ static char *replace_doll(char *str, t_env *env, int position)
 		position++;
 	}
 	var[i] = '\0';
-	str = search_in_env(var,env, str);
-	return(str);
-}
-
-static char *search_in_env(char *var, t_env *env, char *str)
-{
-	t_env *tmp;
-	int i;
-	int j;
-	char *add;
-
-	i = 0;
-	j = 0;
-	add = NULL;
-	tmp = env;
-	while(env != NULL) {
-		if (ft_strncmp(env->data, var, ft_strlen(var)) == 0)
-			break;
-		env = env->next;
-	}
-	if (env != NULL)
-	{
-		while(env->data[i] != '=')
-			i++;
-		i++;
-		add = ft_malloc((ft_strlen(env->data) - i), "char");
-
-		while(env->data[i] != '\0')
-			add[j++] = env->data[i++];
-		add[j] = '\0';
-		str = join_all_part(str, add);
-	}
-	env = tmp;
+	str = search_in_env(var, env, str);
 	return (str);
 }
 
-static char *join_all_part(char *str, char *add)
+static char	*search_in_env(char *var, t_env *env, char *str)
 {
-	int i;
-	int j;
-	char *before;
-	char *after;
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp != NULL)
+	{
+		if (ft_strncmp(tmp->data, var, ft_strlen(var)) == 0)
+			break ;
+		tmp = tmp->next;
+	}
+	if (tmp != NULL)
+		str = sie_norme(tmp, str);
+	return (str);
+}
+
+char	*join_all_part(char *str, char *add)
+{
+	int		i;
+	int		j;
+	char	*before;
 
 	i = 0;
 	j = 0;
 	while (str[i] != '$')
 		i++;
-	before = ft_malloc(i+1,"char");
+	before = ft_malloc(i + 1, "char");
 	while (j < i - 1)
 	{
 		before[j] = str[j];
@@ -118,13 +122,6 @@ static char *join_all_part(char *str, char *add)
 		i++;
 	while (str[i] == ' ' && str[i] != '\0' && str[i] != '\t')
 		i++;
-	j = 0;
-	after = ft_malloc((ft_strlen(str) - i), "char");
-	while (str[i] != '\0')
-		after[j++] = str[i++];
-	after[j] = '\0';
-	free(str);
-	str = ft_strjoin(before, add);
-	str = ft_strjoin(str, after);
+	str = jap_norme(str, i, before, add);
 	return (str);
 }
