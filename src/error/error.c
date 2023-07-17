@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:05:49 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/13 12:15:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:46:54 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ static void	mini_error_five(int i)
 	else if (i == 18)
 	{
 		g_eoat = 1;
-		send_error("minishell: chdir: error retrieving current directory: \
-		getcwd: cannot access parent directories: No such file or directory\n");
+		send_error("minishell: error retrieving current directory: \n \
+getcwd: cannot access parent directories: No such file or directory\n");
 	}
 	else if (i == 19)
 	{

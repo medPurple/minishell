@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 10:02:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:49:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,22 @@ void	cd_norme(char *str, t_env *env)
 	char	*path;
 
 	path = NULL;
-	i = ft_strlen(str);
-	while (str[i] != '/')
-		i--;
-	if (i == 0)
-		path = "/";
+	if (!str)
+		mini_error_one(18);
 	else
-		path = ft_limited_strdup(str, 0, i - 1);
-	if (opendir((const char *)path) != NULL)
-		changedir(path, str, env);
-	else
-		ft_printf("Wrong cd");
+	{
+		i = ft_strlen(str);
+		while (str[i] != '/')
+			i--;
+		if (i == 0)
+			path = "/";
+		else
+			path = ft_limited_strdup(str, 0, i - 1);
+		if (opendir((const char *)path) != NULL)
+			changedir(path, str, env);
+		else
+			mini_error_one(11);	
+	}
 }
 
 void	cd_norme_2(char *str, char *cmd, t_env *env)
@@ -41,5 +46,5 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	if (opendir((const char *)path) != NULL)
 		changedir(path, str, env);
 	else
-		ft_printf("Wrong cd");
+		mini_error_one(11);
 }

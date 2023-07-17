@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 13:50:58 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:57:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	void	ft_wait(t_binary *tree, int status);
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
 	if (!tree->data)
-		return ;
+		return ;	
 	if (tree->parentheses == true)
 		expand_parentheses_and_execute(tree, mini);
 	else if (tree->right)
@@ -28,6 +28,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
+		
 		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
@@ -35,7 +36,14 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 				return ;
 			else
+			{
+				if (tree->status == true)
+				{
+					tree->data = get_status(tree);
+					tree->cmd->split_cmd = mini_split(tree->data, 0, 0, 0);
+				}
 				execution(mini, tree);
+			}
 		}
 	}
 	return ;
@@ -103,6 +111,7 @@ static	void	ft_wait(t_binary *tree, int status)
 {
 	while (wait(&status) != -1)
 		;
+	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
 }
@@ -117,7 +126,8 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
-			ft_perror(" Error : Command execution\n");
+			mini_error_one(9);
+			exit(127);
 		}
 	}
 	else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
@@ -126,12 +136,14 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
-			ft_perror(" Error : Command execution\n");
+			mini_error_one(9);
+			exit(127);
 		}
 	}
 	else
 	{
 		ft_free_tab(tree->cmd->exec_cmd);
-		ft_perror("path");
+		mini_error_one(9);
+		exit(127);
 	}
 }

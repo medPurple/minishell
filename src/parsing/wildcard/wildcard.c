@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 16:28:13 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:35:34 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*find_file(char *bfwc, char *afwc, char *begin, char *end)
 	liste = NULL;
 	direction = opendir(getcwd(NULL, 0));
 	if (direction == NULL)
-		return (ft_printf("ACCESS DENIED\n"), NULL);
+		return (mini_error_one(12), NULL);
 	entry = readdir(direction);
 	while (entry != NULL)
 	{

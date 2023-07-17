@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 13:41:52 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:31:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_binary
     char *rest;
     char *command;
 	bool	parentheses;
+	bool	status;
 	struct s_cmd *cmd;
 	struct s_binary *prev;
 	struct s_binary *left;
@@ -173,6 +174,7 @@ void	changedir(char *destination, char *last, t_env *env);
 void mini_env(t_env *env);
 void mini_export(t_env **env, char **tab);
 void  mini_unset(t_env **env, char **tab);
+char *get_status(t_binary *tree);
 
 /*------------------------------------------SIGNALS----------------------------------------------*/
 

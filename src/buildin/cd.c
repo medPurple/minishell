@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/06/22 17:01:15 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:09:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	mini_cd(t_env *env, t_binary *tree)
 
 	str = getcwd(NULL, 0);
 	if (count_arg(tree->cmd->split_cmd) > 2)
-		ft_printf("cd: too many arguments\n");
+		mini_error_one(16);
 	else
 	{
 		if (count_arg(tree->cmd->split_cmd) == 1)
@@ -61,6 +61,7 @@ static char	*find_dir(t_env *env)
 			return (ft_limited_strdup(tmp->data, 5, ft_strlen(tmp->data)));
 		tmp = tmp->next;
 	}
+	mini_error_one(17);
 	return (NULL);
 }
 

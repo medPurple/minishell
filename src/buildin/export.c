@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:10:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 10:10:12 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:08:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	mini_export(t_env **env, char **tab)
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == false)
 			ft_printf("\n");
 		else
-			ft_printf("minishell: export: %s : not a valid identifier\n", tab[i]);
+			mini_error_one(13);
 		i++;
 	}
 }

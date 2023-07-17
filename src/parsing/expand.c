@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 13:46:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:07:19 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,16 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 {
 	if (tree->data[i] == '$')
 	{
-		tree->data = replace_doll(tree->data, env, i + 1);
-		i = 0;
+		if (tree->data[i + 1] == '?')
+		{
+			tree->status = true;
+			i += 2;
+		}
+		else
+		{
+			tree->data = replace_doll(tree->data, env, i + 1);
+			i = 0;
+		}
 	}
 	else if (tree->data[i] == '*')
 	{
