@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-void clear_the_tree(t_binary *tree);
-void clear_env(t_env *env);
 
-void mini_exit(t_minishell *mini)
+void	clear_the_tree(t_binary *tree);
+void	clear_env(t_env *env);
+
+void	mini_exit(t_minishell *mini)
 {
 	clear_the_tree(mini->tree);
 	clear_env(mini->env);
@@ -22,7 +23,7 @@ void mini_exit(t_minishell *mini)
 	exit(EXIT_SUCCESS);
 }
 
-void clear_the_tree(t_binary *tree)
+void	clear_the_tree(t_binary *tree)
 {
 	if (tree->right)
 	{
@@ -36,17 +37,17 @@ void clear_the_tree(t_binary *tree)
 	tree->right = NULL;
 	tree->left = NULL;
 	free(tree);
-	
 }
 
-void clear_env(t_env *env)
+void	clear_env(t_env *env)
 {
-	t_env *next;
-	while(env)
+	t_env	*next;
+
+	while (env)
 	{
 		next = env->next;
 		free(env);
-		env = next;		
+		env = next;
 	}
-	return;
+	return ;
 }

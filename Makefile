@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ml <ml@student.42.fr>                      +#+  +:+       +#+         #
+#    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/13 13:32:27 by ml               ###   ########.fr        #
+#    Updated: 2023/07/17 11:08:13 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/buildin/env.c\
 		$(PATH_SRC)/buildin/export.c\
 		$(PATH_SRC)/buildin/unset.c\
+		$(PATH_SRC)/buildin/norme/cd.c\
 		$(PATH_SRC)/error/error.c\
 
 
@@ -79,6 +80,9 @@ all : $(LIB) $(NAME) run
 
 run: minishell
 		@./minishell
+
+runi: minishell
+		@env -i ./minishell
 
 runv : minishell
 		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
@@ -103,6 +107,10 @@ $(LIB) :
 	@make -s -C $(PATH_LIB)
 
 v :$(LIB) $(NAME) runv
+
+nl : $(LIB) $(NAME)
+
+i : $(LIB) $(NAME) runi
 
 clean :
 	@make -s -C $(PATH_LIB) clean

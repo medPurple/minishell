@@ -28,7 +28,6 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 	if (tree->data == NULL)
 	{
 		tree->cmd = malloc(sizeof(t_cmd));
-		tree->cmd->exec = 0;
 		tree->cmd->exec = -1;
 	}
 	else

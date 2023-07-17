@@ -11,22 +11,23 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-void  mini_unset(t_env **env, char **tab)
+
+void	mini_unset(t_env **env, char **tab)
 {
-	int i;
-	t_env *tmp;
+	int		i;
+	t_env	*tmp;
 
 	tmp = (*env);
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
-		while((*env))
+		while ((*env))
 		{
 			if (ft_strcmp(tab[i], (*env)->name) == 0)
 			{
 				(*env)->prev->next = (*env)->next;
 				free((*env));
-				break;
+				break ;
 			}
 			(*env) = (*env)->next;
 		}

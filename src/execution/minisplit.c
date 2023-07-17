@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-static int	word_nb(char *str);
+static int	word_nb(char *str, int i, int count);
 static int	after_quotes(char *str, int i);
 static int	minisplit_bis(char *str, int i);
 
@@ -20,7 +20,7 @@ char	**mini_split(char *str, int j, int i, int k)
 {
 	char	**cmd;
 
-	cmd = ft_malloc2(word_nb(str), "char*");
+	cmd = ft_malloc2(word_nb(str, 0, 0), "char*");
 	while (str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && str[i])
@@ -73,13 +73,8 @@ static int	after_quotes(char *str, int i)
 	return (i);
 }
 
-static int	word_nb(char *str)
+static int	word_nb(char *str, int i, int count)
 {
-	int	i;
-	int	count;
-
-	count = 0;
-	i = 0;
 	while (str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && str[i])

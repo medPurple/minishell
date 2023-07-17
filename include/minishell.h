@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/13 13:33:37 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/17 11:50:46 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,9 @@ void mini_exit(t_minishell *mini);
 void clear_the_tree(t_binary *tree);
 void mini_pwd(t_env *env);
 void mini_cd(t_env *env, t_binary *tree);
+void	cd_norme(char *str, t_env *env);
+void	cd_norme_2(char *str, char *cmd, t_env *env);
+void	changedir(char *destination, char *last, t_env *env);
 void mini_env(t_env *env);
 void mini_export(t_env **env, char **tab);
 void  mini_unset(t_env **env, char **tab);
@@ -201,6 +204,7 @@ char *jap_norme(char *str, int i, char *before, char *add);
 int ipp_norme(char *str);
 char *rmq_norme(char *tab);
 int fns_norme(char *str, int i);
+int	ipp_norme_2(char *str, int i);
 /*--------------------------------------Wildcards------------------------------------------------*/
 
 char *wildcard(char *str, int i);

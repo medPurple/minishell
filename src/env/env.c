@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:25:35 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 17:25:36 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:09:51 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	add_env(t_env **env, char **envp)
 	t_env	*tmp;
 
 	i = 0;
-	if (!envp)
-		return ;
+	if (!envp[i])
+	{
+		ft_printf("/!\\ No environnement set /!\\\n");
+		return ;	
+	}
 	while (envp[i])
 	{
 		tmp = ft_new_element(ft_strdup(envp[i]));

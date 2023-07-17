@@ -1,11 +1,24 @@
-#include "../../include/minishell.h"
-static bool is_valid_bf(char *str);
-static bool has_equals(char *str);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 10:10:11 by wmessmer          #+#    #+#             */
+/*   Updated: 2023/07/17 10:10:12 by wmessmer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void mini_export(t_env **env, char **tab)
+#include "../../include/minishell.h"
+
+static bool	is_valid_bf(char *str);
+static bool	has_equals(char *str);
+
+void	mini_export(t_env **env, char **tab)
 {
-	t_env *tmp;
-	int i;
+	t_env	*tmp;
+	int		i;
 
 	i = 1;
 	while (tab[i])
@@ -21,44 +34,40 @@ void mini_export(t_env **env, char **tab)
 			ft_printf("minishell: export: %s : not a valid identifier\n", tab[i]);
 		i++;
 	}
-	//ft_free_tab(tab);
 }
 
-static bool is_valid_bf(char *str)
+static bool	is_valid_bf(char *str)
 {
-	int i;
-	int j;
-	char *lim;
+	int		i;
+	int		j;
+	char	*lim;
 
 	i = 0;
 	j = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	lim = ft_limited_strdup(str,0,i-1);
+	lim = ft_limited_strdup(str, 0, i - 1);
 	while (lim[j])
 	{
-		if (!((lim[j] >= 'a' && lim[j] <= 'z') || (lim[j] >= 'A' && lim[j] <= 'Z') ||
-			(lim[j] >= '0' && lim[j] <= '9') ))
-			return false;
+		if (!((lim[j] >= 'a' && lim[j] <= 'z') \
+		|| (lim[j] >= 'A' && lim[j] <= 'Z') \
+		|| (lim[j] >= '0' && lim[j] <= '9')))
+			return (false);
 		j++;
 	}
-	return true;
-
+	return (true);
 }
 
-static bool has_equals(char *str)
+static bool	has_equals(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
-	while(str[i])
+	while (str[i])
 	{
-		if( str[i] == '=')
-			return true;
+		if (str[i] == '=')
+			return (true);
 		i++;
 	}
-	return false;
+	return (false);
 }
-
-/*export skkf sdfsdf=sdfsdf "readasd"="dfsdf" resrwe="fsdf" "fsdf"=fsfs*/

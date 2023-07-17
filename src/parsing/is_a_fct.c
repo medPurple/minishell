@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 14:55:40 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:23:50 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static char	**path_recuperation(t_env *env)
 
 	i = 0;
 	j = 0;
+	if (env == NULL)
+		return (NULL);
 	while (ft_strcmp(env->name, "PATH") != 0)
 	{
 		if (env->next == NULL)

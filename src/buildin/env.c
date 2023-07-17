@@ -12,14 +12,14 @@
 
 #include "../../include/minishell.h"
 
-void mini_env(t_env *env)
+void	mini_env(t_env *env)
 {
-	t_env *tmp;
+	t_env	*tmp;
+
 	tmp = env;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
-		ft_printf("%s\n",tmp->data);
+		ft_printf("%s\n", tmp->data);
 		tmp = tmp->next;
 	}
-
 }

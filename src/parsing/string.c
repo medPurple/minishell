@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 16:17:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:55:11 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	find_next_split(t_binary *tree, t_env *env)
 	j = 0;
 	while (tree->data[i] != '\0')
 	{
+		i = ipp_norme_2(tree->data, i);
 		i = fns_norme(tree->data, i);
 		str = ft_limited_strdup(tree->data, j, i - 1);
 		if (string_analyse(str, env) != true)

@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-static bool search_option(char **str);
 
-void mini_echo(t_binary *tree)
+static bool	search_option(char **str);
+
+void	mini_echo(t_binary *tree)
 {
-	bool nl; //boolean new line
-	int i;
+	bool	nl;
+	int		i;
 
 	i = 1;
 	nl = search_option(tree->cmd->exec_cmd);
@@ -32,10 +33,9 @@ void mini_echo(t_binary *tree)
 		ft_putstr_fd("\n");
 }
 
-static bool search_option(char **str)
+static bool	search_option(char **str)
 {
-
 	if (ft_strcmp(str[1], "-n") == 0)
 		return (false);
-	return(true);
+	return (true);
 }

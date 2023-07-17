@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -13,11 +12,12 @@
 
 #include "../../include/minishell.h"
 
-void mini_pwd(t_env *env)
+void	mini_pwd(t_env *env)
 {
+	char	*str;
+
 	(void)env;
-	char *str;
-	str = getcwd(NULL,0);
-	ft_printf("%s\n",str);
+	str = getcwd(NULL, 0);
+	ft_printf("%s\n", str);
 	free(str);
 }
