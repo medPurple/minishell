@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:10:37 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 17:11:38 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:19:08 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_a_redir_or_pipe(char *str, int start, int end)
 	count_left = 0;
 	count_right = 0;
 	count_pipe = 0;
-	while (start < end)
+	while (str[start] != '\0' && start < end)
 	{
 		if (str[start] == '>')
 			count_right++;
@@ -42,6 +42,8 @@ int	is_a_redir_or_pipe_bis(int count_left, int count_right,
 	if ((count_right == 1) && (count_left == 0) && (count_pipe == 0))
 		return (1);
 	else if ((count_right == 2) && (count_left == 0) && (count_pipe == 0))
+		return (2);
+	else if ((count_right == 1) && (count_left == 0) && (count_pipe == 1))
 		return (2);
 	else if ((count_left == 1) && (count_right == 0) && (count_pipe == 0))
 		return (1);

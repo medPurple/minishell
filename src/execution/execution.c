@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/13 13:34:01 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/17 12:02:03 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	{
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
+			ft_printf ("SLUT\n");
 			initialize_pipe_value(tree);
 			pipex(tree, mini, 0, 0);
 			break ;
@@ -61,7 +62,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 		if (i < 0)
 		{
 			analyze_error(tree);
-			ft_printf("error_gestion\n");
+			ft_printf("error_gestion ppppppppppppppppppppppppppppppppppppppppppppppppp\n");
 			return ;
 		}
 		execution_choice(tree, mini);

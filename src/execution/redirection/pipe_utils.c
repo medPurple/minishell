@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/13 11:43:23 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/17 11:26:38 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	pipe_option( t_binary *tree, int choice)
 	}
 	else if (choice == 3)
 	{
-		ft_free_tab(tree->cmd->exec_cmd);
+		tree->cmd->is_a_redir = 0;
+		ft_free_lst(tree->redir);
+		tree->redir = NULL;
 		ft_printf("error_gestion\n");
 	}
 }
