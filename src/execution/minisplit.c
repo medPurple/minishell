@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minisplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 11:47:59 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:49:59 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**mini_split(char *str, int j, int i, int k)
 	char	**cmd;
 
 	cmd = ft_malloc2(word_nb(str, 0, 0), "char*");
-	while (str[i])
+	while (str && str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && str[i])
 			i++;
@@ -75,7 +75,7 @@ static int	after_quotes(char *str, int i)
 
 static int	word_nb(char *str, int i, int count)
 {
-	while (str[i])
+	while (str && str[i])
 	{
 		while ((str[i] == ' ' || str[i] == '\t') && str[i])
 			i++;

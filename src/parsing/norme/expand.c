@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 14:17:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:47:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,30 @@ char	*jap_norme(char *str, int i, char *before, char *add)
 	free(str);
 	str = ft_strjoin(before, add);
 	str = ft_strjoin(str, after);
+	return (str);
+}
+
+char	*jap_norme_2(char *str)
+{
+	int		i;
+	char	*bf;
+	char	*af;
+	int		j;
+	
+	i = 0;
+	af = NULL;
+	bf = NULL;
+	while (str[i] && str[i] != '$')
+		i++;
+	if (i != 0)
+		bf = ft_limited_strdup(str, 0, i - 1);
+	while (str[i] && str[i] != ' ')
+		i++;
+	j = i;
+	while (str[i])
+		i++;
+	if (i != j)
+		af = ft_limited_strdup(str, j, i);
+	str = ft_strjoat(bf, af);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 12:03:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:50:16 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**removes_quotes(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (tab && tab[i])
 	{
 		if (has_quotes(tab[i]))
 			tab[i] = rmq_norme(tab[i]);
