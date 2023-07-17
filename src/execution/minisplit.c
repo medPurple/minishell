@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/12 17:31:41 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:47:59 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	word_nb(char *str, int i, int count)
 					&& (is_a_redir_or_pipe(str, i, i + 4) > 0))
 				{
 					count++;
-					i = i + is_a_redir_or_pipe(str, i, i + 4) + 1;
+					i = i + is_a_redir_or_pipe(str, i, i + 4);
 					break ;
 				}
 				i++;
