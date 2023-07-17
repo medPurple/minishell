@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 12:06:37 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:46:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	expand(t_binary *tree, t_env *env)
 
 	i = 0;
 	quotes = 0;
-	while (tree->data[i])
+	while (tree->data && tree->data[i])
 	{
 		i = expand_norme(tree, env, i);
-		if (tree->data[i] == '\"' && quotes == 0)
+		if (tree->data && tree->data[i] == '\"' && quotes == 0)
 		{
 			if (find_next_quotes(tree->data, i) == -1)
 				return ;
 			quotes++;
 			i++;
 		}
-		else if (tree->data[i] == '\"' && quotes == 1)
+		else if (tree->data && tree->data[i] == '\"' && quotes == 1)
 		{
 			quotes--;
 			i++;
@@ -46,7 +46,7 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 	if (tree->data[i] == '$')
 	{
 		tree->data = replace_doll(tree->data, env, i + 1);
-		i--;
+		i = 0;
 	}
 	else if (tree->data[i] == '*')
 	{
@@ -98,7 +98,7 @@ static char	*search_in_env(char *var, t_env *env, char *str)
 	if (tmp != NULL)
 		str = sie_norme(tmp, str);
 	else
-		ft_printf("not find - to do\n");
+		str = jap_norme_2(str);
 	return (str);
 }
 

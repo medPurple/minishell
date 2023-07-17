@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 16:12:57 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:15:13 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
+	if (!tree->data)
+		return ;
 	if (tree->parentheses == true)
 		expand_parentheses_and_execute(tree, mini);
 	else if (tree->right)

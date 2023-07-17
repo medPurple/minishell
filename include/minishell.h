@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 15:06:36 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:15:37 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ int end_of_parentheses(char *str, int position);
 char	*join_all_part(char *str, char *add);
 char *sie_norme(t_env *tmp, char *str);
 char *jap_norme(char *str, int i, char *before, char *add);
+char	*jap_norme_2(char *str);
 int ipp_norme(char *str);
 char *rmq_norme(char *tab);
 int fns_norme(char *str, int i);
