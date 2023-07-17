@@ -14,14 +14,12 @@ void    analyze_error(t_binary *tree)
 			mini_error_one(3);
 		else if (tree->redir->redir_cmd[0] == '>' && count == 3)
 			mini_error_one(2);
-		else if (tree->redir->redir_cmd[0] == '>' && count < 3)
+		else if ((tree->redir->redir_cmd[0] == '>' || tree->redir->redir_cmd[0] == '<') && count < 3)
 			mini_error_one(1);
 		else if ((tree->redir->redir_cmd[0] == '<' && count > 3))
-			mini_error_one(3);
+			mini_error_one(7);
 		else if (tree->redir->redir_cmd[0] == '<' && count == 3)
-			mini_error_one(2);
-		else if (tree->redir->redir_cmd[0] == '<' && count < 3)
-			mini_error_one(1);
+			mini_error_one(6);
 		
 	}
 }
@@ -53,3 +51,6 @@ static int	nb_redir(t_binary *tree, int count_right, int count_left)
 }
 
 /*test : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*test 2 : >>>>>>>>>>>>>>>>*/
+/* ces tests affichent en valeur retour : path : no such file or directory*/
+/* cpdt c est aleatoire...*/
