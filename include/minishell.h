@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 11:50:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:06:36 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,12 +235,13 @@ int	count_redir_right(t_binary *tree);
 int	count_redir_left(t_binary *tree);
 int	count_redir_right_double(t_binary *tree);
 void	open_file(t_binary *tree);
-t_redirection	*ft_new_redirection(char *redir, char *file);
+t_redirection	*ft_new_redirection(char *redir, char *file ,int j);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void	ft_free_lst(t_redirection *stack);
 
 void	mini_error_one(int i);
-void    analyze_error(t_binary *tree);
+int    analyze_error(t_binary *tree);
+void    analyze_error_bis(t_binary *tree);
 
 #endif

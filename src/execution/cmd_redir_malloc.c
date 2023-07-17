@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:44 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 11:53:58 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:32:52 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos)
 				&& tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
 		}
-		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		if (is_a_pipe(tree->cmd->split_cmd[i]) == true
+			&& (tree->cmd->split_cmd[i + 1][0] != '>' || tree->cmd->split_cmd[i + 1][0] != '<'))
 			break ;
 		i++;
 	}
@@ -46,7 +47,7 @@ static int	malloc_redir(t_binary *tree, int i)
 	t_redirection	*tmp2;
 
 	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]),
-			ft_strdup(tree->cmd->split_cmd[i + 1]));
+			ft_strdup(tree->cmd->split_cmd[i + 1]), 0);
 	ft_add_back_lst_redirection(&tree->redir, tmp);
 	tmp2 = tree->redir;
 	while (tmp2)

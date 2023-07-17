@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 11:26:38 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:27:29 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 
 void	pipe_option( t_binary *tree, int choice)
 {
+	int	i;
+
+	i = 0;
 	if (choice == 1)
 	{
+		i = analyze_error(tree);
+		if (i < 0)
+			return ;
 		tree->cmd->is_a_redir = 0;
 		ft_free_lst(tree->redir);
 		tree->redir = NULL;
@@ -31,10 +37,13 @@ void	pipe_option( t_binary *tree, int choice)
 	}
 	else if (choice == 3)
 	{
+		i = analyze_error(tree);
+		if (i < 0)
+			return ;
 		tree->cmd->is_a_redir = 0;
 		ft_free_lst(tree->redir);
 		tree->redir = NULL;
-		ft_printf("error_gestion\n");
+		ft_printf("error_gestion COUCOU\n");
 	}
 }
 
@@ -102,6 +111,11 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i)
 
 void	pipe_reduce(t_binary *tree)
 {
+	int	i;
+
+	i = analyze_error(tree);
+	if (i < 0)
+			return ;
 	if (pipe (tree->cmd->pipe_fd) == -1)
 		perror("pipe");
 	if (is_here_doc (tree) >= 1)

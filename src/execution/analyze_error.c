@@ -3,25 +3,28 @@
 
 static int	nb_redir(t_binary *tree, int count_right, int count_left);
 
-void    analyze_error(t_binary *tree)
+int    analyze_error(t_binary *tree)
 {
 	int	count;
-
 	if (tree->redir)
 	{
 		count = nb_redir(tree, 0, 0);
-		if ((tree->cmd->split_cmd[0][0] == '>' && count > 3))
-			mini_error_one(3);
-		else if (tree->cmd->split_cmd[0][0] == '>' && count == 3)
-			mini_error_one(2);
-		else if ((tree->cmd->split_cmd[0][0] == '>' || tree->cmd->split_cmd[0][0] == '<') && count < 3)
-			mini_error_one(1);
-		else if ((tree->cmd->split_cmd[0][0] == '<' && count > 3))
-			mini_error_one(7);
-		else if (tree->cmd->split_cmd[0][0] == '<' && count == 3)
-			mini_error_one(6);
-
+		if ((tree->redir->redir_cmd[0] == '<') && tree->redir->redir_cmd[1] == '|')
+			return (mini_error_one(4), -1);
+		else if ((tree->redir->redir_cmd[0] == '>' && count > 3))
+			return (mini_error_one(3), -1);
+		else if (tree->redir->redir_cmd[0] == '>' && count == 3)
+			return (mini_error_one(2), -1);
+		else if ((tree->redir->redir_cmd[0] == '>' || tree->redir->redir_cmd[0] == '<') && count < 3 && ft_strlen(tree->redir->redir_file) == 0)
+			return (mini_error_one(1), -1);
+		else if ((tree->redir->redir_cmd[0] == '<' && count > 3))
+			return (mini_error_one(7), -1);
+		else if (tree->redir->redir_cmd[0] == '<' && count == 3)
+			return (mini_error_one(6), -1);
+		else
+			return (0);
 	}
+	return (0);
 }
 
 static int	nb_redir(t_binary *tree, int count_right, int count_left)
@@ -44,7 +47,7 @@ static int	nb_redir(t_binary *tree, int count_right, int count_left)
 		}
 		i++;
 	}
-	if (tree->cmd->split_cmd[0][0] == '>')
+	if (tree->redir->redir_cmd[0] == '>')
 		return (count_right);
 	else
 		return (count_left);
