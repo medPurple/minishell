@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:40 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 13:56:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:19:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static	bool	is_a_redir_bis(int count_left, int count_right, int count_pipe)
 		return (true);
 	else if ((count_right == 2) && (count_left == 0) && (count_pipe == 0))
 		return (true);
+	else if ((count_right == 0) && (count_left == 1) && (count_pipe == 1))
+		return (true);
 	else if ((count_left == 1 || count_left == 2) && (count_right == 0)
 		&& (count_pipe == 0))
 		return (true);
@@ -63,17 +65,11 @@ bool	is_a_pipe(char *cmd)
 	{
 		if (cmd[pos] == '|' )
 			count_pipe++;
-		if (cmd[pos] == '>' && cmd[pos + 1] == '|')
-		{
-			count_pipe = -1;
-			break ;
-		}
+		if ((cmd[pos] == '>' || cmd[pos] == '<') && cmd[pos + 1] == '|')
+			return (false);
+		if (cmd[pos] == '|' && ((cmd[pos + 1] == '<') || cmd[pos + 1] == '>'))
+			return (false);
 		pos++;
-	}
-	if (count_pipe == -1)
-	{
-		ft_printf("salut\n");
-		return (false);
 	}
 	if (count_pipe == 1)
 		return (true);

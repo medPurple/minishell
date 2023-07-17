@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:31 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/13 11:41:44 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/17 15:46:24 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,10 @@ static int	redir_control(t_binary *tree, t_redirection *tmp,
 		if (tmp && redir_is_valid(tmp->redir_file) < 0)
 			tree->cmd->check_redir = -2;
 		if (tree->cmd->check > 0)
-			perror ("open");
+		{
+			mini_error_one(11);
+			exit(0);
+		}
 	}
 	else
 	{

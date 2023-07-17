@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 14:57:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:17:58 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,21 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	tree->cmd->check_pipe = -1;
 	while (tree->cmd->split_cmd[i])
 	{
+		if (tree->cmd->split_cmd[0][0] == '&')
+		{
+			g_eoat = 2;
+			send_error ("minishell: syntax error near unexpected token `&'\n");
+			return ;
+		}
+
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
-			ft_printf ("SLUT\n");
+			ft_printf("test\n");
+			if (tree->cmd->split_cmd[0][0] == '|')
+			{
+				mini_error_one(4);
+				return ;
+			}
 			initialize_pipe_value(tree);
 			pipex(tree, mini, 0, 0);
 			break ;
@@ -68,13 +80,10 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	}
 	if (tree->cmd->check_pipe == -1)
 	{
-		i = cmd_redir_malloc(tree, 0, 0, 0);
+		cmd_redir_malloc(tree, 0, 0, 0);
+		i = analyze_error(tree);
 		if (i < 0)
-		{
-			analyze_error(tree);
-			ft_printf("error_gestion ppppppppppppppppppppppppppppppppppppppppppppppppp\n");
 			return ;
-		}
 		execution_choice(tree, mini);
 	}
 	return ;
