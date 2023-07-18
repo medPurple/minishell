@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 14:42:37 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:43:44 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static	void	ft_wait(t_binary *tree, int status)
 {
 	signal(SIGQUIT, SIG_DFL);
 	while (wait(&status) != -1)
-	;
+		;
 	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
@@ -124,6 +124,10 @@ static	void	ft_wait(t_binary *tree, int status)
 		close(tree->cmd->in);
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
+	if (tree->cmd->fd[1] != -1 )
+			close(tree->cmd->fd[1]);
+	if (tree->cmd->fd[0] != -1 )
+			close(tree->cmd->fd[0]);
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)

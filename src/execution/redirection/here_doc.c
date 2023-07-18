@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 14:39:44 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:52:38 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	ft_gestion_parent(t_binary *tree);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
+	close(tree->cmd->pipe_fd[0]);
+	close(tree->cmd->pipe_fd[1]);
 	if (pipe(tree->cmd->fd) == -1)
 		perror("pipe");
 	tree->cmd->fork = fork();
@@ -61,8 +63,6 @@ static void	ft_gestion_parent(t_binary *tree)
 	waitpid (tree->cmd->fork, &status, 0);
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
-	if (tree->cmd->check_pipe != 1)
-		close (tree->cmd->fd[0]);
 }
 
 int	is_here_doc(t_binary *tree)

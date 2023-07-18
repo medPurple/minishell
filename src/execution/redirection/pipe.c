@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 14:38:34 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:51:42 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,4 @@ void	wait_child(t_binary *tree)
 		tree->cmd->exec = -1;
 	else
 		tree->cmd->exec = 1;
-
 }
