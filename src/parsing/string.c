@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 11:55:11 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:33:41 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	split_char(t_binary *tree)
 	while (tree->data[i] == c)
 		i++;
 	tree->command = ft_limited_strdup(tree->data, 0, i - 1);
-	tree->rest = ft_limited_strdup(tree->data, i + 1, ft_strlen(tree->data));
+	if (tree->data[i] == ' ')
+		i++;
+	tree->rest = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 }
 
 int	find_next_split(t_binary *tree, t_env *env)
@@ -92,7 +94,18 @@ int	split_pos(char *str, int i)
 		{
 			if ((is_a_meta(str, i) == true))
 			{
-				return (i - 1);
+				if (str[0] == '&' || str[0] == '|')
+				{
+					while(str[i] && (str[i] == '&' || str[i] == '|'))
+						i++;
+					return(i);
+				}
+				else
+				{
+					while(str[i] && (str[i] == '&' || str[i] == '|'))
+						i--;
+					return (i);
+				}
 			}
 			i++;
 		}

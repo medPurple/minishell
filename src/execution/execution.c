@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 10:27:00 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:12:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 		if (tree->cmd->split_cmd[0][0] == '&')
 		{
 			g_eoat = 2;
-			send_error ("minishell: syntax error near unexpected token `&'\n");
+			send_error ("minishell: syntax error near unexpected token '&'\n");
 			return ;
 		}
 

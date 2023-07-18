@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 16:19:03 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:33:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	parsing(t_minishell *mini, char *str)
 	while (mini->tree->end != 1)
 		parse_data(mini->tree, mini->env);
 	if (verif_parentheses(mini->tree) == -1)
+	{
+		mini_error_one(20);
+		return (-1);
+	}
+	if (verif_meta(mini->tree) == -1)
 	{
 		return (-1);
 	}
@@ -56,11 +61,7 @@ void	create_root(t_binary *tree, t_env *env)
 	int	i;
 
 	i = ipp_norme(tree->data);
-	if (i == 0)
-		return;
-	if (i != 0)
-		tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
-	ft_printf("tree data : %s\n", tree->data);
+	tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 	if (tree->data[0] == '(')
 		ignore_parentheses(tree);
 	else if (is_a_meta(tree->data, 0) == true)

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 16:17:02 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:13:06 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ int ipp_norme(char *str);
 char *rmq_norme(char *tab);
 int fns_norme(char *str, int i);
 int	ipp_norme_2(char *str, int i);
+int verif_meta(t_binary *tree);
 /*--------------------------------------Wildcards------------------------------------------------*/
 
 char *wildcard(char *str, int i);
