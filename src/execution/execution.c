@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 10:27:00 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:14:00 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	execution(t_minishell *mini, t_binary *tree);
 static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
-{	
+{
 	if (tree->parentheses == true)
 		expand_parentheses_and_execute(tree, mini);
 	else if (tree->right)
@@ -26,7 +26,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		
+
 		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
@@ -120,11 +120,15 @@ static	void	ft_wait(t_binary *tree, int status)
 	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
+	if (tree->cmd->in != -1 && tree->cmd->in != 0)
+		close(tree->cmd->in);
+	if (tree->cmd->out != -1 && tree->cmd->out != 0)
+		close(tree->cmd->out);
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
-	
+
 	if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
@@ -157,8 +161,13 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	}
 	else
 	{
+		if (ft_strlen(tree->cmd->exec_cmd[0])!= 0)
+		{
+			ft_free_tab(tree->cmd->exec_cmd);
+			mini_error_one(9);
+			exit(127);
+		}
 		ft_free_tab(tree->cmd->exec_cmd);
-		mini_error_one(9);
-		exit(127);
+		exit (0);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 10:22:30 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:49:46 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ int	main(int ac, char **av, char **envp)
 	char		*str;
 	t_minishell	mini;
 
-	(void)ac,
+	if (ac > 1)
+	{
+		mini_error_one(11);
+		return (127);
+	}
 	(void)av;
 	str = NULL;
 	mini.env = NULL;
