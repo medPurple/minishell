@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 13:24:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:20:43 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*cmd_recuperation(char *str, t_env *env)
 
 	i = 0;
 	path = NULL;
+	if (str == NULL)
+		return (NULL);
 	if (env != NULL)
 		path = ft_split(path_recuperation(env), ':');
 	while (path[i])

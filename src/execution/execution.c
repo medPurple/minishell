@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 16:17:58 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:27:00 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void	execution(t_minishell *mini, t_binary *tree);
 static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
-{
-	if (!tree->data)
-		return ;	
+{	
 	if (tree->parentheses == true)
 		expand_parentheses_and_execute(tree, mini);
 	else if (tree->right)
@@ -38,10 +36,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 			else
 			{
 				if (tree->status == true)
-				{
-					tree->data = get_status(tree);
-					tree->cmd->split_cmd = mini_split(tree->data, 0, 0, 0);
-				}
+					tree->cmd->split_cmd = mini_split(get_status(tree), 0, 0, 0);
 				execution(mini, tree);
 			}
 		}
@@ -54,6 +49,8 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	int	i;
 
 	i = 0;
+	if (ft_strlen(tree->data) == 0)
+		return ;
 	tree->cmd->check_pipe = -1;
 	while (tree->cmd->split_cmd[i])
 	{
@@ -66,7 +63,6 @@ static void	execution(t_minishell *mini, t_binary *tree)
 
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
-			ft_printf("test\n");
 			if (tree->cmd->split_cmd[0][0] == '|')
 			{
 				mini_error_one(4);
@@ -118,8 +114,9 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 
 static	void	ft_wait(t_binary *tree, int status)
 {
+	signal(SIGQUIT, SIG_DFL);
 	while (wait(&status) != -1)
-		;
+	;
 	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
@@ -127,6 +124,7 @@ static	void	ft_wait(t_binary *tree, int status)
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
+	
 	if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
@@ -134,9 +132,17 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	{
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
 		{
-			ft_free_tab(tree->cmd->exec_cmd);
-			mini_error_one(9);
-			exit(127);
+			if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
+			{
+				ft_free_tab(tree->cmd->exec_cmd);
+				mini_error_one(8);
+				exit(126);
+			}
+			else
+			{
+				ft_free_tab(tree->cmd->exec_cmd);
+				exit(2);
+			}
 		}
 	}
 	else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)

@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/17 14:12:57 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/18 09:45:39 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ runi: minishell
 		@env -i ./minishell
 
 runv : minishell
-		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes ./minishell
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
