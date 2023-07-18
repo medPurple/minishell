@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 14:27:29 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:37:40 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ void	pipe_option( t_binary *tree, int choice)
 	{
 		i = analyze_error(tree);
 		if (i < 0)
+		{
+			tree->cmd->is_a_redir = 0;
+			ft_free_lst(tree->redir);
+			tree->redir = NULL;
 			return ;
+		}
 		tree->cmd->is_a_redir = 0;
 		ft_free_lst(tree->redir);
 		tree->redir = NULL;
@@ -34,16 +39,6 @@ void	pipe_option( t_binary *tree, int choice)
 		mini_here_doc(tree->redir->redir_file, tree);
 		check_redir_pipe(tree);
 		tree->cmd->is_a_redir = 0;
-	}
-	else if (choice == 3)
-	{
-		i = analyze_error(tree);
-		if (i < 0)
-			return ;
-		tree->cmd->is_a_redir = 0;
-		ft_free_lst(tree->redir);
-		tree->redir = NULL;
-		ft_printf("error_gestion COUCOU\n");
 	}
 }
 

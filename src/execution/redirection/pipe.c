@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 10:31:19 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:38:34 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		j = cmd_redir_malloc(tree, j, j, j) + 1;
 		if (tree->cmd->check_redir < 0)
 		{
-			pipe_option(tree, 3);
+			pipe_option(tree, 1);
 			return ;
 		}
 		pipe_reduce(tree);
@@ -77,7 +77,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	j = cmd_redir_malloc (tree, j, j, j);
 	if (tree->cmd->check_redir < 0)
 	{
-		pipe_option (tree, 3);
+		pipe_option (tree, 1);
 		return ;
 	}
 	if (is_here_doc (tree) >= 1)
@@ -108,4 +108,5 @@ void	wait_child(t_binary *tree)
 		tree->cmd->exec = -1;
 	else
 		tree->cmd->exec = 1;
+
 }

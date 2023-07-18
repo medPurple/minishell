@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 17:20:43 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:13:43 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	create_cmd(t_binary *tree)
 	tree->cmd->path_cmd = NULL;
 	tree->cmd->exec_cmd = NULL;
 	tree->cmd->is_a_redir = 0;
+	tree->cmd->in = 0;
+	tree->cmd->out = 0;
 }
 
 char	*cmd_recuperation(char *str, t_env *env)
