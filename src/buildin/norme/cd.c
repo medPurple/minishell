@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/18 17:26:16 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:00:17 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	cd_norme(char *str, t_env *env)
 		else
 			path = ft_limited_strdup(str, 0, i - 1);
 		if (opendir((const char *)path) != NULL)
-			changedir(path, str, env);
+			changedir(path, env);
 		else
 			mini_error_one(11);
 	}
@@ -41,10 +41,10 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	char	*path;
 
 	path = NULL;
-	if (str[0] == '/')
+	if (cmd[0] == '/')
 	{
 		if (opendir((const char *)str) != NULL)
-			changedir(str, getcwd(NULL, 0), env);
+			changedir(cmd, env);
 		else
 			mini_error_one(11);
 	}
@@ -53,7 +53,7 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 		path = ft_strjoin(str, "/");
 		path = ft_strjoin(path, cmd);
 		if (opendir((const char *)path) != NULL)
-			changedir(path, str, env);
+			changedir(path, env);
 		else
 			mini_error_one(11);
 	}

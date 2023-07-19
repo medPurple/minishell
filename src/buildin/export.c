@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:10:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 15:08:03 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:13:04 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	mini_export(t_env **env, char **tab)
 			ft_add_back_lst(env, tmp);
 		}
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == false)
-			ft_printf("\n");
+			ft_printf("");
 		else
 			mini_error_one(13);
 		i++;

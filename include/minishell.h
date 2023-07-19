@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 16:58:40 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:43:56 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ int	find_next_quotes (char *str, int pos);
 char **removes_quotes(char **tab);
 int verif_parentheses(t_binary *tree);
 bool has_nothing(char *str);
-char **expand_bis(t_binary *tree);
-
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
@@ -168,11 +166,11 @@ void exec_buildin_child(t_binary *tree, t_minishell *mini);
 void mini_echo(t_binary *tree);
 void mini_exit(t_minishell *mini);
 void clear_the_tree(t_binary *tree);
-void mini_pwd(t_env *env);
+void mini_pwd(t_env *env, t_binary *tree);
 void mini_cd(t_env *env, t_binary *tree);
 void	cd_norme(char *str, t_env *env);
 void	cd_norme_2(char *str, char *cmd, t_env *env);
-void	changedir(char *destination, char *last, t_env *env);
+void	changedir(char *destination, t_env *env);
 void mini_env(t_env *env);
 void mini_export(t_env **env, char **tab);
 void  mini_unset(t_env **env, char **tab);

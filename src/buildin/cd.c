@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 15:09:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:00:21 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	mini_cd(t_env *env, t_binary *tree)
 	else
 	{
 		if (count_arg(tree->cmd->split_cmd) == 1)
-			changedir(find_dir(env), str, env);
+			changedir(find_dir(env), env);
 		else
 		{
 			i = ft_strlen(str);
@@ -65,7 +65,7 @@ static char	*find_dir(t_env *env)
 	return (NULL);
 }
 
-void	changedir(char *destination, char *last, t_env *env)
+void	changedir(char *destination, t_env *env)
 {
 	t_env	*tmp;
 
@@ -75,7 +75,7 @@ void	changedir(char *destination, char *last, t_env *env)
 	{
 		if (ft_strcmp(tmp->name, "OLDPWD") == 0)
 		{
-			tmp->data = ft_strjoat("OLDPWD=", last);
+			tmp->data = ft_strjoat("OLDPWD=", getcwd(NULL, 0));
 		}
 		tmp = tmp->next;
 	}
