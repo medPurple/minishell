@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 13:43:56 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:43:09 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_binary
     char *command;
 	bool	parentheses;
 	bool	status;
+	int		previous_data;
 	struct s_cmd *cmd;
 	struct s_binary *prev;
 	struct s_binary *left;
@@ -120,6 +121,9 @@ int	find_next_quotes (char *str, int pos);
 char **removes_quotes(char **tab);
 int verif_parentheses(t_binary *tree);
 bool has_nothing(char *str);
+char	*replace_doll_bis(char *str, t_env *env, int position);
+bool need_split(char *str, int i);
+
 /*------------------------------------------EXECUTION----------------------------------------------*/
 
 void exec_recu(t_minishell *mini, t_binary *tree);
@@ -197,8 +201,8 @@ int is_a_fonction(char *str,t_env *env);
 int is_a_buildin(char *str);
 void split_char(t_binary *tree);
 int find_next_split(t_binary *tree, t_env *env);
-bool string_analyse(char *str, t_env *env);
-int split_pos(char *str, int i);
+bool	string_analyse(t_binary *tree, char *str, t_env *env);
+int split_pos(t_binary *tree,char *str, int i);
 int end_of_parentheses(char *str, int position);
 char	*join_all_part(char *str, char *add);
 char *sie_norme(t_env *tmp, char *str);

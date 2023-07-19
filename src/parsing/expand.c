@@ -6,14 +6,12 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/18 15:40:20 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:24:12 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static char	*replace_doll(char *str, t_env *env, int position);
-static char	*search_in_env(char *var, t_env *env, char *str);
 static int	expand_norme(t_binary *tree, t_env *env, int i);
 
 void	expand(t_binary *tree, t_env *env)
@@ -52,11 +50,9 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 		}
 		else if (tree->data[i + 1] == ' ' || tree->data[i + 1] == '\0')
 			i += 1;
-		else if (tree->data[i + 1] == '\'' || tree->data[i + 1] == '\"')
-			i = pass_quotes(tree->data, i) + 1;
 		else
 		{
-			tree->data = replace_doll(tree->data, env, i + 1);
+			tree->data = replace_doll_bis(tree->data, env, i + 1);
 			i = 0;
 		}
 	}
@@ -70,48 +66,6 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 	else
 		i++;
 	return (i);
-}
-
-static char	*replace_doll(char *str, t_env *env, int position)
-{
-	int		i;
-	char	*var;
-
-	i = position;
-	while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
-		i++;
-	i = i - position;
-	var = ft_malloc(i, "char");
-	i = 0;
-	while (str[position] != ' ' && str[position] != '\t'\
-		&& str[position] != '\0'
-		&& str[position] != '\"')
-	{
-		var[i] = str[position];
-		i++;
-		position++;
-	}
-	var[i] = '\0';
-	str = search_in_env(var, env, str);
-	return (str);
-}
-
-static char	*search_in_env(char *var, t_env *env, char *str)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp != NULL)
-	{
-		if (ft_strncmp(tmp->data, var, ft_strlen(var)) == 0)
-			break ;
-		tmp = tmp->next;
-	}
-	if (tmp != NULL)
-		str = sie_norme(tmp, str);
-	else
-		str = jap_norme_2(str);
-	return (str);
 }
 
 char	*join_all_part(char *str, char *add)
