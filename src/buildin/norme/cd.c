@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 15:49:38 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:26:16 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	cd_norme(char *str, t_env *env)
 		if (opendir((const char *)path) != NULL)
 			changedir(path, str, env);
 		else
-			mini_error_one(11);	
+			mini_error_one(11);
 	}
 }
 
@@ -41,10 +41,20 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	char	*path;
 
 	path = NULL;
-	path = ft_strjoin(str, "/");
-	path = ft_strjoin(path, cmd);
-	if (opendir((const char *)path) != NULL)
-		changedir(path, str, env);
+	if (str[0] == '/')
+	{
+		if (opendir((const char *)str) != NULL)
+			changedir(str, getcwd(NULL, 0), env);
+		else
+			mini_error_one(11);
+	}
 	else
-		mini_error_one(11);
+	{
+		path = ft_strjoin(str, "/");
+		path = ft_strjoin(path, cmd);
+		if (opendir((const char *)path) != NULL)
+			changedir(path, str, env);
+		else
+			mini_error_one(11);
+	}
 }

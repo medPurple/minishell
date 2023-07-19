@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 10:10:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:17:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static	void	ft_wait(t_binary *tree, int status)
 {
 	signal(SIGQUIT, SIG_DFL);
 	while (wait(&status) != -1)
-	;
+		;
 	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;
@@ -127,6 +127,13 @@ static	void	ft_wait(t_binary *tree, int status)
 		close(tree->cmd->in);
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
+	if (is_here_doc(tree) >= 1)
+	{
+		if (tree->cmd->fd[1] != -1 && tree->cmd->fd[1] != 0)
+			close(tree->cmd->fd[1]);
+		if (tree->cmd->fd[0] != -1 && tree->cmd->fd[0] != 0)
+			close(tree->cmd->fd[0]);
+	}
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)

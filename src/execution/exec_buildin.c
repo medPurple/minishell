@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_buildin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 14:45:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:29:04 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+;
 
 void	exec_buildin(t_binary *tree, t_minishell *mini)
 {
@@ -31,8 +33,9 @@ void	exec_buildin_child(t_binary *tree, t_minishell *mini)
 	if (ft_strcmp(tree->cmd->exec_cmd[0], "echo") == 0)
 		mini_echo(tree);
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "pwd") == 0)
-		mini_pwd(mini->env);
+		mini_pwd(mini->env, tree);
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "env") == 0)
 		mini_env(mini->env);
 	exit(EXIT_SUCCESS);
 }
+
