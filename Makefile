@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/18 17:00:10 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/19 12:24:24 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 cc = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra  -g3 -Werror
 
 PATH_SRC = src
 
@@ -28,13 +28,13 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/meta.c\
 		$(PATH_SRC)/parsing/string.c\
 		$(PATH_SRC)/parsing/expand.c\
-		$(PATH_SRC)/parsing/expand_exec.c\
 		$(PATH_SRC)/parsing/parentheses.c\
 		$(PATH_SRC)/parsing/quotes.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard_utils.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard_replace.c\
 		$(PATH_SRC)/parsing/norme/expand.c\
+		$(PATH_SRC)/parsing/norme/expand_doll.c\
 		$(PATH_SRC)/parsing/norme/parse.c\
 		$(PATH_SRC)/parsing/norme/quotes.c\
 		$(PATH_SRC)/parsing/norme/string.c\

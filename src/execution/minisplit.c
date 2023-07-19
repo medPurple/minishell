@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minisplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/17 16:15:30 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:24:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**mini_split(char *str, int j, int i, int k)
 				break ;
 			cmd[k++] = ft_limited_strdup(str, j, i - 1);
 		}
-	}
+ 	}
 	cmd[k] = NULL;
 	return (removes_quotes(cmd));
 }

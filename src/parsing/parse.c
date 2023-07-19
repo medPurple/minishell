@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/18 14:33:18 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:33:20 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	create_root(t_binary *tree, t_env *env)
 	int	split;
 	int	i;
 
+	//ft_printf("[%s]\n",tree->data);
 	i = ipp_norme(tree->data);
 	tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 	if (tree->data[0] == '(')
@@ -71,6 +72,7 @@ void	create_root(t_binary *tree, t_env *env)
 		if (has_nothing(tree->data) == true)
 			return ;
 		split = find_next_split(tree, env);
+		//ft_printf("split [%d]\n",split);
 		if (split == -1)
 			return ;
 		else
@@ -96,6 +98,7 @@ t_binary	*new_branche(t_binary *tree, char *str)
 	tree->rest = NULL;
 	tree->redir = NULL;
 	tree->status = false;
+	tree->previous_data = 0;
 	return (tree);
 }
 

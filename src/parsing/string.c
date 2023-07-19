@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 14:33:41 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:33:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ int	find_next_split(t_binary *tree, t_env *env)
 		i = ipp_norme_2(tree->data, i);
 		i = fns_norme(tree->data, i);
 		str = ft_limited_strdup(tree->data, j, i - 1);
-		if (string_analyse(str, env) != true)
+		
+		if (string_analyse(tree, str, env) != true)
 		{
+			if (ft_strcmp(str, "|") == 0)
+				tree->previous_data = 1;
 			free(str);
 			while ((tree->data[i] == ' ' || tree->data[i] == '\t') \
 				&& tree->data[i] != '\0')
@@ -49,14 +52,14 @@ int	find_next_split(t_binary *tree, t_env *env)
 			j = i;
 		}
 		else
-			return (split_pos(tree->data, i - 2));
+			return (split_pos(tree, tree->data, 0));
 		if (tree->data[i] == '\0')
 			return (-1);
 	}
 	return (-1);
 }
 
-bool	string_analyse(char *str, t_env *env)
+bool	string_analyse(t_binary *tree,char *str, t_env *env)
 {
 	int	i;
 
@@ -65,12 +68,22 @@ bool	string_analyse(char *str, t_env *env)
 		return (false);
 	else
 	{
+		//ft_printf("ANALYSE | STR - [%s]\n", str);
 		while (str[i])
 		{
+			//ft_printf("i ---- [%c]\n", str[i]);
 			if (str[i] == '\'' || str[i] == '\"')
 				i = end_of_quotes(str, i);
 			else if (str[i] == '(')
+			{
+				//ft_printf("DETECTED\n");
+				if (tree->previous_data == 1)
+				{
+				//	ft_printf("TRUE ANALYSE\n");
+					return (true);
+				}
 				i = end_of_parentheses(str, i);
+			}
 			else
 			{
 				if (is_a_meta(str, i) == true)
@@ -82,14 +95,24 @@ bool	string_analyse(char *str, t_env *env)
 	}
 }
 
-int	split_pos(char *str, int i)
+int	split_pos(t_binary *tree, char *str, int i)
 {
+	//ft_printf("SPLIT | STR - [%s]\n", str);
 	while (str[i])
 	{
+		//ft_printf("i ---- [%c]\n", str[i]);
 		if (str[i] == '\'' || str[i] == '\"')
 			i = end_of_quotes(str, i);
 		else if (str[i] == '(')
+		{
+			//ft_printf("DETECTED\n");
+			if (tree->previous_data == 1)
+			{
+			//	ft_printf("TRUE SPLIT\n");
+				return (i - 1);
+			}
 			i = end_of_parentheses(str, i);
+		}
 		else
 		{
 			if ((is_a_meta(str, i) == true))
