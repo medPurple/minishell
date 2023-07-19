@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 14:07:19 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:40:20 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 			tree->status = true;
 			i += 2;
 		}
+		else if (tree->data[i + 1] == ' ' || tree->data[i + 1] == '\0')
+			i += 1;
+		else if (tree->data[i + 1] == '\'' || tree->data[i + 1] == '\"')
+			i = pass_quotes(tree->data, i) + 1;
 		else
 		{
 			tree->data = replace_doll(tree->data, env, i + 1);

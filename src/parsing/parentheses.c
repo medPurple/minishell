@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:06 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 12:03:07 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:16:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	verif_parentheses(t_binary *tree)
 		while (tree->data[i] != '(')
 			i++;
 		i = end_of_parentheses(tree->data, i);
+		while (tree->data[i] == ' ' || tree->data[i] != '\0')
+			i++;
 		if (i != (int)ft_strlen(tree->data))
 			return (-1);
 	}
