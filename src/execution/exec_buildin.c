@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_buildin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 14:43:40 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:59:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 		mini_unset(&mini->env, tree->cmd->exec_cmd);
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0
 		&& (valid_exit(tree->cmd->exec_cmd[1], tree->cmd->exec_cmd[2]) > 0))
-		mini_exit(mini);
+		mini_exit(mini, tree->cmd->exec_cmd[1]);
 }
 
 void	exec_buildin_child(t_binary *tree, t_minishell *mini)
@@ -43,9 +43,9 @@ void	exec_buildin_child(t_binary *tree, t_minishell *mini)
 
 static int	valid_exit(char *str, char *str2)
 {
-	if (ft_strlen(str) > 0 && is_a_num(str) == 0)
+	if (str && ft_strlen(str) > 0 && is_a_num(str) == 0)
 		return (send_error("minishell: exit: numeric argument required\n"), 0);
-	else if (is_a_num(str) > 0 && ft_strlen(str2) > 0)
+	else if (str && str2 && is_a_num(str) > 0 && ft_strlen(str2) > 0)
 		return (send_error("minishell: exit: too many arguments\n"), 0);
 	else
 		return(1);
