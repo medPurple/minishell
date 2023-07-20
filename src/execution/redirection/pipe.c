@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 15:00:38 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:26:24 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		{
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc (tree->redir->redir_file, tree);
+			tree->redir = tree->redir->next;
 			k--;
 		}
 	}
