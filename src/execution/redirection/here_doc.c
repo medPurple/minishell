@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 16:17:30 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:45:59 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	ft_pipe_initialize(t_binary *tree);
 static void	ft_gestion_parent(t_binary *tree);
 static void	sign_test(int signal);
+//static int	*get_signum(void);
+//static int catch_c(int signal);
 
 static void	ft_pipe_initialize(t_binary *tree)
 {
@@ -35,8 +37,15 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 	{
 		while (1)
 		{
+			if (tree->cmd->check_pipe == 1)
+			{
+				close(tree->cmd->pipe_fd[0]);
+				close(tree->cmd->pipe_fd[1]);
+			}
 			signal(SIGINT, &sign_test);
 			line = readline(">");
+			/*if (catch_c == 1)
+				ft_printf("cocou\n");*/
 			close(tree->cmd->fd[0]);
 			if (strcmp (line, limiter) == 0)
 			{
@@ -52,6 +61,20 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 	else
 		ft_gestion_parent (tree);
 }
+
+/*static int	*get_signum(void)
+{
+	static int	signum = 0;
+
+	return (&signum);
+}
+
+static int catch_c(int signal)
+{
+	if (signal == SIGINT)
+		return (1);
+	return (0);
+}*/
 
 static void	sign_test(int signal)
 {
@@ -70,7 +93,9 @@ static void	ft_gestion_parent(t_binary *tree)
 	int	status;
 
 	if (tree->cmd->check_pipe == 1)
+	{
 		tree->cmd->pipe_tmp = tree->cmd->fd[0];
+	}
 	close (tree->cmd->fd[1]);
 	signal(SIGINT, SIG_IGN);
 	waitpid (tree->cmd->fork, &status, 0);

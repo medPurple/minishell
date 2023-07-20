@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 15:34:36 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:52:41 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
-			if (tree->cmd->split_cmd[0][0] == '|')
+			if (pipe_is_valid(tree->cmd->split_cmd) < 0)
 			{
 				mini_error_one(4);
 				return ;
@@ -77,7 +77,7 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	if (tree->cmd->check_pipe == -1)
 	{
 		cmd_redir_malloc(tree, 0, 0, 0);
-		i = analyze_error(tree);
+		i = analyze_error(tree, 0);
 		if (i < 0)
 			return ;
 		execution_choice(tree, mini);
@@ -88,13 +88,22 @@ static void	execution(t_minishell *mini, t_binary *tree)
 void	exec_send(t_binary *tree, t_minishell *mini)
 {
 	int	status;
+	int	i;
 
+	i = 0;
 	status = 0;
 	tree->cmd->exec = 1;
 	if (is_here_doc(tree) >= 1)
 	{
-		tree->cmd->check_here_doc = 1;
-		mini_here_doc(tree->redir->redir_file, tree);
+		i = is_here_doc(tree);
+		while (i > 0)
+		{
+			tree->cmd->check_here_doc = 1;
+			mini_here_doc(tree->redir->redir_file, tree);
+			i--;
+			//if (tree->cmd->fd[1] != -1 && tree->cmd->fd[1] != 0)
+			//	close(tree->cmd->fd[1]);
+		}
 	}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
