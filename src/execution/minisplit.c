@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 12:24:56 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:39:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	**mini_split(char *str, int j, int i, int k)
 		}
  	}
 	cmd[k] = NULL;
+	free(str);
 	return (removes_quotes(cmd));
 }
 

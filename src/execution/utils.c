@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 17:33:34 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:39:05 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	create_cmd(t_binary *tree)
 	tree->cmd = malloc(sizeof(t_cmd));
 	tree->cmd->exec = 0;
 	tree->cmd->str = tree->data;
-	tree->cmd->split_cmd = mini_split(tree->data, 0, 0, 0);
+	tree->cmd->split_cmd = NULL;
+	tree->cmd->split_cmd = mini_split(ft_strdup(tree->data), 0, 0, 0);
 	tree->cmd->path_cmd = NULL;
 	tree->cmd->exec_cmd = NULL;
 	tree->cmd->pipe_tmp = 0;

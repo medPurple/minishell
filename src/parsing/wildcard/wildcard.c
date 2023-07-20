@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 15:23:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:55:47 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,11 @@ char	*ft_strjoat(char *s1, char *s2)
 		new[i] = s1[i];
 		i++;
 	}	
-	while (*s2)
-		new[i++] = *s2++;
-	new[size] = '\0';
+	while (s1 && s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	new[i] = '\0';
 	return (new);
 }

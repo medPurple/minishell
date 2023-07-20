@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 15:31:00 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:23:06 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	cd_norme(char *str, t_env *env)
 			path = "/";
 		else
 			path = ft_limited_strdup(str, 0, i - 1);
+		free(str);
 		if (opendir((const char *)path) != NULL)
 			changedir(path, env);
 		else

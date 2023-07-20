@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 19:57:24 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:36:05 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	expand(t_binary *tree, t_env *env)
 
 static int	expand_norme(t_binary *tree, t_env *env, int i)
 {
+	char *str;
+	
 	if (tree->data[i] == '$')
 	{
 		if (tree->data[i + 1] == '?')
@@ -53,7 +55,10 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 			i += 1;
 		else
 		{
-			tree->data = replace_doll_bis(tree->data, env, i + 1);
+			str = replace_doll_bis(tree->data, env, i + 1);
+			free(tree->data);
+			tree->data = ft_strdup(str);
+			free(str);
 			i = 0;
 		}
 	}

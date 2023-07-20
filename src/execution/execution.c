@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 18:13:47 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:43:28 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 	}
 	else
 		ft_wait(tree, status);
+	ft_free_tab(tree->cmd->exec_cmd);
 	return ;
 }
 
