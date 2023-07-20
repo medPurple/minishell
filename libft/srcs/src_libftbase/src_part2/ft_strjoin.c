@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:15:36 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/07 15:05:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:40:57 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	size = (ft_strlen(s1) + ft_strlen(s2));
 	new = ft_malloc(size,"char");
-
 	while (s1 && s1[i])
 	{
 		new[i] = s1[i];
@@ -30,7 +29,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	}	
 	while (*s2)
 		new[i++] = *s2++;
-		
 	new[size] = '\0';
 	free (s1);
 	return (new);
