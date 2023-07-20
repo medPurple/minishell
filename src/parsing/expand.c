@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 12:24:12 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:57:24 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	expand(t_binary *tree, t_env *env)
 	quotes = 0;
 	while (tree->data && tree->data[i])
 	{
+		
 		i = expand_norme(tree, env, i);
 		if (tree->data && tree->data[i] == '\"' && quotes == 0)
 		{
@@ -79,14 +80,14 @@ char	*join_all_part(char *str, char *add)
 	while (str[i] != '$')
 		i++;
 	before = ft_malloc(i + 1, "char");
-	while (j < i - 1)
+	while (j < i)
 	{
 		before[j] = str[j];
 		j++;
 	}
-	before[j] = ' ';
-	before[j + 1] = '\0';
-	while (str[i] != ' ' && str[i] != '\0')
+	before[j] = '\0';
+	i++;
+	while (str[i] != ' ' && str[i] != '\0' && is_letter(str[i]))
 		i++;
 	while (str[i] == ' ' && str[i] != '\0' && str[i] != '\t')
 		i++;

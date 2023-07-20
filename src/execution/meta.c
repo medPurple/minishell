@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 12:24:53 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:53:39 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exec_meta( t_binary *tree, t_minishell *mini)
 
 void	mini_or(t_binary *tree, t_minishell *mini)
 {
-	if (!tree->prev)
+	if (tree->prev == NULL || tree->prev->prev == NULL)
 	{
 		mini_error_one (5);
 		return ;
@@ -42,7 +42,7 @@ void	mini_or(t_binary *tree, t_minishell *mini)
 
 void	mini_and(t_binary *tree, t_minishell *mini)
 {
-	if (!tree->prev)
+	if (tree->prev == NULL || tree->prev->prev == NULL)
 	{
 		mini_error_one (10);
 		return ;

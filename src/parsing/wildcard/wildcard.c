@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 15:35:34 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:36:05 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ char	*ft_strjoat(char *s1, char *s2)
 	int		i;
 
 	i = 0;
+	ft_printf("%S %S\n", s1, s2);
 	if (!s1)
 		return (s2);
 	if (!s2)

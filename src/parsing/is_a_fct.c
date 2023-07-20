@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 11:23:50 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:59:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int	is_a_fonction(char *str, t_env *env)
 	if (split_env == NULL)
 		return (0);
 	if (test_path(str, split_env) == 1)
+	{
+		free(split_env);
 		return (1);
+	}
+	//ft_free_tab(split_env);
 	return (0);
 }
 
@@ -82,7 +86,10 @@ static int	test_path(char *str, char **path)
 		join = ft_strjoin(path[i], "/");
 		search = ft_strjoin(join, str);
 		if (access(search, F_OK) == 0)
+		{
+			free(search);
 			return (1);
+		}
 		free(search);
 		i++;
 	}

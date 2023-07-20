@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:56:08 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/18 12:07:51 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:48:54 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static bool	search_option(char **str);
 static bool	is_ok(char *str);
+static int s_op(char **tab);
 
 void	mini_echo(t_binary *tree)
 {
 	bool	nl;
 	int		i;
 
-	i = 1;
 	nl = search_option(tree->cmd->exec_cmd);
+	i = s_op(tree->cmd->exec_cmd);
 	if (nl == false)
 		i++;
 	while (tree->cmd->exec_cmd[i])
@@ -51,7 +52,7 @@ static bool is_ok(char *str)
 	i = 0;
 	n = 0;
 	count = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] == '-')
 			count++;
@@ -61,8 +62,27 @@ static bool is_ok(char *str)
 	}
 	if (count > 1)
 		return (false);
-	else if (str[0] == '-' && count == 1 && n == (ft_strlen(str) - 1))
+	else if (str && str[0] == '-' && count == 1 && n == (ft_strlen(str) - 1))
 		return (true);
 	else
 		return (false);
+}
+
+static int s_op(char **tab)
+{
+	int i;
+
+	i = 1;
+	while (tab[i])
+	{
+		if (is_ok(tab[i]) == true)
+			i++;
+		else
+			break;
+	}
+	if (i == 1)
+		return (1);
+	else
+		return (i - 1);
+	
 }

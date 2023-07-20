@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 15:22:41 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:18:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ char *rmq_norme(char *tab);
 int fns_norme(char *str, int i);
 int	ipp_norme_2(char *str, int i);
 int verif_meta(t_binary *tree);
+bool is_letter(char c);
 /*--------------------------------------Wildcards------------------------------------------------*/
 
 char *wildcard(char *str, int i);
