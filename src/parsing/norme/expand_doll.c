@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:11:19 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 19:27:59 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:44:00 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ char	*replace_doll_bis(char *str, t_env *env, int position)
 	char *var;
 	int j;
 	
-	i = position - 2;
-	while (str[i] == ' ' || str[i] == '<')
+	i = 0;
+	if (position >= 2)
+		i = position - 2;
+	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '<'))
 	{
 		if (str[i] == '<' && str[i - 1] == '<')
 		{
@@ -39,7 +41,7 @@ char	*replace_doll_bis(char *str, t_env *env, int position)
 		while (str[i] != ' ' && str[i] != '\0' \
 		&& is_letter(str[i]))
 			i++;
-		var = ft_malloc((i - 1) - position , "char");
+		var = ft_malloc((i) - position , "char");
 		while (position < i)
 			var[j++] = str[position++];
 		var[j] = '\0';

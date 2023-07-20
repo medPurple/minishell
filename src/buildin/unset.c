@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:14:25 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 15:32:47 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:33:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	mini_unset(t_env **env, char **tab)
 
 	tmp = (*env);
 	i = 1;
+	if (tab[i][0] == '-')
+		return(mini_error_one(15));
 	while (tab[i])
 	{
 		if (ft_strlen(tab[i]) == 0)
-		{
 			mini_error_one(14);
-			return ;
-		}
 		while ((*env))
 		{
 			if (ft_strcmp(tab[i], (*env)->name) == 0)
