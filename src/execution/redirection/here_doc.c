@@ -6,19 +6,14 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 17:45:37 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:48 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-
-//static	bool handle_c(char *line);
-//static void	sign_test(int signal);
-//static int *get_sig(void);
 static void	set_signal_action(void);
 static void	sigint_handler(int signal);
-
 
 void	mini_here_doc(char *limiter, t_binary *tree)
 {
@@ -28,8 +23,6 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 	if (tree->cmd->pipe_tmp != 0 && tree->cmd->pipe_tmp != -1)
 		close (tree->cmd->pipe_tmp);
 	tree->cmd->pipe_tmp = open(".tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
-	//signal(SIGINT, SIG_IGN);
-	//signal(SIGINT, sign_test);
 	set_signal_action();
 	if (g_eoat == 130)
 	{
@@ -47,9 +40,12 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 			return ;
 		}
 		line = readline(">");
-
-		//if (handle_c(line) == true)
-		//	return ;
+		if (line == NULL)
+		{
+			send_error("minishell: warning: here-document delimited by end-of-file\n");
+			close(tree->cmd->pipe_tmp);
+			exit(0);
+		}
 		if (strcmp (line, limiter) == 0)
 		{
 			free (line);
@@ -73,39 +69,8 @@ static void	sigint_handler(int signal)
 {
 	if (signal == SIGINT)
 		g_eoat = 130;
+
 }
-
-/*static	bool handle_c(char *line)
-{
-	//signal(sig, SIG_IGN);
-	(void)line;
-	if (*get_sig() == SIGINT)
-		return (true);
-	else
-		return (false);
-}
-
-static int *get_sig(void)
-{
-	static int	sig = 0;
-
-	return(&sig);
-}*/
-
-
-/*static void	sign_test(int signal)
-{
-	if (signal == SIGINT)
-	{
-		write(2, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		//return ;
-	}
-}*/
-
-
 
 int	is_here_doc(t_binary *tree)
 {

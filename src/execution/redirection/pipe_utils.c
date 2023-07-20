@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 17:25:54 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:30:02 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 
 //<< eof | ls | wc -l << eof | ls << eof | wc -l << eof
 // si here doc puis cmd = fd non ferme
+//<< eof | ls | wc -l
+
 
 
 void	pipe_option( t_binary *tree, int choice, int pos)
@@ -38,7 +40,6 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			tree->redir = tree->redir->next;
-			//check_redir_pipe(tree); /* UTILITE A VERIFIER  !!!!!!!!!*/
 			tree->cmd->is_a_redir = 0;
 			k--;
 		}
@@ -96,6 +97,8 @@ void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i)
 		close (tree->cmd->pipe_fd[0]);
 		if (dup2 (tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 				perror("dup2");
+		if (tree->cmd->check_here_doc == 1)
+			close(tree->cmd->pipe_tmp);
 		if (dup2 (tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 			perror("dup2");
 		close (tree->cmd->pipe_fd[1]);

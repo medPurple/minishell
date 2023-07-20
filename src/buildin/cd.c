@@ -3,57 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 15:44:21 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:35:05 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int	count_arg(char **tab);
+static int	count_arg(char **tab, int j);
 static char	*find_dir(t_env *env);
+static int	search_cd(t_binary *tree);
 
 void	mini_cd(t_env *env, t_binary *tree)
 {
 	char	*str;
 	int		i;
+	int		j;
 
 	str = getcwd(NULL, 0);
-	if (count_arg(tree->cmd->split_cmd) > 2)
+	j = search_cd(tree);
+	if (count_arg(tree->cmd->split_cmd, j) > 2)
 	{
-		if ((count_arg(tree->cmd->split_cmd) == 3) && tree->cmd->split_cmd[2][0] == '/')
-			cd_norme_2(str, ft_strjoin(tree->cmd->split_cmd[1], tree->cmd->split_cmd[2]), env);
-		else 
+
+		if ((count_arg(tree->cmd->split_cmd, j) == 3) && tree->cmd->split_cmd[j + 2][0] == '/')
+			cd_norme_2(str, ft_strjoin(tree->cmd->split_cmd[j + 1], tree->cmd->split_cmd[j + 2]), env);
+		else
 			mini_error_one(16);
 	}
 	else
 	{
-		if (count_arg(tree->cmd->split_cmd) == 1)
+		if (count_arg(tree->cmd->split_cmd, j) == 1)
 			changedir(find_dir(env), env);
-		else if (ft_strlen(tree->cmd->split_cmd[1]) == 1 &&  tree->cmd->split_cmd[1][0] == '-')
+		else if (ft_strlen(tree->cmd->split_cmd[j + 1]) == 1 &&  tree->cmd->split_cmd[j + 1][0] == '-')
 			ft_printf("%s\n", getcwd(NULL, 0));
-		else if (ft_strlen(tree->cmd->split_cmd[1]) != 1 &&  tree->cmd->split_cmd[1][0] == '-')
+		else if (ft_strlen(tree->cmd->split_cmd[j + 1]) != 1 &&  tree->cmd->split_cmd[j + 1][0] == '-')
 			mini_error_one(15);
 		else
 		{
 			i = ft_strlen(str);
-			if (ft_strcmp(tree->cmd->split_cmd[1], "..") == 0)
+			if (ft_strcmp(tree->cmd->split_cmd[j + 1], "..") == 0)
 				cd_norme(str, env);
 			else
-				cd_norme_2(str, tree->cmd->split_cmd[1], env);
+				cd_norme_2(str, tree->cmd->split_cmd[j + 1], env);
 		}
 	}
 }
 
-static int	count_arg(char **tab)
+static int	search_cd(t_binary *tree)
+{
+	int i;
+
+	i = 0;
+	while (tree->cmd->split_cmd[i])
+	{
+		if(ft_strcmp (tree->cmd->split_cmd[i], "cd") == 0)
+			return (i);
+		i++;
+	}
+	return(0);
+}
+
+static int	count_arg(char **tab, int j)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (tab[j] && ft_strcmp(tab[j], "|") != 0)
+	{
 		i++;
+		j++;
+	}
 	return (i);
 }
 
@@ -89,7 +110,6 @@ void	changedir(char *destination, t_env *env)
 	free(destination);
 	while (tmp)
 	{
-		ft_printf("A\n");
 		if (ft_strcmp(tmp->name, "OLDPWD") == 0)
 		{
 			free(tmp->data);
