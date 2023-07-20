@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 12:00:17 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:31:00 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	if (cmd[0] == '/')
 	{
 		if (opendir((const char *)str) != NULL)
+		{
 			changedir(cmd, env);
+			free(str);
+		}
 		else
 			mini_error_one(11);
 	}

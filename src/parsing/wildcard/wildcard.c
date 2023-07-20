@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 19:36:05 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:23:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,12 @@ char	*ft_strjoat(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	ft_printf("%S %S\n", s1, s2);
 	if (!s1)
 		return (s2);
 	if (!s2)
 		return (s1);
 	size = (ft_strlen(s1) + ft_strlen(s2));
-	new = ft_malloc(size, "char");
+	new = ft_malloc(size - 2, "char");
 	while (s1 && s1[i])
 	{
 		new[i] = s1[i];

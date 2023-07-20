@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 18:53:39 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:46:31 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int verif_meta(t_binary *tree)
 	int	i;
 
 	i = 0;
+	if (!(tree->data))
+		return (-1);
 	if ((!(tree->right)) && (tree->data[0] == '|' || tree->data[0] == '&'))
 	{
 		if (tree->data[0] == '&')

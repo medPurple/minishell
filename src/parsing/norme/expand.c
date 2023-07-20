@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 10:47:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:05:32 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ char	*sie_norme(t_env *tmp, char *str)
 	add = ft_malloc((ft_strlen(tmp->data) - i), "char");
 	while (tmp->data[i] != '\0')
 		add[j++] = tmp->data[i++];
-	add[j] = ' ';
-	add[j + 1] = '\0';
+	add[j] = '\0';
 	str = join_all_part(str, add);
 	return (str);
 }
@@ -41,7 +40,7 @@ char	*jap_norme(char *str, int i, char *before, char *add)
 	after = NULL;
 	j = 0;
 	after = ft_malloc((ft_strlen(str) - (i - 1)), "char");
-	after[j] = ' ';
+	after[j++] = ' ';
 	while (str[i] != '\0')
 		after[j++] = str[i++];
 	after[j] = '\0';

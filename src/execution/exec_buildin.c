@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 14:59:38 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:02:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 		mini_export(&mini->env, tree->cmd->exec_cmd);
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0)
 		mini_unset(&mini->env, tree->cmd->exec_cmd);
-	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0
-		&& (valid_exit(tree->cmd->exec_cmd[1], tree->cmd->exec_cmd[2]) > 0))
-		mini_exit(mini, tree->cmd->exec_cmd[1]);
+	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
+	{
+		if (tree->cmd->exec_cmd[1] && !(tree->cmd->exec_cmd[2]) && valid_exit(tree->cmd->exec_cmd[1], NULL) > 0)
+			mini_exit(mini, tree->cmd->exec_cmd[1]);
+		if (tree->cmd->exec_cmd[1] && tree->cmd->exec_cmd[2] && valid_exit(tree->cmd->exec_cmd[1], tree->cmd->exec_cmd[2]) > 0)
+			mini_exit(mini, tree->cmd->exec_cmd[1]);
+		else if (!(tree->cmd->exec_cmd[1]))
+			mini_exit(mini, NULL);
+	}
 }
 
 void	exec_buildin_child(t_binary *tree, t_minishell *mini)
