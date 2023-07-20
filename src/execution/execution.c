@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 10:55:33 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:32:16 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	execution(t_minishell *mini, t_binary *tree);
 static	void	ft_wait(t_binary *tree, int status);
+
+//ls | wc -l << eof | ls << eof | << eof ls
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
@@ -101,8 +103,6 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			i--;
-			//if (tree->cmd->fd[1] != -1 && tree->cmd->fd[1] != 0)
-			//	close(tree->cmd->fd[1]);
 		}
 	}
 	tree->cmd->fork = fork();
@@ -134,12 +134,7 @@ static	void	ft_wait(t_binary *tree, int status)
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
 	if (is_here_doc(tree) >= 1)
-	{
-		if (tree->cmd->fd[1] != -1 && tree->cmd->fd[1] != 0)
-			close(tree->cmd->fd[1]);
-		if (tree->cmd->fd[0] != -1 && tree->cmd->fd[0] != 0)
-			close(tree->cmd->fd[0]);
-	}
+		close(tree->cmd->pipe_tmp);
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)

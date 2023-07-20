@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 12:13:43 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:07:18 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	create_cmd(t_binary *tree)
 	tree->cmd->split_cmd = mini_split(tree->data, 0, 0, 0);
 	tree->cmd->path_cmd = NULL;
 	tree->cmd->exec_cmd = NULL;
+	tree->cmd->pipe_tmp = 0;
 	tree->cmd->is_a_redir = 0;
 	tree->cmd->in = 0;
 	tree->cmd->out = 0;

@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 10:50:14 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:30:52 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 		{
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
-			check_redir_pipe(tree);
+			//check_redir_pipe(tree); /* UTILITE A VERIFIER  !!!!!!!!!*/
 			tree->cmd->is_a_redir = 0;
-			close(tree->cmd->fd[1]);
 			k--;
 		}
 	}
@@ -53,7 +52,21 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 			return ;
 		}
 	}
+}
 
+void	pipe_reduce(t_binary *tree)
+{
+	if (pipe (tree->cmd->pipe_fd) == -1)
+		perror("pipe");
+	if (is_here_doc (tree) >= 1)
+	{
+		pipe_option(tree, 2, 0);
+	}
+	else
+		tree->cmd->check_here_doc = 0;
+	tree->cmd->fork_pipe = fork();
+	if (tree->cmd->fork_pipe == -1)
+		perror ("fork");
 }
 
 void	pipe_parent(t_binary *tree, int choice)
@@ -80,7 +93,7 @@ void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i)
 			check_redir_pipe(tree);
 		close (tree->cmd->pipe_fd[0]);
 		if (dup2 (tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-			perror("dup2");
+				perror("dup2");
 		if (dup2 (tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
 			perror("dup2");
 		close (tree->cmd->pipe_fd[1]);
@@ -118,14 +131,3 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i)
 	execution_choice_pipe (tree, mini);
 }
 
-void	pipe_reduce(t_binary *tree)
-{
-	if (pipe (tree->cmd->pipe_fd) == -1)
-		perror("pipe");
-	if (is_here_doc (tree) >= 1)
-		pipe_option(tree, 2, 0);
-	tree->cmd->check_here_doc = 0;
-	tree->cmd->fork_pipe = fork();
-	if (tree->cmd->fork_pipe == -1)
-		perror ("fork");
-}

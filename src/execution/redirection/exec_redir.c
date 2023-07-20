@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:22 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 14:20:30 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:31:36 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	exec_cmd_redir(t_binary *tree)
 	}
 	if (is_here_doc(tree) >= 1)
 	{
-		if (dup2(tree->cmd->fd[0], STDIN_FILENO) == -1)
+		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 			perror("dup2");
-		close(tree->cmd->fd[0]);
+		close (tree->cmd->pipe_tmp);
 	}
 	return ;
 }
