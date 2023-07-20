@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 15:55:14 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:04:11 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	is_a_fonction(char *str, t_env *env)
 static char	**path_recuperation(t_env *env)
 {
 	char	*tmp_env;
+	char	**tab;
 	int		i;
 	int		j;
 
@@ -59,7 +60,7 @@ static char	**path_recuperation(t_env *env)
 	}
 	while (env->data[i] != '=')
 		i++;
-	tmp_env = malloc(sizeof(char ) * (ft_strlen(env->data) - i));
+	tmp_env = ft_malloc((ft_strlen(env->data) - (i + 1)), "char");
 	i++;
 	while (env->data[i])
 	{
@@ -68,7 +69,9 @@ static char	**path_recuperation(t_env *env)
 		j++;
 	}
 	tmp_env[j] = '\0';
-	return (ft_split(tmp_env, ':'));
+	tab = ft_split(tmp_env, ':');
+	free(tmp_env);
+	return (tab);
 }
 
 static int	test_path(char *str, char **path)
@@ -76,18 +79,21 @@ static int	test_path(char *str, char **path)
 	int		i;
 	char	*join;
 	char	*search;
+	char	*p2;
 	int 	ok;
 
 	i = 0;
 	ok = 0;
 	while (path[i])
 	{
-		join = ft_strjoin(path[i], "/");
+		p2 = ft_strdup(path[i]);
+		join = ft_strjoin(p2, "/");
 		search = ft_strjoin(join, str);
 		if (access(search, F_OK) == 0)
 			ok = 1;
 		free(search);
 		i++;
 	}
+	ft_free_tab(path);
 	return (ok);
 }

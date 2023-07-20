@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:40 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 11:25:04 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:12:23 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ bool	is_a_pipe(char *cmd)
 	{
 		if (cmd[pos] == '|' )
 			count_pipe++;
-		if ((cmd[pos] == '>' || cmd[pos] == '<') && cmd[pos + 1] == '|')
-			return (false);
-		if (cmd[pos] == '|' && ((cmd[pos + 1] == '<') || cmd[pos + 1] == '>'))
-			return (false);
+		if (cmd[pos + 1])
+		{
+			if ((cmd[pos] == '>' || cmd[pos] == '<') && cmd[pos + 1] == '|')
+				return (false);
+			if (cmd[pos] == '|' && ((cmd[pos + 1] == '<') || cmd[pos + 1] == '>'))
+				return (false);
+		}
 		pos++;
 	}
 	if (count_pipe == 1)

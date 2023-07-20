@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 11:46:41 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:22:55 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	parse_data(t_binary *tree, t_env *env)
 		tree->end = 1;
 		return ;
 	}
-	tree->left = new_branche(tree->left, tree->command);
-	tree->right = new_branche(tree->right, tree->rest);
+	tree->left = new_branche(tree->left, ft_strdup(tree->command));
+	tree->right = new_branche(tree->right,  ft_strdup(tree->rest));
+	free(tree->command);
+	free(tree->rest);
 	if (tree->left->data[0] == '(')
 		tree->left->parentheses = true;
 	if (tree->left->data[0] != '(')

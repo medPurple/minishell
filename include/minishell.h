@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 16:15:32 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:34:13 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void exec_buildin(t_binary *tree, t_minishell *mini);
 void exec_buildin_child(t_binary *tree, t_minishell *mini);
 
 void mini_echo(t_binary *tree);
-void mini_exit(t_minishell *mini, char *str);
+void	mini_exit(t_minishell *mini, char *str, t_binary *tree);
 void clear_the_tree(t_binary *tree);
 void mini_pwd(t_env *env, t_binary *tree);
 void mini_cd(t_env *env, t_binary *tree);

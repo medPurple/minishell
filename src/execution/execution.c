@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 17:42:24 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:29:32 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 	}
 	else
 		ft_wait(tree, status);
+	ft_free_tab(tree->cmd->exec_cmd);	
 	return ;
 }
 
@@ -138,7 +139,7 @@ static	void	ft_wait(t_binary *tree, int status)
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
 	if (tree->cmd->check_here_doc == 1)
-		close(tree->cmd->pipe_tmp);
+		close(tree->cmd->pipe_tmp);	
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
