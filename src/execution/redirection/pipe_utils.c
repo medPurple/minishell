@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 14:30:52 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:25:54 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 
 //<< eof | ls | wc -l << eof | ls << eof | wc -l << eof
+// si here doc puis cmd = fd non ferme
 
 
 void	pipe_option( t_binary *tree, int choice, int pos)
@@ -36,6 +37,7 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 		{
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
+			tree->redir = tree->redir->next;
 			//check_redir_pipe(tree); /* UTILITE A VERIFIER  !!!!!!!!!*/
 			tree->cmd->is_a_redir = 0;
 			k--;

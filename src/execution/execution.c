@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 16:05:26 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:42:24 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,12 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 		{
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
+			tree->redir = tree->redir->next;
 			i--;
 		}
 	}
+	if ((g_eoat == 130) && tree->cmd->check_here_doc == 1)
+		return ;
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		perror("fork");
@@ -134,7 +137,7 @@ static	void	ft_wait(t_binary *tree, int status)
 		close(tree->cmd->in);
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
-	if (is_here_doc(tree) >= 1)
+	if (tree->cmd->check_here_doc == 1)
 		close(tree->cmd->pipe_tmp);
 }
 

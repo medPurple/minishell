@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 08:49:08 by ml                #+#    #+#             */
-/*   Updated: 2023/07/20 15:23:17 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:44:07 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	signal_ctrlc(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	g_eoat = 130;
 }
