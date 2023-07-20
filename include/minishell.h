@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 18:18:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:55:44 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	mini_here_doc(char *limiter, t_binary *tree);
 int redir_is_valid(char *str);
 void	initialize_pipe_value(t_binary *tree);
 int	count_pipe(t_binary *tree);
-void	pipe_option(t_binary *tree, int choice);
+void	pipe_option(t_binary *tree, int choice, int pos);
 void	pipe_parent(t_binary *tree, int choice);
 void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i);
 void	wait_child(t_binary *tree);
@@ -250,7 +250,8 @@ void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void	ft_free_lst(t_redirection *stack);
 
 void	mini_error_one(int i);
-int    analyze_error(t_binary *tree);
+int    analyze_error(t_binary *tree, int i);
 void    analyze_error_bis(t_binary *tree);
+int pipe_is_valid(char **str);
 
 #endif
