@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 17:49:22 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:35:46 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 		if (ft_strlen(tree->data) == 0)
 			return ;
 		if (is_a_meta(tree->data, 0))
-			exec_meta(tree, mini);			
+			exec_meta(tree, mini);
 		else
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)

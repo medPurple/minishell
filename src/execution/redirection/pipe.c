@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 14:02:50 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:21:28 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	tree->cmd->count = count_pipe(tree);
 	while (i < tree->cmd->count)
 	{
+		tree->cmd->check_here_doc = 0;
 		if (tree->redir)
 			pipe_option(tree, 1, j);
 		j = cmd_redir_malloc(tree, j, j, j) + 1;
