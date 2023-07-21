@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:43:19 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:08 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ void	execution(t_minishell *mini, t_binary *tree)
 	if (tree->cmd->check_pipe == -1)
 	{
 		cmd_redir_malloc(tree, 0, 0, 0);
-		i = analyze_error(tree, 0);
-		if (i < 0)
-			return ;
 		execution_choice(tree, mini);
 	}
 	return ;
@@ -114,6 +111,8 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 		i = is_here_doc(tree);
 		while (i > 0)
 		{
+			if (tree->cmd->pipe_tmp)
+				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			tree->redir = tree->redir->next;

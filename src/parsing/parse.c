@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 14:44:29 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:20 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	parsing(t_minishell *mini, char *str)
 		return (-1);
 	}
 	if (verif_meta(mini->tree) == -1)
+		return (-1);
+	if (verif_redir(mini->tree) == -1)
 		return (-1);
 	create_cmd_in_tree(mini->tree);
 	return (0);
