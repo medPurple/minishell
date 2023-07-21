@@ -69,7 +69,8 @@ bool	is_a_pipe(char *cmd)
 		{
 			if ((cmd[pos] == '>' || cmd[pos] == '<') && cmd[pos + 1] == '|')
 				return (false);
-			if (cmd[pos] == '|' && ((cmd[pos + 1] == '<') || cmd[pos + 1] == '>'))
+			if (cmd[pos] == '|' && ((cmd[pos + 1] == '<') \
+			|| cmd[pos + 1] == '>'))
 				return (false);
 		}
 		pos++;

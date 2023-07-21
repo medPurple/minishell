@@ -40,7 +40,7 @@ char	**mini_split(char *str, int j, int i, int k)
 				break ;
 			cmd[k++] = ft_limited_strdup(str, j, i - 1);
 		}
- 	}
+	}
 	cmd[k] = NULL;
 	free(str);
 	return (removes_quotes(cmd));

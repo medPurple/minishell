@@ -18,8 +18,6 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 // si here doc puis cmd = fd non ferme
 //<< eof | ls | wc -l
 
-
-
 void	pipe_option( t_binary *tree, int choice, int pos)
 {
 	int	i;
@@ -88,7 +86,7 @@ void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i)
 			check_redir_pipe(tree);
 		close (tree->cmd->pipe_fd[0]);
 		if (dup2 (tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
-				perror("dup2");
+			perror("dup2");
 		if (tree->cmd->check_here_doc == 1)
 			close(tree->cmd->pipe_tmp);
 		if (dup2 (tree->cmd->pipe_fd[1], STDOUT_FILENO) == -1)
@@ -127,4 +125,3 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i)
 	}
 	execution_choice_pipe (tree, mini);
 }
-
