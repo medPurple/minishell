@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:40:11 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:44:29 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ t_binary	*new_branche(t_binary *tree, char *str)
 	tree->redir = NULL;
 	tree->status = false;
 	tree->previous_data = 0;
+	tree->cmd_cr = 0;
+	tree->par_base = 0;
 	return (tree);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 11:46:31 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:52:32 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,33 @@ void	mini_or(t_binary *tree, t_minishell *mini)
 	if (tree->prev->prev->left->cmd->exec == 1)
 	{
 		if (tree->prev->right->right)
-			tree->prev->right->left->cmd->exec = 1;
+		{
+			if (tree->prev->right->left->parentheses == false)
+				tree->prev->right->left->cmd->exec = 1;
+			else
+			{
+				tree->prev->right->left->cmd = malloc(sizeof(t_cmd));
+				tree->cmd_cr = 1;
+				tree->prev->right->left->cmd->exec = 1;
+			}
+		}
 		else
-			tree->prev->right->cmd->exec = 1;
+		{
+			if (tree->prev->right->parentheses == false)
+				tree->prev->right->cmd->exec = 1;
+			else
+			{
+				tree->prev->right->cmd = malloc(sizeof(t_cmd));
+				tree->cmd_cr = 1;
+				tree->prev->right->cmd->exec = 1;
+			}
+			
+		}
 		return ;
 	}
 	else
 		exec_recu(mini, tree->prev->right);
+	free(tree->data);
 }
 
 void	mini_and(t_binary *tree, t_minishell *mini)

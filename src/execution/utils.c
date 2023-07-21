@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:05 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:31:58 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ static char	*join_path(char *str, char *path);
 
 void	create_cmd(t_binary *tree)
 {
-	tree->cmd = malloc(sizeof(t_cmd));
-	tree->cmd->exec = 0;
-	tree->cmd->str = tree->data;
-	tree->cmd->split_cmd = NULL;
-	tree->cmd->split_cmd = mini_split(ft_strdup(tree->data), 0, 0, 0);
-	tree->cmd->path_cmd = NULL;
-	tree->cmd->exec_cmd = NULL;
-	tree->cmd->pipe_tmp = 0;
-	tree->cmd->is_a_redir = 0;
-	tree->cmd->check_here_doc = 0;
-	tree->cmd->in = 0;
-	tree->cmd->out = 0;
+	if (ft_strcmp(tree->data, "||") != 0 && ft_strcmp(tree->data, "&&") != 0 \
+	&& (tree->data[0] != '('))
+	{
+		tree->cmd = malloc(sizeof(t_cmd));
+		tree->cmd->exec = 0;
+		tree->cmd->str = ft_strdup(tree->data);
+		tree->cmd->split_cmd = NULL;
+		tree->cmd->split_cmd = mini_split(ft_strdup(tree->data), 0, 0, 0);
+		free(tree->cmd->str);
+		tree->cmd->path_cmd = NULL;
+		tree->cmd->exec_cmd = NULL;
+		tree->cmd->pipe_tmp = 0;
+		tree->cmd->is_a_redir = 0;
+		tree->cmd->check_here_doc = 0;
+		tree->cmd->in = 0;
+		tree->cmd->out = 0;
+	}
 }
 
 char	*cmd_recuperation(char *str, t_env *env)

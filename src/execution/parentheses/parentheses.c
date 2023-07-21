@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:11:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 17:35:44 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:45:48 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,32 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 		|| tree->data[i] == '\0')
 		i--;
 	tree->data = ft_limited_strdup(tree->data, 1, i - 1);
+	if (tree->cmd_cr == 1)
+		return;
 	if (tree->data == NULL || ft_strlen(tree->data) == 0)
 	{
 		tree->cmd = malloc(sizeof(t_cmd));
 		tree->cmd->exec = -1;
+		free(tree->data);
 		mini_error_one(20);
 	}
 	else
 	{
 		parse_data(tree, mini->env);
-		create_cmd_in_tree(tree);
-		create_cmd(tree);
-		exec_recu(mini, tree);
+		if (tree->right)
+		{
+			tree->cmd = malloc(sizeof(t_cmd));
+			tree->cmd_cr = 1;
+			tree->cmd->exec = 0;
+			create_cmd_in_tree(tree);
+		}
+		else
+		{
+			tree->cmd_cr = 1;
+			create_cmd(tree);
+		}
+		tree->par_base = 1;
+		exec_recu_par(mini, tree);
 		if (parentheses_success(tree) == true)
 			tree->cmd->exec = 1;
 		else

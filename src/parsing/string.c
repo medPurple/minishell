@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 07:42:37 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:10:53 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	find_next_split(t_binary *tree, t_env *env)
 			j = i;
 		}
 		else
+		{
+			free(str);
 			return (split_pos(tree, tree->data, 0));
+		}
 		if (tree->data[i] == '\0')
 			return (-1);
 	}
@@ -97,7 +100,10 @@ int	split_pos(t_binary *tree, char *str, int i)
 		else if (str[i] == '(')
 		{
 			if (tree->previous_data == 1)
+			{
+				free(str);
 				return (i - 1);
+			}
 			i = end_of_parentheses(str, i);
 		}
 		else
