@@ -28,8 +28,6 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-
-
 		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
@@ -39,7 +37,8 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 			else
 			{
 				if (tree->status == true)
-					tree->cmd->split_cmd = mini_split(get_status(tree), 0, 0, 0);
+					tree->cmd->split_cmd = \
+					mini_split(get_status(tree), 0, 0, 0);
 				execution(mini, tree);
 			}
 		}

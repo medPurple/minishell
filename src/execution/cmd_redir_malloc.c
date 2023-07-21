@@ -30,8 +30,9 @@ int	cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos)
 				&& tree->cmd->split_cmd[i + 2] != NULL)
 				i = i + 1;
 		}
-		if (is_a_pipe(tree->cmd->split_cmd[i]) == true
-			&& (tree->cmd->split_cmd[i + 1][0] != '>' || tree->cmd->split_cmd[i + 1][0] != '<'))
+		if (is_a_pipe(tree->cmd->split_cmd[i]) == true \
+		&& (tree->cmd->split_cmd[i + 1][0] != '>' \
+		|| tree->cmd->split_cmd[i + 1][0] != '<'))
 			break ;
 		i++;
 	}

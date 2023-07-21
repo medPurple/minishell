@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-static int	is_a_num (char *str);
+static int	is_a_num(char *str);
 static int	valid_exit(char *str, char *str2);
 
 void	exec_buildin(t_binary *tree, t_minishell *mini)
@@ -36,9 +36,11 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
 	{
-		if (tree->cmd->exec_cmd[1] && !(tree->cmd->exec_cmd[2]) && valid_exit(tree->cmd->exec_cmd[1], NULL) > 0)
-			mini_exit(mini, tree->cmd->exec_cmd[1],tree);
-		if (tree->cmd->exec_cmd[1] && tree->cmd->exec_cmd[2] && valid_exit(tree->cmd->exec_cmd[1], tree->cmd->exec_cmd[2]) > 0)
+		if (tree->cmd->exec_cmd[1] && !(tree->cmd->exec_cmd[2]) \
+		&& valid_exit(tree->cmd->exec_cmd[1], NULL) > 0)
+			mini_exit(mini, tree->cmd->exec_cmd[1], tree);
+		if (tree->cmd->exec_cmd[1] && tree->cmd->exec_cmd[2] \
+		&& valid_exit(tree->cmd->exec_cmd[1], tree->cmd->exec_cmd[2]) > 0)
 			mini_exit(mini, tree->cmd->exec_cmd[1], tree);
 		else if (!(tree->cmd->exec_cmd[1]))
 			mini_exit(mini, NULL, tree);
@@ -64,13 +66,13 @@ static int	valid_exit(char *str, char *str2)
 	else if (str && str2 && is_a_num(str) > 0 && ft_strlen(str2) > 0)
 		return (send_error("minishell: exit: too many arguments\n"), 0);
 	else
-		return(1);
+		return (1);
 }
 
-static int	is_a_num (char *str)
+static int	is_a_num(char *str)
 {
 	int	i;
-	int count;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -89,5 +91,3 @@ static int	is_a_num (char *str)
 	}
 	return (0);
 }
-
-
