@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/19 14:33:03 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:42:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	find_next_split(t_binary *tree, t_env *env)
 		i = ipp_norme_2(tree->data, i);
 		i = fns_norme(tree->data, i);
 		str = ft_limited_strdup(tree->data, j, i - 1);
-		
 		if (string_analyse(tree, str, env) != true)
 		{
 			if (ft_strcmp(str, "|") == 0)
@@ -59,7 +58,7 @@ int	find_next_split(t_binary *tree, t_env *env)
 	return (-1);
 }
 
-bool	string_analyse(t_binary *tree,char *str, t_env *env)
+bool	string_analyse(t_binary *tree, char *str, t_env *env)
 {
 	int	i;
 
@@ -68,20 +67,14 @@ bool	string_analyse(t_binary *tree,char *str, t_env *env)
 		return (false);
 	else
 	{
-		//ft_printf("ANALYSE | STR - [%s]\n", str);
 		while (str[i])
 		{
-			//ft_printf("i ---- [%c]\n", str[i]);
 			if (str[i] == '\'' || str[i] == '\"')
 				i = end_of_quotes(str, i);
 			else if (str[i] == '(')
 			{
-				//ft_printf("DETECTED\n");
 				if (tree->previous_data == 1)
-				{
-				//	ft_printf("TRUE ANALYSE\n");
 					return (true);
-				}
 				i = end_of_parentheses(str, i);
 			}
 			else
@@ -97,20 +90,14 @@ bool	string_analyse(t_binary *tree,char *str, t_env *env)
 
 int	split_pos(t_binary *tree, char *str, int i)
 {
-	//ft_printf("SPLIT | STR - [%s]\n", str);
 	while (str[i])
 	{
-		//ft_printf("i ---- [%c]\n", str[i]);
 		if (str[i] == '\'' || str[i] == '\"')
 			i = end_of_quotes(str, i);
 		else if (str[i] == '(')
 		{
-			//ft_printf("DETECTED\n");
 			if (tree->previous_data == 1)
-			{
-			//	ft_printf("TRUE SPLIT\n");
 				return (i - 1);
-			}
 			i = end_of_parentheses(str, i);
 		}
 		else
@@ -119,13 +106,13 @@ int	split_pos(t_binary *tree, char *str, int i)
 			{
 				if (str[0] == '&' || str[0] == '|')
 				{
-					while(str[i] && (str[i] == '&' || str[i] == '|'))
+					while (str[i] && (str[i] == '&' || str[i] == '|'))
 						i++;
-					return(i);
+					return (i);
 				}
 				else
 				{
-					while(str[i] && (str[i] == '&' || str[i] == '|'))
+					while (str[i] && (str[i] == '&' || str[i] == '|'))
 						i--;
 					return (i);
 				}

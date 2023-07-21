@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:00 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/18 16:51:05 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:57:20 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int check_option(char **str);
+static int	check_option(char **str);
 
 void	mini_pwd(t_env *env, t_binary *tree)
 {
@@ -31,15 +31,15 @@ void	mini_pwd(t_env *env, t_binary *tree)
 	}
 }
 
-static int check_option(char **str)
+static int	check_option(char **str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if(str[i][0] == '-')
-			return(1);
+		if (str[i][0] == '-')
+			return (1);
 		i++;
 	}
 	return (0);

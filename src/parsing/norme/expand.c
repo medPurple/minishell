@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 16:37:49 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:48:55 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*sie_norme(t_env *tmp, char *str)
 	i = 0;
 	add = NULL;
 	while (tmp->data[i] != '=')
-			i++;
+		i++;
 	i++;
 	add = ft_malloc((ft_strlen(tmp->data) - i), "char");
 	while (tmp->data[i] != '\0')
@@ -57,7 +57,7 @@ char	*jap_norme_2(char *str)
 	char	*bf;
 	char	*af;
 	int		j;
-	
+
 	i = 0;
 	af = NULL;
 	bf = NULL;
@@ -65,25 +65,26 @@ char	*jap_norme_2(char *str)
 		i++;
 	if (i != 0)
 		bf = ft_limited_strdup(str, 0, i - 1);
-	while ((str[i]!= '\0' && str[i] != ' ') || (str[i] == '\'' || str[i] == '\"' || is_letter(str[i])))
+	while ((str[i] != '\0' && str[i] != ' ') || (str[i] == '\'' \
+	|| str[i] == '\"' || is_letter(str[i])))
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 		{
 			i = pass_quotes(str, i) + 1;
-			break;		
+			break ;
 		}
 		else
 			i++;
 	}
 	j = i - 1;
-	if (is_letter(str[i - 1]) == false && (str[i - 1] != '\'' && str[i - 1] != '\"'))
+	if (is_letter(str[i - 1]) == false && (str[i - 1] != '\'' \
+	&& str[i - 1] != '\"'))
 		j--;
 	while (str[i] != '\0')
 		i++;
 	i--;
 	if (i != j)
 		af = ft_limited_strdup(str, j + 1, i);
-	
 	str = ft_strjoat(bf, af);
 	return (str);
 }

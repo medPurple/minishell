@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:56:08 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 18:48:54 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:54:50 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	search_option(char **str);
 static bool	is_ok(char *str);
-static int s_op(char **tab);
+static int	s_op(char **tab);
 
 void	mini_echo(t_binary *tree)
 {
@@ -43,10 +43,10 @@ static bool	search_option(char **str)
 		return (true);
 }
 
-static bool is_ok(char *str)
+static bool	is_ok(char *str)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 	size_t	n;
 
 	i = 0;
@@ -68,9 +68,9 @@ static bool is_ok(char *str)
 		return (false);
 }
 
-static int s_op(char **tab)
+static int	s_op(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (tab[i])
@@ -78,11 +78,10 @@ static int s_op(char **tab)
 		if (is_ok(tab[i]) == true)
 			i++;
 		else
-			break;
+			break ;
 	}
 	if (i == 1)
 		return (1);
 	else
 		return (i - 1);
-	
 }

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 16:55:47 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:49:21 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,8 @@ static char	*find_file(char *bfwc, char *afwc, char *begin, char *end)
 static char	**get_wc(char *bfwc, char *afwc, t_wc *liste)
 {
 	char	**tab;
-	int		i;
-	int		j;
-	int		count;
 
 	tab = NULL;
-	count = 0;
-	i = 0;
-	if (afwc != NULL)
-		j = ft_strlen(afwc);
 	if (bfwc != NULL && afwc != NULL)
 		tab = wc_before_and_after(bfwc, afwc, liste);
 	else if (bfwc != NULL && afwc == NULL)

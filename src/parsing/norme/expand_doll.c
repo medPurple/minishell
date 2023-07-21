@@ -6,21 +6,22 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:11:19 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 11:44:00 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:46:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
 static char	*search_in_env(char *var, t_env *env, char *str);
-static char *doll_quotes(char *str, int position);
-static char *put_quotes(char *str, int positon);
+static char	*doll_quotes(char *str, int position);
+static char	*put_quotes(char *str, int positon);
 
 char	*replace_doll_bis(char *str, t_env *env, int position)
 {
-	int	i;
-	char *var;
-	int j;
-	
+	int		i;
+	char	*var;
+	int		j;
+
 	i = 0;
 	if (position >= 2)
 		i = position - 2;
@@ -33,7 +34,7 @@ char	*replace_doll_bis(char *str, t_env *env, int position)
 		i--;
 	}
 	if (str[position] == '\"' || str[position] == '\'')
-		return(doll_quotes(str, position));
+		return (doll_quotes(str, position));
 	else
 	{
 		j = 0;
@@ -41,15 +42,15 @@ char	*replace_doll_bis(char *str, t_env *env, int position)
 		while (str[i] != ' ' && str[i] != '\0' \
 		&& is_letter(str[i]))
 			i++;
-		var = ft_malloc((i) - position , "char");
+		var = ft_malloc(i - position, "char");
 		while (position < i)
 			var[j++] = str[position++];
 		var[j] = '\0';
-		return(search_in_env(var, env, str));
+		return (search_in_env(var, env, str));
 	}
 }
 
-bool is_letter(char c)
+bool	is_letter(char c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (true);
@@ -57,10 +58,10 @@ bool is_letter(char c)
 		return (true);
 	return (false);
 }
+
 static char	*search_in_env(char *var, t_env *env, char *str)
 {
 	t_env	*tmp;
-
 
 	tmp = env;
 	while (tmp != NULL)
@@ -76,24 +77,24 @@ static char	*search_in_env(char *var, t_env *env, char *str)
 	return (str);
 }
 
-static char *doll_quotes(char *str, int position)
+static char	*doll_quotes(char *str, int position)
 {
-	char *bf;
-	char *af;
-	
+	char	*bf;
+	char	*af;
+
 	bf = NULL;
 	af = NULL;
 	bf = ft_limited_strdup(str, 0, position - 2);
 	af = ft_limited_strdup(str, position, ft_strlen(str));
-	return (ft_strjoin(bf,af));
+	return (ft_strjoin(bf, af));
 }
 
-static char *put_quotes(char *str, int positon)
+static char	*put_quotes(char *str, int positon)
 {
-	char *bf;
-	char *af;
+	char	*bf;
+	char	*af;
 	int		i;
-	
+
 	i = positon;
 	bf = ft_limited_strdup(str, 0, positon - 2);
 	bf = ft_strjoat(bf, "\'");

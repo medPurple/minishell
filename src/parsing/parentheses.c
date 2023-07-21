@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:06 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/19 13:55:34 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:39:39 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ignore_parentheses(t_binary *tree)
 			para_count++;
 		i++;
 	}
-	while ((is_a_meta(tree->data, i) != true) && tree->data[i] && tree->data[i] != '|')
+	while ((is_a_meta(tree->data, i) != true) \
+	&& tree->data[i] && tree->data[i] != '|')
 		i++;
 	if (i != (int)ft_strlen(tree->data))
 	{
@@ -85,12 +86,10 @@ int	verif_parentheses(t_binary *tree)
 	return (0);
 }
 
-bool need_split(char *str, int i)
+bool	need_split(char *str, int i)
 {
-	ft_printf("%d - %c\n",i,str[i]);
 	while (str[i])
 	{
-		ft_printf("-- %c ", str[i]);
 		if (str[i] == ' ' || str[i] == '\t')
 			i--;
 		else if (str[i] == '|')

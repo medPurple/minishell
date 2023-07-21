@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 19:35:21 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:55:19 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	clear_env(t_env *env);
 
 void	mini_exit(t_minishell *mini, char *str, t_binary *tree)
 {
-	
 	if (str)
 		g_eoat = ft_atoi(str);
 	if (tree->cmd->exec_cmd)

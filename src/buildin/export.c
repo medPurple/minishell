@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:10:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 11:04:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:56:44 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	is_valid_bf(char *str);
 static bool	has_equals(char *str);
-static void remove_last(char *str, t_env *env);
+static void	remove_last(char *str, t_env *env);
 
 void	mini_export(t_env **env, char **tab)
 {
@@ -23,11 +23,11 @@ void	mini_export(t_env **env, char **tab)
 
 	i = 1;
 	if (!(tab[1]))
-		return (mini_env(*env)) ;
+		return (mini_env(*env));
 	while (tab[i])
 	{
 		if (tab[i][0] == '-')
-			return(mini_error_one(15));
+			return (mini_error_one(15));
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == true)
 		{
 			remove_last(tab[i], *env);
@@ -37,7 +37,7 @@ void	mini_export(t_env **env, char **tab)
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == false)
 			ft_printf("");
 		else
-			return(mini_error_one(13));
+			return (mini_error_one(13));
 		i++;
 	}
 }
@@ -59,7 +59,7 @@ static bool	is_valid_bf(char *str)
 	{
 		if (!((lim[j] >= 'a' && lim[j] <= 'z') \
 		|| (lim[j] >= 'A' && lim[j] <= 'Z') \
-		|| (lim[j] >= '0' && lim[j] <= '9')\
+		|| (lim[j] >= '0' && lim[j] <= '9') \
 		|| lim[j] == '_'))
 			return (false);
 		j++;
@@ -81,17 +81,17 @@ static bool	has_equals(char *str)
 	return (false);
 }
 
-static void remove_last(char *str, t_env *env)
+static void	remove_last(char *str, t_env *env)
 {
-	int i;
-	char *name;
-	t_env *tmp;
+	int		i;
+	char	*name;
+	t_env	*tmp;
 
 	i = 0;
 	tmp = env;
-	while(str[i] != '=')
+	while (str[i] != '=')
 		i++;
-	name = ft_limited_strdup(str,0, i - 1);
+	name = ft_limited_strdup(str, 0, i - 1);
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, name) == 0)
@@ -100,7 +100,7 @@ static void remove_last(char *str, t_env *env)
 			free(tmp->data);
 			free(tmp->name);
 			free(tmp);
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}

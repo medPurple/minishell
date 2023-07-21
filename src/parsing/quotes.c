@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 11:37:58 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 07:40:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	end_of_quotes(char *str, int i)
 
 	c = str[i];
 	i++;
-	while (str[i] != '\0' && str[i] != c )
+	while (str[i] != '\0' && str[i] != c)
 		i++;
 	while (str[i] != '\0' && (str[i] != '&' && str[i + 1] != '&') \
 		&& (str[i] != '|' && str[i + 1] != '|'))
