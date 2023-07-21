@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 12:31:58 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:34:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ char	*cmd_recuperation(char *str, t_env *env)
 	char	**path;
 	int		i;
 	char	*cmd;
+	char	*pathok;
 
+	pathok = NULL;
 	i = 0;
 	path = NULL;
 	if (str == NULL)
@@ -52,11 +54,11 @@ char	*cmd_recuperation(char *str, t_env *env)
 	{
 		cmd = join_path(str, path[i]);
 		if (access(cmd, 0) == 0)
-			return (cmd);
+			pathok = ft_strdup(cmd);
 		free(cmd);
 		i++;
 	}
-	return (NULL);
+	return (pathok);
 }
 
 static char	*path_recuperation(t_env *env)

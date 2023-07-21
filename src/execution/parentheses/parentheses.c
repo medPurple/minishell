@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:11:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 14:45:48 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:20:48 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 	int	i;
 
 	i = 0;
-	tree->parentheses = false;
 	i = ft_strlen(tree->data);
 	while (tree->data[i] == ' ' || tree->data[i] == '\t'
 		|| tree->data[i] == '\0')
@@ -64,9 +63,19 @@ static bool	parentheses_success(t_binary *tree)
 
 	tmp = tree;
 	while (tmp->right)
+	{
+		if (tmp->right && (ft_strcmp(tmp->left->data, "||") != 0) && ft_strcmp(tmp->left->data, "&&") != 0)
+			free(tmp->left->cmd);
 		tmp = tmp->right;
+	}
 	if (tmp->cmd->exec == 1)
+	{
+		free(tmp->cmd);
 		return (true);
+	}
 	else
+	{
+		free(tmp->cmd);
 		return (false);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:41:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 15:28:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:43:12 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exec_recu_par(t_minishell *mini, t_binary *tree)
 {
-	if (tree->parentheses == true)
+	if (tree->parentheses == true && tree->data[0] == '(')
 		expand_parentheses_and_execute(tree, mini);
 	else if (tree->right)
 	{
@@ -31,7 +31,6 @@ void	exec_recu_par(t_minishell *mini, t_binary *tree)
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 			{
-				ft_printf("ICI %s\n", tree->data);
 				if (tree->prev->par_base == 0 \
 				&& tree->prev->prev->left->parentheses == false \
 				&& ft_strcmp(tree->prev->prev->left->data, "||" ) == 0)
@@ -51,5 +50,6 @@ void	exec_recu_par(t_minishell *mini, t_binary *tree)
 			}
 		}
 	}
+	
 	return ;
 }

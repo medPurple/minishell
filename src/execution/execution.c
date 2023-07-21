@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:50:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:49:22 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
-	ft_printf("%s\n", tree->data);
-	ft_printf("[cmd] %d\n", tree->cmd_cr);
-	ft_printf("[exec] %d\n", tree->cmd->exec);
-	if (tree->parentheses == true && tree->cmd_cr != 1 && tree->cmd->exec != 1)
+	if (tree->parentheses == true && tree->cmd_cr == 0 /*&& tree->cmd &&  tree->cmd->exec == 0*/)
+	{
 		expand_parentheses_and_execute(tree, mini);
-	else if (tree->parentheses == true && tree->cmd_cr == 1 && tree->cmd->exec == 1)
 		return;
-	else if (tree->right)
+	}
+	else if (tree->parentheses == true && tree->cmd_cr == 1 && tree->cmd && (tree->cmd->exec == 1 || tree->cmd->exec == -1))
+		return;
+	else if (tree->parentheses == false && tree->right)
 	{
 		exec_recu(mini, tree->left);
 		exec_recu(mini, tree->right);
@@ -40,7 +40,6 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 			{
-				ft_printf("LA %s\n", tree->data);
 				if (tree->prev->prev->left->parentheses == false \
 				&& ft_strcmp(tree->prev->prev->left->data, "||") == 0)
 					ft_free_tab(tree->cmd->split_cmd);

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:50:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:40:16 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,10 @@ char *put_in_quotes(char *begin, char *end, char *bfwc, char *afwc);
 /*--------------------------------------Parentheses----------------------------------------------*/
 void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);
 void	exec_recu_par(t_minishell *mini, t_binary *tree);
+void	exec_meta_par( t_binary *tree, t_minishell *mini);
+void	mini_or_par(t_binary *tree, t_minishell *mini);
+void	mini_and_par(t_binary *tree, t_minishell *mini);
+
 /*------------------------------------------UTILS - execution----------------------------------------------*/
 
 int	check_open(int	file);

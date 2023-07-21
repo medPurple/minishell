@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 11:01:56 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:56:57 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,15 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 	g_eoat = 0;
 	if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
 	{
-		mini_cd(mini->env, tree);
-		ft_free_tab(tree->cmd->exec_cmd);
-		
+		mini_cd(mini->env, tree);		
 	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)
 	{
 		mini_export(&mini->env, tree->cmd->exec_cmd);
-		ft_free_tab(tree->cmd->exec_cmd);
 	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0)
 	{
 		mini_unset(&mini->env, tree->cmd->exec_cmd);
-		ft_free_tab(tree->cmd->exec_cmd);
 	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
 	{
