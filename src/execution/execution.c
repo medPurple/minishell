@@ -62,7 +62,6 @@ static void	execution(t_minishell *mini, t_binary *tree)
 			send_error ("minishell: syntax error near unexpected token '&'\n");
 			return ;
 		}
-
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
 			if (pipe_is_valid(tree->cmd->split_cmd) < 0)
@@ -107,7 +106,7 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 			{
 				mini_error_one(1);
 				close(tree->cmd->pipe_tmp);
-				return;
+				return ;
 			}
 			i--;
 		}
@@ -149,7 +148,6 @@ static	void	ft_wait(t_binary *tree, int status)
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
-
 	if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
@@ -182,7 +180,7 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	}
 	else
 	{
-		if (ft_strlen(tree->cmd->exec_cmd[0])!= 0)
+		if (ft_strlen(tree->cmd->exec_cmd[0]) != 0)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
 			mini_error_one(9);

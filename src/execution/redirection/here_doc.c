@@ -27,7 +27,7 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 	if (g_eoat == 130)
 	{
 		write(2, "\n", 1);
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 		return ;
@@ -42,7 +42,8 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 		line = readline(">");
 		if (line == NULL)
 		{
-			send_error("minishell: warning: here-document delimited by end-of-file\n");
+			send_error("minishell: warning: \
+			here-document delimited by end-of-file\n");
 			close(tree->cmd->pipe_tmp);
 			exit(0);
 		}
@@ -59,7 +60,8 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 
 static void	set_signal_action(void)
 {
-	struct sigaction act;
+	struct sigaction	act;
+
 	ft_bzero(&act, sizeof(act));
 	act.sa_handler = &sigint_handler;
 	sigaction(SIGINT, &act, NULL);
@@ -69,7 +71,6 @@ static void	sigint_handler(int signal)
 {
 	if (signal == SIGINT)
 		g_eoat = 130;
-
 }
 
 int	is_here_doc(t_binary *tree)

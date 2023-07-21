@@ -14,12 +14,12 @@
 
 static char	*jap_s(char *bf, char *af);
 
-char *get_status(t_binary *tree)
+char	*get_status(t_binary *tree)
 {
 	int		i;
 	int		j;
-	char *bf;
-	char *af;
+	char	*bf;
+	char	*af;
 
 	bf = NULL;
 	af = NULL;
@@ -38,9 +38,9 @@ char *get_status(t_binary *tree)
 
 static char	*jap_s(char *bf, char *af)
 {
-	char *str;
+	char	*str;
 
 	str = ft_strjoat(bf, ft_itoa(g_eoat));
 	str = ft_strjoat (str, af);
-	return (str);	
+	return (str);
 }

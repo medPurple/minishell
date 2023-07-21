@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_create_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:28 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/18 11:06:50 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 09:56:19 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_redirection	*ft_new_redirection(char *redir, char *file, int j)
 {
 	t_redirection	*element;
-	int	i;
+	int				i;
 
 	i = 1;
 	element = malloc(sizeof(t_redirection));

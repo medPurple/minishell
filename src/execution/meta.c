@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-static void meta_error(char *str);
+
+static void	meta_error(char *str);
 
 void	exec_meta( t_binary *tree, t_minishell *mini)
 {
@@ -59,8 +60,7 @@ void	mini_and(t_binary *tree, t_minishell *mini)
 		exec_recu(mini, tree->prev->right);
 }
 
-
-int verif_meta(t_binary *tree)
+int	verif_meta(t_binary *tree)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ int verif_meta(t_binary *tree)
 				i++;
 		}
 		if (i != 2)
-			return(meta_error(tree->data), -1);
+			return (meta_error(tree->data), -1);
 	}
 	else if (tree->right)
 	{
@@ -92,7 +92,7 @@ int verif_meta(t_binary *tree)
 	return (0);
 }
 
-static void meta_error(char *str)
+static void	meta_error(char *str)
 {
 	int	i;
 
