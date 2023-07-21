@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/19 16:53:41 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/21 14:46:30 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/redirection/lst_create_redir.c\
 		$(PATH_SRC)/execution/redirection/here_doc.c\
     	$(PATH_SRC)/execution/parentheses/parentheses.c\
+		$(PATH_SRC)/execution/parentheses/exec_recu_par.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\

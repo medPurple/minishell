@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:55:19 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:19:34 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	mini_exit(t_minishell *mini, char *str, t_binary *tree)
 		g_eoat = ft_atoi(str);
 	if (tree->cmd->exec_cmd)
 		ft_free_tab(tree->cmd->exec_cmd);
+	if (tree->cmd)
+		free(tree->cmd);
 	clear_the_tree(mini->tree);
 	clear_env(mini->env);
 	clear_history();
@@ -34,6 +36,7 @@ void	clear_the_tree(t_binary *tree)
 		clear_the_tree(tree->left);
 		clear_the_tree(tree->right);
 	}
+	free(tree->data);
 	tree->prev = NULL;
 	tree->right = NULL;
 	tree->left = NULL;

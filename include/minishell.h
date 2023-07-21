@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 13:18:22 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:01 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_binary
 	bool	parentheses;
 	bool	status;
 	int		previous_data;
+	int		cmd_cr;
+	int		par_base;
 	struct s_cmd *cmd;
 	struct s_binary *prev;
 	struct s_binary *left;
@@ -139,6 +141,7 @@ int	cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos);
 void	execution_choice(t_binary *tree, t_minishell *mini);
 void    exec_send(t_binary *tree, t_minishell *mini);
 void exec_meta( t_binary *tree, t_minishell *mini);
+void	execution(t_minishell *mini, t_binary *tree);
 
 
 /*----------------------------------------------REDIRECTION----------------------------------------*/
@@ -233,7 +236,7 @@ char *put_in_quotes(char *begin, char *end, char *bfwc, char *afwc);
 
 /*--------------------------------------Parentheses----------------------------------------------*/
 void expand_parentheses_and_execute(t_binary *tree, t_minishell *mini);
-
+void	exec_recu_par(t_minishell *mini, t_binary *tree);
 /*------------------------------------------UTILS - execution----------------------------------------------*/
 
 int	check_open(int	file);

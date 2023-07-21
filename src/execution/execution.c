@@ -6,21 +6,25 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 18:51:30 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:33:55 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static void	execution(t_minishell *mini, t_binary *tree);
 static	void	ft_wait(t_binary *tree, int status);
 
 //ls | wc -l << eof | ls << eof | << eof ls
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
-	if (tree->parentheses == true)
+	ft_printf("%s\n", tree->data);
+	ft_printf("[cmd] %d\n", tree->cmd_cr);
+	ft_printf("[exec] %d\n", tree->cmd->exec);
+	if (tree->parentheses == true && tree->cmd_cr != 1 && tree->cmd->exec != 1)
 		expand_parentheses_and_execute(tree, mini);
+	else if (tree->parentheses == true && tree->cmd_cr == 1 && tree->cmd->exec == 1)
+		return;
 	else if (tree->right)
 	{
 		exec_recu(mini, tree->left);
@@ -28,12 +32,23 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
+		if (ft_strlen(tree->data) == 0)
+			return ;
 		if (is_a_meta(tree->data, 0))
 			exec_meta(tree, mini);
 		else
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
+			{
+				ft_printf("LA %s\n", tree->data);
+				if (tree->prev->prev->left->parentheses == false \
+				&& ft_strcmp(tree->prev->prev->left->data, "||") == 0)
+					ft_free_tab(tree->cmd->split_cmd);
+				else if (tree->prev->left->parentheses == false \
+				&& ft_strcmp(tree->prev->left->data, "||") == 0)
+					ft_free_tab(tree->cmd->split_cmd);
 				return ;
+			}
 			else
 			{
 				if (tree->status == true)
@@ -46,7 +61,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	return ;
 }
 
-static void	execution(t_minishell *mini, t_binary *tree)
+void	execution(t_minishell *mini, t_binary *tree)
 {
 	int	i;
 
@@ -126,6 +141,7 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 	else
 		ft_wait(tree, status);
 	ft_free_tab(tree->cmd->exec_cmd);
+
 	return ;
 }
 
