@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 19:43:28 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:01:43 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	execution(t_minishell *mini, t_binary *tree)
 			send_error ("minishell: syntax error near unexpected token '&'\n");
 			return ;
 		}
-
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
 			if (pipe_is_valid(tree->cmd->split_cmd) < 0)
@@ -79,9 +78,6 @@ static void	execution(t_minishell *mini, t_binary *tree)
 	if (tree->cmd->check_pipe == -1)
 	{
 		cmd_redir_malloc(tree, 0, 0, 0);
-		i = analyze_error(tree, 0);
-		if (i < 0)
-			return ;
 		execution_choice(tree, mini);
 	}
 	return ;
@@ -100,6 +96,8 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 		i = is_here_doc(tree);
 		while (i > 0)
 		{
+			if (tree->cmd->pipe_tmp)
+				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			tree->redir = tree->redir->next;

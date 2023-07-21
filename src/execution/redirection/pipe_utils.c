@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 18:30:02 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:02:20 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 	int	k;
 
 	i = 0;
+	(void)pos;
 	if (choice == 1)
 	{
 		tree->cmd->is_a_redir = 0;
@@ -37,22 +38,13 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 		k = is_here_doc (tree);
 		while (k > 0)
 		{
+			if (tree->cmd->pipe_tmp)
+				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			tree->redir = tree->redir->next;
 			tree->cmd->is_a_redir = 0;
 			k--;
-		}
-	}
-	else
-	{
-		i = analyze_error(tree, pos);
-		if (i < 0)
-		{
-			tree->cmd->is_a_redir = 0;
-			ft_free_lst(tree->redir);
-			tree->redir = NULL;
-			return ;
 		}
 	}
 }

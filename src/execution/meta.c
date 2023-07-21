@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 11:46:31 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:56:02 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,14 @@ static void meta_error(char *str)
 		i++;
 	if (i == 1 && str[0] == '|')
 		mini_error_one(4);
+	if (i == 2 && str[0] == '|' && (str[1] == '>' || str[1] == '<'))
+		mini_error_one(4);
 	if (i == 1 && str[0] == '&')
 	{
 		g_eoat = 2;
 		send_error("minishell: syntax error near unexpected token '&'\n");
 	}
-	if (i > 2 && str[0] == '|')
+	if (i > 2 && str[0] == '|' && str[1] == '|')
 		mini_error_one(5);
 	if (i > 2 && str[0] == '&')
 		mini_error_one(10);

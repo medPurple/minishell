@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 07:33:16 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:43:48 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 	char	*line;
 
 	line = NULL;
-	if (tree->cmd->pipe_tmp != 0 && tree->cmd->pipe_tmp != -1)
-		close (tree->cmd->pipe_tmp);
+	//if (tree->cmd->pipe_tmp != 0 && tree->cmd->pipe_tmp != -1)
+	//	close (tree->cmd->pipe_tmp);
+	unlink(".tmp");
 	tree->cmd->pipe_tmp = open(".tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	set_signal_action();
 	if (g_eoat == 130)
 	{
 		write(2, "\n", 1);
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 		return ;
@@ -48,6 +49,7 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 		}
 		if (strcmp (line, limiter) == 0)
 		{
+			close(tree->cmd->pipe_tmp);
 			free (line);
 			return ;
 		}
