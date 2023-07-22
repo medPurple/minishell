@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 17:50:23 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:54:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ bool			is_letter(char c);
 int				norme_sp(int i, char *str, int j);
 int				verif_quotes(t_binary *tree);
 bool			string_analyse(t_binary *tree, char *str, t_env *env, int i);
+void			clear_the_tree_bis(t_binary *tree);
 
 /*-------------------Wildcards-------------------------------*/
 char			*wildcard(char *str, int i);

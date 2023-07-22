@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:50:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:44:42 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 				return (exec_recu_norme (mini, tree, 1));
 			else
+			{
 				exec_recu_norme (mini, tree, 2);
+				ft_free_tab(tree->cmd->split_cmd);
+			}
 		}
 	}
 	return ;
@@ -92,7 +95,7 @@ void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 		return ;
 	}
 	execution_norme_2(mini, tree, status);
-	return (ft_free_tab(tree->cmd->exec_cmd));
+	return (ft_free_tab(tree->cmd->exec_cmd), ft_free_lst(tree->redir));
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
@@ -116,10 +119,12 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		if (ft_strlen(tree->cmd->exec_cmd[0]) != 0)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
+			ft_free_lst(tree->redir);
 			mini_error_one(9);
 			exit(127);
 		}
 		ft_free_tab(tree->cmd->exec_cmd);
+		ft_free_lst(tree->redir);
 		exit (0);
 	}
 }
@@ -131,19 +136,22 @@ static void	execute_cmd_norme(t_binary *tree, int i)
 		if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
+			ft_free_lst(tree->redir);
 			mini_error_one(8);
 			exit(126);
 		}
 		else
 		{
-			mini_error_one(9);
 			ft_free_tab(tree->cmd->exec_cmd);
+			ft_free_lst(tree->redir);
+			mini_error_one(9);
 			exit(127);
 		}
 	}
 	if (i == 2)
 	{
 		ft_free_tab(tree->cmd->exec_cmd);
+		ft_free_lst(tree->redir);
 		mini_error_one(11);
 		exit(126);
 	}

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 16:49:47 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:48:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ void	clear_the_tree(t_binary *tree)
 	if (!tree->right && ft_strcmp(tree->data, "||") != 0
 		&& ft_strcmp(tree->data, "&&") != 0)
 		free(tree->cmd);
+	free(tree->data);
+	tree->prev = NULL;
+	tree->right = NULL;
+	tree->left = NULL;
+	free(tree);
+}
+
+void	clear_the_tree_bis(t_binary *tree)
+{
+	if (tree->right)
+	{
+		clear_the_tree_bis(tree->left);
+		clear_the_tree_bis(tree->right);
+	}
 	free(tree->data);
 	tree->prev = NULL;
 	tree->right = NULL;

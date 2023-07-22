@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 17:15:45 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:56:30 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	ft_free_lst(t_redirection *stack)
 	while (stack)
 	{
 		tmp = (stack)->next;
+		free (stack->redir_cmd);
+		free (stack->redir_file);
 		free (stack);
 		(stack) = tmp;
 	}

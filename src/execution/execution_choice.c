@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_choice.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:47 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:01:08 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:13:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	execution_choice_pipe(t_binary *tree, t_minishell *mini)
 	if (is_a_buildin(tree->cmd->exec_cmd[0]) == 1)
 	{
 		exec_buildin(tree, mini);
+		ft_free_tab(tree->cmd->exec_cmd);
+		ft_free_lst(tree->redir);
 		exit(EXIT_SUCCESS);
 	}
 	else

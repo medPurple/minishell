@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:24:40 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:56:06 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,19 @@ int	main(int ac, char **av, char **envp)
 static int	minishell(char *str, t_minishell *mini)
 {
 	if (parsing(mini, str) == -1)
-		return (-1);
+	{
+		if (mini->tree->right)
+		{
+			clear_the_tree_bis(mini->tree);
+			return (-1);
+		}
+		else
+		{
+			free(mini->tree->data);
+			free(mini->tree);
+			return (-1);
+		}
+	}
 	exec_recu(mini, mini->tree);
 	return (0);
 }

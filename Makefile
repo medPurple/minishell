@@ -84,18 +84,7 @@ LIB = $(PATH_LIB)/libft.a
 
 OBJ = $(SRC:.c=.o)
 
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
-
-all : $(LIB) $(NAME) run
-
-run: minishell
-		@./minishell
-
-runi: minishell
-		@env -i ./minishell
-
-runv : minishell
-		@valgrind --suppressions=.ignore --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes ./minishell
+all : $(LIB) $(NAME)
 
 $(NAME) : $(OBJ)
 	@ $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
@@ -115,12 +104,6 @@ $(NAME) : $(OBJ)
 
 $(LIB) :
 	@make -s -C $(PATH_LIB)
-
-v :$(LIB) $(NAME) runv
-
-nl : $(LIB) $(NAME)
-
-i : $(LIB) $(NAME) runi
 
 clean :
 	@make -s -C $(PATH_LIB) clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:08:46 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:06:43 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:06:32 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	mini_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
+	if (tmp == NULL)
+		return ;
 	while (tmp != NULL)
 	{
 		ft_printf("%s\n", tmp->data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 12:55:30 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:24:33 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ void	pipe_parent(t_binary *tree, int choice)
 			close (tree->cmd->pipe_tmp);
 		tree->cmd->pipe_tmp = tree->cmd->pipe_fd[0];
 		close (tree->cmd->pipe_fd[1]);
+		ft_free_tab(tree->cmd->exec_cmd);
 	}
 	else
 	{
 		close(tree->cmd->pipe_fd[1]);
 		close(tree->cmd->pipe_tmp);
+		ft_free_tab(tree->cmd->exec_cmd);
 	}
 }
 
