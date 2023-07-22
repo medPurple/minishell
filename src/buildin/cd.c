@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:52:07 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:34:43 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void	changedir(char *destination, t_env *env, char *old, char *dest)
 		}
 		tmp = tmp->next;
 	}
+	free(old);
 	free(str);
 }

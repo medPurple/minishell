@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:51:59 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:36:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	cd_norme(char *str, t_env *env)
 		if (open_close(path) == true)
 			changedir(path, env, NULL, NULL);
 		else
+		{
+			free(path);
 			mini_error_one(11);
+		}
 	}
 }
 
@@ -59,7 +62,10 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 		if (open_close(path) == true)
 			changedir(path, env, NULL, NULL);
 		else
+		{
+			free(path);
 			mini_error_one(11);
+		}
 	}
 }
 

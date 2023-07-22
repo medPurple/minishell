@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:30:09 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:50:00 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	find_next_split(t_binary *tree, t_env *env)
 		i = ipp_norme_2(tree->data, i);
 		i = fns_norme(tree->data, i);
 		str = ft_limited_strdup(tree->data, j, i - 1);
-		if (string_analyse(tree, str, env) != true)
+		if (string_analyse(tree, str, env, 0) != true)
 		{
 			if (ft_strcmp(str, "|") == 0)
 				tree->previous_data = 1;
@@ -56,11 +56,8 @@ int	find_next_split(t_binary *tree, t_env *env)
 	return (-1);
 }
 
-bool	string_analyse(t_binary *tree, char *str, t_env *env)
+bool	string_analyse(t_binary *tree, char *str, t_env *env, int i)
 {
-	int	i;
-
-	i = 0;
 	if (is_a_fonction(str, env) || is_a_buildin(str))
 		return (false);
 	else
@@ -76,9 +73,11 @@ bool	string_analyse(t_binary *tree, char *str, t_env *env)
 				i = end_of_parentheses(str, i);
 			}
 			else
+			{
 				if (is_a_meta(str, i) == true)
 					return (true);
-			i++;
+				i++;
+			}
 		}
 		return (false);
 	}

@@ -30,7 +30,7 @@ void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 		if (tree->status == true)
 				tree->cmd->split_cmd = \
 				mini_split(get_status(tree), 0, 0, 0);
-			execution (mini, tree);
+		execution (mini, tree);
 	}
 	return ;
 }

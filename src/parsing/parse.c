@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:55:44 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:48:57 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	parsing(t_minishell *mini, char *str)
 	mini->tree = new_branche(mini->tree, str);
 	while (mini->tree->end != 1)
 		parse_data(mini->tree, mini->env);
+	if (verif_quotes(mini->tree) == -1)
+		return (mini_error_one(30), -1);
 	if (verif_parentheses(mini->tree) == -1)
 	{
 		mini_error_one(20);

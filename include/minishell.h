@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 17:11:24 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:50:23 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,7 @@ bool			has_nothing(char *str);
 char			*replace_doll_bis(char *str, t_env *env, int position, int i);
 bool			need_split(char *str, int i);
 int				expand_norme_2(t_binary *tree, int i);
-int 			nome_e_doll(char *str, int i);
-
+int				nome_e_doll(char *str, int i);
 
 /*-----------------------EXECUTION------------------------------*/
 void			exec_recu(t_minishell *mini, t_binary *tree);
@@ -174,7 +173,7 @@ void			mini_pwd(t_env *env, t_binary *tree);
 void			mini_cd(t_env *env, t_binary *tree);
 void			cd_norme(char *str, t_env *env);
 void			cd_norme_2(char *str, char *cmd, t_env *env);
-void 			cd_norme_3(char *str, t_binary *tree, t_env *env, int j);
+void			cd_norme_3(char *str, t_binary *tree, t_env *env, int j);
 void			changedir(char *destination, t_env *env, char *old, char *dest);
 void			mini_env(t_env *env);
 void			mini_export(t_env **env, char **tab);
@@ -203,7 +202,6 @@ int				is_a_fonction(char *str, t_env *env);
 int				is_a_buildin(char *str);
 void			split_char(t_binary *tree);
 int				find_next_split(t_binary *tree, t_env *env);
-bool			string_analyse(t_binary *tree, char *str, t_env *env);
 int				split_pos(t_binary *tree, char *str, int i);
 int				end_of_parentheses(char *str, int position);
 char			*join_all_part(char *str, char *add);
@@ -217,6 +215,8 @@ int				ipp_norme_2(char *str, int i);
 int				verif_meta(t_binary *tree);
 bool			is_letter(char c);
 int				norme_sp(int i, char *str, int j);
+int				verif_quotes(t_binary *tree);
+bool			string_analyse(t_binary *tree, char *str, t_env *env, int i);
 
 /*-------------------Wildcards-------------------------------*/
 char			*wildcard(char *str, int i);

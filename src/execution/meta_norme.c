@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-void and_norme(t_binary *tree)
+void	and_norme(t_binary *tree)
 {
 	if (tree->prev->right->left->parentheses == false)
 		tree->prev->right->left->cmd->exec = -1;
@@ -24,7 +24,7 @@ void and_norme(t_binary *tree)
 	}
 }
 
-void or_norme(t_binary *tree)
+void	or_norme(t_binary *tree)
 {
 	if (tree->prev->right->left->parentheses == false)
 		tree->prev->right->left->cmd->exec = 1;
@@ -35,4 +35,3 @@ void or_norme(t_binary *tree)
 		tree->prev->right->left->cmd->exec = 1;
 	}
 }
-
