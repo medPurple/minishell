@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:11:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 19:20:48 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:03:48 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 	int	i;
 
 	i = 0;
+	char *str;
 	i = ft_strlen(tree->data);
-	while (tree->data[i] == ' ' || tree->data[i] == '\t'
+	while (tree->data[i] == ' ' || tree->data[i] == '\t' \
 		|| tree->data[i] == '\0')
 		i--;
-	tree->data = ft_limited_strdup(tree->data, 1, i - 1);
+	str = ft_strdup(tree->data);
+	free(tree->data);
+	tree->data = ft_limited_strdup(str, 1, i - 1);
+	free(str);
 	if (tree->cmd_cr == 1)
 		return;
 	if (tree->data == NULL || ft_strlen(tree->data) == 0)
@@ -32,6 +36,7 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 		tree->cmd->exec = -1;
 		free(tree->data);
 		mini_error_one(20);
+		return ;
 	}
 	else
 	{
@@ -50,10 +55,14 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 		}
 		tree->par_base = 1;
 		exec_recu_par(mini, tree);
-		if (parentheses_success(tree) == true)
-			tree->cmd->exec = 1;
-		else
-			tree->cmd->exec = -1;
+		if (tree->right)
+		{	
+			if (parentheses_success(tree) == true)
+				tree->cmd->exec = 1;
+			else
+				tree->cmd->exec = -1;
+		}
+		ft_free_tab(tree->cmd->split_cmd);
 	}
 }
 
@@ -64,7 +73,7 @@ static bool	parentheses_success(t_binary *tree)
 	tmp = tree;
 	while (tmp->right)
 	{
-		if (tmp->right && (ft_strcmp(tmp->left->data, "||") != 0) && ft_strcmp(tmp->left->data, "&&") != 0)
+		if (tree->right && (ft_strcmp(tmp->left->data, "||") != 0) && ft_strcmp(tmp->left->data, "&&") != 0)
 			free(tmp->left->cmd);
 		tmp = tmp->right;
 	}

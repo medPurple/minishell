@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:06 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:39:39 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:10:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int	end_of_parentheses(char *str, int position)
 int	verif_parentheses(t_binary *tree)
 {
 	int	i;
-
 	if (tree->parentheses == 1)
 	{
+		if (ft_strcmp(tree->data, "()") == 0)
+			return (-1);
 		i = 0;
 		while (tree->data[i] != '(')
 			i++;
@@ -81,7 +82,8 @@ int	verif_parentheses(t_binary *tree)
 	{
 		if (verif_parentheses(tree->left) == -1)
 			return (-1);
-		verif_parentheses(tree->right);
+		if (verif_parentheses(tree->right) == -1)
+			return (-1);
 	}
 	return (0);
 }

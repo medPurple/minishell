@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 19:34:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 09:42:44 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*cmd_recuperation(char *str, t_env *env)
 		free(cmd);
 		i++;
 	}
+	free(path);
 	return (pathok);
 }
 

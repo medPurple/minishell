@@ -6,13 +6,14 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 19:35:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 11:51:42 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 static	void	ft_wait(t_binary *tree, int status);
+void clear_the_rest(t_binary *tree);
 
 //ls | wc -l << eof | ls << eof | << eof ls
 
@@ -40,11 +41,9 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 			{
-				if (tree->prev->prev->left->parentheses == false \
-				&& ft_strcmp(tree->prev->prev->left->data, "||") == 0)
+				if (tree->right && ft_strcmp(tree->prev->prev->left->data, "||") == 0)
 					ft_free_tab(tree->cmd->split_cmd);
-				else if (tree->prev->left->parentheses == false \
-				&& ft_strcmp(tree->prev->left->data, "||") == 0)
+				else if (!tree->right && ft_strcmp(tree->prev->left->data, "||") == 0)
 					ft_free_tab(tree->cmd->split_cmd);
 				return ;
 			}
@@ -172,12 +171,16 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 			if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
 			{
 				ft_free_tab(tree->cmd->exec_cmd);
+				if (tree->prev && tree->prev->right)
+					clear_the_rest(tree->prev);
 				mini_error_one(8);
 				exit(126);
 			}
 			else
 			{
 				ft_free_tab(tree->cmd->exec_cmd);
+				if (tree->prev && tree->prev->right)
+					clear_the_rest(tree->prev);
 				exit(2);
 			}
 		}
@@ -188,6 +191,8 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
+			if (tree->prev && tree->prev->right)
+					clear_the_rest(tree->prev);
 			mini_error_one(11);
 			exit(126);
 		}
@@ -197,10 +202,32 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		if (ft_strlen(tree->cmd->exec_cmd[0]) != 0)
 		{
 			ft_free_tab(tree->cmd->exec_cmd);
+			if (tree->prev && tree->prev->right)
+					clear_the_rest(tree->prev);
 			mini_error_one(9);
 			exit(127);
 		}
 		ft_free_tab(tree->cmd->exec_cmd);
 		exit (0);
+	}
+}
+
+
+void clear_the_rest(t_binary *tree)
+{
+	tree = tree->right;
+	while (tree->right)
+	{
+		if (ft_strcmp(tree->left->data, "||") != 0 && ft_strcmp(tree->left->data, "&&") != 0)
+		{
+			ft_free_tab(tree->left->cmd->split_cmd);
+			//free(tree->left->cmd);
+		}
+		tree = tree->right;
+	}
+	if (ft_strcmp(tree->data, "||") != 0 && ft_strcmp(tree->data, "&&") != 0)
+	{
+		ft_free_tab(tree->cmd->split_cmd);
+		//free(tree->cmd);
 	}
 }
