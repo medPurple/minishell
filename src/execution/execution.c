@@ -6,21 +6,18 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 14:20:19 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:17:12 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static	void	ft_wait(t_binary *tree, int status);
+static void	execute_cmd_norme(t_binary *tree, int i);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
 	if (tree->parentheses == true && tree->cmd_cr == 0)
-	{
-		expand_parentheses_and_execute (tree, mini);
-		return ;
-	}
+		return (expand_parentheses_and_execute (tree, mini));
 	else if (tree->parentheses == true && tree->cmd_cr == 1
 		&& tree->cmd && (tree->cmd->exec == 1 || tree->cmd->exec == -1))
 		return ;
@@ -38,22 +35,9 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 		else
 		{
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
-			{
-				if (tree->prev->prev->left->parentheses == false \
-				&& ft_strcmp(tree->prev->prev->left->data, "||") == 0)
-					ft_free_tab(tree->cmd->split_cmd);
-				else if (tree->prev->left->parentheses == false \
-				&& ft_strcmp(tree->prev->left->data, "||") == 0)
-					ft_free_tab(tree->cmd->split_cmd);
-				return ;
-			}
+				return (exec_recu_norme (mini, tree, 1));
 			else
-			{
-				if (tree->status == true)
-					tree->cmd->split_cmd = \
-					mini_split(get_status(tree), 0, 0, 0);
-				execution(mini, tree);
-			}
+				exec_recu_norme (mini, tree, 2);
 		}
 	}
 	return ;
@@ -70,18 +54,11 @@ void	execution(t_minishell *mini, t_binary *tree)
 	while (tree->cmd->split_cmd[i])
 	{
 		if (tree->cmd->split_cmd[0][0] == '&')
-		{
-			g_eoat = 2;
-			send_error ("minishell: syntax error near unexpected token '&'\n");
-			return ;
-		}
+			return (execution_norme(mini, tree, 1));
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
 			if (pipe_is_valid(tree->cmd->split_cmd) < 0)
-			{
-				mini_error_one(4);
-				return ;
-			}
+				return (mini_error_one(4));
 			initialize_pipe_value(tree);
 			pipex(tree, mini, 0, 0);
 			break ;
@@ -89,20 +66,12 @@ void	execution(t_minishell *mini, t_binary *tree)
 		i++;
 	}
 	if (tree->cmd->check_pipe == -1)
-	{
-		cmd_redir_malloc(tree, 0, 0, 0);
-		execution_choice(tree, mini);
-	}
+		execution_norme(mini, tree, 2);
 	return ;
 }
 
-void	exec_send(t_binary *tree, t_minishell *mini)
+void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 {
-	int	status;
-	int	i;
-
-	i = 0;
-	status = 0;
 	tree->cmd->exec = 1;
 	if (is_here_doc(tree) >= 1)
 	{
@@ -114,12 +83,6 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 			tree->cmd->check_here_doc = 1;
 			mini_here_doc(tree->redir->redir_file, tree);
 			tree->redir = tree->redir->next;
-			if (tree->redir && ft_strlen(tree->redir->redir_file) == 0)
-			{
-				mini_error_one(1);
-				close(tree->cmd->pipe_tmp);
-				return ;
-			}
 			i--;
 		}
 	}
@@ -128,41 +91,8 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 		unlink(".tmp");
 		return ;
 	}
-	tree->cmd->fork = fork();
-	if (tree->cmd->fork == -1)
-		perror("fork");
-	else if (tree->cmd->fork == 0)
-	{
-		exec_cmd_redir(tree);
-		if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
-			execute_cmd(tree, mini);
-		else
-			exec_buildin_child(tree, mini);
-	}
-	else
-		ft_wait(tree, status);
-	ft_free_tab(tree->cmd->exec_cmd);
-
-	return ;
-}
-
-static	void	ft_wait(t_binary *tree, int status)
-{
-	signal(SIGQUIT, SIG_DFL);
-	while (wait(&status) != -1)
-		;
-	g_eoat = status / 256;
-	if (WEXITSTATUS(status) > 0)
-		tree->cmd->exec = -1;
-	if (tree->cmd->in != -1 && tree->cmd->in != 0)
-		close(tree->cmd->in);
-	if (tree->cmd->out != -1 && tree->cmd->out != 0)
-		close(tree->cmd->out);
-	if (tree->cmd->check_here_doc == 1)
-	{
-		close(tree->cmd->pipe_tmp);
-		unlink(".tmp");
-	}
+	execution_norme_2(mini, tree, status);
+	return (ft_free_tab(tree->cmd->exec_cmd));
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
@@ -173,29 +103,13 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	if (tree->cmd->path_cmd != NULL)
 	{
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
-		{
-			if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
-			{
-				ft_free_tab(tree->cmd->exec_cmd);
-				mini_error_one(8);
-				exit(126);
-			}
-			else
-			{
-				ft_free_tab(tree->cmd->exec_cmd);
-				exit(2);
-			}
-		}
+			execute_cmd_norme(tree, 1);
 	}
 	else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
 	{
 		tree->cmd->path_cmd = tree->cmd->exec_cmd[0];
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
-		{
-			ft_free_tab(tree->cmd->exec_cmd);
-			mini_error_one(11);
-			exit(126);
-		}
+			execute_cmd_norme(tree, 2);
 	}
 	else
 	{
@@ -207,5 +121,30 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 		}
 		ft_free_tab(tree->cmd->exec_cmd);
 		exit (0);
+	}
+}
+
+static void	execute_cmd_norme(t_binary *tree, int i)
+{
+	if (i == 1)
+	{
+		if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
+		{
+			ft_free_tab(tree->cmd->exec_cmd);
+			mini_error_one(8);
+			exit(126);
+		}
+		else
+		{
+			mini_error_one(9);
+			ft_free_tab(tree->cmd->exec_cmd);
+			exit(127);
+		}
+	}
+	if (i == 2)
+	{
+		ft_free_tab(tree->cmd->exec_cmd);
+		mini_error_one(11);
+		exit(126);
 	}
 }

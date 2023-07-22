@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 14:37:36 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:25:23 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	clear_the_tree(t_binary *tree)
 		clear_the_tree(tree->left);
 		clear_the_tree(tree->right);
 	}
-	if (!tree->right && ft_strcmp(tree->data, "||") != 0 && ft_strcmp(tree->data, "&&") != 0)
+	if (!tree->right && ft_strcmp(tree->data, "||") != 0
+		&& ft_strcmp(tree->data, "&&") != 0)
 		free(tree->cmd);
 	free(tree->data);
 	tree->prev = NULL;

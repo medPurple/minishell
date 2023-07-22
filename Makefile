@@ -6,7 +6,7 @@
 #    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/22 12:09:59 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/07/22 15:43:55 by mvautrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/norme/wildcard.c\
 		$(PATH_SRC)/signals/signals.c\
 		$(PATH_SRC)/execution/execution.c\
+		$(PATH_SRC)/execution/execution_norme.c\
 		$(PATH_SRC)/execution/get_status.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/minisplit_bis.c\
