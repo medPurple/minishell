@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:30:03 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:49:07 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int 			nome_e_doll(char *str, int i);
 
 /*-----------------------EXECUTION------------------------------*/
 void			exec_recu(t_minishell *mini, t_binary *tree);
+void			exec_recu_norme(t_minishell *mini, t_binary *tree, int i);
 void			exec_cmd_redir(t_binary *tree);
 void			execute_cmd(t_binary *tree, t_minishell *mini);
 char			**mini_split(char *str, int j, int i, int k);
@@ -129,9 +130,12 @@ void			mini_or(t_binary *tree, t_minishell *mini);
 void			mini_and(t_binary *tree, t_minishell *mini);
 int				cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos);
 void			execution_choice(t_binary *tree, t_minishell *mini);
-void			exec_send(t_binary *tree, t_minishell *mini);
+void			exec_send(t_binary *tree, t_minishell *mini, int status, int i);
 void			exec_meta( t_binary *tree, t_minishell *mini);
 void			execution(t_minishell *mini, t_binary *tree);
+void			execution_norme(t_minishell *mini, t_binary *tree, int i);
+void			execution_norme_2(t_minishell *mini, t_binary *tree,
+					int status);
 bool			count_space_pipe(char *str, int pos);
 
 /*---------------------------REDIRECTION--------------------------*/

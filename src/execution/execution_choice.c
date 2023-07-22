@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:47 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 17:56:27 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:01:08 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	execution_choice(t_binary *tree, t_minishell *mini)
 			return ;
 		}
 		else
-			exec_send(tree, mini);
+			exec_send(tree, mini, 0, 0);
 	}
 	else
-		exec_send(tree, mini);
+		exec_send(tree, mini, 0, 0);
 	return ;
 }
 

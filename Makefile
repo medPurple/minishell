@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/22 16:04:20 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/22 16:50:37 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/norme/wildcard.c\
 		$(PATH_SRC)/signals/signals.c\
 		$(PATH_SRC)/execution/execution.c\
+		$(PATH_SRC)/execution/execution_norme.c\
 		$(PATH_SRC)/execution/get_status.c\
 		$(PATH_SRC)/execution/minisplit.c\
 		$(PATH_SRC)/execution/minisplit_bis.c\

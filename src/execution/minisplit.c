@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minisplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/20 19:39:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:22:45 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	word_nb(char *str, int i, int count);
 static int	after_quotes(char *str, int i);
 static int	minisplit_bis(char *str, int i);
+static void	utils(char **cmd, int k, char *str);
 
 char	**mini_split(char *str, int j, int i, int k)
 {
@@ -41,9 +42,13 @@ char	**mini_split(char *str, int j, int i, int k)
 			cmd[k++] = ft_limited_strdup(str, j, i - 1);
 		}
 	}
+	return (utils(cmd, k, str), removes_quotes(cmd));
+}
+
+static void	utils(char **cmd, int k, char *str)
+{
 	cmd[k] = NULL;
 	free(str);
-	return (removes_quotes(cmd));
 }
 
 static int	minisplit_bis(char *str, int i)
