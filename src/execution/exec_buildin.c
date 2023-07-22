@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_buildin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:56:57 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:56:47 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 	g_eoat = 0;
 	if (ft_strcmp(tree->cmd->exec_cmd[0], "cd") == 0)
 	{
-		mini_cd(mini->env, tree);		
+		mini_cd (mini->env, tree);
 	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)
 	{
