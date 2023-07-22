@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:25:35 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 14:38:41 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:42:14 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	add_env_norme(t_env **env)
 	pwd = NULL;
 	ft_printf("/!\\ No environnement set /!\\\n");
 	pwd = getcwd(NULL, 0);
-	pwd = ft_strjoat("PWD=", pwd);
+	pwd = ft_strjoin(ft_strdup("PWD="), ft_strdup(pwd));
 	tmp = ft_new_element(pwd);
 	ft_add_back_lst(env, tmp);
 	tmp = ft_new_element(ft_strdup("SHLVL=1"));

@@ -6,19 +6,17 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:06 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 10:10:38 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:54:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ignore_parentheses(t_binary *tree)
+void	ignore_parentheses(t_binary *tree, int para_count)
 {
 	int	i;
-	int	para_count;
 
 	i = 1;
-	para_count = 1;
 	while (para_count != 0)
 	{
 		if (tree->data[i] == '\0')
@@ -65,6 +63,7 @@ int	end_of_parentheses(char *str, int position)
 int	verif_parentheses(t_binary *tree)
 {
 	int	i;
+
 	if (tree->parentheses == 1)
 	{
 		if (ft_strcmp(tree->data, "()") == 0)

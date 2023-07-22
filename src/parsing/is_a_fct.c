@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:38:18 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:53:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,7 @@ static char	**path_recuperation(t_env *env)
 	tmp_env = ft_malloc((ft_strlen(env->data) - (i + 1)), "char");
 	i++;
 	while (env->data[i])
-	{
-		tmp_env[j] = env->data[i];
-		i++;
-		j++;
-	}
+		tmp_env[j++] = env->data[i++];
 	tmp_env[j] = '\0';
 	tab = ft_split(tmp_env, ':');
 	free(tmp_env);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/22 15:43:55 by mvautrot         ###   ########.fr        #
+#    Updated: 2023/07/22 16:50:37 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/parsing/wildcard/wildcard_replace.c\
 		$(PATH_SRC)/parsing/norme/expand.c\
 		$(PATH_SRC)/parsing/norme/expand_doll.c\
+		$(PATH_SRC)/parsing/norme/e_doll_2.c\
 		$(PATH_SRC)/parsing/norme/parse.c\
 		$(PATH_SRC)/parsing/norme/quotes.c\
 		$(PATH_SRC)/parsing/norme/string.c\

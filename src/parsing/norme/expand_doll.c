@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:11:19 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:46:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:20:48 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,17 @@ static char	*search_in_env(char *var, t_env *env, char *str);
 static char	*doll_quotes(char *str, int position);
 static char	*put_quotes(char *str, int positon);
 
-char	*replace_doll_bis(char *str, t_env *env, int position)
+char	*replace_doll_bis(char *str, t_env *env, int position, int i)
 {
-	int		i;
 	char	*var;
 	int		j;
 
-	i = 0;
 	if (position >= 2)
 		i = position - 2;
 	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '<'))
 	{
 		if (str[i] == '<' && str[i - 1] == '<')
-		{
 			return (put_quotes(str, position));
-		}
 		i--;
 	}
 	if (str[position] == '\"' || str[position] == '\'')
@@ -39,9 +35,7 @@ char	*replace_doll_bis(char *str, t_env *env, int position)
 	{
 		j = 0;
 		i = position;
-		while (str[i] != ' ' && str[i] != '\0' \
-		&& is_letter(str[i]))
-			i++;
+		i = nome_e_doll(str, i);
 		var = ft_malloc(i - position, "char");
 		while (position < i)
 			var[j++] = str[position++];
@@ -73,7 +67,7 @@ static char	*search_in_env(char *var, t_env *env, char *str)
 	if (tmp != NULL)
 		str = sie_norme(tmp, str);
 	else
-		str = jap_norme_2(str);
+		str = jap_norme_2(str, NULL, NULL, 0);
 	return (str);
 }
 
