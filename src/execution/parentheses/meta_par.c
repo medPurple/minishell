@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 18:34:12 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:02:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,11 @@ void	exec_meta_par( t_binary *tree, t_minishell *mini)
 void	mini_or_par(t_binary *tree, t_minishell *mini)
 {
 	if (tree->prev == NULL || tree->prev->prev == NULL)
-	{
-		mini_error_one (5);
-		return ;
-	}
+		return (mini_error_one (5));
 	if (tree->prev->prev->left->cmd->exec == 1)
 	{
 		if (tree->prev->right->right)
-		{
-			if (tree->prev->right->left->parentheses == false)
-				tree->prev->right->left->cmd->exec = 1;
-			else
-			{
-				tree->prev->right->left->cmd = malloc(sizeof(t_cmd));
-				tree->cmd_cr = 1;
-				tree->prev->right->left->cmd->exec = 1;
-			}
-		}
+			par_or_norme(tree);
 		else
 		{
 			if (tree->prev->right->parentheses == false)
@@ -50,7 +38,6 @@ void	mini_or_par(t_binary *tree, t_minishell *mini)
 				tree->cmd_cr = 1;
 				tree->prev->right->cmd->exec = 1;
 			}
-			
 		}
 		return ;
 	}
@@ -58,7 +45,7 @@ void	mini_or_par(t_binary *tree, t_minishell *mini)
 		exec_recu_par(mini, tree->prev->right);
 	free(tree->data);
 }
-//tree->prev->right->left->cmd->exec = -1;
+
 void	mini_and_par(t_binary *tree, t_minishell *mini)
 {
 	if (tree->prev == NULL || tree->prev->prev == NULL)
@@ -69,16 +56,7 @@ void	mini_and_par(t_binary *tree, t_minishell *mini)
 	if (tree->prev->prev->left->cmd->exec == -1)
 	{
 		if (tree->prev->right->right)
-		{
-			if (tree->prev->right->left->parentheses == false)
-				tree->prev->right->left->cmd->exec = -1;
-			else
-			{
-				tree->prev->right->left->cmd = malloc(sizeof(t_cmd));
-				tree->cmd_cr = 1;
-				tree->prev->right->left->cmd->exec = 1;
-			}
-		}
+			par_and_norme(tree);
 		else
 		{
 			if (tree->prev->right->parentheses == false)

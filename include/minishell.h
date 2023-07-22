@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:49:07 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:02:08 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,10 @@ int				cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos);
 void			execution_choice(t_binary *tree, t_minishell *mini);
 void			exec_send(t_binary *tree, t_minishell *mini, int status, int i);
 void			exec_meta( t_binary *tree, t_minishell *mini);
+void			and_norme(t_binary *tree);
+void			or_norme(t_binary *tree);
+void			par_and_norme(t_binary *tree);
+void			par_or_norme(t_binary *tree);
 void			execution(t_minishell *mini, t_binary *tree);
 void			execution_norme(t_minishell *mini, t_binary *tree, int i);
 void			execution_norme_2(t_minishell *mini, t_binary *tree,

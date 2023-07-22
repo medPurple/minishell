@@ -6,7 +6,7 @@
 #    By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 09:59:07 by ml                #+#    #+#              #
-#    Updated: 2023/07/22 16:50:37 by wmessmer         ###   ########.fr        #
+#    Updated: 2023/07/22 17:04:07 by wmessmer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC =   $(PATH_SRC)/env/env.c\
 		$(PATH_SRC)/execution/minisplit_bis.c\
 		$(PATH_SRC)/execution/utils.c\
 		$(PATH_SRC)/execution/meta.c\
+		$(PATH_SRC)/execution/meta_norme.c\
 		$(PATH_SRC)/execution/analyze_error.c\
 		$(PATH_SRC)/execution/exec_buildin.c\
 		$(PATH_SRC)/execution/cmd_redir_malloc.c\
@@ -65,6 +66,7 @@ SRC =   $(PATH_SRC)/env/env.c\
     	$(PATH_SRC)/execution/parentheses/parentheses.c\
 		$(PATH_SRC)/execution/parentheses/exec_recu_par.c\
 		$(PATH_SRC)/execution/parentheses/meta_par.c\
+		$(PATH_SRC)/execution/parentheses/meta_par_norme.c\
 		$(PATH_SRC)/buildin/echo.c\
 		$(PATH_SRC)/buildin/exit.c\
 		$(PATH_SRC)/buildin/pwd.c\
