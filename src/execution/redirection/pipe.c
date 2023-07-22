@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 19:21:28 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:08:35 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 			pipe_option(tree, 1, j);
 		j = cmd_redir_malloc(tree, j, j, j) + 1;
 		if (tree->cmd->check_redir < 0)
-		{
-			pipe_option(tree, 1, j);
-			return ;
-		}
+			return (pipe_option(tree, 1, j));
 		pipe_reduce(tree);
 		if (tree->cmd->fork_pipe == 0)
 			fork_option (mini, tree, 1, 0);
@@ -108,4 +105,6 @@ void	wait_child(t_binary *tree)
 		tree->cmd->exec = -1;
 	else
 		tree->cmd->exec = 1;
+	if (tree->cmd->check_here_doc == 1)
+		unlink(".tmp");
 }

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 11:51:42 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:29:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 static	void	ft_wait(t_binary *tree, int status);
 void clear_the_rest(t_binary *tree);
 
-//ls | wc -l << eof | ls << eof | << eof ls
-
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
-	if (tree->parentheses == true && tree->cmd_cr == 0 /*&& tree->cmd &&  tree->cmd->exec == 0*/)
+	if (tree->parentheses == true && tree->cmd_cr == 0)
 	{
-		expand_parentheses_and_execute(tree, mini);
-		return;
+		expand_parentheses_and_execute (tree, mini);
+		return ;
 	}
-	else if (tree->parentheses == true && tree->cmd_cr == 1 && tree->cmd && (tree->cmd->exec == 1 || tree->cmd->exec == -1))
-		return;
+	else if (tree->parentheses == true && tree->cmd_cr == 1
+		&& tree->cmd && (tree->cmd->exec == 1 || tree->cmd->exec == -1))
+		return ;
 	else if (tree->parentheses == false && tree->right)
 	{
 		exec_recu(mini, tree->left);
@@ -124,7 +123,10 @@ void	exec_send(t_binary *tree, t_minishell *mini)
 		}
 	}
 	if ((g_eoat == 130) && tree->cmd->check_here_doc == 1)
+	{
+		unlink(".tmp");
 		return ;
+	}
 	tree->cmd->fork = fork();
 	if (tree->cmd->fork == -1)
 		perror("fork");
@@ -156,7 +158,10 @@ static	void	ft_wait(t_binary *tree, int status)
 	if (tree->cmd->out != -1 && tree->cmd->out != 0)
 		close(tree->cmd->out);
 	if (tree->cmd->check_here_doc == 1)
+	{
 		close(tree->cmd->pipe_tmp);
+		unlink(".tmp");
+	}
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)

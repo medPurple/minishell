@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 19:10:29 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:05:40 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,35 @@
 
 static void	set_signal_action(void);
 static void	sigint_handler(int signal);
+static void	op_hd(t_binary *tree);
+
+static void	op_hd(t_binary *tree)
+{
+	tree->cmd->pipe_tmp = open(".tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (tree->cmd->pipe_tmp == -1)
+		perror ("open");
+}
 
 void	mini_here_doc(char *limiter, t_binary *tree)
 {
 	char	*line;
 
 	line = NULL;
-	//if (tree->cmd->pipe_tmp != 0 && tree->cmd->pipe_tmp != -1)
-	//	close (tree->cmd->pipe_tmp);
-	unlink(".tmp");
-	tree->cmd->pipe_tmp = open(".tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	op_hd(tree);
 	set_signal_action();
 	if (g_eoat == 130)
-	{
-		write(2, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		return ;
-	}
+		return (mini_here_doc_norme(tree, 0));
 	while (1)
 	{
 		if (g_eoat == 130)
-		{
-			close (tree->cmd->pipe_tmp);
-			return ;
-		}
+			return (mini_here_doc_norme(tree, 1));
 		line = readline(">");
 		if (line == NULL)
-		{
-			send_error("minishell: warning: here-document delimited by end-of-file\n");
-			close(tree->cmd->pipe_tmp);
-			exit(0);
-		}
+			mini_here_doc_norme(tree, 2);
 		if (strcmp (line, limiter) == 0)
 		{
 			close(tree->cmd->pipe_tmp);
-			free (line);
-			return ;
+			return (free(line));
 		}
 		write (tree->cmd->pipe_tmp, line, ft_strlen(line));
 		write (tree->cmd->pipe_tmp, "\n", 1);
@@ -61,7 +52,8 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 
 static void	set_signal_action(void)
 {
-	struct sigaction act;
+	struct sigaction	act;
+
 	ft_bzero(&act, sizeof(act));
 	act.sa_handler = &sigint_handler;
 	sigaction(SIGINT, &act, NULL);
@@ -71,7 +63,6 @@ static void	sigint_handler(int signal)
 {
 	if (signal == SIGINT)
 		g_eoat = 130;
-
 }
 
 int	is_here_doc(t_binary *tree)

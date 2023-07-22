@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 12:17:49 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:29:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	pipe_reduce(t_binary *tree);
 int	is_a_redir_or_pipe(char *str, int start, int end);
 int	is_a_redir_or_pipe_bis(int count_left, int count_right,
 				int count_pipe);
+void	mini_here_doc_norme(t_binary *tree, int i);;
 
 /*------------------------------------------BUILD-IN-----------------------------------------------*/
 void exec_buildin(t_binary *tree, t_minishell *mini);
@@ -256,7 +257,10 @@ t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void	ft_add_back_lst_redirection(t_redirection **lst, t_redirection *new);
 void	ft_free_lst(t_redirection *stack);
 void	mini_error_one(int i);
-int verif_redir(t_binary *tree);
+int	verif_redir(t_binary *tree, int left, int right, int save_pos);
+int	verif_redir_norme(t_binary *tree);
+int	redir_error(char *str, int left, int right, int save_pos);
+bool	count_space(char *str, int pos);
 int pipe_is_valid(char **str);
 
 #endif
