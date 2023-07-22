@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_redir_malloc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:44 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:50:13 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 09:40:36 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	cmd_redir_malloc(t_binary *tree, int i, int j, int save_pos)
 	if (i - j < 0)
 		return (-1);
 	malloc_cmd(tree, i - j, save_pos);
-	ft_free_tab(tree->cmd->split_cmd);
 	return (i);
 }
 

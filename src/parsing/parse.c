@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 15:50:20 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:02:44 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parsing(t_minishell *mini, char *str)
 	}
 	if (verif_meta(mini->tree) == -1)
 		return (-1);
-	if (verif_redir(mini->tree) == -1)
+	if (verif_redir(mini->tree, 0, 0, 0) == -1)
 		return (-1);
 	create_cmd_in_tree(mini->tree);
 	return (0);
