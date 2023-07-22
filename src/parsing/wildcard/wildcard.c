@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:49:21 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:11:10 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ static char	*find_file(char *bfwc, char *afwc, char *begin, char *end)
 		lstat(entry->d_name, &statbuf);
 		if (entry->d_name[0] != '.')
 		{
-			tmp = new_wc(entry->d_name);
+			tmp = new_wc(ft_strdup(entry->d_name));
 			wc_addback(&liste, tmp);
 		}
 		entry = readdir(direction);
 	}
+	closedir(direction);
 	return (new_str(begin, end, get_wc(bfwc, afwc, liste)));
 }
 
@@ -92,14 +93,15 @@ static char	*new_str(char *begin, char *end, char **tab)
 	if (tab[0] == NULL)
 		return (NULL);
 	if (begin)
-		str = ft_strjoat(begin, " ");
+		str = ft_strjoin(begin, " ");
 	while (tab[i])
 	{
-		str = ft_strjoat(str, tab[i]);
-		str = ft_strjoat(str, " ");
+		str = ft_strjoin(str, tab[i]);
+		str = ft_strjoin(str, " ");
 		i++;
 	}
 	str = ft_strjoat(str, end);
+	free(tab);
 	return (str);
 }
 

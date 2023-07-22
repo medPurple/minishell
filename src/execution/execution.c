@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 14:20:19 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:47:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,9 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 			}
 			else
 			{
+				mini_error_one(9);
 				ft_free_tab(tree->cmd->exec_cmd);
-				exit(2);
+				exit(127);
 			}
 		}
 	}

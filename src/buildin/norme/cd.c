@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:41:26 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:51:59 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	cd_norme(char *str, t_env *env)
 			path = ft_limited_strdup(str, 0, i - 1);
 		free(str);
 		if (open_close(path) == true)
-			changedir(path, env);
+			changedir(path, env, NULL, NULL);
 		else
 			mini_error_one(11);
 	}
@@ -46,7 +46,7 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	{
 		if (open_close(str) == true)
 		{
-			changedir(cmd, env);
+			changedir(cmd, env, NULL, NULL);
 			free(str);
 		}
 		else
@@ -57,7 +57,7 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 		path = ft_strjoin(str, "/");
 		path = ft_strjoin(path, cmd);
 		if (open_close(path) == true)
-			changedir(path, env);
+			changedir(path, env, NULL, NULL);
 		else
 			mini_error_one(11);
 	}
@@ -74,4 +74,23 @@ bool	open_close(char *str)
 		return (true);
 	}
 	return (false);
+}
+
+void	cd_norme_3(char *str, t_binary *tree, t_env *env, int j)
+{
+	if (count_arg(tree->cmd->split_cmd, j) == 1)
+		changedir(find_dir(env), env, NULL, NULL);
+	else if (ft_strlen(tree->cmd->split_cmd[j + 1]) == 1 \
+	&& tree->cmd->split_cmd[j + 1][0] == '-')
+		ft_printf("%s\n", getcwd(NULL, 0));
+	else if (ft_strlen(tree->cmd->split_cmd[j + 1]) != 1 \
+	&& tree->cmd->split_cmd[j + 1][0] == '-')
+		mini_error_one(15);
+	else
+	{
+		if (ft_strcmp(tree->cmd->split_cmd[j + 1], "..") == 0)
+			cd_norme(str, env);
+		else
+			cd_norme_2(str, tree->cmd->split_cmd[j + 1], env);
+	}
 }

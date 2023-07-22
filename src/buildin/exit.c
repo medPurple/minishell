@@ -34,7 +34,8 @@ void	clear_the_tree(t_binary *tree)
 		clear_the_tree(tree->left);
 		clear_the_tree(tree->right);
 	}
-	if (!tree->right && ft_strcmp(tree->data, "||") != 0 && ft_strcmp(tree->data, "&&") != 0)
+	if (!tree->right && ft_strcmp(tree->data, "||") != 0 \
+	&& ft_strcmp(tree->data, "&&") != 0)
 		free(tree->cmd);
 	free(tree->data);
 	tree->prev = NULL;

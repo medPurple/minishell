@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:48:55 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:21:43 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,10 @@ char	*jap_norme(char *str, int i, char *before, char *add)
 	return (str);
 }
 
-char	*jap_norme_2(char *str)
+char	*jap_norme_2(char *str, char *af, char *bf, int i)
 {
-	int		i;
-	char	*bf;
-	char	*af;
 	int		j;
 
-	i = 0;
-	af = NULL;
-	bf = NULL;
 	while (str[i] && str[i] != '$' && (str[i] != '\'' && str[i] != '\"'))
 		i++;
 	if (i != 0)
@@ -73,18 +67,29 @@ char	*jap_norme_2(char *str)
 			i = pass_quotes(str, i) + 1;
 			break ;
 		}
-		else
-			i++;
+		i++;
 	}
 	j = i - 1;
 	if (is_letter(str[i - 1]) == false && (str[i - 1] != '\'' \
 	&& str[i - 1] != '\"'))
 		j--;
-	while (str[i] != '\0')
+	while (str[i + 1] != '\0')
 		i++;
-	i--;
 	if (i != j)
 		af = ft_limited_strdup(str, j + 1, i);
-	str = ft_strjoat(bf, af);
-	return (str);
+	return (ft_strjoat(bf, af));
+}
+
+int	expand_norme_2(t_binary *tree, int i)
+{
+	if (tree->data[i] == '*')
+	{
+		tree->data = wildcard(tree->data, i);
+		i = 0;
+	}
+	else if (tree->data[i] == '\'')
+		i = pass_quotes(tree->data, i) + 1;
+	else
+		i++;
+	return (i);
 }

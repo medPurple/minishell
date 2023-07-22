@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 10:02:44 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:55:44 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	create_root(t_binary *tree, t_env *env)
 	i = ipp_norme(tree->data);
 	tree->data = ft_limited_strdup(tree->data, i, ft_strlen(tree->data));
 	if (tree->data[0] == '(')
-		ignore_parentheses(tree);
+		ignore_parentheses(tree, 1);
 	else if (is_a_meta(tree->data, 0) == true)
 		split_char(tree);
 	else

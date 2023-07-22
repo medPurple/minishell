@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 15:37:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:47:09 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ char	*cmd_recuperation(char *str, t_env *env)
 	char	*cmd;
 	char	*pathok;
 
-	pathok = path_recuperation(env);
+	if (str[0] == '/')
+		return (str);
+	pathok = ft_strdup(path_recuperation(env));
 	i = 0;
 	path = NULL;
 	if (str == NULL || pathok == NULL)
 		return (NULL);
 	if (env != NULL)
 		path = ft_split(path_recuperation(env), ':');
+	free(pathok);
 	while (path[i])
 	{
 		cmd = join_path(str, path[i]);

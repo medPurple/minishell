@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 15:40:30 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:30:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,11 @@ int				find_next_quotes(char *str, int pos);
 char			**removes_quotes(char **tab);
 int				verif_parentheses(t_binary *tree);
 bool			has_nothing(char *str);
-char			*replace_doll_bis(char *str, t_env *env, int position);
+char			*replace_doll_bis(char *str, t_env *env, int position, int i);
 bool			need_split(char *str, int i);
+int				expand_norme_2(t_binary *tree, int i);
+int 			nome_e_doll(char *str, int i);
+
 
 /*-----------------------EXECUTION------------------------------*/
 void			exec_recu(t_minishell *mini, t_binary *tree);
@@ -164,12 +167,16 @@ void			mini_pwd(t_env *env, t_binary *tree);
 void			mini_cd(t_env *env, t_binary *tree);
 void			cd_norme(char *str, t_env *env);
 void			cd_norme_2(char *str, char *cmd, t_env *env);
-void			changedir(char *destination, t_env *env);
+void 			cd_norme_3(char *str, t_binary *tree, t_env *env, int j);
+void			changedir(char *destination, t_env *env, char *old, char *dest);
 void			mini_env(t_env *env);
 void			mini_export(t_env **env, char **tab);
 void			mini_unset(t_env **env, char **tab);
 char			*get_status(t_binary *tree);
 bool			open_close(char *str);
+char			*find_dir(t_env *env);
+int				count_arg(char **tab, int j);
+
 /*----------------------SIGNALS----------------------------------*/
 void			signal_ctrlc(int sig);
 void			print_binary(t_binary *tree);
@@ -180,7 +187,7 @@ t_env			*ft_last_lst(t_env *lst);
 void			ft_add_back_lst(t_env **lst, t_env *new);
 
 /* -------------- UTILS - parsing ------------------------------- */
-void			ignore_parentheses(t_binary *tree);
+void			ignore_parentheses(t_binary *tree, int para_count);
 void			replace_parentheses(t_binary *tree, t_env *env);
 int				end_of_quotes(char *str, int i);
 bool			is_a_meta(char *str, int i);
@@ -195,13 +202,14 @@ int				end_of_parentheses(char *str, int position);
 char			*join_all_part(char *str, char *add);
 char			*sie_norme(t_env *tmp, char *str);
 char			*jap_norme(char *str, int i, char *before, char *add);
-char			*jap_norme_2(char *str);
+char			*jap_norme_2(char *str, char *af, char *bf, int i);
 int				ipp_norme(char *str);
 char			*rmq_norme(char *tab);
 int				fns_norme(char *str, int i);
 int				ipp_norme_2(char *str, int i);
 int				verif_meta(t_binary *tree);
 bool			is_letter(char c);
+int				norme_sp(int i, char *str, int j);
 
 /*-------------------Wildcards-------------------------------*/
 char			*wildcard(char *str, int i);

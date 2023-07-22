@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 12:10:53 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:30:09 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,7 @@ int	find_next_split(t_binary *tree, t_env *env)
 			j = i;
 		}
 		else
-		{
-			free(str);
-			return (split_pos(tree, tree->data, 0));
-		}
-		if (tree->data[i] == '\0')
-			return (-1);
+			return (free(str), split_pos(tree, tree->data, -1));
 	}
 	return (-1);
 }
@@ -81,11 +76,9 @@ bool	string_analyse(t_binary *tree, char *str, t_env *env)
 				i = end_of_parentheses(str, i);
 			}
 			else
-			{
 				if (is_a_meta(str, i) == true)
 					return (true);
-				i++;
-			}
+			i++;
 		}
 		return (false);
 	}
@@ -93,7 +86,7 @@ bool	string_analyse(t_binary *tree, char *str, t_env *env)
 
 int	split_pos(t_binary *tree, char *str, int i)
 {
-	while (str[i])
+	while (str[++i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 			i = end_of_quotes(str, i);
@@ -111,19 +104,10 @@ int	split_pos(t_binary *tree, char *str, int i)
 			if ((is_a_meta(str, i) == true))
 			{
 				if (str[0] == '&' || str[0] == '|')
-				{
-					while (str[i] && (str[i] == '&' || str[i] == '|'))
-						i++;
-					return (i);
-				}
+					return (norme_sp(i, str, 0));
 				else
-				{
-					while (str[i] && (str[i] == '&' || str[i] == '|'))
-						i--;
-					return (i);
-				}
+					return (norme_sp(i, str, 1));
 			}
-			i++;
 		}
 	}
 	return (-1);
