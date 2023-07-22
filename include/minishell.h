@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 17:02:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:11:24 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void			execution(t_minishell *mini, t_binary *tree);
 void			execution_norme(t_minishell *mini, t_binary *tree, int i);
 void			execution_norme_2(t_minishell *mini, t_binary *tree,
 					int status);
-bool			count_space_pipe(char *str, int pos);
 
 /*---------------------------REDIRECTION--------------------------*/
 void			pipex(t_binary *tree, t_minishell *mini, int i, int j);

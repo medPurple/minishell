@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:07:59 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:54:01 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 		if (tree->status == true)
 				tree->cmd->split_cmd = \
 				mini_split(get_status(tree), 0, 0, 0);
-			execution(mini, tree);
+			execution (mini, tree);
 	}
-	return;
+	return ;
 }
 
 void	execution_norme(t_minishell *mini, t_binary *tree, int i)

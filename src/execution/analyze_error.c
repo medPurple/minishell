@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:26:26 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:29:15 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:52:54 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	redir_error(char *str, int left, int right, int save_pos)
 			return (mini_error_one(1), -1);
 		else if (str[0] == '<' && str[1] == '|')
 			return (mini_error_one(4), -1);
-		else if (str[save_pos] == '|' && str[save_pos + 1] != '|'
-			&& count_space_pipe (str, save_pos + 1) == true)
+		else if (str[save_pos] == '|' && str[save_pos + 1] != '|')
 			return (mini_error_one(1), -1);
 		else if (redir_error_norme(str, left, right, save_pos) == -1)
 			return (-1);
