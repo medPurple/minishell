@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 15:15:29 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:40:30 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void			mini_env(t_env *env);
 void			mini_export(t_env **env, char **tab);
 void			mini_unset(t_env **env, char **tab);
 char			*get_status(t_binary *tree);
-
+bool			open_close(char *str);
 /*----------------------SIGNALS----------------------------------*/
 void			signal_ctrlc(int sig);
 void			print_binary(t_binary *tree);

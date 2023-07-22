@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:11:01 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 10:03:48 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:29:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	expand_parentheses_and_execute(t_binary *tree, t_minishell *mini)
 			else
 				tree->cmd->exec = -1;
 		}
-		ft_free_tab(tree->cmd->split_cmd);
+		//ft_free_tab(tree->cmd->split_cmd);
 	}
 }
 
@@ -73,18 +73,18 @@ static bool	parentheses_success(t_binary *tree)
 	tmp = tree;
 	while (tmp->right)
 	{
-		if (tree->right && (ft_strcmp(tmp->left->data, "||") != 0) && ft_strcmp(tmp->left->data, "&&") != 0)
-			free(tmp->left->cmd);
+		//if (tree->right && (ft_strcmp(tmp->left->data, "||") != 0) && ft_strcmp(tmp->left->data, "&&") != 0)
+		//	free(tmp->left->cmd);
 		tmp = tmp->right;
 	}
 	if (tmp->cmd->exec == 1)
 	{
-		free(tmp->cmd);
+		//free(tmp->cmd);
 		return (true);
 	}
 	else
 	{
-		free(tmp->cmd);
+		//free(tmp->cmd);
 		return (false);
 	}
 }

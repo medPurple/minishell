@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/20 16:23:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:41:26 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	cd_norme(char *str, t_env *env)
 		else
 			path = ft_limited_strdup(str, 0, i - 1);
 		free(str);
-		if (opendir((const char *)path) != NULL)
+		if (open_close(path) == true)
 			changedir(path, env);
 		else
 			mini_error_one(11);
@@ -44,7 +44,7 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	path = NULL;
 	if (cmd[0] == '/')
 	{
-		if (opendir((const char *)str) != NULL)
+		if (open_close(str) == true)
 		{
 			changedir(cmd, env);
 			free(str);
@@ -56,9 +56,22 @@ void	cd_norme_2(char *str, char *cmd, t_env *env)
 	{
 		path = ft_strjoin(str, "/");
 		path = ft_strjoin(path, cmd);
-		if (opendir((const char *)path) != NULL)
+		if (open_close(path) == true)
 			changedir(path, env);
 		else
 			mini_error_one(11);
 	}
+}
+
+bool	open_close(char *str)
+{
+	DIR	*direction;
+
+	direction = opendir((const char *)str);
+	if (direction != NULL)
+	{
+		closedir(direction);
+		return (true);
+	}
+	return (false);
 }
