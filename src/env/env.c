@@ -3,34 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:25:35 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 15:52:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:38:41 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+static void	add_env_norme(t_env **env);
+
 void	add_env(t_env **env, char **envp)
 {
 	int		i;
 	t_env	*tmp;
-	char	*pwd;
 
-	pwd = NULL;
 	i = 0;
 	if (!envp[i])
 	{
-		ft_printf("/!\\ No environnement set /!\\\n");
-		pwd = getcwd(NULL, 0);
-		pwd = ft_strjoat("PWD=", pwd);
-		tmp = ft_new_element(pwd);
-		ft_add_back_lst(env, tmp);
-		tmp = ft_new_element("SHLVL=1");
-		ft_add_back_lst(env, tmp);
-		tmp = ft_new_element("_=/usr/bin/env");
-		ft_add_back_lst(env, tmp);
+		add_env_norme(env);
 		return ;
 	}
 	while (envp[i])
@@ -40,4 +32,21 @@ void	add_env(t_env **env, char **envp)
 		i++;
 	}
 	return ;
+}
+
+static void	add_env_norme(t_env **env)
+{
+	char	*pwd;
+	t_env	*tmp;
+
+	pwd = NULL;
+	ft_printf("/!\\ No environnement set /!\\\n");
+	pwd = getcwd(NULL, 0);
+	pwd = ft_strjoat("PWD=", pwd);
+	tmp = ft_new_element(pwd);
+	ft_add_back_lst(env, tmp);
+	tmp = ft_new_element(ft_strdup("SHLVL=1"));
+	ft_add_back_lst(env, tmp);
+	tmp = ft_new_element(ft_strdup("_=/usr/bin/env"));
+	ft_add_back_lst(env, tmp);
 }

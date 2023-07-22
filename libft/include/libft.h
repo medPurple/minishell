@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:58 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/05 14:22:01 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:23:49 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,11 @@ int			ft_len_u(unsigned int u);
 
 /*ajout perso*/
 void		send_error(char *s);
-int	ft_strcmp(char *s1, char *s2);
-char *ft_malloc(int size, char *type);
-char **ft_malloc2(int size, char *type);
-char *ft_limited_strdup(char *str, int begin, int end);
-void	ft_perror(char *str);
-void	ft_free_tab(char **tab);
+int			ft_strcmp(char *s1, char *s2);
+char		*ft_malloc(int size, char *type);
+char		**ft_malloc2(int size, char *type);
+char		*ft_limited_strdup(char *str, int begin, int end);
+void		ft_perror(char *str);
+void		ft_free_tab(char **tab);
 
 #endif

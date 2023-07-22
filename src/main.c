@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 12:17:34 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:34:03 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_eoat = 0;
 
-static void	minishell(char *str, t_minishell *mini);
+static int	minishell(char *str, t_minishell *mini);
 
 int	main(int ac, char **av, char **envp)
 {
@@ -39,15 +39,16 @@ int	main(int ac, char **av, char **envp)
 		add_history(str);
 		if (str == NULL)
 			exit(g_eoat);
-		minishell(str, &mini);
-		clear_the_tree(mini.tree);
+		if (minishell(str, &mini) == 0)
+			clear_the_tree(mini.tree);
 	}
 	return (g_eoat);
 }
 
-static void	minishell(char *str, t_minishell *mini)
+static int	minishell(char *str, t_minishell *mini)
 {
 	if (parsing(mini, str) == -1)
-		return ;
+		return( -1);
 	exec_recu(mini, mini->tree);
+	return (0);
 }
