@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 19:26:11 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:29:26 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	{
 		tree->cmd->check_here_doc = 0;
 		if (tree->redir)
-			pipe_option(tree, 1, j);
+			pipe_option(tree, 1);
 		j = cmd_redir_malloc(tree, j, j, j) + 1;
 		if (tree->cmd->check_redir < 0)
-			return (pipe_option(tree, 1, j));
+			return (pipe_option(tree, 1));
 		pipe_reduce(tree);
 		if (tree->cmd->fork_pipe == 0)
 			fork_option (mini, tree, 1, 0);
@@ -69,21 +69,21 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 
 void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 {
-	int	k;
+	//int	k;
 
-	k = 0;
+	//k = 0;
 	i = j;
 	if (tree->redir)
-		pipe_option (tree, 1, j);
+		pipe_option (tree, 1);
 	j = cmd_redir_malloc (tree, j, j, j);
 	if (tree->cmd->check_redir < 0)
 	{
-		pipe_option (tree, 1, j);
+		pipe_option (tree, 1);
 		return ;
 	}
 	if (is_here_doc (tree) >= 1)
 	{
-		pipe_option(tree, 2, 0);
+		pipe_option(tree, 2);
 	}
 	tree->cmd->fork_pipe = fork();
 	if (tree->cmd->fork_pipe == -1)
@@ -107,4 +107,5 @@ void	wait_child(t_binary *tree)
 		tree->cmd->exec = 1;
 	if (tree->cmd->check_here_doc == 1)
 		unlink(".tmp");
+	ft_free_lst(tree->redir);
 }

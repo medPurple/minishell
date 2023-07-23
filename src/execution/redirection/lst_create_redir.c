@@ -3,35 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   lst_create_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:28 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 09:56:19 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:11:22 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-t_redirection	*ft_new_redirection(char *redir, char *file, int j)
+t_redirection	*ft_new_redirection(char *redir, char *file)
 {
 	t_redirection	*element;
-	int				i;
 
-	i = 1;
 	element = malloc(sizeof(t_redirection));
 	if (!element)
 		return (NULL);
 	element->redir_cmd = NULL;
 	element->redir_file = NULL;
-	if (redir[0] == '|')
-	{
-		element->redir_cmd = ft_malloc(ft_strlen(redir) - 1, "char");
-		while (redir[i] != '\0')
-			element->redir_cmd[j++] = redir[i++];
-		element->redir_cmd[j] = '\0';
-	}
-	else
-		element->redir_cmd = redir;
+	element->redir_cmd = redir;
 	element->redir_file = file;
 	element->next = NULL;
 	return (element);

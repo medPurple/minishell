@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:22 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/21 15:44:15 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:07:40 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	exec_cmd_redir(t_binary *tree)
 		if (dup2(tree->cmd->pipe_tmp, STDIN_FILENO) == -1)
 			perror("dup2");
 		close (tree->cmd->pipe_tmp);
+		ft_free_lst(tree->redir);
 	}
 	return ;
 }

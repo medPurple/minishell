@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 18:54:37 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:17:21 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void			mini_here_doc(char *limiter, t_binary *tree);
 int				redir_is_valid(char *str);
 void			initialize_pipe_value(t_binary *tree);
 int				count_pipe(t_binary *tree);
-void			pipe_option(t_binary *tree, int choice, int pos);
+void			pipe_option(t_binary *tree, int choice);
 void			pipe_parent(t_binary *tree, int choice);
 void			fork_option(t_minishell *mini, t_binary *tree,
 					int choice, int i);
@@ -252,7 +252,7 @@ int				count_redir_right(t_binary *tree);
 int				count_redir_left(t_binary *tree);
 int				count_redir_right_double(t_binary *tree);
 void			open_file(t_binary *tree);
-t_redirection	*ft_new_redirection(char *redir, char *file, int j);
+t_redirection	*ft_new_redirection(char *redir, char *file);
 t_redirection	*ft_last_lst_redirection(t_redirection *lst);
 void			ft_add_back_lst_redirection(t_redirection **lst,
 					t_redirection *new);

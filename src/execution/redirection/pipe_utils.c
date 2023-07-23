@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 19:24:33 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:22:08 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 
-void	pipe_option( t_binary *tree, int choice, int pos)
+void	pipe_option( t_binary *tree, int choice)
 {
-	int	i;
 	int	k;
+	t_redirection	*tmp;
+	
+	tmp = tree->redir;
 
-	i = 0;
-	(void)pos;
 	if (choice == 1)
 	{
 		tree->cmd->is_a_redir = 0;
@@ -35,8 +35,8 @@ void	pipe_option( t_binary *tree, int choice, int pos)
 			if (tree->cmd->pipe_tmp)
 				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
-			mini_here_doc(tree->redir->redir_file, tree);
-			tree->redir = tree->redir->next;
+			mini_here_doc(tmp->redir_file, tree);
+			tmp = tmp->next;
 			k--;
 		}
 	}
@@ -48,7 +48,7 @@ void	pipe_reduce(t_binary *tree)
 		perror("pipe");
 	if (is_here_doc (tree) >= 1)
 	{
-		pipe_option(tree, 2, 0);
+		pipe_option(tree, 2);
 	}
 	else
 		tree->cmd->check_here_doc = 0;

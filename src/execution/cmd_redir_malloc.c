@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_redir_malloc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:44 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 19:49:05 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:42:21 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	malloc_redir(t_binary *tree, int i)
 	t_redirection	*tmp2;
 
 	tmp = ft_new_redirection(ft_strdup(tree->cmd->split_cmd[i]),
-			ft_strdup(tree->cmd->split_cmd[i + 1]), 0);
+			ft_strdup(tree->cmd->split_cmd[i + 1]));
 	ft_add_back_lst_redirection(&tree->redir, tmp);
 	tmp2 = tree->redir;
 	while (tmp2)
@@ -78,9 +78,9 @@ static void	malloc_cmd(t_binary *tree, int size, int i)
 		}
 		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
 			break ;
-		tree->cmd->exec_cmd[j] = ft_strdup(tree->cmd->split_cmd[i]);
 		if (is_a_redir(tree->cmd->split_cmd[i]) == false)
-		{
+		{	
+			tree->cmd->exec_cmd[j] = ft_strdup(tree->cmd->split_cmd[i]);
 			i++;
 			j++;
 		}

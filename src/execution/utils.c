@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 19:56:30 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:44:36 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,12 @@ void	ft_free_lst(t_redirection *stack)
 
 	if (!stack)
 		return ;
-	while (stack)
+	while (stack != NULL)
 	{
-		tmp = (stack)->next;
-		free (stack->redir_cmd);
-		free (stack->redir_file);
-		free (stack);
-		(stack) = tmp;
+		tmp = stack;
+		stack = stack->next;
+		free (tmp->redir_cmd);
+		free (tmp->redir_file);
+		free (tmp);
 	}
-	free (stack);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 19:44:42 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:14:34 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	execution(t_minishell *mini, t_binary *tree)
 
 void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 {
+	t_redirection	*tmp;
+	
+	tmp = tree->redir;
 	tree->cmd->exec = 1;
 	if (is_here_doc(tree) >= 1)
 	{
@@ -84,8 +87,8 @@ void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 			if (tree->cmd->pipe_tmp)
 				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
-			mini_here_doc(tree->redir->redir_file, tree);
-			tree->redir = tree->redir->next;
+			mini_here_doc(tmp->redir_file, tree);
+			tmp = tmp->next;
 			i--;
 		}
 	}
