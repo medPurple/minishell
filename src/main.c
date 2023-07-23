@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:08:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 18:56:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/23 18:03:49 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av, char **envp)
 	add_env(&mini.env, envp);
 	while (1)
 	{
+		
 		signal(SIGINT, signal_ctrlc);
 		signal(SIGQUIT, SIG_IGN);
 		str = readline("minishell$ ");

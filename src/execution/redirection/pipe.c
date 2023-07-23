@@ -6,7 +6,7 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:29:26 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/23 19:07:43 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,14 @@ void	pipex(t_binary *tree, t_minishell *mini, int i, int j)
 
 void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 {
-	//int	k;
-
-	//k = 0;
 	i = j;
 	if (tree->redir)
 		pipe_option (tree, 1);
+	if (g_eoat == 130)
+	{
+		close(tree->cmd->pipe_tmp);
+		return ;	
+	}
 	j = cmd_redir_malloc (tree, j, j, j);
 	if (tree->cmd->check_redir < 0)
 	{

@@ -6,14 +6,12 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:25 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:20:15 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/23 17:38:06 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
-static void	set_signal_action(void);
-static void	sigint_handler(int signal);
 static void	op_hd(t_binary *tree);
 
 static void	op_hd(t_binary *tree)
@@ -29,9 +27,6 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 
 	line = NULL;
 	op_hd(tree);
-	set_signal_action();
-	if (g_eoat == 130)
-		return (mini_here_doc_norme(tree, 0));
 	while (1)
 	{
 		if (g_eoat == 130)
@@ -48,21 +43,6 @@ void	mini_here_doc(char *limiter, t_binary *tree)
 		write (tree->cmd->pipe_tmp, "\n", 1);
 		free (line);
 	}
-}
-
-static void	set_signal_action(void)
-{
-	struct sigaction	act;
-
-	ft_bzero(&act, sizeof(act));
-	act.sa_handler = &sigint_handler;
-	sigaction(SIGINT, &act, NULL);
-}
-
-static void	sigint_handler(int signal)
-{
-	if (signal == SIGINT)
-		g_eoat = 130;
 }
 
 int	is_here_doc(t_binary *tree)

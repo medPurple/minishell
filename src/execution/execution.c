@@ -6,7 +6,7 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:14:34 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/23 18:59:34 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,15 @@ void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 			mini_here_doc(tmp->redir_file, tree);
 			tmp = tmp->next;
 			i--;
+			if (g_eoat == 130)
+				break; 
 		}
 	}
 	if ((g_eoat == 130) && tree->cmd->check_here_doc == 1)
 	{
 		unlink(".tmp");
+		ft_free_lst(tree->redir);
+		ft_free_tab(tree->cmd->exec_cmd);
 		return ;
 	}
 	execution_norme_2(mini, tree, status);
@@ -105,6 +109,8 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
 	if (tree->cmd->path_cmd)
 		free(tree->cmd->path_cmd);
+	if (g_eoat == 130)
+		exit(130);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
 	if (tree->cmd->path_cmd != NULL)
 	{

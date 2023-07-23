@@ -6,7 +6,7 @@
 /*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:22:08 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/23 19:03:31 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	pipe_option( t_binary *tree, int choice)
 			mini_here_doc(tmp->redir_file, tree);
 			tmp = tmp->next;
 			k--;
+			if (g_eoat == 130)
+				break; 
 		}
 	}
 }
@@ -59,6 +61,7 @@ void	pipe_reduce(t_binary *tree)
 
 void	pipe_parent(t_binary *tree, int choice)
 {
+	
 	if (choice == 1)
 	{
 		if ((tree->cmd->pipe_tmp != -1 && tree->cmd->pipe_tmp != 0))
@@ -69,6 +72,7 @@ void	pipe_parent(t_binary *tree, int choice)
 	}
 	else
 	{
+		
 		close(tree->cmd->pipe_fd[1]);
 		close(tree->cmd->pipe_tmp);
 		ft_free_tab(tree->cmd->exec_cmd);
