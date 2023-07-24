@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/23 13:50:28 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 13:16:31 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	mini_exit(t_minishell *mini, char *str, t_binary *tree)
 	ft_free_tab(tree->cmd->exec_cmd);
 	ft_free_tab(tree->cmd->split_cmd);
 	clear_the_tree(mini->tree);
-	clear_env(mini->env);
+	if (mini->env->data == NULL)
+		clear_env(mini->env);
 	clear_history();
 	exit(g_eoat);
 }
@@ -62,6 +63,8 @@ void	clear_env(t_env *env)
 {
 	t_env	*next;
 
+	if (!env)
+		return ;
 	while (env)
 	{
 		next = env->next;

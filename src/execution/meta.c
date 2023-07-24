@@ -6,14 +6,13 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:54 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 11:28:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:55:36 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 static void	meta_error(char *str);
-static bool only_space(char *str);
 
 void	exec_meta( t_binary *tree, t_minishell *mini)
 {
@@ -77,23 +76,13 @@ void	mini_and(t_binary *tree, t_minishell *mini)
 		exec_recu(mini, tree->prev->right);
 }
 
-int	verif_meta(t_binary *tree)
+int	verif_meta(t_binary *tree, int i)
 {
-	int	i;
-
-	i = 0;
 	if (!(tree->data))
 		return (-1);
 	if ((ft_strcmp(tree->data, "&&") == 0 || ft_strcmp(tree->data, "||") == 0))
-	{
-		if (!tree->prev)
-			return (mini_error_one(25), -1);
-		if (!tree->prev->right || only_space(tree->prev->right->data) == true)
-			return (mini_error_one(25), -1);
-		else if ((ft_strcmp(tree->prev->right->data, "&&") == 0 || ft_strcmp(tree->prev->right->data, "||") == 0))
-			return (mini_error_one(25), -1);
-			
-	}
+		if (verif_meta_norme(tree) == -1)
+			return (-1);
 	if ((!(tree->right)) && (tree->data[0] == '|' || tree->data[0] == '&'))
 	{
 		if (tree->data[0] == '&')
@@ -107,9 +96,9 @@ int	verif_meta(t_binary *tree)
 	}
 	else if (tree->right)
 	{
-		if (verif_meta(tree->left) == -1)
+		if (verif_meta(tree->left, 0) == -1)
 			return (-1);
-		if (verif_meta(tree->right) == -1)
+		if (verif_meta(tree->right, 0) == -1)
 			return (-1);
 	}
 	return (0);
@@ -135,23 +124,4 @@ static void	meta_error(char *str)
 		mini_error_one(5);
 	if (i > 2 && str[0] == '&')
 		mini_error_one(10);
-}
-
-
-static bool only_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-			i++;
-		else
-			break;
-	}
-	if (i == (int)ft_strlen(str))
-		return (true);
-	else
-		return (false);
 }

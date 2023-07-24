@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 09:58:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 17:36:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:41:48 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ bool	open_close(char *str)
 void	cd_norme_3(char *str, t_binary *tree, t_env *env, int j)
 {
 	if (count_arg(tree->cmd->split_cmd, j) == 1)
+	{
+		free(str);
 		changedir(find_dir(env), env, NULL, NULL);
+	}
 	else if (ft_strlen(tree->cmd->split_cmd[j + 1]) == 1 \
 	&& tree->cmd->split_cmd[j + 1][0] == '-')
 		ft_printf("%s\n", getcwd(NULL, 0));
@@ -99,4 +102,12 @@ void	cd_norme_3(char *str, t_binary *tree, t_env *env, int j)
 		else
 			cd_norme_2(str, tree->cmd->split_cmd[j + 1], env);
 	}
+}
+
+void	changedir_norme(t_env *tmp, char *dest, char *old, char *str)
+{
+	free(tmp->data);
+	dest = ft_strjoat(old, str);
+	tmp->data = ft_strdup(dest);
+	free(dest);
 }

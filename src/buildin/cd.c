@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:16:24 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 17:34:43 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:41:40 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	changedir(char *destination, t_env *env, char *old, char *dest)
 	char	*str;
 
 	str = getcwd(NULL, 0);
-	old = ft_strdup("OLDPWD=");
+	if (!destination)
+		old = NULL;
+	else
+		old = ft_strdup("OLDPWD=");
 	tmp = env;
 	if (!destination)
 		return ;
@@ -93,14 +96,9 @@ void	changedir(char *destination, t_env *env, char *old, char *dest)
 	{
 		if (ft_strcmp(tmp->name, "OLDPWD") == 0)
 		{
-			free(tmp->data);
-			dest = ft_strjoat(old, str);
-			tmp->data = ft_strdup(dest);
-			free(dest);
+			changedir_norme(tmp, dest, old, str);
 			break ;
 		}
 		tmp = tmp->next;
 	}
-	free(old);
-	free(str);
 }

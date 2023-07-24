@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:13:07 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 11:06:31 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:37:50 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*jap_s(char *bf, char *af)
 	char	*str;
 	char	*str2;
 	char	*str3;
-	
+
 	str = NULL;
 	str2 = NULL;
 	str3 = NULL;

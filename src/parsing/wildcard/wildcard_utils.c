@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:23 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 12:03:24 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:28:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ char	*put_in_quotes(char *begin, char *end, char *bfwc, char *afwc)
 {
 	char	*str;
 
-	str = ft_strjoat(begin, " '");
+	str = ft_strjoat(begin, ft_strdup(" '"));
 	str = ft_strjoat(str, bfwc);
-	str = ft_strjoat(str, "*");
+	str = ft_strjoat(str, ft_strdup("*"));
 	str = ft_strjoat(str, afwc);
-	str = ft_strjoat(str, "'\0");
+	str = ft_strjoat(str, ft_strdup("'\0"));
 	str = ft_strjoat(str, end);
 	return (str);
 }

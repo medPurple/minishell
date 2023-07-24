@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 11:08:08 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:27:44 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ void			execution_norme(t_minishell *mini, t_binary *tree, int i);
 void			execution_norme_1(t_binary *tree, int i);
 void			execution_norme_2(t_minishell *mini, t_binary *tree,
 					int status);
+int				verif_meta_norme(t_binary *tree);
+bool			only_space(char *str);
 
 /*---------------------------REDIRECTION--------------------------*/
 void			pipex(t_binary *tree, t_minishell *mini, int i, int j);
@@ -176,9 +178,10 @@ void			cd_norme(char *str, t_env *env);
 void			cd_norme_2(char *str, char *cmd, t_env *env);
 void			cd_norme_3(char *str, t_binary *tree, t_env *env, int j);
 void			changedir(char *destination, t_env *env, char *old, char *dest);
+void			changedir_norme(t_env *tmp, char *dest, char *old, char *str);
 void			mini_env(t_env *env);
 void			mini_export(t_env **env, char **tab);
-void			mini_unset(t_env **env, char **tab);
+void			mini_unset(t_env **env, char **tab, int i, t_env *tmp);
 char			*get_status(t_binary *tree);
 bool			open_close(char *str);
 char			*find_dir(t_env *env);
@@ -213,10 +216,10 @@ int				ipp_norme(char *str);
 char			*rmq_norme(char *tab);
 int				fns_norme(char *str, int i);
 int				ipp_norme_2(char *str, int i);
-int				verif_meta(t_binary *tree);
+int				verif_meta(t_binary *tree, int i);
 bool			is_letter(char c);
 int				norme_sp(int i, char *str, int j);
-int				verif_quotes(t_binary *tree);
+int				verif_quotes(t_binary *tree, int i);
 bool			string_analyse(t_binary *tree, char *str, t_env *env, int i);
 void			clear_the_tree_bis(t_binary *tree);
 

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:16:31 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 10:53:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:30:46 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ char	*rmq_norme(char *tab)
 	return (nstr);
 }
 
-int	verif_quotes(t_binary *tree)
+int	verif_quotes(t_binary *tree, int i)
 {
-	int	i;
-
-	i = 0;
 	if (!(tree->right))
 	{
-		if (ft_strlen(tree->data) == 1 && (tree->data[i] == '\'' || tree->data[i] == '\"'))
+		if (ft_strlen(tree->data) == 1 \
+		&& (tree->data[i] == '\'' || tree->data[i] == '\"'))
 			return (-1);
 		while (tree->data[i])
 		{
@@ -62,9 +60,9 @@ int	verif_quotes(t_binary *tree)
 	}
 	if (tree->right)
 	{
-		if (verif_quotes(tree->left) == -1)
+		if (verif_quotes(tree->left, 0) == -1)
 			return (-1);
-		if (verif_quotes(tree->right) == -1)
+		if (verif_quotes(tree->right, 0) == -1)
 			return (-1);
 	}
 	return (0);
