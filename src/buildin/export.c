@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:10:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:56:44 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:13:32 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	mini_export(t_env **env, char **tab)
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == true)
 		{
 			remove_last(tab[i], *env);
-			tmp = ft_new_element(tab[i]);
+			tmp = ft_new_element(ft_strdup(tab[i]));
 			ft_add_back_lst(env, tmp);
 		}
 		else if (is_valid_bf(tab[i]) == true && has_equals(tab[i]) == false)
@@ -61,9 +61,13 @@ static bool	is_valid_bf(char *str)
 		|| (lim[j] >= 'A' && lim[j] <= 'Z') \
 		|| (lim[j] >= '0' && lim[j] <= '9') \
 		|| lim[j] == '_'))
+		{
+			free(lim);
 			return (false);
+		}
 		j++;
 	}
+	free(lim);
 	return (true);
 }
 
