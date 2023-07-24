@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 10:01:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:11:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	{
 		if (ft_strlen(tree->data) == 0)
 		{
-			ft_free_tab(tree->cmd->split_cmd);
+			free(tree->cmd->split_cmd);
 			return ;
 		}
 		if (is_a_meta(tree->data, 0))
@@ -40,10 +40,7 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 			if (tree->cmd->exec == 1 || tree->cmd->exec == -1)
 				return (exec_recu_norme (mini, tree, 1));
 			else
-			{
 				exec_recu_norme (mini, tree, 2);
-				ft_free_tab(tree->cmd->split_cmd);
-			}
 		}
 	}
 	return ;
@@ -79,7 +76,7 @@ void	execution(t_minishell *mini, t_binary *tree)
 void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 {
 	t_redirection	*tmp;
-	
+
 	tmp = tree->redir;
 	tree->cmd->exec = 1;
 	if (is_here_doc(tree) >= 1)
@@ -94,26 +91,18 @@ void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 			tmp = tmp->next;
 			i--;
 			if (g_eoat == 130)
-				break; 
+				break ;
 		}
 	}
 	if ((g_eoat == 130) && tree->cmd->check_here_doc == 1)
-	{
-		unlink(".tmp");
-		ft_free_lst(tree->redir);
-		ft_free_tab(tree->cmd->exec_cmd);
-		return ;
-	}
+		return (execution_norme_1(tree, 0));
 	execution_norme_2(mini, tree, status);
 	return (ft_free_tab(tree->cmd->exec_cmd), ft_free_lst(tree->redir));
 }
 
 void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
-	if (tree->cmd->path_cmd)
-		free(tree->cmd->path_cmd);
-	if (g_eoat == 130)
-		exit(130);
+	execution_norme_1(tree, 2);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
 	if (tree->cmd->path_cmd != NULL)
 	{
@@ -130,13 +119,11 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	{
 		if (ft_strlen(tree->cmd->exec_cmd[0]) != 0)
 		{
-			ft_free_tab(tree->cmd->exec_cmd);
-			ft_free_lst(tree->redir);
+			execution_norme_1(tree, 1);
 			mini_error_one(9);
 			exit(127);
 		}
-		ft_free_tab(tree->cmd->exec_cmd);
-		ft_free_lst(tree->redir);
+		execution_norme_1(tree, 0);
 		exit (0);
 	}
 }
