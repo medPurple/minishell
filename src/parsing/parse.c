@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:09 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 09:59:27 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:43:36 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parsing(t_minishell *mini, char *str)
 		parse_data(mini->tree, mini->env);
 	if (verif_quotes(mini->tree) == -1)
 		return (mini_error_one(30), -1);
-	if (verif_parentheses(mini->tree) == -1)		
+	if (verif_parentheses(mini->tree) == -1)
 		return (mini_error_one(20),-1);
 	if (verif_meta(mini->tree) == -1)
 		return (-1);

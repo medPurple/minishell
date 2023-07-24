@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 11:11:25 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:15:06 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	exec_recu(t_minishell *mini, t_binary *tree)
 	}
 	else
 	{
-		if (ft_strlen(tree->data) == 0)
+		if (ft_strlen(tree->cmd->split_cmd[0]) == 0)
 		{
-			free(tree->cmd->split_cmd);
+			ft_free_tab(tree->cmd->split_cmd);
 			return ;
 		}
 		if (is_a_meta(tree->data, 0))
