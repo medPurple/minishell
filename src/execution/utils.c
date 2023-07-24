@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:44:36 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 16:33:16 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*cmd_recuperation(char *str, t_env *env)
 	char	*cmd;
 	char	*pathok;
 
-	if (str[0] == '/')
+	if (str && str[0] == '/')
 		return (str);
 	pathok = path_recuperation(env);
 	i = 0;

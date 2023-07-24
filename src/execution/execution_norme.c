@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 16:23:02 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:35:59 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	execution_norme_1(t_binary *tree, int i)
 	{
 		unlink(".tmp");
 		ft_free_tab(tree->cmd->exec_cmd);
-		ft_free_lst(tree->redir);
 	}
 	else if (i == 1)
 	{
