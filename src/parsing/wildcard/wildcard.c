@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 16:11:10 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:14:10 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	*ft_strjoat(char *s1, char *s2)
 	if (!s2)
 		return (s1);
 	size = (ft_strlen(s1) + ft_strlen(s2));
-	new = ft_malloc(size - 2, "char");
+	new = ft_malloc(size, "char");
 	while (s1 && s1[i])
 	{
 		new[i] = s1[i];
@@ -129,5 +129,5 @@ char	*ft_strjoat(char *s1, char *s2)
 		i++;
 	}
 	new[i] = '\0';
-	return (new);
+	return (free(s1),free(s2),new);
 }

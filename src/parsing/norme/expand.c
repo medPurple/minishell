@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 16:21:43 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:17:38 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*jap_norme_2(char *str, char *af, char *bf, int i)
 	if (is_letter(str[i - 1]) == false && (str[i - 1] != '\'' \
 	&& str[i - 1] != '\"'))
 		j--;
-	while (str[i + 1] != '\0')
+	while (str[i] && str[i + 1] != '\0')
 		i++;
 	if (i != j)
 		af = ft_limited_strdup(str, j + 1, i);
@@ -89,7 +89,5 @@ int	expand_norme_2(t_binary *tree, int i)
 	}
 	else if (tree->data[i] == '\'')
 		i = pass_quotes(tree->data, i) + 1;
-	else
-		i++;
 	return (i);
 }

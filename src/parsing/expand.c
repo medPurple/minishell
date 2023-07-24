@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 16:07:29 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:54:39 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,23 @@ void	expand(t_binary *tree, t_env *env)
 	while (tree->data && tree->data[i])
 	{
 		i = expand_norme(tree, env, i);
-		if (tree->data && tree->data[i] == '\"' && quotes == 0)
+		if (tree->data[i] == '\0')
+			return ;
+		if (tree->data[i] && tree->data[i] == '\"' && quotes == 0)
 		{
+			
 			if (find_next_quotes(tree->data, i) == -1)
 				return ;
 			quotes++;
 			i++;
 		}
-		else if (tree->data && tree->data[i] == '\"' && quotes == 1)
+		else if (tree->data[i] && tree->data[i] == '\"' && quotes == 1)
 		{
 			quotes--;
 			i++;
 		}
+		else
+			i++;
 	}
 }
 

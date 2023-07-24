@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/21 07:40:52 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:26:41 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	pass_quotes(char *str, int i)
 	char	c;
 
 	c = str[i];
-	i++;
-	while (str[i] != c && str[i] != '\0')
+	if (!str[i +1])
+		return (i);
+	while (str[i] != '\0' && str[i] != c)
 		i++;
 	return (i);
 }

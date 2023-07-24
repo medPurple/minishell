@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:11:19 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 16:20:48 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:07:54 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static char	*search_in_env(char *var, t_env *env, char *str)
 			break ;
 		tmp = tmp->next;
 	}
+	free(var);
 	if (tmp != NULL)
 		str = sie_norme(tmp, str);
 	else

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:13:07 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/17 14:33:32 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:06:31 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,20 @@ char	*get_status(t_binary *tree)
 static char	*jap_s(char *bf, char *af)
 {
 	char	*str;
-
-	str = ft_strjoat(bf, ft_itoa(g_eoat));
-	str = ft_strjoat (str, af);
-	return (str);
+	char	*str2;
+	char	*str3;
+	
+	str = NULL;
+	str2 = NULL;
+	str3 = NULL;
+	str3 = ft_itoa(g_eoat);
+	if (bf)
+	{
+		str = ft_strjoin(bf, str3);
+		str2 = ft_strjoat (str, af);
+	}
+	else
+		str2 = ft_strjoat (str3, af);
+	free(str3);
+	return (str2);
 }

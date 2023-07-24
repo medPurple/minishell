@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_norme.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:34:25 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 11:07:27 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 	else if (i == 2)
 	{
 		if (tree->status == true)
-				tree->cmd->split_cmd = \
-				mini_split(get_status(tree), 0, 0, 0);
+		{
+			ft_free_tab(tree->cmd->split_cmd);
+			tree->cmd->split_cmd = \
+			mini_split(get_status(tree), 0, 0, 0);
+		}
 		execution (mini, tree);
 	}
 	return ;
