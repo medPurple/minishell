@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyze_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:26:26 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/23 18:52:58 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 09:51:30 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	verif_redir(t_binary *tree, int left, int right, int save_pos)
 		{
 			save_pos = i;
 			if (tree->data[i] && tree->data[i] == '<')
-				while (tree->data[i] && tree->data[i++] == '<')
+				while (tree->data[i + 1] && tree->data[i++] == '<')
 					left++;
 			if (tree->data[i] && tree->data[i] == '>')
-				while (tree->data[i] && tree->data[i++] == '>')
+				while (tree->data[i + 1] && tree->data[i++] == '>')
 					right++;
 		}
 		if (redir_error(tree->data, left, right, save_pos) < 0)
