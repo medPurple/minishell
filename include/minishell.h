@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 13:27:44 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:56:43 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void			mini_here_doc(char *limiter, t_binary *tree);
 int				redir_is_valid(char *str);
 void			initialize_pipe_value(t_binary *tree);
 int				count_pipe(t_binary *tree);
-void			pipe_option(t_binary *tree, int choice);
+void			pipe_option(t_binary *tree, int k);
 void			pipe_parent(t_binary *tree, int choice);
 void			fork_option(t_minishell *mini, t_binary *tree,
 					int choice, int i);
@@ -165,6 +165,7 @@ int				is_a_redir_or_pipe(char *str, int start, int end);
 int				is_a_redir_or_pipe_bis(int count_left, int count_right,
 					int count_pipe);
 void			mini_here_doc_norme(t_binary *tree, int i);
+t_redirection	*search_h_d(t_redirection *tmp);
 
 /*------------------------BUILD-IN------------------------------*/
 void			exec_buildin(t_binary *tree, t_minishell *mini);

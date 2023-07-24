@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 12:08:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:50:30 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	exec_send(t_binary *tree, t_minishell *mini, int status, int i)
 			if (tree->cmd->pipe_tmp)
 				close (tree->cmd->pipe_tmp);
 			tree->cmd->check_here_doc = 1;
+			tmp = search_h_d(tmp);
 			mini_here_doc(tmp->redir_file, tree);
 			tmp = tmp->next;
 			i--;

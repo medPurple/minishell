@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 09:58:21 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:53:06 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:55:45 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,11 @@ int	verif_redir_norme(t_binary *tree)
 			return (-1);
 	}
 	return (0);
+}
+
+t_redirection	*search_h_d(t_redirection *tmp)
+{
+	while (tmp && ft_strcmp(tmp->redir_cmd, "<<") != 0)
+		tmp = tmp->next;
+	return (tmp);
 }
