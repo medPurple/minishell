@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_norme.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 13:34:25 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 11:04:45 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 				tree->cmd->split_cmd = \
 				mini_split(get_status(tree), 0, 0, 0);
 		execution (mini, tree);
+		ft_free_tab(tree->cmd->split_cmd);
 	}
 	return ;
 }
@@ -57,6 +58,29 @@ void	execution_norme(t_minishell *mini, t_binary *tree, int i)
 	}
 	else
 		return ;
+}
+
+void	execution_norme_1(t_binary *tree, int i)
+{
+	if (i == 0)
+	{
+		unlink(".tmp");
+		ft_free_tab(tree->cmd->exec_cmd);
+		ft_free_lst(tree->redir);
+	}
+	else if (i == 1)
+	{
+		ft_free_tab(tree->cmd->exec_cmd);
+		ft_free_lst(tree->redir);
+	}
+	else
+	{
+		if (tree->cmd->path_cmd)
+			free(tree->cmd->path_cmd);
+		if (g_eoat == 130)
+			exit(130);
+	}
+	return ;
 }
 
 void	execution_norme_2(t_minishell *mini, t_binary *tree, int status)

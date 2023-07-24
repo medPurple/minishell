@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 19:03:31 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 11:07:39 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static void	fork_option_bis(t_minishell *mini, t_binary *tree, int i);
 
 void	pipe_option( t_binary *tree, int choice)
 {
-	int	k;
+	int				k;
 	t_redirection	*tmp;
-	
-	tmp = tree->redir;
 
+	tmp = tree->redir;
 	if (choice == 1)
 	{
 		tree->cmd->is_a_redir = 0;
@@ -39,7 +38,7 @@ void	pipe_option( t_binary *tree, int choice)
 			tmp = tmp->next;
 			k--;
 			if (g_eoat == 130)
-				break; 
+				break ;
 		}
 	}
 }
@@ -61,7 +60,6 @@ void	pipe_reduce(t_binary *tree)
 
 void	pipe_parent(t_binary *tree, int choice)
 {
-	
 	if (choice == 1)
 	{
 		if ((tree->cmd->pipe_tmp != -1 && tree->cmd->pipe_tmp != 0))
@@ -72,7 +70,6 @@ void	pipe_parent(t_binary *tree, int choice)
 	}
 	else
 	{
-		
 		close(tree->cmd->pipe_fd[1]);
 		close(tree->cmd->pipe_tmp);
 		ft_free_tab(tree->cmd->exec_cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 17:08:58 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 11:08:08 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void			par_and_norme(t_binary *tree);
 void			par_or_norme(t_binary *tree);
 void			execution(t_minishell *mini, t_binary *tree);
 void			execution_norme(t_minishell *mini, t_binary *tree, int i);
+void			execution_norme_1(t_binary *tree, int i);
 void			execution_norme_2(t_minishell *mini, t_binary *tree,
 					int status);
 

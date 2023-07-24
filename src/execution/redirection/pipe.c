@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/23 19:07:43 by ml               ###   ########.fr       */
+/*   Updated: 2023/07/24 11:06:39 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 	if (g_eoat == 130)
 	{
 		close(tree->cmd->pipe_tmp);
-		return ;	
+		return ;
 	}
 	j = cmd_redir_malloc (tree, j, j, j);
 	if (tree->cmd->check_redir < 0)
@@ -84,9 +84,7 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 		return ;
 	}
 	if (is_here_doc (tree) >= 1)
-	{
 		pipe_option(tree, 2);
-	}
 	tree->cmd->fork_pipe = fork();
 	if (tree->cmd->fork_pipe == -1)
 		perror ("fork");
