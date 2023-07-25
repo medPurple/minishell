@@ -6,7 +6,7 @@
 /*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 13:56:43 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:31:31 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ t_redirection	*search_h_d(t_redirection *tmp);
 void			exec_buildin(t_binary *tree, t_minishell *mini);
 void			exec_buildin_child(t_binary *tree, t_minishell *mini);
 void			mini_echo(t_binary *tree);
-void			mini_exit(t_minishell *mini, char *str, t_binary *tree);
+void			mini_exit(t_minishell *mini, t_binary *tree);
 void			clear_the_tree(t_binary *tree);
 void			mini_pwd(t_env *env, t_binary *tree);
 void			mini_cd(t_env *env, t_binary *tree);

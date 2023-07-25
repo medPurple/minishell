@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:04 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 13:16:31 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:31:20 by mvautrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	clear_the_tree(t_binary *tree);
 void	clear_env(t_env *env);
 
-void	mini_exit(t_minishell *mini, char *str, t_binary *tree)
+void	mini_exit(t_minishell *mini, t_binary *tree)
 {
-	if (str)
-		g_eoat = ft_atoi(str);
 	ft_free_tab(tree->cmd->exec_cmd);
 	ft_free_tab(tree->cmd->split_cmd);
 	clear_the_tree(mini->tree);
