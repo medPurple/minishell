@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:00:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 12:12:37 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:23:46 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ bool	string_analyse(t_binary *tree, char *str, t_env *env, int i)
 					return (true);
 				i++;
 			}
+			if (i > (int)ft_strlen(str))
+				return (false);
 		}
 		return (false);
 	}

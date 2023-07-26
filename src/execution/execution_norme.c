@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 12:12:07 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:18:00 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	execution_norme_2(t_minishell *mini, t_binary *tree, int status)
 		perror("fork");
 	else if (tree->cmd->fork == 0)
 	{
+		signal(SIGQUIT, signal_bs);
 		exec_cmd_redir(tree);
 		if (is_a_buildin(tree->cmd->exec_cmd[0]) == 0)
 			execute_cmd(tree, mini);
@@ -109,9 +110,13 @@ void	execution_norme_2(t_minishell *mini, t_binary *tree, int status)
 
 static	void	ft_wait(t_binary *tree, int status)
 {
-	signal(SIGQUIT, SIG_DFL);
 	while (wait(&status) != -1)
 		;
+	if (g_eoat == 131)
+	{
+		wait_norme_bs(tree);
+		return ;
+	}
 	g_eoat = status / 256;
 	if (WEXITSTATUS(status) > 0)
 		tree->cmd->exec = -1;

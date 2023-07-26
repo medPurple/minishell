@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/26 12:11:15 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:05:56 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ int	end_of_quotes(char *str, int i)
 	i++;
 	while (str[i] != '\0' && str[i] != c)
 		i++;
-	while (str[i] != '\0' && (str[i] != '&' && str[i + 1] != '&') \
-		&& (str[i] != '|' && str[i + 1] != '|'))
+	while (str && str[i] != '\0' && str[i + 1] \
+	&& str[i + 1] != '\0' && (str[i] != '&' && str[i + 1] != '&') \
+	&& (str[i] != '|' && str[i + 1] != '|'))
 	{
 		if ((str[i] == '\'') || (str[i] == '\"'))
+		{
 			i = pass_quotes(str, i) + 1;
+			break ;
+		}
 		else
 			i++;
 	}
@@ -58,16 +62,18 @@ int	find_next_quotes(char *str, int pos)
 	return (-1);
 }
 
-char	**removes_quotes(char **tab)
+char	**removes_quotes(char **tab, t_binary *tree)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
+	tree->cmd->split_quotes = 0;
 	while (tab && tab[i])
 	{
 		if (has_quotes(tab[i]))
 		{
+			tree->cmd->split_quotes = tree->cmd->split_quotes * 10 + i;
 			str = rmq_norme(tab[i]);
 			free(tab[i]);
 			tab[i] = ft_strdup(str);
@@ -75,6 +81,8 @@ char	**removes_quotes(char **tab)
 		}
 		i++;
 	}
+	if (tree->cmd->split_quotes == 0)
+		tree->cmd->split_quotes = -1;
 	return (tab);
 }
 

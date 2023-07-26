@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:00:08 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:32:59 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**mini_split(char *str, int j, int i, int k)
 			cmd[k++] = ft_limited_strdup(str, j, i - 1);
 		}
 	}
-	return (utils(cmd, k, str), removes_quotes(cmd));
+	return (utils(cmd, k, str), cmd);
 }
 
 static void	utils(char **cmd, int k, char *str)

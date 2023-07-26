@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:19 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/12 17:01:21 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:54:25 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**wc_before_and_after(char *bfwc, char *afwc, t_wc *file)
 		if ((first_letter(tmp->file, bfwc) == true) \
 		&& (last_letter(tmp->file, afwc) == true))
 		{
-			tab[i] = tmp->file;
+			tab[i] = ft_strdup(tmp->file);
 			i++;
 		}
 		tmp = tmp->next;
@@ -54,7 +54,7 @@ char	**wc_before(char *bfwc, t_wc *file)
 	{
 		if ((first_letter(tmp->file, bfwc) == true))
 		{
-			tab[i] = tmp->file;
+			tab[i] = ft_strdup(tmp->file);
 			i++;
 		}
 		tmp = tmp->next;
@@ -79,7 +79,7 @@ char	**wc_after(char *afwc, t_wc *file)
 	{
 		if ((last_letter(tmp->file, afwc) == true))
 		{
-			tab[i] = tmp->file;
+			tab[i] = ft_strdup(tmp->file);
 			i++;
 		}
 		tmp = tmp->next;
@@ -107,10 +107,24 @@ char	**wc_all(t_wc *file)
 	tmp = file;
 	while (tmp)
 	{
-		tab[i] = tmp->file;
+		tab[i] = ft_strdup(tmp->file);
 		i++;
 		tmp = tmp->next;
 	}
 	tab[i] = NULL;
 	return (tab);
+}
+
+void	ft_free_wc(t_wc *liste)
+{
+	t_wc	*tmp;
+
+	tmp = liste;
+	while (liste)
+	{
+		tmp = liste->next;
+		free(liste->file);
+		free(liste);
+		liste = tmp;
+	}
 }

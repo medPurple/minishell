@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:53:17 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:53:46 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_cmd
 	int		fd[2];
 	int		in;
 	int		out;
+	int		split_quotes;	
 
 }				t_cmd;
 
@@ -108,7 +109,7 @@ void			parse_data(t_binary *tree, t_env *env);
 void			create_root(t_binary *tree, t_env *env);
 t_binary		*new_branche(t_binary *tree, char *str);
 int				find_next_quotes(char *str, int pos);
-char			**removes_quotes(char **tab);
+char			**removes_quotes(char **tab, t_binary *tree);
 int				verif_parentheses(t_binary *tree);
 bool			has_nothing(char *str);
 char			*replace_doll_bis(char *str, t_env *env, int position, int i);
@@ -166,6 +167,7 @@ int				is_a_redir_or_pipe_bis(int count_left, int count_right,
 					int count_pipe);
 void			mini_here_doc_norme(t_binary *tree, int i);
 t_redirection	*search_h_d(t_redirection *tmp);
+bool			need_spec(int i, int exclude);
 
 /*------------------------BUILD-IN------------------------------*/
 void			exec_buildin(t_binary *tree, t_minishell *mini);
@@ -192,6 +194,7 @@ int				count_arg(char **tab, int j);
 /*----------------------SIGNALS----------------------------------*/
 void			signal_ctrlc(int sig);
 void			print_binary(t_binary *tree);
+void			signal_bs(int sig);
 
 /*----------------- UTILS - environnement ------------------------*/
 t_env			*ft_new_element(char *data);
@@ -240,6 +243,7 @@ char			**wc_after(char *afwc, t_wc *file);
 char			**wc_before(char *bfwc, t_wc *file);
 char			*ft_strjoat(char *s1, char *s2);
 char			*put_in_quotes(char *begin, char *end, char *bfwc, char *afwc);
+void			ft_free_wc(t_wc *liste);
 
 /*--------------------Parentheses------------------------------*/
 void			expand_parentheses_and_execute(t_binary *tree,
@@ -269,5 +273,6 @@ int				verif_redir_norme(t_binary *tree);
 int				redir_error(char *str, int left, int right, int save_pos);
 bool			count_space(char *str, int pos);
 int				pipe_is_valid(char **str);
+void			wait_norme_bs(t_binary *tree);
 
 #endif

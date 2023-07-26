@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:57:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 16:33:16 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:44:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	create_cmd(t_binary *tree)
 	&& (tree->data[0] != '('))
 	{
 		tree->cmd = malloc(sizeof(t_cmd));
+		tree->cmd->split_quotes = -1;
 		tree->cmd->exec = 0;
 		tree->cmd->str = ft_strdup(tree->data);
 		tree->cmd->split_cmd = NULL;
 		tree->cmd->split_cmd = mini_split(ft_strdup(tree->data), 0, 0, 0);
+		tree->cmd->split_cmd = removes_quotes(tree->cmd->split_cmd, tree);
 		free(tree->cmd->str);
 		tree->cmd->path_cmd = NULL;
 		tree->cmd->exec_cmd = NULL;

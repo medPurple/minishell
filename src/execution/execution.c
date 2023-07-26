@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:04:03 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:52:51 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	execution(t_minishell *mini, t_binary *tree)
 	{
 		if (tree->cmd->split_cmd[0][0] == '&')
 			return (execution_norme(mini, tree, 1));
-		if (is_a_pipe(tree->cmd->split_cmd[i]) == true)
+		if (need_spec(i, tree->cmd->split_quotes) \
+		&& is_a_pipe(tree->cmd->split_cmd[i]) == true)
 		{
 			if (pipe_is_valid(tree->cmd->split_cmd) < 0)
 				return (mini_error_one(4));

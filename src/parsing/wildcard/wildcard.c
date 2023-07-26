@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:55:11 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 12:28:35 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:50:45 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static char	**get_wc(char *bfwc, char *afwc, t_wc *liste)
 		tab = wc_after(afwc, liste);
 	else
 		tab = wc_all(liste);
+	ft_free_wc(liste);
 	if (!tab[0])
 	{
 		free(tab);
@@ -106,7 +107,7 @@ static char	*new_str(char *begin, char *end, char **tab)
 		i++;
 	}
 	str = ft_strjoat(str, end);
-	free(tab);
+	ft_free_tab(tab);
 	return (str);
 }
 

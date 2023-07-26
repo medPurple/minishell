@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 09:51:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 13:56:35 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:04:37 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	pipe_parent(t_binary *tree, int choice)
 
 void	fork_option(t_minishell *mini, t_binary *tree, int choice, int i)
 {
+	signal(SIGQUIT, signal_bs);
 	if (choice == 1)
 	{
 		if (tree->cmd->is_a_redir == 1)

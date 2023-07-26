@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:24:12 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 11:06:39 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:05:58 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,21 @@ void	last_pipex(t_binary *tree, t_minishell *mini, int i, int j)
 
 void	wait_child(t_binary *tree)
 {
-	signal(SIGQUIT, SIG_DFL);
 	while (wait(&tree->cmd->status) != -1)
 		;
+	if (g_eoat == 131)
+	{
+		if (tree->cmd->in != -1 && tree->cmd->in != 0)
+			close(tree->cmd->in);
+		if (tree->cmd->out != -1 && tree->cmd->out != 0)
+			close(tree->cmd->out);
+		if (tree->cmd->check_here_doc == 1)
+		{
+			close(tree->cmd->pipe_tmp);
+			unlink(".tmp");
+		}
+		return ;
+	}
 	if (WEXITSTATUS(tree->cmd->status) > 0)
 		tree->cmd->exec = -1;
 	else
