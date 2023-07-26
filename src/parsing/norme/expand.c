@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:32:17 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 10:17:38 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:04:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ char	*jap_norme_2(char *str, char *af, char *bf, int i)
 	return (ft_strjoat(bf, af));
 }
 
-int	expand_norme_2(t_binary *tree, int i)
+int	expand_norme_2(t_binary *tree, int i, int quotes)
 {
 	if (tree->data[i] == '*')
 	{
 		tree->data = wildcard(tree->data, i);
 		i = 0;
 	}
-	else if (tree->data[i] == '\'')
+	else if (tree->data[i] == '\'' && quotes == 0)
 		i = pass_quotes(tree->data, i) + 1;
 	return (i);
 }

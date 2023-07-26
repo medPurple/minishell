@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/26 09:49:33 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:11:15 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	pass_quotes(char *str, int i)
 	char	c;
 
 	c = str[i];
-	if (!str[i +1])
+	if (!str[i + 1])
 		return (i);
+	i++;
 	while (str[i] != '\0' && str[i] != c)
 		i++;
 	return (i);
@@ -59,8 +60,8 @@ int	find_next_quotes(char *str, int pos)
 
 char	**removes_quotes(char **tab)
 {
-	int	i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (tab && tab[i])

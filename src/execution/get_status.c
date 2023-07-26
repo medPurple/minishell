@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 14:13:07 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/26 10:52:16 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:11:52 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,28 @@ static char	*jap_s(char *bf, char *af)
 		if (af)
 		{
 			str2 = ft_strjoin(str, af);
-			return (free(af),free(str3),str2);
+			return (free(af), free(str3), str2);
 		}
-		return (free(str3),str);
+		return (free(str3), str);
 	}
 	else if (af)
 	{
 		str2 = ft_strjoin(str3, af);
-		return (free(af),str2);
+		return (free(af), str2);
 	}
 	return (str3);
 }
 
 char	*get_all_status(char *str)
 {
-	int	i;
-	char *str2;
+	int		i;
+	char	*str2;
 
 	str2 = NULL;
 	i = 0;
 	while (str[i] && str[i + 1])
 	{
-		if (str[i] == '$'&& str[i + 1] == '?')
+		if (str[i] == '$' && str[i + 1] == '?')
 		{
 			str2 = get_status(str);
 			free(str);

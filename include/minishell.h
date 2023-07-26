@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 10:45:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:53:17 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				verif_parentheses(t_binary *tree);
 bool			has_nothing(char *str);
 char			*replace_doll_bis(char *str, t_env *env, int position, int i);
 bool			need_split(char *str, int i);
-int				expand_norme_2(t_binary *tree, int i);
+int				expand_norme_2(t_binary *tree, int i, int quotes);
 int				nome_e_doll(char *str, int i);
 
 /*-----------------------EXECUTION------------------------------*/

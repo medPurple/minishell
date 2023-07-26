@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:19:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:12:07 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 {
-	char *str;
+	char	*str;
 
 	if (i == 1)
 	{

@@ -6,13 +6,13 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:02:55 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/25 23:12:06 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:08:23 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int	expand_norme(t_binary *tree, t_env *env, int i);
+static int	expand_norme(t_binary *tree, t_env *env, int i, int quotes);
 
 void	expand(t_binary *tree, t_env *env)
 {
@@ -23,7 +23,7 @@ void	expand(t_binary *tree, t_env *env)
 	quotes = 0;
 	while (tree->data && tree->data[i])
 	{
-		i = expand_norme(tree, env, i);
+		i = expand_norme(tree, env, i, quotes);
 		if (tree->data[i] == '\0')
 			return ;
 		if (tree->data[i] && tree->data[i] == '\"' && quotes == 0)
@@ -43,7 +43,7 @@ void	expand(t_binary *tree, t_env *env)
 	}
 }
 
-static int	expand_norme(t_binary *tree, t_env *env, int i)
+static int	expand_norme(t_binary *tree, t_env *env, int i, int quotes)
 {
 	char	*str;
 
@@ -66,7 +66,7 @@ static int	expand_norme(t_binary *tree, t_env *env, int i)
 		}
 	}
 	else
-		i = expand_norme_2(tree, i);
+		i = expand_norme_2(tree, i, quotes);
 	return (i);
 }
 

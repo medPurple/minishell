@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:41:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/26 10:59:22 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:12:18 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	exec_recu_par_norme(t_binary *tree)
 
 static void	exec_norme_par(t_binary *tree, t_minishell *mini)
 {
-	char *str;
+	char	*str;
 
 	str = NULL;
 	if (tree->status == true)
