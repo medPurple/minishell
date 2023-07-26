@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/25 23:10:59 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 09:49:33 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,18 @@ int	find_next_quotes(char *str, int pos)
 char	**removes_quotes(char **tab)
 {
 	int	i;
+	char *str;
 
 	i = 0;
 	while (tab && tab[i])
 	{
 		if (has_quotes(tab[i]))
-			tab[i] = rmq_norme(tab[i]);
+		{
+			str = rmq_norme(tab[i]);
+			free(tab[i]);
+			tab[i] = ft_strdup(str);
+			free(str);
+		}
 		i++;
 	}
 	return (tab);

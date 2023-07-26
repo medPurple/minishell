@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minisplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:56 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/22 16:22:45 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:00:08 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	utils(char **cmd, int k, char *str)
 {
 	cmd[k] = NULL;
 	free(str);
+	(void)str;
 }
 
 static int	minisplit_bis(char *str, int i)

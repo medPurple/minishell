@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:41:33 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 17:10:04 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:59:22 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,16 @@ static void	exec_recu_par_norme(t_binary *tree)
 
 static void	exec_norme_par(t_binary *tree, t_minishell *mini)
 {
+	char *str;
+
+	str = NULL;
 	if (tree->status == true)
-		tree->cmd->split_cmd = \
-		mini_split(get_status(tree), 0, 0, 0);
+	{
+		ft_free_tab(tree->cmd->split_cmd);
+		str = get_all_status(tree->data);
+		tree->data = ft_strdup(str);
+		free(str);
+		tree->cmd->split_cmd = mini_split(tree->data, 0, 0, 0);
+	}
 	execution(mini, tree);
 }

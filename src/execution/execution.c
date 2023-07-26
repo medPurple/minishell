@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/24 16:30:36 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:04:03 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	execution(t_minishell *mini, t_binary *tree)
 	int	i;
 
 	i = 0;
-	if (ft_strlen(tree->data) == 0)
+	if (!tree->cmd && ft_strlen(tree->data) == 0)
 		return ;
 	tree->cmd->check_pipe = -1;
 	while (tree->cmd->split_cmd[i])

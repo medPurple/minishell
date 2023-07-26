@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/25 23:22:28 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:45:04 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,8 @@ void			changedir_norme(t_env *tmp, char *dest, char *old, char *str);
 void			mini_env(t_env *env);
 void			mini_export(t_env **env, char **tab);
 void			mini_unset(t_env **env, char **tab, int i, t_env *tmp);
-char			*get_status(t_binary *tree);
-char			*get_all_status(t_binary *tree);
+char			*get_status(char *str);
+char			*get_all_status(char *str);
 bool			open_close(char *str);
 char			*find_dir(t_env *env);
 int				count_arg(char **tab, int j);

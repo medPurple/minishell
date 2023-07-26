@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:43:33 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/25 23:24:21 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:19:04 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static	void	ft_wait(t_binary *tree, int status);
 
 void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 {
+	char *str;
+
 	if (i == 1)
 	{
 		if (tree->prev->prev->left->parentheses == false \
@@ -30,8 +32,9 @@ void	exec_recu_norme(t_minishell *mini, t_binary *tree, int i)
 		if (tree->status == true)
 		{
 			ft_free_tab(tree->cmd->split_cmd);
-			tree->cmd->split_cmd = \
-			mini_split(get_all_status(tree), 0, 0, 0);
+			str = get_all_status(tree->data);
+			tree->data = ft_strdup(str);
+			tree->cmd->split_cmd = mini_split(str, 0, 0, 0);
 		}
 		g_eoat = 0;
 		execution (mini, tree);
