@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:03:13 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/24 10:26:41 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/25 23:10:59 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	end_of_quotes(char *str, int i)
 		&& (str[i] != '|' && str[i + 1] != '|'))
 	{
 		if ((str[i] == '\'') || (str[i] == '\"'))
-			i = pass_quotes(str, i);
+			i = pass_quotes(str, i) + 1;
 		else
 			i++;
 	}
