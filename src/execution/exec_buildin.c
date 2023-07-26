@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:00:53 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:48:20 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	exec_buildin_child(t_binary *tree, t_minishell *mini)
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "env") == 0)
 		mini_env(mini->env);
 	ft_free_tab(tree->cmd->exec_cmd);
-	//ft_free_tab(tree->cmd->split_cmd);
 	exit(EXIT_SUCCESS);
 }
 
