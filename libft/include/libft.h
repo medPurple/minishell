@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:58 by wmessmer          #+#    #+#             */
-/*   Updated: 2023/07/22 13:23:49 by mvautrot         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:11:30 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,5 @@ char		**ft_malloc2(int size, char *type);
 char		*ft_limited_strdup(char *str, int begin, int end);
 void		ft_perror(char *str);
 void		ft_free_tab(char **tab);
-
+bool		ft_d_strchr(char *str, char *chr);
 #endif

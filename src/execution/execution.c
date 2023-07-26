@@ -6,13 +6,11 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:56:50 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 14:52:51 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:17:08 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-static void	execute_cmd_norme(t_binary *tree, int i);
 
 void	exec_recu(t_minishell *mini, t_binary *tree)
 {
@@ -103,16 +101,16 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 {
 	execution_norme_1(tree, 2);
 	tree->cmd->path_cmd = cmd_recuperation(tree->cmd->exec_cmd[0], mini->env);
-	if (tree->cmd->path_cmd != NULL)
-	{
-		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
-			execute_cmd_norme(tree, 1);
-	}
-	else if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
+	if (ft_strchr(tree->cmd->exec_cmd[0], '/') != NULL)
 	{
 		tree->cmd->path_cmd = tree->cmd->exec_cmd[0];
 		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
 			execute_cmd_norme(tree, 2);
+	}
+	else if (tree->cmd->path_cmd != NULL)
+	{
+		if (execve(tree->cmd->path_cmd, tree->cmd->exec_cmd, mini->envp) == -1)
+			execute_cmd_norme(tree, 1);
 	}
 	else
 	{
@@ -127,7 +125,7 @@ void	execute_cmd(t_binary *tree, t_minishell *mini)
 	}
 }
 
-static void	execute_cmd_norme(t_binary *tree, int i)
+void	execute_cmd_norme(t_binary *tree, int i)
 {
 	if (i == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:10:00 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 15:53:46 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:17:22 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void			execution_norme_2(t_minishell *mini, t_binary *tree,
 					int status);
 int				verif_meta_norme(t_binary *tree);
 bool			only_space(char *str);
-
+void			execute_cmd_norme(t_binary *tree, int i);
 /*---------------------------REDIRECTION--------------------------*/
 void			pipex(t_binary *tree, t_minishell *mini, int i, int j);
 void			last_pipex(t_binary *tree, t_minishell *mini, int i, int j);

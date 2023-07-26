@@ -6,7 +6,7 @@
 /*   By: wmessmer <wmessmer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:05:58 by mvautrot          #+#    #+#             */
-/*   Updated: 2023/07/26 11:48:20 by wmessmer         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:14:26 by wmessmer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ void	exec_buildin(t_binary *tree, t_minishell *mini)
 		mini_cd (mini->env, tree);
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "export") == 0)
 		mini_export(&mini->env, tree->cmd->exec_cmd);
-	else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0
-		&& tree->cmd->exec_cmd[1])
-		mini_unset(&mini->env, tree->cmd->exec_cmd, 1, mini->env);
+	else if (ft_strcmp(tree->cmd->exec_cmd[0], "unset") == 0 \
+	&& tree->cmd->exec_cmd[1])
+	{
+		if (tree->cmd->exec_cmd[1][0] == '-')
+			mini_error_one(15);
+		else
+			mini_unset(&mini->env, tree->cmd->exec_cmd, 1, mini->env);
+	}
 	else if (ft_strcmp(tree->cmd->exec_cmd[0], "exit") == 0)
 	{
 		if (tree->cmd->exec_cmd[1] && !(tree->cmd->exec_cmd[2]) \

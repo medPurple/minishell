@@ -77,6 +77,7 @@ SRCS_PERSO	= 	srcs/src_add/print_error.c \
 				srcs/src_add/ft_limited_strdup.c \
 				srcs/src_add/ft_perror.c \
 				srcs/src_add/ft_free_tab.c \
+				srcs/src_add/ft_d_strchr.c \
 
 OBJ	=   ${SRCS_LIBFT:.c=.o} ${SRCS_PRINTF:.c=.o} ${SRCS_GNL:.c=.o} ${SRCS_PERSO:.c=.o}
 
